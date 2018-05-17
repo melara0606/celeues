@@ -15,13 +15,14 @@ class CreateNoticiaInteresadosTable extends Migration
     {
         Schema::create('noticia_interesados', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-
+            
             $table->integer('idnoticias')->unsigned()->nullable()->default(null);
             $table->foreign('idnoticias')->references('id')->on('noticias');
             
             $table->integer('idinteresados')->unsigned();
             $table->foreign('idinteresados')->references('id')->on('interesados');
+            $table->timestamps();
+
         });
     }
 
