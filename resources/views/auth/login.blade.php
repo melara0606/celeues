@@ -1,69 +1,147 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+    <title>Login page | Nifty - Admin Template</title>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ] -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="{{ asset('started/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="{{ asset('started/css/nifty.min.css') }}" rel="stylesheet">
+
+
+    <!--Premium Icons [ OPTIONAL ]-->
+    <link href=" {{ asset('started/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
+    <link href=" {{ asset('startedpremium/icon-sets/icons/solid-icons/premium-solid-icons.min.css') }}" rel="stylesheet">
+
+
+    <!--=================================================-->>
+
+
+    <!--Page Load Progress Bar [ OPTIONAL ]-->
+    <link href="{{ asset('started/css/pace.min.css') }}" rel="stylesheet">
+    <script src=" {{ asset('started/js/pace.min.js') }}"></script>
+
+
+        <!-- Create your own class to load custum image [ SAMPLE ]-->
+    <style>
+        .demo-my-bg{
+            background-image : url("img/balloon.jpg");
+        }
+    </style>
+
+
+        
+    <!--=================================================
+
+    REQUIRED
+    You must include this in your project.
+
+
+    RECOMMENDED
+    This category must be included but you may modify which plugins or components which should be included in your project.
+
+
+    OPTIONAL
+    Optional plugins. You may choose whether to include it in your project or not.
+
+
+    Detailed information and more samples can be found in the document.
+
+    =================================================-->
+        
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+
+<body>
+    <div id="container" class="cls-container">
+        
+		<!-- BACKGROUND IMAGE -->
+		<!--===================================================-->
+		<div id="bg-overlay" class="bg-img" style="background-image: url(img/bg-img-3.jpg)"></div>
+		
+		
+		<!-- LOGIN FORM -->
+		<!--===================================================-->
+		<div class="cls-content">
+		    <div class="cls-content-sm panel">
+		        <div class="panel-body">
+		            <div class="mar-ver pad-btm">
+		                <h1 class="h3">Account Login</h1>
+		                <p>Sign In to your account</p>
+		            </div>
+		            <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+		            	 {{ csrf_field() }}
+		                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                           {{--<label for="email" class="col-md-4 control-label">E-Mail Address</label>
+--}}
+		                    <input id="email" type="email" class="form-control" placeholder="usuario" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+		                </div>
+		                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+		                	<input id="password" type="password" class="form-control" placeholder="contrasenha" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+      					</div>
+		                <div class="checkbox pad-btm text-left">
+		                    <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">
+		                    <label for="demo-form-checkbox">Remember me</label>
+		                </div>
+		                <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+		            </form>
+		        </div>
+		
+		        <div class="pad-all">
+		            <a href="#" class="btn-link mar-rgt">Forgot password ?</a>
+		            <a href="#" class="btn-link mar-lft">Create a new account</a>
+		
+		            <div class="media pad-top bord-top">
+		                <div class="pull-right">
+		                    <a href="#" class="pad-rgt"><i class="psi-facebook icon-lg text-primary"></i></a>
+		                    <a href="#" class="pad-rgt"><i class="psi-twitter icon-lg text-info"></i></a>
+		                    <a href="#" class="pad-rgt"><i class="psi-google-plus icon-lg text-danger"></i></a>
+		                </div>
+		                <div class="media-body text-left text-bold text-main">
+		                    Login with
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<!--===================================================-->
+		
+		
+		
     </div>
-</div>
-@endsection
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+
+    </body>
+</html>
