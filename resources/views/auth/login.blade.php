@@ -74,7 +74,7 @@
         
 		<!-- BACKGROUND IMAGE -->
 		<!--===================================================-->
-		<div id="bg-overlay" class="bg-img" style="background-image: url(img/bg-img-3.jpg)"></div>
+		<div id="bg-overlay" class="bg-img" style="background-image: url(started/img/bg-img-3.jpg)"></div>
 		
 		
 		<!-- LOGIN FORM -->
