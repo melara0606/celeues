@@ -26,10 +26,10 @@
 
     <!--Premium Icons [ OPTIONAL ]-->
     <link href=" {{ asset('started/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
-    <link href=" {{ asset('startedpremium/icon-sets/icons/solid-icons/premium-solid-icons.min.css') }}" rel="stylesheet">
+    <link href=" {{ asset('started/premium/icon-sets/icons/solid-icons/premium-solid-icons.min.css') }}" rel="stylesheet">
 
 
-    <!--=================================================-->>
+    <!--=================================================-->
 
 
     <!--Page Load Progress Bar [ OPTIONAL ]-->
@@ -62,7 +62,7 @@
 
     Detailed information and more samples can be found in the document.
 
-    =================================================-->
+    ================================================= -->
         
 </head>
 
@@ -83,13 +83,13 @@
 		    <div class="cls-content-sm panel">
 		        <div class="panel-body">
 		            <div class="mar-ver pad-btm">
-		                <h1 class="h3">Account Login</h1>
-		                <p>Sign In to your account</p>
+		                <h1 class="h3">Login</h1>
+		                <p>Inicio de sesion a tu cuenta</p>
 		            </div>
 		            <form class="form-horizontal" method="POST" action="{{ route('login') }}">
 		            	 {{ csrf_field() }}
 		                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                           {{--<label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                           {{-- <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 --}}
 		                    <input id="email" type="email" class="form-control" placeholder="usuario" name="email" value="{{ old('email') }}" required autofocus>
 
@@ -109,11 +109,12 @@
                                     </span>
                                 @endif
       					</div>
+                        
 		                <div class="checkbox pad-btm text-left">
 		                    <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">
 		                    <label for="demo-form-checkbox">Remember me</label>
 		                </div>
-		                <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+		                <button class="btn btn-primary btn-lg btn-block" type="submit">Iniciar sesion</button>
 		            </form>
 		        </div>
 		
