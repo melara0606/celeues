@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-lg-10 ">
 					        <div class="panel" >
-					            <div class="panel-heading">
+					            <div class="panel-heading bg-mint">
 					                <h3 class="panel-title">Nueva Noticia</h3>
 					            </div>
 					 <div class="bord-all">

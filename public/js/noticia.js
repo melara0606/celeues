@@ -1,9 +1,9 @@
 $(document).ready(function(){
-	//$("#msjshow").hide();
- $('#myTable').DataTable();
-
-//$("#titulo").val('value','bjkjjkj');
-//$('#nombre').val(data.nombre);
+ //$('#myTable').DataTable();
+var data = {!! json_encode($estado) !!}; 
+// var sites = {!! json_encode($estado) !!}
+ console.log('sites');
+$('#titulo').val(data);
 });
 
 $("#btnGuardar").click(function (e) {

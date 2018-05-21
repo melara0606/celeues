@@ -34,9 +34,25 @@
                    
 				
 					<div class="panel">
-					    <div class="panel-heading">
-					        <h3 class="panel-title">Noticias</h3>
+
+					    <div class="panel-heading {{--bg-mint--}}">
+					    	<div class="panel-control">
+					                        <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
+					                        <div class="dropdown">
+					                            <button class="dropdown-toggle btn btn-default btn-active-primary" data-toggle="dropdown" aria-expanded="false"><i class="demo-psi-dot-vertical"></i></button>
+					                            <ul class="dropdown-menu dropdown-menu-right">
+					                                <li><a href="#">Action</a></li>
+					                                <li><a href="#">Another action</a></li>
+					                                <li><a href="#">Something else here</a></li>
+					                                <li class="divider"></li>
+					                                <li><a href="#">Separated link</a></li>
+					                            </ul>
+					                        </div>
+					                    </div>
+					        <h3 class="panel-title ">Noticias</h3>
+
 					    </div>
+
 					
 					    <!--Data Table-->
 					    <!--===================================================-->
@@ -93,7 +109,7 @@
 											<td>{{ $noticia->titulo }}</td>
 											<td >{{ $noticia->descripcion }}</td>
 											<td><span class="text-muted"><i class="demo-pli-clock"></i> {{ $noticia->modalidad }}</span></td>
-											<td ><div class="label label-table bg-dark"><div class="text-sm text-bold">{{ $noticia->estado }}</div></div></td>
+											<td ><div class="label label-table bg-mint"><div class="text-sm text-bold">{{ $noticia->estado }}</div></div></td>
 											<td>
 											{{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
 											<button class="btn btn-sm btn-rounded btn-default">Small</button>
@@ -139,5 +155,11 @@
 
 @section('script')
 
-<script src="{{ asset('js/noticia.js') }}"></script>
+<script >
+	$(document).ready(function(){
+	//$("#msjshow").hide();
+ 	$('#myTable').DataTable();
+
+});
+</script>
 @endsection

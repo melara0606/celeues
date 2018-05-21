@@ -1114,7 +1114,7 @@
 <script src="{{ asset('demo/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
 
     <!--DataTables Sample [ SAMPLE ]-->
-    <script src="js/demo/tables-datatables.js"></script>
+    {{--<script src="js/demo/tables-datatables.js"></script>--}}
 <script src="{{ asset('demo/js/demo/tables-datatables.js') }}"></script>
 
     @yield('script')
