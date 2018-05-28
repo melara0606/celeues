@@ -17,9 +17,15 @@ class CreateInteresadosTable extends Migration
             $table->increments('id');
             $table->string('nombre',30);
             $table->string('apellido', 30);
+            $table->date('fechaNac');
+
             //$table->string('dui', 10);
             $table->string('telefono');
             $table->string('email');
+
+             $table->integer('idnoticias')->unsigned()->nullable()->default(null);
+            $table->foreign('idnoticias')->references('id')->on('noticias');
+            
 
 
             $table->timestamps();

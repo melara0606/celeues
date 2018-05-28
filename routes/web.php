@@ -24,6 +24,8 @@ Route::put('/noticiaForm/update/{id?}','noticiaController@update');
 Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaForm')->middleware('auth');
 
 Route::get('/interesados/noticia/{id?}', 'interesadoController@showForm');
+Route::post('/interesados/create', 'interesadoController@create');
+Route::get('/noticia/{id?}/interesados		', 'interesadoController@show');
 
 //Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaCreate')->middleware('auth');
 

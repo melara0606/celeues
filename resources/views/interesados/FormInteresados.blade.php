@@ -206,10 +206,21 @@
                                         <div class="col-md-7"><p class="form-control-static">Username</p></div>
                                     </div>
                                     <br>
+
+                                    <!--Text Input-->
+                                    <div class="form-group @if($errors->has('titulo')) has-error @endif">
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">idnoticias</label>
+                                        <div class="col-md-7">
+                                            <input type="text" id="idnoticias" value="{{ $idNoticia }}" name="idnoticias" class="form-control" placeholder="idnoticias"  >
+                                            {{--<small class="help-block">This is a help text</small>
+                                        --}}
+                                        </div>
+                                    </div>
+
                     
                                     <!--Text Input-->
                                     <div class="form-group @if($errors->has('titulo')) has-error @endif">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Nombre</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Nombre*</label>
                                         <div class="col-md-7">
                                             <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese nombre"  >
                                             {{--<small class="help-block">This is a help text</small>
@@ -219,7 +230,7 @@
 
                                     <!--Text Input-->
                                     <div class="form-group @if($errors->has('titulo')) has-error @endif">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Apellido</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Apellido*</label>
                                         <div class="col-md-7">
                                             <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Ingrese apellido"  >
                                             {{--<small class="help-block">This is a help text</small>
@@ -227,10 +238,21 @@
                                         </div>
                                     </div>
 
+                                    <!--Text Input-->
+                                    <div class="form-group @if($errors->has('titulo')) has-error @endif">
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Fecha Nacimiento*</label>
+                                        <div class="col-md-5">
+                                            <input type="date" id="fechaNac" name="fechaNac" class="form-control" placeholder="Ingrese su fecha de nacimiento"  >
+                                            {{--<small class="help-block">This is a help text</small>
+                                        --}}
+                                        </div>
+                                    </div>
+                                    
+
                                      <!--Text Input-->
                                     <div class="form-group @if($errors->has('titulo')) has-error @endif">
                                         <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Telefono</label>
-                                        <div class="col-md-7">
+                                        <div class="col-md-5">
                                             <input type="number" id="telefono" name="telefono" class="form-control" placeholder="####-####"  >
                                             {{--<small class="help-block">This is a help text</small>
                                         --}}
@@ -239,12 +261,12 @@
     
                                     <!--Email Input-->
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Email</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Email*</label>
                                         <div class="col-md-7">
-                                            <input type="email" id="demo-email-input" class="form-control" placeholder="Enter your email">
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email">
                                              </div>
                                     </div>
-                    
+                                    
                                   
                                     {{--<div class="form-group">
                                      <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Modalidad</label>
@@ -495,6 +517,8 @@
     <!--DataTables Sample [ SAMPLE ]-->
     {{--<script src="js/demo/tables-datatables.js"></script>--}}
 <script src="{{ asset('demo/js/demo/tables-datatables.js') }}"></script>
+
+<script src="{{ asset('js/interesados.js') }}"></script>
 
     
     

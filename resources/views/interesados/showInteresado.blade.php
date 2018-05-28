@@ -104,24 +104,22 @@
 					                    </tr>
 					                </thead>
 					                <tbody>
-					                    @forelse($noticias as $noticia)
-										<tr id="{{ $noticia->id }}">
-											<td>{{ $noticia->titulo }}</td>
-											<td >{{ $noticia->descripcion }}</td>
-											<td><span class="text-muted"><i class="demo-pli-clock"></i> {{ $noticia->modalidad }}</span></td>
-											<td ><div class="label label-table bg-mint"><div class="text-sm text-bold">{{ $noticia->estado }}</div></div></td>
+					                    @forelse($interesados as $interesado)
+										<tr id="{{ $interesado->id }}">
+											<td>{{ $interesado->nombre }}</td>
+											<td >{{ $interesado->apellido }}</td>
+											<td><span class="text-muted"><i class="demo-pli-clock"></i> {{ $interesado->fechaNac }}</span></td>
+											<td ><div class="label label-table bg-mint"><div class="text-sm text-bold">{{ $interesado->telefono }}</div></div></td>
 											<td>
 											{{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
 											<button class="btn btn-sm btn-rounded btn-default">Small</button>
 											<button class="btn btn-xs btn-rounded btn-default">Extra Small</button>
 											--}}
-											<button class="btn btn-default btn-default btn-success"><i class="demo-pli-pen-5 icon-sm add-tooltip" ></i></button>
-											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i class="demo-pli-exclamation icon-sm" ></i></button>
-											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i <a href="#" class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></a> ></i></button>
+											<button class="btn btn-default btn-sm btn-default btn-success"><i class="demo-pli-pencil icon-sm"></i></button>
+											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i class="demo-pli-exclamation icon-sm"></i></button>
 
 											{{--<button class="btn btn-lg btn-default btn-hover-warning">Hover Me!</button>
 											<div class="demo-icon"><i class="demo-pli-internet-explorer"></i></div>--}}
-											<a href="#" <a href="#" class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></a>></a>
 											</td>
 
         </tr>

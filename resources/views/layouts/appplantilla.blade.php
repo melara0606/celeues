@@ -747,8 +747,8 @@
             
             <!--MAIN NAVIGATION-->
             <!--===================================================-->
-            <nav id="mainnav-container">
-                <div id="mainnav">
+            <nav id="mainnav-container" class="bg-success">
+                <div id="mainnav" >
 
 
                     <!--OPTIONAL : ADD YOUR LOGO TO THE NAVIGATION-->
@@ -769,7 +769,7 @@
                     <!--================================-->
                     <div id="mainnav-menu-wrap">
                         <div class="nano">
-                            <div class="nano-content">
+                            <div class="nano-content ">
 
                                 <!--Profile Widget-->
                                 <!--================================-->

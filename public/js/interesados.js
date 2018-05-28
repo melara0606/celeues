@@ -1,9 +1,5 @@
 $(document).ready(function(){
- //$('#myTable').DataTable();
-//var data = {!! json_encode($estado) !!}; 
-// var sites = {!! json_encode($estado) !!}
-// console.log('sites');
-//$('#titulo').val(data);
+
 });
 
 $("#btnGuardar").click(function (e) {
@@ -15,19 +11,19 @@ $("#btnGuardar").click(function (e) {
 
         e.preventDefault(); 
         var formData = {
-         titulo:$('#titulo').val(),
-		 descripcion:$('#descripcion').val(),
-		 numModulo:$('#numModulo').val(),
-	 	 fechaInicio:$('#fechaInicio').val(),
-	 	 fechaFin:$('#fechaFin').val(),
-		 modalidad:$('#modalidad').val(),
+         nombre:$('#nombre').val(),
+		 apellido:$('#apellido').val(),
+		 fechaNac:$('#fechaNac').val(),
+	 	 telefono:$('#telefono').val(),
+	 	 email:$('#email').val(),
+		 idnoticias:$('#idnoticias').val(),
 	 	 
 
            }       
 
         var type = "POST"; //for creating new resource
-        var my_url = "noticiaForm/create";
-        console.log(formData);
+        var my_url ="/celeues/public/interesados/create";
+        console.log(formData); //{{ route("interesados/create") }}//"interesados/create";
 
         $.ajax({
 
