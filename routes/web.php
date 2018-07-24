@@ -27,6 +27,9 @@ Route::get('/interesados/noticia/{id?}', 'interesadoController@showForm');
 Route::post('/interesados/create', 'interesadoController@create');
 Route::get('/noticia/{id?}/interesados		', 'interesadoController@show');
 
+Route::get('/idioma', 'idiomaController@show')->name('idioma')->middleware('auth');
+Route::post('/idioma/create', 'idiomaController@create');
+
 //Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaCreate')->middleware('auth');
 
 

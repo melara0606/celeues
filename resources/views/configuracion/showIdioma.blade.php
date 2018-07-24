@@ -21,7 +21,7 @@
                     <ol class="breadcrumb">
 					<li><a href="#"><i class="demo-pli-home"></i></a></li>
 					<li><a href="#">Forms</a></li>
-					<li class="active">Noticias</li>
+					<li class="active">Idiomas</li>
                     </ol>
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <!--End breadcrumb-->
@@ -37,6 +37,7 @@
 
 					    <div class="panel-heading {{--bg-mint--}}">
 					    	<div class="panel-control">
+					    		<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
 					                        <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
 					                        <div class="dropdown">
 					                            <button class="dropdown-toggle btn btn-default btn-active-primary" data-toggle="dropdown" aria-expanded="false"><i class="demo-psi-dot-vertical"></i></button>
@@ -49,7 +50,7 @@
 					                            </ul>
 					                        </div>
 					                    </div>
-					        <h3 class="panel-title ">Noticias</h3>
+					        <h3 class="panel-title ">Idiomas</h3>
 
 					    </div>
 
@@ -57,14 +58,16 @@
 					    <!--Data Table-->
 					    <!--===================================================-->
 					    <div class="panel-body">
-					       <div class="pad-btm form-inline">
+					       {{----}}<div class="pad-btm form-inline">
 					            <div class="row">
 					                <div class="col-sm-6 table-toolbar-left">
-					                    <button id="demo-btn-addrow" class="btn btn-purple"><i class="demo-pli-add"></i> Add</button>
-					                    <button class="btn btn-default"><i class="demo-pli-printer"></i></button>
+					                    <button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo</button>
+					                    <button class="btn btn-default imprimir"><i class="demo-pli-printer"></i></button>
 					                    <div class="btn-group">
-					                        <button class="btn btn-default"><i class="demo-pli-exclamation"></i></button>
-					                        <button class="btn btn-default"><i class="demo-pli-recycling"></i></button>
+					                        <button class="btn btn-default"><i class="demo-pli-exclamation"></i>
+					                        </button>
+					                        <button class="btn btn-default"><i class="demo-pli-recycling"></i>
+					                        </button>
 					                    </div>
 					                </div>
 					                <div class="col-sm-6 table-toolbar-right">
@@ -81,7 +84,7 @@
 					                            <ul role="menu" class="dropdown-menu dropdown-menu-right">
 					                                <li><a href="#">Action</a></li>
 					                                <li><a href="#">Another action</a></li>
-					                                <li><a href="#">Something elsesssssshere</a></li>
+					                                <li><a href="#">Something else here</a></li>
 					                                <li class="divider"></li>
 					                                <li><a href="#">Separated link</a></li>
 					                            </ul>
@@ -95,7 +98,7 @@
 					            <table id="myTable" class="table table-striped">
 					                <thead>
 					                    <tr>
-					                        <th class="text-center">Titulo</th>
+					                        <th class="text-center">Idioma</th>
 					                        <th>Descripcion</th>
 					                        <th>Modalidad</th>
 					                        <th>Estado</th>
@@ -104,12 +107,12 @@
 					                    </tr>
 					                </thead>
 					                <tbody>
-					                    @forelse($noticias as $noticia)
-										<tr id="{{ $noticia->id }}">
-											<td>{{ $noticia->titulo }}</td>
-											<td >{{ $noticia->descripcion }}</td>
-											<td><span class="text-muted"><i class="demo-pli-clock"></i> {{ $noticia->modalidad }}</span></td>
-											<td ><div class="label label-table bg-mint"><div class="text-sm text-bold">{{ $noticia->estado }}</div></div></td>
+					                    @forelse($idiomas as $idioma)
+										<tr id="{{ $idioma->id }}">
+											<td>{{ $idioma->nombre }}</td>
+											<td ></td>
+											<td><span class="text-muted"><i class="demo-pli-clock"></i> </span></td>
+											<td ><div class="label label-table bg-mint"><div class="text-sm text-bold"></div></div></td>
 											<td>
 											{{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
 											<button class="btn btn-sm btn-rounded btn-default">Small</button>
@@ -153,15 +156,75 @@
             <!--END CONTENT CONTAINER-->
 
 
+    <!--Default Bootstrap Modal-->
+    <!--===================================================-->
+    <div class="modal fade" id="modalIngreso" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!--Modal header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                    <h4 class="modal-title" id="modalIngresoLabel">Ingresar idioma</h4>
+                </div>
+
+                <!--Modal body-->
+                <div class="modal-body">
+                  {{--  <p class="text-semibold text-main">Bootstrap Modal Vertical Alignment Center</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                    <br>
+                    <p class="text-semibold text-main">Popover in a modal</p>
+                    <p>This
+                        <button class="btn btn-sm btn-warning demo-modal-popover add-popover" data-toggle="popover" data-trigger="focus" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="Popover Title">button</button>
+                        should trigger a popover on click.
+                    </p>
+                    <br>
+                    <p class="text-semibold text-main">Tooltips in a modal</p>
+                    <p>
+                        <a class="btn-link text-bold add-tooltip" href="#" data-original-title="Tooltip">This link</a> and
+                        <a class="btn-link text-bold add-tooltip" href="#" data-original-title="Tooltip">that link</a> should have tooltips on hover.
+                    </p>
+--}}
+                    @include('configuracion.formIdioma')
+                </div>
+
+                <!--Modal footer-->
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                    <button class="btn btn-primary" id="btnGuardar">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End Default Bootstrap Modal-->
+
+
+
+            <!--Large Bootstrap Modal-->
+    <!--===================================================-->
+    <div id="modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                    <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End Large Bootstrap Modal-->
+
+
+
 @endsection
 
 @section('script')
 
-<script >
-	$(document).ready(function(){
-	//$("#msjshow").hide();
- 	$('#myTable').DataTable();
+ <script src="{{asset('js/idioma.js')}}"></script>
 
-});
-</script>
 @endsection
