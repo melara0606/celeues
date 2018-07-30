@@ -25,8 +25,9 @@ class idiomaController extends Controller
    		$message= idioma::create([
     		'nombre'=> $request->input('nombre'),
     		'descripcion'=> $request->input('descripcion'),
+            'estado'=> "ACTIVO",
     		]);	 
-    	return Response::json('<strong>Bien Hecho!</strong> Registro Guardado Exitosamente');
+    	return Response::json('Registro Guardado Exitosamente');
  
 	return redirect('/home')->with('mensaje','Registro Guardado');	
     	
@@ -41,7 +42,7 @@ class idiomaController extends Controller
             ]);
         if($message->save()){
           // bitacoraController::bitacora('Modificó datos de peticion');
-            return Response::json('<strong>Bien Hecho!</strong> Registro Modificado Exitosamente');
+            return Response::json('Registro Modificado Exitosamente');
             }else
                 return Response::json('No pudo Modificarse');
 
@@ -54,4 +55,16 @@ class idiomaController extends Controller
     return Response::json($idioma);
     }
 
+    public function cambiarEstado(Request $request,$id){
+        $message = idioma::find($id);
+        $message->fill([
+            'estado'=>$request->input('estado'),
+            ]);
+        if($message->save()){
+          // bitacoraController::bitacora('Modificó datos de peticion');
+            return Response::json('Cambio de Estado Exitoso');
+            }else
+                return Response::json('No pudo cambiar de Estado');
+
+    }
 }

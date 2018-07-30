@@ -97,7 +97,7 @@
 
 	<!--===================================================-->
 	<!--	MENSAJE FLOTANTE -->
-
+<!--
 <div id="floating-top-right" class="floating-container">
 	<div class="alert alert-mint" style="display: none;" id="msjshow">
 		<button class="close" data-dismiss="alert">
@@ -105,12 +105,12 @@
 		</button><strong>Heads up!</strong> This alert needs your attention, but it's not super important.
 	</div>
 	
-</div>
+</div>-->
 
 	<!--===================================================-->
 	<!--End mensajeflotante-->
 
-				<div class=" {{--table-responsive--}}">
+				<div class=" table-responsive">
 					<table id="myTable" class="table table-striped row-border">
 						<thead>
 							<tr>
@@ -138,7 +138,12 @@
 									--}}
 									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $idioma->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> Editar</button>
 									<button class="btn btn-icon btn-default btn-sm  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $idioma->id }}"><i class="demo-pli-exclamation icon-sm " ></i> Info</button>
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-danger DarBaja" value="{{ $idioma->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
+									@if($idioma->estado=='ACTIVO')
+									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-danger darbaja" value="{{ $idioma->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
+									@endif
+									@if($idioma->estado=='INACTIVO')
+									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-primary darAlta" value="{{ $idioma->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> Dar Alta</span></div> </button>
+									@endif
 									{{--<button type="button" class="btn btn-outline-info btn-sm infomodal" value="{{ $idioma->id }}">Info</button>--}}
 									
 									
@@ -258,6 +263,39 @@
 	</div>
 	<!--===================================================-->
 	<!--End Large Bootstrap Modal-->
+
+
+	<!--DarBaja y Alta Bootstrap Modal-->
+	<!--===================================================-->
+	<div id="modalMsj" class="modal fade" tabindex="-1">
+		<div class="modal-dialog {{--modal-lg--}}">
+			<div class="modal-content">
+				<div class="modal-header alert-danger">
+					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Alerta</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<h4 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
+					<p>Esta seguro de continuar con la accion?.</p></h4>
+            			{{-- Este funciona para darle valor del id para dar baja o alta--}}
+					 <input type="hidden" class="form-control" type="text"  id="estadoAB" name="estadoAB">
+      			
+						
+					</div>
+				</div>
+				<!--Modal footer-->
+				<div class="modal-footer">
+					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+					<button class="btn btn-danger" id="btnGuardarMsj">Continuar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--===================================================-->
+	<!--End DarBaja y Alta Bootstrap Modal-->
+
+
 
 
 

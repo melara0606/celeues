@@ -14,10 +14,12 @@
     <div  id="nombrediv" class="form-group @if($errors->has('nombre')) has-danger @endif" >
         <label for="example-text-input" class="col-md-3 control-label text-main text-bold "> Nombre: *</label>
         <div class="col-md-7 " >
+
              {{-- Token ue genera laravel es obligatorio
             debido a laraevl provee seguridad y da el toen 
             para que lo econozca que es nuestro formulario 
             {{ csrf_field() }} --}}
+           
             <input class="form-control" type="text" placeholder="Ingrese Idioma" id="nombre" name="nombre">
               {{-- @if($errors->has('nombre')) 
                @foreach($errors->get('nombre') as $error)--}}

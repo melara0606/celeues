@@ -4,11 +4,26 @@
     });
 
     //No se para que es pero en la documentacion dice que sirve para algo
-    $(document).trigger('nifty.ready');
-
+    //$(document).trigger('nifty.ready');
+  //  $.niftyNav('refresh');
+    //$.niftyNav('bind');
+    //$.niftyNav('collapse');
+    //$.niftyNav('colExpToggle');
+   
+$.niftyAside('darkTheme');
   });
 
+  $(document).on('click','.darbaja',function(){
+        var value = $(this).val();
+        //es ell id de idioma
+       $('#estadoAB').val(value);
+
+       $('#modalMsj').modal('show'); ///modal de informacion
+  });
+
+
   $(document).on('click','.infoModal',function(){
+
   var form_id = $(this).val();
 
        $("#tablainfo").empty();////Deja vacia la tabla
@@ -109,7 +124,15 @@
             success: function (data) {
              console.log(data);
                $('#modalIngreso').modal('hide');
-              ////////mensaje de gaurdado o modificado//////
+               $.niftyNoty({
+                type: "success",
+                container : "floating",
+                title : "Bien Hecho!",
+                message : data,
+                closeBtn : false,
+                timer : 3000
+                });
+              /*///////mensaje de gaurdado o modificado//////
                $("#floating-top-right").html(
                 '<div class="alert-wrap in animated jellyIn">'+
                 '<div class="alert alert-mint">'+
@@ -119,9 +142,9 @@
                 '</div>'+
                 '</div>'
                 );  
-              //////////fin mensaje////////////////////////             
+              *//////////fin mensaje////////////////////////             
                setTimeout(function(){
-                  $("#floating-top-right").html('');
+               //   $("#floating-top-right").html('');
                   $("#form").trigger("reset");
                   window.location.reload();////recarga la pagina actual
                  // $(location).attr('href','/peticionForm');
@@ -131,7 +154,16 @@
 
              },
              error: function (data) {
-               ////////mensaje de gaurdado o modificado
+              ///menasje de error
+              $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Upps!",
+                message : "A ocurrido un problema",
+                closeBtn : false,
+                timer : 3000
+                });
+               /*///////mensaje de gaurdado o modificado
                $("#floating-top-right").html(
                 '<div class="alert-wrap in animated jellyIn">'+
                 '<div class="alert alert-danger">'+
@@ -142,7 +174,7 @@
                 '</div>'
                 );  
                
-              //////////fin mensaje 
+              /*/////////fin mensaje 
               console.log('Error de peticion:', data);
                 // var errors=data.responseJSON;
                  // console.log(errors);
@@ -166,9 +198,49 @@
                     }
                     */  
 
-                      setTimeout(function(){
+                      /*setTimeout(function(){
                         $("#floating-top-right").html('');
-                      }, 4000);
+                      }, 4000);*/
                   }
                 });
         });
+
+
+ $("#btnGuardarMsj").click(function (e) {
+  var value = $('#estadoAB').val();
+   //token siempre para ingresar y modificar 
+  $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        })
+
+        e.preventDefault();     
+    $.ajax({
+            type: "PUT",
+            url: 'idioma/cambiarEstado/'+value,
+            data: {'id':value},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+               $.niftyNoty({
+                type: "success",
+                container : "floating",
+                title : "Bien Hecho!",
+                message : data,
+                closeBtn : false,
+                timer : 3000
+                });
+          
+                setTimeout(function(){
+                     window.location.reload();////recarga la pagina actual
+                
+               
+                 }, 4000);  
+            },
+            error: function (data) {
+                console.log('Error al dar Baja:', data);
+            }
+       }); 
+    
+    });

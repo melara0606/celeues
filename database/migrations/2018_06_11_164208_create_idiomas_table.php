@@ -17,6 +17,7 @@ class CreateIdiomasTable extends Migration
             $table->increments('id');
             $table->string('nombre',30);
             $table->text('descripcion')->nullable()->default(null);
+            $table->enum('estado',array('ACTIVO','INACTIVO'));
             $table->timestamps();
         });
     }
