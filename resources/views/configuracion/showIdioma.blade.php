@@ -118,6 +118,8 @@
 								
 								<th class="text-center">Idioma</th>
 								<th>Descripcion</th>
+
+								<th class="text-center">Estado</th>
 								<th class="text-center">Acciones</th>
 
 							</tr>
@@ -127,9 +129,14 @@
 							@forelse($idiomas as $idioma)
 							<tr id="{{ $idioma->id }}">
 								<td align="center">{{ $correlativo++ }}</td>
-								<td align="Center"><div class="label label-table bg-mint"><div class="text-sm text-bold"></div>{{ $idioma->nombre }}</div></td>
+								<td align="Center"><div class="label label-table bg-dark"><div class="text-xs text-bold"></div>{{ $idioma->nombre }}</div></td>
 								<td >{{ $idioma->descripcion }}</td>
-
+								@if($idioma->estado=='ACTIVO')
+								<td align="center"><div class="label label-table bg-mint"><div class="text-xs text-bold"></div>{{ $idioma->estado }}</div></td>
+								@endif
+								@if($idioma->estado=='INACTIVO')
+								<td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold"></div>{{ $idioma->estado }}</div></td>
+								@endif	
 
 								<td align="center">
 									{{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
@@ -279,7 +286,10 @@
 						<h4 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
 					<p>Esta seguro de continuar con la accion?.</p></h4>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
+					 <form>
 					 <input type="hidden" class="form-control" type="text"  id="estadoAB" name="estadoAB">
+					  <input type="hidden" class="form-control" type="text"  id="registro_id" name="registro_id">
+      			</form>
       			
 						
 					</div>

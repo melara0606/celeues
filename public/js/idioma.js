@@ -6,7 +6,7 @@
     //No se para que es pero en la documentacion dice que sirve para algo
     //$(document).trigger('nifty.ready');
   //  $.niftyNav('refresh');
-    //$.niftyNav('bind');
+    $.niftyNav('bind');
     //$.niftyNav('collapse');
     //$.niftyNav('colExpToggle');
    
@@ -16,7 +16,16 @@ $.niftyAside('darkTheme');
   $(document).on('click','.darbaja',function(){
         var value = $(this).val();
         //es ell id de idioma
-       $('#estadoAB').val(value);
+      $('#registro_id').val(value);
+       $('#estadoAB').val(0);
+
+       $('#modalMsj').modal('show'); ///modal de informacion
+  });
+$(document).on('click','.darAlta',function(){
+        var value = $(this).val();
+        //es ell id de idioma
+      $('#registro_id').val(value);
+       $('#estadoAB').val(1);
 
        $('#modalMsj').modal('show'); ///modal de informacion
   });
@@ -207,7 +216,7 @@ $.niftyAside('darkTheme');
 
 
  $("#btnGuardarMsj").click(function (e) {
-  var value = $('#estadoAB').val();
+  var value = $('#registro_id').val();
    //token siempre para ingresar y modificar 
   $.ajaxSetup({
             headers: {
@@ -215,11 +224,14 @@ $.niftyAside('darkTheme');
             }
         })
 
-        e.preventDefault();     
+        e.preventDefault();  
+  var formData = {
+     estado:$('#estadoAB').val(),
+   }      
     $.ajax({
             type: "PUT",
             url: 'idioma/cambiarEstado/'+value,
-            data: {'id':value},
+            data: formData,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
@@ -240,7 +252,16 @@ $.niftyAside('darkTheme');
             },
             error: function (data) {
                 console.log('Error al dar Baja:', data);
+                $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Upps!",
+                message : "A ocurrido un problema",
+                closeBtn : false,
+                timer : 3000
+                });
             }
        }); 
     
+      $('#modalMsj').modal('hide');
     });

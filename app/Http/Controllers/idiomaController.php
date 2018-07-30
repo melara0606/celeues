@@ -23,7 +23,7 @@ class idiomaController extends Controller
 		//$message = idioma::create($request->all());
 
    		$message= idioma::create([
-    		'nombre'=> $request->input('nombre'),
+    		'nombre'=> strtoupper($request->input('nombre')),
     		'descripcion'=> $request->input('descripcion'),
             'estado'=> "ACTIVO",
     		]);	 
@@ -37,7 +37,7 @@ class idiomaController extends Controller
         //dd($request->all());
         $message = idioma::find($id);
         $message->fill([
-            'nombre'=>$request->input('nombre'),
+            'nombre'=>strtoupper($request->input('nombre')),
             'descripcion'=>$request->input('descripcion'),
             ]);
         if($message->save()){
@@ -57,9 +57,16 @@ class idiomaController extends Controller
 
     public function cambiarEstado(Request $request,$id){
         $message = idioma::find($id);
-        $message->fill([
-            'estado'=>$request->input('estado'),
+        if ($request->input('estado')==0) {
+            $message->fill([
+            'estado'=>'INACTIVO',
             ]);
+        }else if ($request->input('estado')==1) {
+            $message->fill([
+            'estado'=>'ACTIVO',
+            ]);
+        }
+
         if($message->save()){
           // bitacoraController::bitacora('Modificó datos de peticion');
             return Response::json('Cambio de Estado Exitoso');
