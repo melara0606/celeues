@@ -236,7 +236,7 @@
 
 
 
-	<!--Large Bootstrap Modal-->
+	<!--INFO Bootstrap Modal-->
 	<!--===================================================-->
 	<div id="modalInfo" class="modal fade" tabindex="-1">
 		<div class="modal-dialog {{--modal-lg--}}">

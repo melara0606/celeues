@@ -45,6 +45,8 @@ class noticiaController extends Controller
     		'modalidad'=> $request->input('modalidad'),
     		'estado'=> 'Disponible',
     		]);	 
+    return Response::json('Registro Guardado Exitosamente');
+ 
     	return Response::json($message);
  
 	return redirect('/home')->with('mensaje','Registro Guardado');	
@@ -55,9 +57,18 @@ class noticiaController extends Controller
         //dd($request->all());
         $message = noticia::find($id);
          $message->fill($request->all());
-        $message->save();
-        return Response::json($message);
-        //return response(json($array));
+        if($message->save()){
+          // bitacoraController::bitacora('Modificó datos de peticion');
+            return Response::json('Registro Modificado Exitosamente');
+            }else
+                return Response::json('No pudo Modificarse');
+
+    }
+     public function buscar($id){
+        $noticia = noticia::find($id);
+    //return Response::json( bitacoraController::bitacora('vio info de beneficiario'));    
+    // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre);  
+    return Response::json($noticia);
     }
 
 }
