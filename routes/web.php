@@ -34,6 +34,9 @@ Route::put('/idioma/update/{id?}', 'idiomaController@update')->middleware('auth'
 Route::get('/idioma/buscar/{id?}', 'idiomaController@buscar')->name('idiomaBuscar')->middleware('auth');
 Route::put('/idioma/cambiarEstado/{id?}', 'idiomaController@cambiarEstado')->middleware('auth');
 
+Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');
+
+
 //Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaCreate')->middleware('auth');
 
 

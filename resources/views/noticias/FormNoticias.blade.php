@@ -2,7 +2,7 @@
 					            <!--===================================================-->
 					            <form id="form" class="panel-body form-horizontal form-padding" action="noticiaForm/create" method="post">
 					            	 <input type="hidden" id="form_id" name="form_id" value="0">
-x
+
 					            	
 					                <!--Static-->
                                     {{-- csrf_field() --}}

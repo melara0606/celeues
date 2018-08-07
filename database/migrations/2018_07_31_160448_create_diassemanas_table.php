@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModalidadsTable extends Migration
+class CreateDiassemanasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateModalidadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('modalidads', function (Blueprint $table) {
+        Schema::create('diassemanas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',30);
-            //$table->enum('modalidad',array('INTENSIVO','SEMANAL'));
-            $table->enum('turno',array('TARDE','MAÑANA'));
-            $table->enum('estado',array('ACTIVO','INACTIVO'));
-            
+            $table->string('acronimo',5);
+           // $table->int('numeroDia');
+           // $table->time('horaInicio')->nullable()->default(null);
+           // $table->time('horaFin')->nullable()->default(null);
             
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateModalidadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modalidads');
+        Schema::dropIfExists('diassemanas');
     }
 }

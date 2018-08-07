@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class modalidad extends Model
+class diassemana extends Model
 {
     //
     protected $guarded=[];
