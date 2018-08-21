@@ -28,6 +28,8 @@ class docenteController extends Controller
         'email'=> $request->input('email'),
         'dui'=> $request->input('dui'),
         'telefono'=> $request->input('telefono'),
+        'nit'=> $request->input('nit'),
+        'ncuenta'=> $request->input('ncuenta'),
 
     		]);
     	return Response::json('Registro Guardado Exitosamente');
@@ -45,6 +47,8 @@ class docenteController extends Controller
             'email'=>$request->input('email'),
             'dui'=>$request->input('dui'),
             'telefono'=>$request->input('telefono'),
+            'nit'=> $request->input('nit'),
+            'ncuenta'=> $request->input('ncuenta'),
             ]);
         if($message->save()){
           // bitacoraController::bitacora('Modificó datos de peticion');
