@@ -3,32 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\docente;
+use App\aula;
 
 use Illuminate\Support\Facades\Response;
 
-class docenteController extends Controller
+class aulaController extends Controller
 {
     //
      public function show(){
 
-     	$docentes=docente::latest()->get();
-        	  return view('docentes.showDocente',[
-            	 'docentes' => $docentes,
+     	$aulas=aula::latest()->get();
+        	  return view('aulas.showAula',[
+            	 'aulas' => $aulas,
 
         	//'noticias'=> $noticias,
             	]);
       }
      public function create(Request $request){//createBeneficiariosRequest $request){
-		//$message = idioma::create($request->all());
+		//$message = aula::create($request->all());
 
-   		$message= docente::create([
+   		$message= aula::create([
     		'nombre'=> $request->input('nombre'),
-    		'apellido'=> $request->input('apellido'),
-        'email'=> $request->input('email'),
-        'dui'=> $request->input('dui'),
-        'telefono'=> $request->input('telefono'),
-
+    		'capacidad'=> $request->input('capacidad'),
+        'estado'=> "ACTIVO",
     		]);
     	return Response::json('Registro Guardado Exitosamente');
 
@@ -38,13 +35,10 @@ class docenteController extends Controller
     }
       public function update(Request $request,$id){
         //dd($request->all());
-        $message = docente::find($id);
+        $message = aula::find($id);
         $message->fill([
-            'nombre'=>$request->input('nombre'),
-            'apellido'=>$request->input('apellido'),
-            'email'=>$request->input('email'),
-            'dui'=>$request->input('dui'),
-            'telefono'=>$request->input('telefono'),
+            'nombre'=>strtoupper($request->input('nombre')),
+            'capacidad'=>$request->input('capacidad'),
             ]);
         if($message->save()){
           // bitacoraController::bitacora('Modificó datos de peticion');
@@ -55,14 +49,14 @@ class docenteController extends Controller
     }
 
     public function buscar($id){
-        $docente = docente::find($id);
+        $aula = aula::find($id);
     //return Response::json( bitacoraController::bitacora('vio info de beneficiario'));
     // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre);
-    return Response::json($docente);
+    return Response::json($aula);
     }
 
     public function cambiarEstado(Request $request,$id){
-        $message = docente::find($id);
+        $message = aula::find($id);
         if ($request->input('estado')==0) {
             $message->fill([
             'estado'=>'INACTIVO',

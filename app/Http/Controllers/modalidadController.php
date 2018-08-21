@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\docente;
+use App\modalidad;
 
 use Illuminate\Support\Facades\Response;
 
-class docenteController extends Controller
+class modalidadController extends Controller
 {
     //
      public function show(){
 
-     	$docentes=docente::latest()->get();
-        	  return view('docentes.showDocente',[
-            	 'docentes' => $docentes,
+     	$modalidades=modalidad::latest()->get();
+        	  return view('modalidad.showModalidad',[
+            	 'modalidades' => $modalidades,
 
         	//'noticias'=> $noticias,
             	]);
@@ -22,13 +22,10 @@ class docenteController extends Controller
      public function create(Request $request){//createBeneficiariosRequest $request){
 		//$message = idioma::create($request->all());
 
-   		$message= docente::create([
-    		'nombre'=> $request->input('nombre'),
-    		'apellido'=> $request->input('apellido'),
-        'email'=> $request->input('email'),
-        'dui'=> $request->input('dui'),
-        'telefono'=> $request->input('telefono'),
-
+   		$message= modalidad::create([
+    		'nombre'=> strtoupper($request->input('nombre')),
+    		'turno'=> $request->input('turno'),
+          
     		]);
     	return Response::json('Registro Guardado Exitosamente');
 
@@ -38,13 +35,10 @@ class docenteController extends Controller
     }
       public function update(Request $request,$id){
         //dd($request->all());
-        $message = docente::find($id);
+        $message = modalidad::find($id);
         $message->fill([
-            'nombre'=>$request->input('nombre'),
-            'apellido'=>$request->input('apellido'),
-            'email'=>$request->input('email'),
-            'dui'=>$request->input('dui'),
-            'telefono'=>$request->input('telefono'),
+            'nombre'=>strtoupper($request->input('nombre')),
+            'turno'=>$request->input('turno'),
             ]);
         if($message->save()){
           // bitacoraController::bitacora('Modificó datos de peticion');
@@ -55,14 +49,14 @@ class docenteController extends Controller
     }
 
     public function buscar($id){
-        $docente = docente::find($id);
+        $modalidades = modalidad::find($id);
     //return Response::json( bitacoraController::bitacora('vio info de beneficiario'));
     // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre);
-    return Response::json($docente);
+    return Response::json($modalidades);
     }
 
     public function cambiarEstado(Request $request,$id){
-        $message = docente::find($id);
+        $message = modalidad::find($id);
         if ($request->input('estado')==0) {
             $message->fill([
             'estado'=>'INACTIVO',

@@ -34,7 +34,33 @@ Route::put('/idioma/update/{id?}', 'idiomaController@update')->middleware('auth'
 Route::get('/idioma/buscar/{id?}', 'idiomaController@buscar')->name('idiomaBuscar')->middleware('auth');
 Route::put('/idioma/cambiarEstado/{id?}', 'idiomaController@cambiarEstado')->middleware('auth');
 
+Route::get('/categoria', 'categoriaController@show')->name('categoriaShow')->middleware('auth');
+Route::post('/categoria/create', 'categoriaController@create')->middleware('auth');
+Route::put('/categoria/update/{id?}', 'categoriaController@update')->middleware('auth');
+Route::get('/categoria/buscar/{id?}', 'categoriaController@buscar')->name('categoriaBuscar')->middleware('auth');
+
+Route::get('/estudiante', 'estudianteController@show')->name('estudianteShow')->middleware('auth');
+
+
+
+Route::get('/docente', 'docenteController@show')->name('docente')->middleware('auth');
+Route::post('/docente/create', 'docenteController@create');
+Route::put('/docente/update/{id?}', 'docenteController@update')->middleware('auth');
+Route::get('/docente/buscar/{id?}', 'docenteController@buscar')->name('docenteBuscar')->middleware('auth');
+
 Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');
+Route::post('/modalidad/create', 'modalidadController@create')->middleware('auth');
+Route::put('/modalidad/update/{id?}', 'modalidadController@update')->middleware('auth');
+Route::get('/modalidad/buscar/{id?}', 'modalidadController@buscar')->name('modalidadBuscar')->middleware('auth');
+
+Route::get('/aula', 'aulaController@show')->name('aulaShow')->middleware('auth');
+Route::post('/aula/create', 'aulaController@create')->middleware('auth');
+Route::put('/aula/update/{id?}', 'aulaController@update')->middleware('auth');
+Route::get('/aula/buscar/{id?}', 'aulaController@buscar')->name('aulaBuscar')->middleware('auth');
+Route::put('/aula/cambiarEstado/{id?}', 'aulaController@cambiarEstado')->middleware('auth');
+
+
+//Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');
 
 
 //Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaCreate')->middleware('auth');

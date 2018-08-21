@@ -2,8 +2,14 @@
     $('#myTable').DataTable({
       //"dom": '<"top"lf>rt<"bottom"pi>'
     });
+    $('#modalIngreso').on('shown.bs.modal', function () {
+  $('.modal-dialog').css('height', $('.modal-dialog').height() );
+});
 
-    //No se para que es pero en la documentacion dice que sirve para algo
+$('#modalIngreso').on('hidden.bs.modal', function () {
+  $('.modal-dialog').css('height', 'auto');
+});
+   //No se para que es pero en la documentacion dice que sirve para algo
     //$(document).trigger('nifty.ready');
   //  $.niftyNav('refresh');
     $.niftyNav('bind');
@@ -11,23 +17,6 @@
     //$.niftyNav('colExpToggle');
    
 $.niftyAside('darkTheme');
-  });
-
-  $(document).on('click','.darbaja',function(){
-        var value = $(this).val();
-        //es ell id de idioma
-      $('#registro_id').val(value);
-       $('#estadoAB').val(0);
-
-       $('#modalMsj').modal('show'); ///modal de informacion
-  });
-$(document).on('click','.darAlta',function(){
-        var value = $(this).val();
-        //es ell id de idioma
-      $('#registro_id').val(value);
-       $('#estadoAB').val(1);
-
-       $('#modalMsj').modal('show'); ///modal de informacion
   });
 
 
@@ -39,14 +28,17 @@ $(document).on('click','.darAlta',function(){
   $.ajax({
 
     type: "GET",
-    url: 'idioma/buscar/'+form_id,
+    url: 'categoria/buscar/'+form_id,
     data: form_id,
     dataType: 'json',
     success: function (data) {
       console.log(data);
 
-      var row = '<tr><td width="30%"> Idioma: </td><td width="70%">' + data.nombre + '</td>';
+      var row = '<tr><td width="30%"> Categoria: </td><td width="70%">' + data.nombre + '</td>';
       row +='<tr><td> Descripcion: </td><td>' + data.descripcion + '</td>';
+      row +='<tr><td> Rango de Edades: </td><td>' + data.edadInicio + ' -- ' + data.edadFin + ' años</td>';
+      
+      
       row +='<tr><td> Creado: </td><td>' + data.created_at + '</td>';
       $("#tablainfo").append(row); ///Se anhade a la tabla           
 
@@ -66,11 +58,14 @@ $(document).on('click','.darAlta',function(){
 
       //Otra forma de realizar el get ajax el mismo de infomodal
       //no poner pleca antes de la url    
-      $.get('idioma/buscar/' + form_id, function (data) {
+      $.get('categoria/buscar/' + form_id, function (data) {
             //success data
             console.log(data);
             $('#nombre').val(data.nombre);
             $('#descripcion').val(data.descripcion);
+            $('#edadInicio').val(data.edadInicio);
+            $('#edadFin').val(data.edadFin);
+            
           });
 
       $('#btnGuardar').val("update");///valor update para cuando actulize
@@ -110,17 +105,18 @@ $(document).on('click','.darAlta',function(){
    var formData = {
      nombre:$('#nombre').val(),
      descripcion:$('#descripcion').val(),
-
+     edadInicio:$('#edadInicio').val(),
+     edadFin:$('#edadFin').val(),
    }       
 
           var state = $('#btnGuardar').val();///para ver si es add o update
           var type = "POST"; //for creating new resource
-          var my_url = "idioma/create";
+          var my_url = "categoria/create";
           var form_id = $('#form_id').val();///el id del registro ya sea si modificamos 
 
           if (state == "update"){
             type = "PUT"; //for updating existing resource
-            my_url = 'idioma/update/'+form_id;
+            my_url = 'categoria/update/'+form_id;
         }
           console.log(formData);
 
@@ -132,32 +128,36 @@ $(document).on('click','.darAlta',function(){
             dataType: 'json',
             success: function (data) {
              console.log(data);
+            // data[0];
+            if(data['bandera']==1){
                $('#modalIngreso').modal('hide');
                $.niftyNoty({
                 type: "success",
                 container : "floating",
                 title : "Bien Hecho!",
-                message : data,
+                message : data['response'],
                 closeBtn : false,
                 timer : 3000
                 });
-              /*///////mensaje de gaurdado o modificado//////
-               $("#floating-top-right").html(
-                '<div class="alert-wrap in animated jellyIn">'+
-                '<div class="alert alert-mint">'+
-                  '<button class="close" data-dismiss="alert">'+
-                      '<i class="pci-cross pci-circle"></i>'+
-                  '</button>'+data+
-                '</div>'+
-                '</div>'
-                );  
-              *//////////fin mensaje////////////////////////             
+                       
                setTimeout(function(){
-               //   $("#floating-top-right").html('');
                   $("#form").trigger("reset");
                   window.location.reload();////recarga la pagina actual
                  // $(location).attr('href','/peticionForm');
                }, 4000);
+             } else{
+               ///menasje de error
+              $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Upps!",
+                message :  data['response'],
+                closeBtn : false,
+                timer : 3000
+                });
+
+             }
+
 
 
 
