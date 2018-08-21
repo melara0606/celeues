@@ -22,7 +22,7 @@
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="demo-pli-home"></i></a></li>
 			<li><a href="#">Forms</a></li>
-			<li class="active">Estudiante</li>
+			<li class="active">Estudiantesss</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--End breadcrumb-->
