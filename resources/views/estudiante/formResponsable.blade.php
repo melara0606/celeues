@@ -1,7 +1,7 @@
 
 <!-- BASIC FORM ELEMENTS -->
 <!--===================================================-->
-<form id="form" class="panel-body form-horizontal form-padding" action="noticiaForm/create" method="post">
+<form id="formResp" class="panel-body form-horizontal form-padding" action="noticiaForm/create" method="post">
    <input type="hidden" id="form_idR" name="form_idR" value="0">
 
   

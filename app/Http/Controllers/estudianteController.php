@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\estudiante;
-
+use App\responsable;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 
 class estudianteController extends Controller
 {
@@ -19,4 +20,147 @@ class estudianteController extends Controller
         	//'noticias'=> $noticias,
             	]);
       }
+      public function create(Request $request){//createBeneficiariosRequest $request){
+      	if($request->input('edad') >= 18){
+	   		$message= estudiante::create([
+	    			'nombre'=> strtoupper($request->input('nombre')),
+	    		'apellido'=> strtoupper($request->input('apellido')),
+	    		'genero'=> $request->input('genero'),
+	    		'fechaNac'=> strtoupper($request->input('fechaNac')),
+	    		'dui'=> $request->input('dui'),
+	    		'email'=> $request->input('email'),
+	    		'telefono'=> $request->input('telefono'),
+	    		'direccion'=> $request->input('direccion'),
+	    		//'idresponsables'=> strtoupper($request->input('idresponsables')),
+	    		
+	    		]);	 
+   		}else{
+   			$message= estudiante::create([
+	    		'nombre'=> strtoupper($request->input('nombre')),
+	    		'apellido'=> strtoupper($request->input('apellido')),
+	    		'genero'=> $request->input('genero'),
+	    		'fechaNac'=> strtoupper($request->input('fechaNac')),
+	    		//'dui'=> $request->input('dui'),
+	    		'email'=> $request->input('email'),
+	    		'telefono'=> $request->input('telefono'),
+	    		'direccion'=> $request->input('direccion'),
+	    		'idresponsables'=> strtoupper($request->input('idresponsables')),
+	    		
+	    		]);	
+   		}
+   		return Response::json([
+            'bandera' =>1,
+            'response'=>'Registro Guardado Exitosamente',                 
+    ]);
+    	//return Response::json('Registro Guardado Exitosamente');
+ 
+	return redirect('/home')->with('mensaje','Registro Guardado');	
+    	
+    	
+    }
+
+      public function update(Request $request,$id){
+        //dd($request->all());
+        $message = estudiante::find($id);
+        if($request->input('edad') >= 18){
+	   	
+	        $message->fill([
+	           	'nombre'=> strtoupper($request->input('nombre')),
+		    		'apellido'=> strtoupper($request->input('apellido')),
+		    		'genero'=> $request->input('genero'),
+		    		'fechaNac'=> strtoupper($request->input('fechaNac')),
+		    		'dui'=> $request->input('dui'),
+		    		'email'=> $request->input('email'),
+		    		'telefono'=> $request->input('telefono'),
+		    		'direccion'=> $request->input('direccion'),
+		    		//'idresponsables'=> strtoupper($request->input('idresponsables')),
+		    		
+	    	 ]);
+	    }else{  
+	         $message->fill([
+	           	'nombre'=> strtoupper($request->input('nombre')),
+		    		'apellido'=> strtoupper($request->input('apellido')),
+		    		'genero'=> $request->input('genero'),
+		    		'fechaNac'=> strtoupper($request->input('fechaNac')),
+		    		//'dui'=> $request->input('dui'),
+		    		'email'=> $request->input('email'),
+		    		'telefono'=> $request->input('telefono'),
+		    		'direccion'=> $request->input('direccion'),
+		    		'idresponsables'=> strtoupper($request->input('idresponsables')),
+		    		
+	    	 ]);
+	     }
+        if($message->save()){
+          // bitacoraController::bitacora('Modificó datos de peticion');
+           return Response::json([
+            'bandera' =>1,
+            'response'=>'Registro Modificado Exitosamente',                 
+   				 ]);
+            }else{
+	              return Response::json([
+	            'bandera' =>0,
+	            'response'=>'No pudo Modificarse',                 
+	   				 ]);
+	                //return Response::json('');
+			}
+    }
+    public function buscar($id){
+        $estudiantes = estudiante::find($id);
+      
+    //return Response::json( bitacoraController::bitacora('vio info de beneficiario'));    
+    // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre);  
+    return Response::json($estudiantes);
+    }
+     public function buscar1($id){//solo es para infomodal estudiante especificamente debido a un campo
+        $estudiantes = estudiante::find($id);
+        $responsable= responsable::where('id',$estudiantes->idresponsables)->get(['nombre as nombreResp']);
+        if($estudiantes->idresponsables!=null){
+	        foreach ($responsable as $value) {
+	        	$nombreResp=$value->nombreResp;
+	        	# code...
+	        }
+
+	    }
+        $estudiante=DB::table('estudiantes')
+    	->join('responsables','estudiantes.idresponsables','=','responsables.id')
+    	->select('estudiantes.*','responsables.nombre as nombreResp')
+    	->where('estudiantes.id',$id)
+    	->get();
+
+    //return Response::json( bitacoraController::bitacora('vio info de beneficiario'));    
+    // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre); 
+    if($estudiantes->idresponsables!=null){
+	         return Response::json([
+	            '1' => $estudiantes,
+	            '2'=> $nombreResp,                 
+	   				 ]); 
+
+	    }
+
+     return Response::json([
+	            '1' => $estudiantes,
+	            '2'=> '',                 
+	   				 ]); 
+    return Response::json($responsable);
+    }///finbuscar1 
+
+    public function busquedaSelect(){
+        $responsables=responsable::get(); 
+    $array=array();
+    $con=0;
+   /* foreach($responsables as $responsable)
+    {
+        $array[$con]=([
+        'id'=>$responsables->id,
+        'nombre'=>$responsable->nombre,
+        'apellido'=>$responsable->apellido,
+   	//	'dui'=> $responsable->dui,
+      //'email'=> strtoupper($request->input('email')),
+    //	'telefono'=> $request->input('telefono'),
+    //	'direccion'=> $request->input('direccion'),
+        ]);  
+        $con++;
+    }*/
+        return Response::json($responsables);  
+    }
 }

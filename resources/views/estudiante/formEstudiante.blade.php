@@ -3,9 +3,10 @@
           
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs">
-                          <li class="active"><a href="#demo-bsc-tab-1" data-toggle="tab" aria-expanded="true">Estudiante</a></li>
-                          <li class=""><a href="#demo-bsc-tab-2" data-toggle="tab" aria-expanded="false">Responsable</a></li>
-                      
+                          <li class="active" id="pestEst"><a href="#demo-bsc-tab-1" data-toggle="tab" aria-expanded="true">Estudiante</a></li>
+                          
+                          <li class="" style="display: none;" id="pestMenorEdad"><a href="#demo-bsc-tab-2" data-toggle="tab" aria-expanded="false">Responsable</a></li>
+                          
                       </ul> 
 
 <!-- Tab1 -->
@@ -62,12 +63,49 @@
       </div>
 
   </div>
-  <div  id="duidiv" class="form-group @if($errors->has('apellido')) has-danger @endif" >
-        <label for="example-text-input" class="col-md-3 control-label text-main text-bold "> DUI</label>
-        <div class="col-md-5 " >
-     <input class="form-control" type="text" placeholder="" id="dui" name="dui">
-                  <div id="duifeed" class="form-control-feedback"></div>
-             </div>
+  <div style="display: none;" class="form-group">
+           <label class="col-md-3 control-label text-main text-bold"  for="demo-email-input">edad*</label>
+       <div class="col-md-5">
+           <input type="text" class="form-control" id="edad" name="edad" />
+                            
+                         
+          
+      </div>
+
+  </div>
+  
+  <div style="display: none;" id="menorEdad">{{-- esta para menores de edad --}}
+    <div class="form-group">
+        <label for="example-email-input" class="col-md-3 control-label text-main text-bold ">Responsable:*</label>
+        <div class="col-md-5">
+            <select  class="" id="resp_id" name="resp_id" >
+                 
+            </select>
+          
+                           
+       </div>
+        <div class="col-md-1">
+
+            <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-hover-info add-tooltip infoResp" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-exclamation icon-sm " ></i> Info </button>
+
+        </div>
+        <div class="col-md-1">
+
+            <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-hover-purple add-tooltip nuevoResp" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-add icon-sm " ></i> nuevo </button>
+        </div>
+       
+       
+
+    </div>
+    </div>
+    <div style="display: none;" id="mayorEdad">
+      <div  id="duidiv" class="form-group @if($errors->has('apellido')) has-danger @endif" >
+            <label for="example-text-input" class="col-md-3 control-label text-main text-bold "> DUI</label>
+            <div class="col-md-5 " >
+         <input class="form-control" type="text" placeholder="" id="dui" name="dui">
+                      <div id="duifeed" class="form-control-feedback"></div>
+                 </div>
+        </div>
     </div>
 
     
@@ -86,6 +124,7 @@
      <input class="form-control" type="email" placeholder="" id="email" name="email">
                   <div id="emailfeed" class="form-control-feedback"></div>
              </div>
+
     </div>
 
         
@@ -131,7 +170,7 @@
 </div>
 <div class="panel-footer clearfix">
                               <div class="col-lg-7 col-lg-offset-3">
-                                  <button type="submit" class="btn btn-mint" name="signup" value="Sign up" >Guardar</button>
+                                  <button class="btn btn-mint" name="signup" id="guardarResp" name="guardarResp" value="add" >Guardar</button>
                               </div>
                           </div>
 

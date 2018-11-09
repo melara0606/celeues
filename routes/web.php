@@ -40,7 +40,11 @@ Route::put('/categoria/update/{id?}', 'categoriaController@update')->middleware(
 Route::get('/categoria/buscar/{id?}', 'categoriaController@buscar')->name('categoriaBuscar')->middleware('auth');
 
 Route::get('/estudiante', 'estudianteController@show')->name('estudianteShow')->middleware('auth');
-
+Route::post('/estudiante/create', 'estudianteController@create')->middleware('auth');
+Route::put('/estudiante/update/{id?}', 'estudianteController@update')->middleware('auth');
+Route::get('/estudiante/buscar/{id?}', 'estudianteController@buscar')->name('estudianteBuscar')->middleware('auth');
+Route::get('/estudiante/buscar1/{id?}', 'estudianteController@buscar1')->name('estudianteBuscar')->middleware('auth');
+Route::get('/estudiante/bus/responsables','estudianteController@busquedaSelect');
 
 
 Route::get('/docente', 'docenteController@show')->name('docente')->middleware('auth');
@@ -58,6 +62,18 @@ Route::post('/aula/create', 'aulaController@create')->middleware('auth');
 Route::put('/aula/update/{id?}', 'aulaController@update')->middleware('auth');
 Route::get('/aula/buscar/{id?}', 'aulaController@buscar')->name('aulaBuscar')->middleware('auth');
 Route::put('/aula/cambiarEstado/{id?}', 'aulaController@cambiarEstado')->middleware('auth');
+
+Route::get('/responsable', 'responsableController@show')->name('responsableShow')->middleware('auth');
+Route::post('/responsable/create', 'responsableController@create')->middleware('auth');
+Route::put('/responsable/update/{id?}', 'responsableController@update')->middleware('auth');
+Route::get('/responsable/buscar/{id?}', 'responsableController@buscar')->name('responsableBuscar')->middleware('auth');
+
+Route::get('/curso', 'cursoController@show')->name('cursoShow')->middleware('auth');
+Route::post('/curso/create', 'cursoController@create')->middleware('auth');
+Route::get('/curso/bus/idioma','cursoController@busquedaSelectIdioma');
+Route::get('/curso/bus/modalidad','cursoController@busquedaSelectModalidad');
+Route::get('/curso/bus/categoria','cursoController@busquedaSelectCategoria');
+
 
 
 //Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');

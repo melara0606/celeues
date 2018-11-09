@@ -22,7 +22,7 @@
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="demo-pli-home"></i></a></li>
 			<li><a href="#">Forms</a></li>
-			<li class="active">Estudiantesss</li>
+			<li class="active">Responsables de Estudiantes</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--End breadcrumb-->
@@ -52,7 +52,7 @@
 						</ul>
 					</div>
 				</div>
-				<h3 class="panel-title ">Estudiantes</h3>
+				<h3 class="panel-title ">Responsables</h3>
 
 			</div>
 
@@ -118,7 +118,7 @@
 								<th class="text-center">#</th>
 								
 								<th class="text-center">Nombre</th>
-								<th>Edad</th>
+								<th>Dui</th>
 
 								<th class="text-center">Rango de edades</th>
 								<th class="text-center">Acciones</th>
@@ -127,19 +127,22 @@
 						</thead>
 						<tbody>
 							<div style="display: none;">{{ $correlativo=1 }}</div>
-							@forelse($estudiantes as $estudiante)
-							<tr id="{{ $estudiante->id }}">
+							@forelse($responsables as $responsable)
+							<tr id="{{ $responsable->id }}">
 								<td align="center">{{ $correlativo++ }}</td>
-								<td align="Center"><div class="label label-table bg-dark add-tooltip" data-original-title="{{ $estudiante->nombre }}" data-container="body" value="{{ $estudiante->id }}" ><div class="text-xs text-bold"></div>{{ $estudiante->nombre }}</div></td>
-								<td >{{ $estudiante->descripcion }}</td>
-								<td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold"></div></div></td>
+								<td align="Center"><div class="text-xs text-bold"></div>{{ $responsable->nombre }} {{ $responsable->apellido }}</td>
+								<td >{{ $responsable->dui }} </td>
+								<td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold"></div>{{ $responsable->nombre }} </td>
 								
 								<td align="center">
-								
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $estudiante->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> {{--Editar--}}</button>
-									<button class="btn btn-icon btn-default btn-sm  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $estudiante->id }}"><i class="demo-pli-exclamation icon-sm " ></i> {{--Info--}}</button>
+									{{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
+									<button class="btn btn-sm btn-rounded btn-default">Small</button>
+									<button class="btn btn-xs btn-rounded btn-default">Extra Small</button>
+									--}}
+									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $responsable->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> {{--Editar--}}</button>
+									<button class="btn btn-icon btn-default btn-sm  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $responsable->id }}"><i class="demo-pli-exclamation icon-sm " ></i> {{--Info--}}</button>
 									{{-- nose si agregarle estado a categoria @if($categoria->estado=='ACTIVO')
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-danger darbaja" value="{{ $categoria->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
+									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-danger darbaja" value="{{ $responsable->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
 									@endif
 									@if($categoria->estado=='INACTIVO')
 									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-primary darAlta" value="{{ $categoria->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> Dar Alta</span></div> </button>
@@ -186,9 +189,7 @@
 
 	<!--Default Bootstrap Modal-->
 	<!--===================================================-->
-
-<!-- Modal con tabindex -1 no funciona select2 en bootstrap 4 -->
-	<div class="modal fade" id="modalIngreso" 	name="modalIngreso" role="dialog"  tabindex="-1"  aria-labelledby="demo-default-modal" aria-hidden="true" >
+	<div class="modal fade" id="modalIngreso" 	name="modalIngreso" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" >
 		<div class="modal-dialog {{----}}modal-lg">
 			<div class="modal-content">
 
@@ -201,7 +202,7 @@
 				<!--Modal body-->
 				<div class="modal-body" style="overflow-y: auto;  max-height: 500px;"	>
 					
-					@include('estudiante.formEstudiante')
+					@include('estudiante.formResponsable')
 				</div>
 
 				{{----}}<!--Modal footer-->
@@ -219,12 +220,12 @@
 
 	<!--INFO Bootstrap Modal-->
 	<!--===================================================-->
-	<div id="modalInfo" class="modal fade bord-left" tabindex="-1">
-		<div class="modal-dialog border  border-primary {{--modal-lg--}}">
+	<div id="modalInfo" class="modal fade" tabindex="-1">
+		<div class="modal-dialog {{--modal-lg--}}">
 			<div class="modal-content">
 				<div class="modal-header alert-info">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Datos de Idioma</h4>
+					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Datos de Responsable</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
@@ -293,6 +294,7 @@
 	@endsection
 
 	@section('script')
-	<script src="{{asset('js/estudiante.js')}}"></script>
+
+	<script src="{{asset('js/Responsable.js')}}"></script>
 
 	@endsection

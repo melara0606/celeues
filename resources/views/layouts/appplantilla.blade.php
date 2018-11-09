@@ -70,6 +70,10 @@
  <link href="{{ asset('demo/plugins/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
 
             
+ <link rel="stylesheet" href="{{ asset('demo/plugins/select2/css/select2.min.css') }}">
+
+
+ <link rel="stylesheet" href="{{ asset('demo/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css') }}">
     <!--=================================================
 
     REQUIRED
@@ -1121,6 +1125,9 @@
     {{--<script src="js/demo/tables-datatables.js"></script>--}}
 <script src="{{ asset('demo/js/demo/tables-datatables.js') }}"></script>
 
+ <script src="{{ asset('demo/plugins/select2/js/select2.min.js') }}"></script> 
+ <script src="{{ asset('demo/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script> 
+ 
     @yield('script')
     
 
