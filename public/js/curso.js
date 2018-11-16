@@ -41,6 +41,54 @@ llenarSelectModalidad();
 llenarSelectCategoria();
   });
 
+ $(document).on('click','.addCategoria',function(){
+    $('#modalIngreso').modal('show');   
+
+});
+
+$(document).on('click','.infoHorariosModal',function(){
+
+var form_id = $(this).val();
+
+    $("#tablainfo").empty();////Deja vacia la tabla
+$.ajax({
+
+  type: "GET",
+  url: 'curso/buscarHorarios/'+form_id,
+  data: form_id,
+  dataType: 'json',
+  success: function (data) {
+    console.log(data);
+    var row = '<th><td>Dia</td></th>';
+    var row = '<tr><td width="30%"> Dia </td><td width="35%">hora inicio</td><td width="35%">hora fin</td></th>';
+ 
+    for (var i = 0; i < data.length; i++) {
+
+    
+//    var row = '<tr><td width="30%">' + data[i].nombreDia + ': </td><td width="35%">' + data[i].horaInicio + '</td><td width="35%">' + data[i].horaFin + '</td>';
+     row += '<tr><td width="30%">' + data[i].nombreDia + ': </td><td width="35%">' + data[i].horaInicio + '</td><td width="35%">' + data[i].horaFin + '</td>';
+
+   /* row +='<tr><td> Apellido: </td><td>' + data.apellido + '</td>';
+    row +='<tr><td> Email: </td><td>' + data.email + '</td>';
+    row +='<tr><td> DUI: </td><td>' + data.dui + '</td>';
+    row +='<tr><td> Telefono: </td><td>' + data.telefono + '</td>';
+    row +='<tr><td> Telefono: </td><td>' + data.nit + '</td>';
+    row +='<tr><td> Telefono: </td><td>' + data.ncuenta + '</td>';
+    row +='<tr><td> Creado: </td><td>' + data.created_at + '</td>';
+    $("#tablainfo").append(row); ///Se añade a la tabla
+ */   
+  }
+
+     $("#tablainfo").append(row);
+  },
+  error: function (data) {
+    console.log('Error de boton Info:', data);
+  }
+});
+
+$('#modalInfo').modal('show'); ///modal de informacion
+});
+
 
 function llenarSelectIdioma(){
   //  $("#resp_id").empty();

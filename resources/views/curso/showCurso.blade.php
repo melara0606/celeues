@@ -90,9 +90,17 @@
 					                            </ul>
 					                        </div>
 					                    </div>
-					                    <p class="text-lg text-semibold mar-no text-main">{{-- Intensivo Tarde --}} {{ $curso->modulos }}</p>
+					                  
+
+					                    <p align="left" class="text-m text-semibold mar-no text-main">{{-- Intensivo Tarde --}} {{ $curso->nombreIdioma }} {{ $curso->nombreModalidad }} {{ $curso->turno }}</p>
 					                    <br>
-					                    <p class="text-sm">L M X J V <button class="btn btn-icon btn-default btn-xs  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value=""><i class="demo-psi-pen-5 icon-sm " ></i></button></p> 
+					                    <p class="text-sm">
+					                    	  @forelse(cursoController::verDias($curso->id) as $algo)
+					                    	{{ $algo->contractado }}
+					                    @empty
+	    											
+						                @endforelse
+					                    	<button class="btn btn-icon btn-default btn-xs  btn-hover-mint add-tooltip infoHorariosModal" data-original-title="Editar Registro" data-container="body" value="{{ $curso->id }}"><i class="demo-pli-exclamation icon-sm  " ></i></button></p> 
 					                        
 					                    <table class="table table-toolbar-right">
 					                    	<tbody>
@@ -121,14 +129,14 @@
 					                    		
 					                    	</tbody>
 					                    </table>
-					                    {{--<div class="text-center pad-to">
+					                    <div class="text-center pad-to">
 					                        <div class="btn-group">
-					                            <a href="#" class="btn btn-sm btn-default"><i class="demo-pli-consulting icon-lg icon-fw"></i> Call</a>
+					                            <a href="#" class="btn btn-sm btn-default"><i class="demo-pli-consulting icon-lg icon-fw addCategoria"></i>Nueva Categoria</a>
 					                            <a href="#" class="btn btn-sm btn-default"><i class="demo-pli-mail icon-lg icon-fw"></i> Email</a>
 					                            <a href="#" class="btn btn-sm btn-default"><i class="demo-pli-pen-5 icon-lg icon-fw"></i> Edit</a>
 					                        </div>
 					                    </div>
-					                    <div class="pad-top btn-groups">
+					                   {{-- <div class="pad-top btn-groups">
 					                        <a href="#" class="btn btn-icon demo-pli-facebook icon-lg add-tooltip" data-original-title="Facebook" data-container="body"></a>
 					                        <a href="#" class="btn btn-icon demo-pli-twitter icon-lg add-tooltip" data-original-title="Twitter" data-container="body"></a>
 					                        <a href="#" class="btn btn-icon demo-pli-google-plus icon-lg add-tooltip" data-original-title="Google+" data-container="body"></a>
@@ -145,8 +153,35 @@
 					        
 
 					      </div><!--end Row-->
-
-						
+								
+								  <div class="col-sm-4 col-md-4 ">
+													          
+								<div class="panel widget">
+					                    <div class="widget-header widget-header-sm bg-mint text-center">
+					                        <h4 class="text-light mar-no pad-top">Ralph West</h4>
+					                        <p class="mar-btm">L M X J V</p>
+					                        
+					                    </div>
+					                    <div class="widget-body">
+					                       
+					
+					                        <div class="list-group bg-trans mar-no">
+					                            <a class="list-group-item list-item-sm" href="#">
+					                                <span class="label label-primary pull-right">15</span>
+					                                Recent Activity
+					                            </a>
+					                            <a class="list-group-item list-item-sm" href="#">
+					                                <span class="label label-success pull-right">100</span>
+					                                Following
+					                            </a>
+					                            <a class="list-group-item list-item-sm" href="#">
+					                                <span class="label label-danger pull-right">300</span>
+					                                Photos
+					                            </a>
+					                        </div>
+					                    </div>
+					                </div>
+						</div>
 
 	
 				</div>
@@ -195,15 +230,20 @@
 			<div class="modal-content">
 				<div class="modal-header alert-info">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Datos de Responsable</h4>
+					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Horarios</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Horarios</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
+            						<th>
+            							
+            								<td>ds</td>
+            							
+            						</th>
             						<tr>
             						<td></td> 
             						</tr>

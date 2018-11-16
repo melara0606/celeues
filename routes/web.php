@@ -73,7 +73,7 @@ Route::post('/curso/create', 'cursoController@create')->middleware('auth');
 Route::get('/curso/bus/idioma','cursoController@busquedaSelectIdioma');
 Route::get('/curso/bus/modalidad','cursoController@busquedaSelectModalidad');
 Route::get('/curso/bus/categoria','cursoController@busquedaSelectCategoria');
-
+Route::get('/curso/buscarHorarios/{id?}', 'cursoController@buscarHorarios')->middleware('auth');;
 
 
 //Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');

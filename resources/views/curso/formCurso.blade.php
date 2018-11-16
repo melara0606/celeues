@@ -1,13 +1,16 @@
 <form class="panel-body form-horizontal form-padding" id="form" name="form" action="/socios/create" method="post">
          <input type="hidden" id="form_id" name="form_id" value="0">
  
- <input type="text" id="cont" name="cont" value="">
+ 
+<div style="display: none;">
+    <input  type="text" id="cont" name="cont" value="">
  <input type="text" id="cont2" name="cont2" value="">
-<div style="display: none;"></div>
-
+</div>
   <div class="panel" >
 
-     <div class="card-body "></div>
+     <div class="card-body ">
+         
+     </div>
                         <div class="col-lg-1">
 
                         </div>
@@ -17,13 +20,8 @@
         <h6 class="text-main" style="font-weight:bold;">Formulario</h6></div>       --}}
    
 
-    {{--<div id="descripciondiv" class="form-group">
-        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Descripcion:*</label>
-        <div class="col-md-7  ">
-            <textarea class="form-control" type="text" id="descripcion" name="descripcion" value="mi casa" rows="2"></textarea>
-            <div id="descripcionfeed" class="form-control-feedback"></div>                   
-        </div>
-    </div>--}}
+    <h5 class="modal-title" id="myLargeModalLabel">Formulario de curso</h5>
+
     <hr>
     <div class="form-group">
         <label for="example-email-input" class="col-md-3 control-label text-main text-bold ">Idioma:*</label>
@@ -68,14 +66,14 @@
     </div>
 
 
- <div class="form-group">
+ {{-- <div class="form-group">
         <label for="example-email-input" class="col-md-3  control-label text-main text-bold ">Dias:*</label>
         <div class="col-md-6">
-    {{--       <select  class="form-control" id="dldlk" name="idioma_id" >
+          <select  class="form-control" id="dldlk" name="idioma_id" >
                  <option value="1" >1 vez por semanas</option>
                  <option value="1" >varios deias</option>
                  
-            </select>--}}
+            </select>
           
 
           <div class="checkbox">
@@ -101,12 +99,8 @@
                 
             </div>
                            
-       </div>
-        
-     
-       
-
-    </div>
+       </div>    
+    </div>--}}
 {{--
 <table class="table" id="categoriaTable2">
     <tbody>

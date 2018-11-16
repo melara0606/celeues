@@ -35,15 +35,40 @@ class cursoController extends Controller
     	
     		return $categorias;
     }
+    public static function verDias($idcurso){
+    	//$message=horariocurso::where('idcursos',$idcurso)->get(); 
+    	 $message=DB::table('horariocursos')
+         ->join('dias', 'horariocursos.iddias', '=', 'dias.id')
+         ->select('dias.*')
+         ->where('horariocursos.idcursos',$idcurso)
+         ->get();
+		
+    	return $message;
+	}
     public function show(){
     	/* $categorias=DB::table('cursocategorias')
          ->join('categorias', 'cursocategorias.idcategorias', '=', 'categorias.id')
          ->select('categorias.*')
          ->where('cursocategorias.idcursos',9)
          ->where('cursocategorias.estado','ACTIVO')->get();
-		return Response::json($categorias);
-*/
-    	$curso=curso::latest()->get(); 
+	
+return Response::json($categorias);
+	*/		$message=DB::table('horariocursos')
+         ->join('dias', 'horariocursos.iddias', '=', 'dias.id')
+         ->select('dias.*')
+         ->where('horariocursos.idcursos',12)
+         ->get();
+		
+		//return Response::json($message);
+    	$curso=DB::table('cursos')
+         ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
+         ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
+         ->select('cursos.*',
+         	'modalidads.nombre as nombreModalidad',
+         	'modalidads.turno',
+         	'idiomas.nombre as nombreIdioma')
+         ->get();
+    	//$curso=curso::latest()->get(); 
 
         	  return view('curso.showCurso',[
             	 'cursos' => $curso,                 
@@ -374,6 +399,17 @@ class cursoController extends Controller
     public function busquedaSelectCategoria(){
         $message=categoria::get(); 
         return Response::json($message);
+    }
+
+    public function buscarHorarios($idcurso){
+    	 $message=DB::table('horariocursos')
+         ->join('dias', 'horariocursos.iddias', '=', 'dias.id')
+         ->select('dias.*','horariocursos.*')
+         ->where('horariocursos.idcursos',$idcurso)
+         ->get();
+		
+    	return $message;
+
     }
 
 }
