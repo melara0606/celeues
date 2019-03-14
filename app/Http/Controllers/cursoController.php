@@ -18,6 +18,8 @@ use App\cursocategoria;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Requests\createCursoRequest;
+
 
 class cursoController extends Controller
 {
@@ -27,9 +29,9 @@ class cursoController extends Controller
 		 
          $categorias=DB::table('cursocategorias')
          ->join('categorias', 'cursocategorias.idcategorias', '=', 'categorias.id')
-         ->select('categorias.*','cursocategorias.cuota')
-         ->where('cursocategorias.idcursos',$idcurso)
-         ->where('cursocategorias.estado','ACTIVO')->get();
+         ->select('categorias.*','cursocategorias.cuota','cursocategorias.estado','cursocategorias.id as idcursocategoria','cursocategorias.idcursos')
+         ->where('cursocategorias.idcursos',$idcurso)->orderBy('cuota','desc')//->get();
+        ->where('cursocategorias.estado','ACTIVO')->get();
 		//$categorias=cursocategoria::where('idcursos',$idcurso)
     	//->where('estado','ACTIVO')->get();//->orderBy('id', 'desc');
     	
@@ -68,14 +70,54 @@ return Response::json($categorias);
          	'modalidads.turno',
          	'idiomas.nombre as nombreIdioma')
          ->get();
+
+         $count=count(categoria::get());
     	//$curso=curso::latest()->get(); 
 
         	  return view('curso.showCurso',[
-            	 'cursos' => $curso,                 
+            	 'cursos' => $curso, 
+            	 'numCategorias'=> $count,                
             	]);
       }
 
-    public function create(Request $request){
+    public function create(createCursoRequest $request){
+ //////////////////////////////////////////////////////////////////////////////////////////////
+    	/////////////////////////////para ver si dos categorias son iguales
+    	///////////////primero comparamos la que no esta en el array de las categorias
+    		for ($i=1;$i<=$request->input('cont'); $i++) { 
+    			if(!empty($request->input('cat_id'.$i))){
+    				////si una categoria se parece  otra 
+    				if($request->input('cat_id')==$request->input('cat_id'.$i))
+    				{
+    					 return Response::json([
+            			'bandera' =>0,
+            			'response'=>'Esta tratando de guardar dos categorias iguales',                 
+   			 			]);
+    				}
+    			}
+    		}
+    	/////////////////////////Luego comparamos las que se crean dinamicamente
+    		for ($i=1; $i<=$request->input('cont') ; $i++) { 
+    				if(!empty($request->input('cat_id'.$i))){
+    					for ($j=1; $j <=$request->input('cont') ; $j++) { 
+    						if($i==$j){
+
+    						}else{
+    							if(!empty($request->input('cat_id'.$j))){
+    								if($request->input('cat_id'.$i)==$request->input('cat_id'.$j)){
+    									 return Response::json([
+            							'bandera' =>0,
+            							'response'=>'Esta tratando de guardar dos categorias iguales',                 
+   			 							]);
+    								}
+    							}//
+    						}
+    					}
+    				}
+    			}	
+
+ //////////////////////////////////////////////////////////////////////////////////////////////
+
     	$l=0;
     	//return Response::json($request);
     	//creacion de array para dias
@@ -177,6 +219,13 @@ return Response::json($categorias);
 		    		'idcategorias'=> $request->input('cat_id'),
 		    		'idcursos'=> $curso->id,
 		    		]);	
+
+		    		/*$message=nivels::create([
+		    		'cuota'=> $request->input('nombre'),//id nombre es cuota en vista
+		    		'estado'=>'ACTIVO',
+		    		'idcategorias'=> $request->input('cat_id'),
+		    		'idcursos'=> $curso->id,
+		    		]);*/
 	    		}else{
 
 	    			$message= cursocategoria::create([
@@ -407,9 +456,71 @@ return Response::json($categorias);
          ->select('dias.*','horariocursos.*')
          ->where('horariocursos.idcursos',$idcurso)
          ->get();
+         $x=0;
+$x=DB::table('cursos')
+         ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
+         ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
+         ->select('cursos.*',
+         	'modalidads.nombre as nombreModalidad',
+         	'modalidads.turno',
+         	'idiomas.nombre as nombreIdioma')
+         ->get();
+
+
+         return Response::json([
+            'message' =>$message,
+            'x'=>$x,                 
+   			 ]);
+    	 return $message;
 		
-    	return $message;
 
     }
+
+    public function cambiarEstado(Request $request,$id){
+        $message = cursocategoria::find($id);
+        if ($request->input('estado')==0) {
+            $message->fill([
+            'estado'=>'INACTIVO',
+            ]);
+        }else if ($request->input('estado')==1) {
+            $message->fill([
+            'estado'=>'ACTIVO',
+            ]);
+        }
+
+        if($message->save()){
+          // bitacoraController::bitacora('Modificó datos de peticion');
+            return Response::json('Cambio de Estado Exitoso');
+            }else
+                return Response::json('No pudo cambiar de Estado');
+
+    }
+	public function actualizarPrecio(Request $request){
+		$montoCategoria=$request->input('montoCategoria');
+		$idCategoria=$request->input('idCategoria');
+		$idCursos=$request->input('idCursos');
+		$messsages=cursocategoria::where('estado','ACTIVO')->where('idcategorias',$idCategoria)->where('idcursos',$idCursos)->get();
+		foreach ($messsages as $message) {
+			//$x=cursocategoria::find($message->id);
+			//return Response::json($message);
+			$message->fill([
+            'estado'=>'INACTIVO',
+            ])->save();
+		}
+		
+
+		
+		
+		$message= cursocategoria::create([
+		    		'cuota'=> $montoCategoria,//id nombre es cuota en vista
+		    		'estado'=>'ACTIVO',//montoCategoria
+		    		'idcategorias'=> $idCategoria,
+		    		'idcursos'=> $idCursos,
+    		]);
+    	 return Response::json('Cuota Actualizada Exitosamente');
+
+	}
+    
+
 
 }

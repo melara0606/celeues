@@ -74,6 +74,10 @@ Route::get('/curso/bus/idioma','cursoController@busquedaSelectIdioma');
 Route::get('/curso/bus/modalidad','cursoController@busquedaSelectModalidad');
 Route::get('/curso/bus/categoria','cursoController@busquedaSelectCategoria');
 Route::get('/curso/buscarHorarios/{id?}', 'cursoController@buscarHorarios')->middleware('auth');;
+Route::put('/curso/cambiarEstado/{id?}', 'cursoController@cambiarEstado')->middleware('auth');
+Route::put('/curso/actualizarPrecio', 'cursoController@actualizarPrecio')->middleware('auth');
+
+Route::get('/grupos', 'grupoController@show')->name('grupoShow')->middleware('auth');
 
 
 //Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');

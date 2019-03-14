@@ -17,6 +17,9 @@ $('#modalIngreso').on('hidden.bs.modal', function () {
     //$.niftyNav('colExpToggle');
    
 $.niftyAside('darkTheme');
+//$.niftyNav('collapse');
+$.niftyAside('alignLeft');
+
 /* $("#idioma_id").select2({
      dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
       tags: "true", 
@@ -34,17 +37,176 @@ $.niftyAside('darkTheme');
   width: "100%"});
   */
 
-
-
 llenarSelectIdioma();
 llenarSelectModalidad();
 llenarSelectCategoria();
   });
 
+
+ $(document).on('click','.editBoton',function(){
+    $('#modalCategoriaNueva').modal('show');   
+      $.getJSON('curso/bus/categoria', function (data) {
+          //success data
+            console.log(data);     
+            for (var i = 0; i < data.length; i++) {
+         //     $.each(data[i], function(key, val) {
+            //$("#tabla").append('<tr id="task"><td>"'+data[i].nombre+'"</td><td>"'+data[i].ide+'"</td></tr>');
+         $("#ncatid").append('<option value="' + data[i].id + '">' + data[i].nombre + '   ' + data[i].edadInicio + ' - ' + data[i].edadFin + ' años</option>');
+         
+         //   $('input[name="cat_id"]')[0].val('<option value="' + data[i].id + '">' + data[i].nombre + '   ' + data[i].edadInicio + ' - ' + data[i].edadFin + ' años</option>');
+         
+         //   output += '<option value="' + data[i].ide + '">' + data[i].nombre + '</option>';
+       // });
+            };      
+           });
+
+});
+
  $(document).on('click','.addCategoria',function(){
     $('#modalIngreso').modal('show');   
 
 });
+////////////////////////////////////Actual Preicio/////////////////////////////////////////
+$(document).on('click','.actualPrecio',function(){
+     var value = $(this).val();
+      //token siempre para ingresar y modificar
+       $('#modalPrecioCategoria').modal('show'); ///modal de informacion
+       $('#idCategoria').val(value);
+       $('#idCursos').val($(this).attr('data-idcursos'));
+       $('#montoCategoria').val(value);  
+    
+});
+
+$("#btnGuardarPrecio").click(function (e) {
+  $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+      })
+
+      e.preventDefault();
+var formData = {
+   idCategoria:$('#idCategoria').val(),
+  idCursos:$('#idCursos').val(),
+   montoCategoria:$('#montoCategoria').val(),
+    
+ }
+  $.ajax({
+          type: "PUT",
+          url: 'curso/actualizarPrecio',//+value,
+          data: formData,
+          dataType: 'json',
+          success: function (data) {
+              console.log(data);
+             $.niftyNoty({
+              type: "success",
+              container : "floating",
+              title : "Bien Hecho!",
+              message : data,
+              closeBtn : false,
+              timer : 3000
+              });
+
+              setTimeout(function(){
+                  // window.location.reload();////recarga la pagina actual
+
+
+               }, 4000);
+          },
+          error: function (data) {
+              //console.log('Error al dar Baja:', data);
+              $.niftyNoty({
+              type: "danger",
+              container : "floating",
+              title : "Upps!",
+              message : "A ocurrido un problema",
+              closeBtn : false,
+              timer : 3000
+              });
+          }
+     });
+
+    //$('#modalPrecioCategoria').modal('hide');
+});
+/////////////////////////////////Fin actual precio//////////////////////////////////////////////////////
+ /////////////////////////////Accion dar alta y baja a categoria////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(document).on('click','.darbaja',function(){
+     var value = $(this).val();
+      //es ell id de idioma
+    $('#registro_id').val(value);
+     $('#estadoAB').val(0);
+     $('#msjAB').html("<p>Esta seguro de dar de baja esta categoria?. Al realizar esta accion no se podra elegir niveles al momento </p>");
+
+     $('#modalMsj').modal('show'); ///modal de informacion
+});
+$(document).on('click','.darAlta',function(){
+      var value = $(this).val();
+      //es ell id de idioma
+    $('#registro_id').val(value);
+     $('#estadoAB').val(1);
+  $('#msjAB').html("<p>Esta seguro de continuar con la accion </p>");
+
+     $('#modalMsj').modal('show'); ///modal de informacion
+});
+
+
+$("#btnGuardarMsj").click(function (e) {
+var value = $('#registro_id').val();
+ //token siempre para ingresar y modificar
+$.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+      })
+
+      e.preventDefault();
+var formData = {
+   estado:$('#estadoAB').val(),
+ }
+  $.ajax({
+          type: "PUT",
+          url: 'curso/cambiarEstado/'+value,
+          data: formData,
+          dataType: 'json',
+          success: function (data) {
+              console.log(data);
+             $.niftyNoty({
+              type: "success",
+              container : "floating",
+              title : "Bien Hecho!",
+              message : data,
+              closeBtn : false,
+              timer : 3000
+              });
+
+              setTimeout(function(){
+                   window.location.reload();////recarga la pagina actual
+
+
+               }, 4000);
+          },
+          error: function (data) {
+              console.log('Error al dar Baja:', data);
+              $.niftyNoty({
+              type: "danger",
+              container : "floating",
+              title : "Upps!",
+              message : "A ocurrido un problema",
+              closeBtn : false,
+              timer : 3000
+              });
+          }
+     });
+
+    $('#modalMsj').modal('hide');
+  });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////Fin accion dar alta y baja a categoria////////////////////////////////////////
+
+
 
 $(document).on('click','.infoHorariosModal',function(){
 
@@ -59,14 +221,15 @@ $.ajax({
   dataType: 'json',
   success: function (data) {
     console.log(data);
+
     var row = '<th><td>Dia</td></th>';
     var row = '<tr><td width="30%"> Dia </td><td width="35%">hora inicio</td><td width="35%">hora fin</td></th>';
  
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data['message'].length; i++) {
 
     
 //    var row = '<tr><td width="30%">' + data[i].nombreDia + ': </td><td width="35%">' + data[i].horaInicio + '</td><td width="35%">' + data[i].horaFin + '</td>';
-     row += '<tr><td width="30%">' + data[i].nombreDia + ': </td><td width="35%">' + data[i].horaInicio + '</td><td width="35%">' + data[i].horaFin + '</td>';
+     row += '<tr><td width="30%">' + data['message'][i].nombreDia + ': </td><td width="35%">' + data['message'][i].horaInicio + '</td><td width="35%">' + data['message'][i].horaFin + '</td>';
 
    /* row +='<tr><td> Apellido: </td><td>' + data.apellido + '</td>';
     row +='<tr><td> Email: </td><td>' + data.email + '</td>';
@@ -156,9 +319,14 @@ $(document).on('click','.masCategoria',function(){
 
      $('#categoriaTable').append('<tr id="trow'+(valor)+'">'+
             '<td>'+
+//'<label for="example-email-input" class="control-label text-main text-bold ">Categoria:*</label>'+            
                       '<div class="form-group "> '+ 
                    // '<label for="example-email-input" class="col-md-2 control-label text-main text-bold ">Categoria:*</label>'+
-                    '<div class="col-md-7">'+
+                    '<div class="col-md-2">'+     
+                    '<label for="example-email-input" class="control-label text-main text-bold ">Categoria:*</label>'+
+                    '</div>'+
+                    '<div class="col-md-5">'+
+                    //{{--'<div class="col-md-7">'+ --}}
                         '<select  class="form-control" id="cat_id'+(valor)+'" name="cat_id'+(valor)+'" >'+
                       //  '<select  class="form-control" id="cat_id" name="cat_id[]" >'+
                        
@@ -182,6 +350,30 @@ $(document).on('click','.masCategoria',function(){
                     '</div>'+  
                  '</div>'+
                   '</td>'+
+        '</tr>'+
+        '<tr id="trow2'+(valor)+'" >'+
+            '<td>'+
+           
+                '<div class="form-group" >'+
+
+                    '<div class="col-md-6">'+
+
+                        
+                            '<label for="example-number-input" class="col-md-4 control-label text-main text-bold ">Niveles:*</label>'+
+                            '<div class="col-md-6">'+
+                                '<select class="form-control" type="number" placeholder="" id="niveles'+(valor)+'" name="niveles'+(valor)+'">'+
+                              '<option value="20">20</option>'+
+                                    '<option value="18">18</option>'+
+                                    '<option value="22">22</option>'+
+                                    
+                                '</select>'+
+                             '<div id="de" class="form-control-feedback"></div>'+                   
+                            '</div>'+
+                            
+
+                    '</div>'+ 
+                '</div>'+
+            '</td>'+
         '</tr>'); 
      //Otra forma de realizar el get ajax el mismo de infomodal    
     $.getJSON('curso/bus/categoria', function (data) {
@@ -204,6 +396,8 @@ $(document).on('click','.menosCategoria',function(){
    var value= $(this).val();
    
   $("#trow" + value).remove(); 
+  $("#trow2" + value).remove(); 
+  
 });
 $(document).on('click','.masDias',function(){
   var valor=0;
@@ -320,7 +514,7 @@ $("#btnGuardar").click(function (e) {
     }
   })
     //$('#modalIngreso').modal('hide'); 
-
+//$('#form_id').submit();
    e.preventDefault();
    /////Datos que se envian para recibir en el controlador 
    var formData = {
@@ -343,7 +537,7 @@ $("#btnGuardar").click(function (e) {
           console.log($('#form').serialize());
           //console.log($('#form').serializeArray());
          
-          console.log($("#cat_id2").val());
+         // console.log($("#cat_id2").val());
           console.log($('#form').show());
          
 
@@ -391,12 +585,14 @@ $("#btnGuardar").click(function (e) {
 
              },
              error: function (data) {
+              var errors=data.responseJSON;
+                console.log(errors);
               ///menasje de error
               $.niftyNoty({
                 type: "danger",
                 container : "floating",
                 title : "Upps!",
-                message : "A ocurrido un problema",
+                message : "A ocurrido un problema"+errors.nombre,
                 closeBtn : false,
                 timer : 3000
                 });
@@ -405,4 +601,13 @@ $("#btnGuardar").click(function (e) {
               
                   }
                 });
+          /* if(errors.nombre!=undefined)
+                {
+                  $('#montofeed').text(errors.monto);
+                  //$( '#montodiv' ).removeClass();
+                  $( '#nombrediv' ).addClass("has-danger");
+                }else{
+                  $( '#nombrediv' ).removeClass("has-danger");
+                  $( '#nombrefeed' ).text("");
+                  }*/
         });

@@ -1,13 +1,13 @@
 <form class="panel-body form-horizontal form-padding" id="form" name="form" action="/socios/create" method="post">
          <input type="hidden" id="form_id" name="form_id" value="0">
  
- 
-<div style="display: none;">
+ <div style="display: none;">
     <input  type="text" id="cont" name="cont" value="">
  <input type="text" id="cont2" name="cont2" value="">
-</div>
-  <div class="panel" >
 
+</div>
+  <div class="panel">
+     
      <div class="card-body ">
          
      </div>
@@ -207,10 +207,12 @@
     <tbody>
         <tr>
             <td>
-                <label for="example-email-input" class="control-label text-main text-bold ">Categoria:*</label>
-                <div class="form-group ">       
-                    
-                    <div class="col-md-7">
+                <label for="example-email-input" class="control-label text-main text-bold ">Categorias y Niveles.</label>
+                <div class="form-group ">  
+                <div class="col-md-2">     
+                    <label for="example-email-input" class="control-label text-main text-bold ">Categoria:*</label>
+                </div>
+                    <div class="col-md-5">
                    <!--     <select  class="form-control" id="cat_id[]" name="cat_id[]" >
                        -->
                          <select  class="form-control" id="cat_id" name="cat_id" >
@@ -221,11 +223,12 @@
                    </div>
                     <div class="col-md-5">
 
-                        
+                            <div class="">
                             <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Cuota:*</label>
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="$##.##" id="nombre" name="nombre">
+                            <div class="col-md-6" >
+                                <input class="form-control" type="number" placeholder="$##.##" id="nombre" name="nombre" required="true">
                                 <div id="descripcionfeed" class="form-control-feedback"></div>                   
+                            </div>
                             </div>
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-primary add-tooltip masCategoria" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-add icon-lg " ></i> </button>
@@ -235,6 +238,33 @@
                     </div>  
                  </div>
 
+            </td>
+        </tr>
+        <tr>
+            <td>
+           
+                <div class="form-group" >
+
+                    <div class="col-md-6">
+
+                        
+                            <label for="example-number-input" class="col-md-4 control-label text-main text-bold ">Niveles:*</label>
+                            <div class="col-md-6">
+                                <select class="form-control" type="number" placeholder="" id="niveles" name="niveles">
+                                    <option value="20">20</option>
+                                    <option value="18">18</option>
+                                    <option value="22">22</option>
+                                    
+                                </select>
+                                <div id="descripcionfeed" class="form-control-feedback"></div>                   
+                            
+                            </div>
+                            <div class="form-group">
+       
+                            
+
+                    </div> 
+                </div>
             </td>
         </tr>
         
