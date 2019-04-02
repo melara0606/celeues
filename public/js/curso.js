@@ -1,51 +1,131 @@
- $(document).ready(function(){
-    $('#myTable').DataTable({
-      //"dom": '<"top"lf>rt<"bottom"pi>'
-    });
-    $('#modalIngreso').on('shown.bs.modal', function () {
-  $('.modal-dialog').css('height', $('.modal-dialog').height() );
+
+$(document).on('click','.modificarHorarios',function(){
+
+      $("#btnGuardarHorarios").show();
+
+      $("infoModalHeader").removeClass();
+       $( '#infoModalHeader' ).addClass("alert-mint");
+
+
+      $("#tablaInfo").empty();
+      var form_id = $(this).val();
+      console.log(form_id);
+
+       $("#idCursosEditarHorarios").val(form_id);
+          //$("#tablaEditarHorarios").empty();////Deja vacia la tabla
+           $("#tablainfo").empty();
+      $.ajax({
+
+        type: "GET",
+        url: $('#path').val()+'/curso/buscarHorarios/'+form_id,
+        data: form_id,
+        dataType: 'json',
+        success: function (data) {
+          console.log("kelvin");
+      //  var row = '<th><td>Dia</td></th>';
+          var row = '<tr><td width="30%"> Dia </td><td width="30%">hora inicio</td><td width="30%">hora fin</td>'+
+          '<td width="10%"><button type="button" class=" btn btn-icon btn-trans btn-xs add-tooltip addHorariosDias"    '+
+          '   value="1"><i class="ion-plus-round icon-lg " ></i></button>'+
+          '</td></tr>';
+       
+          for (var i = 0; i < data['message'].length; i++) {
+            // row += '<tr><td width="30%">' + data['message'][i].nombreDia + ': </td><td width="35%">';
+               row +='<tr id="trowHorarios'+i+ '">'; 
+                row +='<td width="30%"><div class="form-group "><select  class="form-control" id="first'+(i)+'" name="first'+(i)+'" >'+
+              
+             
+             
+                                  +'</select></div></td>';
+              
+               row += '<td width="30%"><input class="form-control" type="time" placeholder="$" id="second'+(i)+'" name="second'+(i)+'" value="'+data['message'][i].horaInicio + '"></td>';
+            
+               row +='<td width="30%"><input class="form-control" type="time" placeholder="$" id="third'+(i)+'" name="third'+(i)+'" value="'+data['message'][i].horaFin + '"></td>';
+                   if(i==0){
+                  row +='<td width="10%"><button disabled="disabled" type="button" class=" btn btn-icon btn-trans btn-xs add-tooltip deleteHorariosDias"   '+
+                'data-original-title="Eliminar" value="'+i+ '">'+
+                '<i class="ion-trash-b icon-lg " ></i></button>'
+                   }
+                   else{
+               row +='<td width="10%"><button type="button" class=" btn btn-icon btn-trans btn-xs add-tooltip deleteHorariosDias"   '+
+                'data-original-title="Eliminar" value="'+i+ '">'+
+                '<i class="ion-trash-b icon-lg " ></i></button>';
+             // row +='<button class=" btn btn-icon btn-trans btn-xs  add-tooltip  data-original-title="Eliminar" data-container="body"  value="'+data['message'][i].id + '"><i class="ion-plus-round icon-lg " ></i></button>';
+                }
+               row +='</td>';
+
+                   row +='</tr>';
+
+            }
+            $("#countDiasHorarios").val(i);
+
+          /// $("#tablaEditarHorarios").append(row);
+            $("#tablainfo").append(row);
+           
+           for (var i = 0; i < data['message'].length; i++) {
+               
+                $("#first"+i+"").append('<option value="1">Lunes</option>');
+                $("#first"+i+"").append('<option value="2">martes</option>');
+                 $("#first"+i+"").append('<option value="3">Miercoles</option>');
+                 $("#first"+i+"").append('<option value="4">Jueves</option>');
+                 $("#first"+i+"").append('<option value="5">Viernes</option>');
+                 $("#first"+i+"").append('<option value="6">Sabado</option>');
+                 $("#first"+i+"").append('<option value="7">Domingo</option>');//+
+                                     
+                 $("#first"+i+"").val(""+data['message'][i].numDia + "");
+              //$("#first"+i+"").prop("selectedIndex", data['message'][i].numDia);
+            }
+        },
+        error: function (data) {
+          console.log('Error de boton Info:', data);
+        }
+      });
+
+      //$('#modalEditarHorarios').modal('show'); ///modal de informacion
 });
 
-$('#modalIngreso').on('hidden.bs.modal', function () {
-  $('.modal-dialog').css('height', 'auto');
+$(document).on('click','.addHorariosDias',function(){
+     i=Number($("#countDiasHorarios").val());
+   var cont=$("#countDiasHorarios").val(i+1);
+
+     row ='<tr id="trowHorarios'+i+ '">'; 
+                row +='<td width="30%"><div class="form-group "><select  class="form-control" id="first'+i+'" name="first'+i+'" >'+ 
+                                  +'</select></div></td>';
+               row += '<td width="30%"><input class="form-control" type="time" placeholder="$" id="second'+i+'" name="second'+i+'" value=""></td>';
+          
+               row +='<td width="30%"><input class="form-control" type="time" placeholder="$" id="third'+i+'" name="third'+i+'" value=""></td>';
+                   
+               row +='<td width="10%"><button type="button" class=" btn btn-icon btn-trans btn-xs add-tooltip deleteHorariosDias"   '+
+                'data-original-title="Eliminar" value="'+i+ '">'+
+                '<i class="ion-trash-b icon-lg " ></i></button>';
+             // row +='<button class=" btn btn-icon btn-trans btn-xs  add-tooltip  data-original-title="Eliminar" data-container="body"  value="'+data['message'][i].id + '"><i class="ion-plus-round icon-lg " ></i></button>';
+
+               row +='</td>';
+
+                   row +='</tr>';
+
+                
+
+ 
+      $("#tablainfo").append(row);
+                 $("#first"+i).append('<option value="1">Lunes</option>');
+                 $("#first"+i).append('<option value="2">martes</option>');
+                 $("#first"+i).append('<option value="3">Miercoles</option>');
+                 $("#first"+i).append('<option value="4">Jueves</option>');
+                 $("#first"+i).append('<option value="5">Viernes</option>');
+                 $("#first"+i).append('<option value="6">Sabado</option>');
+                 $("#first"+i).append('<option value="7">Domingo</option>');//+
+     
 });
-   //No se para que es pero en la documentacion dice que sirve para algo
-    //$(document).trigger('nifty.ready');
-  //  $.niftyNav('refresh');
-    $.niftyNav('bind');
-    //$.niftyNav('collapse');
-    //$.niftyNav('colExpToggle');
-   
-$.niftyAside('darkTheme');
-//$.niftyNav('collapse');
-$.niftyAside('alignLeft');
-
-/* $("#idioma_id").select2({
-     dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
-      tags: "true", 
-  placeholder: "Selecione un Idioma",
-  width: "100%"});
- $("#moda_id").select2({
-     dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
-      tags: "true", 
-  placeholder: "Selecione una Modalidad",
-  width: "100%"});
- $("#cat_id").select2({
-     dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
-      tags: "true", 
-  placeholder: "Selecione una Categoria",
-  width: "100%"});
-  */
-
-llenarSelectIdioma();
-llenarSelectModalidad();
-llenarSelectCategoria();
-  });
-
-
+$(document).on('click','.deleteHorariosDias',function(){
+      var value = $(this).val();
+      $("#trowHorarios" + value).remove();
+});
+ 
  $(document).on('click','.editBoton',function(){
-    $('#modalCategoriaNueva').modal('show');   
-      $.getJSON('curso/bus/categoria', function (data) {
+  var value = $(this).val();
+    $('#modalCategoriaNueva').modal('show');  
+    $('#idCursosModificarCat').val(value); 
+      $.getJSON($('#path').val()+'/curso/bus/categoria', function (data) {
           //success data
             console.log(data);     
             for (var i = 0; i < data.length; i++) {
@@ -59,6 +139,7 @@ llenarSelectCategoria();
        // });
             };      
            });
+      $('#nnombre').val(0.00);
 
 });
 
@@ -66,70 +147,8 @@ llenarSelectCategoria();
     $('#modalIngreso').modal('show');   
 
 });
-////////////////////////////////////Actual Preicio/////////////////////////////////////////
-$(document).on('click','.actualPrecio',function(){
-     var value = $(this).val();
-      //token siempre para ingresar y modificar
-       $('#modalPrecioCategoria').modal('show'); ///modal de informacion
-       $('#idCategoria').val(value);
-       $('#idCursos').val($(this).attr('data-idcursos'));
-       $('#montoCategoria').val(value);  
-    
-});
 
-$("#btnGuardarPrecio").click(function (e) {
-  $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-          }
-      })
-
-      e.preventDefault();
-var formData = {
-   idCategoria:$('#idCategoria').val(),
-  idCursos:$('#idCursos').val(),
-   montoCategoria:$('#montoCategoria').val(),
-    
- }
-  $.ajax({
-          type: "PUT",
-          url: 'curso/actualizarPrecio',//+value,
-          data: formData,
-          dataType: 'json',
-          success: function (data) {
-              console.log(data);
-             $.niftyNoty({
-              type: "success",
-              container : "floating",
-              title : "Bien Hecho!",
-              message : data,
-              closeBtn : false,
-              timer : 3000
-              });
-
-              setTimeout(function(){
-                  // window.location.reload();////recarga la pagina actual
-
-
-               }, 4000);
-          },
-          error: function (data) {
-              //console.log('Error al dar Baja:', data);
-              $.niftyNoty({
-              type: "danger",
-              container : "floating",
-              title : "Upps!",
-              message : "A ocurrido un problema",
-              closeBtn : false,
-              timer : 3000
-              });
-          }
-     });
-
-    //$('#modalPrecioCategoria').modal('hide');
-});
-/////////////////////////////////Fin actual precio//////////////////////////////////////////////////////
- /////////////////////////////Accion dar alta y baja a categoria////////////////////////////////////////
+ /*////////////////////////////Accion dar alta y baja a categoria////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(document).on('click','.darbaja',function(){
@@ -203,20 +222,104 @@ var formData = {
     $('#modalMsj').modal('hide');
   });
 
+*//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////Fin accion dar alta y baja a categoria////////////////////////////////////////
+
+
+ /////////////////////////////Accion dar alta y baja a categoria////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(document).on('click','.darbajaCurso',function(){
+  console.log('entro');
+     var value = $(this).val();
+      //es ell id de idioma
+    $('#registro_id').val(value);
+     $('#estadoAB').val(0);
+     $('#msjAB').html("<p>Esta seguro dar baja a curso? </p>");
+
+     $('#modalMsj').modal('show'); ///modal de informacion
+});
+$(document).on('click','.darAltaCurso',function(){
+      var value = $(this).val();
+      //es ell id de idioma
+    $('#registro_id').val(value);
+     $('#estadoAB').val(1);
+  $('#msjAB').html("<p>Esta seguro de continuar con la accion </p>");
+
+     $('#modalMsj').modal('show'); ///modal de informacion
+});
+
+
+$("#btnGuardarMsjMotivo").click(function (e) {
+var value = $('#registro_id').val();
+ //token siempre para ingresar y modificar
+$.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+      })
+
+      e.preventDefault();
+var formData = {
+   estado:$('#estadoAB').val(),
+ }
+  $.ajax({
+          type: "PUT",
+          url: $('#path').val()+'/curso/cambiarEstadoCurso/'+value,
+          data: formData,
+          dataType: 'json',
+          success: function (data) {
+              console.log(data);
+             $.niftyNoty({
+              type: "success",
+              container : "floating",
+              title : "Bien Hecho!",
+              message : data,
+              closeBtn : false,
+              timer : 3000
+              });
+
+              setTimeout(function(){
+                   window.location.reload();////recarga la pagina actual
+
+
+               }, 4000);
+          },
+          error: function (data) {
+              console.log('Error al dar Baja:', data);
+              $.niftyNoty({
+              type: "danger",
+              container : "floating",
+              title : "Upps!",
+              message : "A ocurrido un problema",
+              closeBtn : false,
+              timer : 3000
+              });
+          }
+     });
+
+    $('#modalMsj').modal('hide');
+  });
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////Fin accion dar alta y baja a categoria////////////////////////////////////////
 
 
-
 $(document).on('click','.infoHorariosModal',function(){
+ 
+$("#btnGuardarHorarios").hide();
+
+$('#infoModalHeader' ).removeClass();
+$('#infoModalHeader' ).addClass("modal-header alert-info");
 
 var form_id = $(this).val();
-
+ $("#botonEditarHorario").val(form_id);
     $("#tablainfo").empty();////Deja vacia la tabla
+
 $.ajax({
 
   type: "GET",
-  url: 'curso/buscarHorarios/'+form_id,
+  url: $('#path').val()+'/curso/buscarHorarios/'+form_id,
   data: form_id,
   dataType: 'json',
   success: function (data) {
@@ -256,7 +359,7 @@ $('#modalInfo').modal('show'); ///modal de informacion
 function llenarSelectIdioma(){
   //  $("#resp_id").empty();
  //Otra forma de realizar el get ajax el mismo de infomodal    
-    $.getJSON('curso/bus/idioma', function (data) {
+    $.getJSON($('#path').val()+'/curso/bus/idioma', function (data) {
           //success data
             console.log(data);     
             for (var i = 0; i < data.length; i++) {
@@ -271,7 +374,7 @@ function llenarSelectIdioma(){
 
 }
 function llenarSelectModalidad(){    
-    $.getJSON('curso/bus/modalidad', function (data) {
+    $.getJSON($('#path').val()+'/curso/bus/modalidad', function (data) {
           //success data
             console.log(data);     
             for (var i = 0; i < data.length; i++) {
@@ -286,7 +389,7 @@ function llenarSelectModalidad(){
 
 }
 function llenarSelectCategoria(){
-    $.getJSON('curso/bus/categoria', function (data) {
+    $.getJSON($('#path').val()+'/curso/bus/categoria', function (data) {
           //success data
             console.log(data);     
             for (var i = 0; i < data.length; i++) {
@@ -376,7 +479,7 @@ $(document).on('click','.masCategoria',function(){
             '</td>'+
         '</tr>'); 
      //Otra forma de realizar el get ajax el mismo de infomodal    
-    $.getJSON('curso/bus/categoria', function (data) {
+    $.getJSON($('#path').val()+'/curso/bus/categoria', function (data) {
           //success data
             console.log(data);     
             for (var i = 0; i < data.length; i++) {
@@ -524,9 +627,10 @@ $("#btnGuardar").click(function (e) {
    //  edadFin:$('#edadFin').val(),
    }      
 
+$('#btnGuardar').attr("disabled", true);
           var state = $('#btnGuardar').val();///para ver si es add o update
           var type = "POST"; //for creating new resource
-          var my_url = "curso/create";
+          var my_url = $('#path').val()+"/curso/create";
           var form_id = $('#form_id').val();///el id del registro ya sea si modificamos 
 
           if (state == "update"){
@@ -539,8 +643,7 @@ $("#btnGuardar").click(function (e) {
          
          // console.log($("#cat_id2").val());
           console.log($('#form').show());
-         
-
+         $('#modalIngreso').modal('hide');
 
           $.ajax({
 
@@ -552,7 +655,7 @@ $("#btnGuardar").click(function (e) {
              console.log(data);
             // data[0];
             if(data['bandera']==1){
-               $('#modalIngreso').modal('hide');
+               
                $.niftyNoty({
                 type: "success",
                 container : "floating",
@@ -587,6 +690,7 @@ $("#btnGuardar").click(function (e) {
              error: function (data) {
               var errors=data.responseJSON;
                 console.log(errors);
+                $('#btnGuardar').attr("disabled", false);
               ///menasje de error
               $.niftyNoty({
                 type: "danger",
@@ -611,3 +715,284 @@ $("#btnGuardar").click(function (e) {
                   $( '#nombrefeed' ).text("");
                   }*/
         });
+
+$("#btnGuardarHorarios").click(function (e) {
+   $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
+    //$('#modalIngreso').modal('hide'); 
+//$('#form_id').submit();
+   e.preventDefault();
+ 
+
+          var type = "POST"; //for creating new resource
+          var my_url = $('#path').val()+"/curso/modificarHorarios";
+          var form_id = $('#form_id').val();///el id del registro ya sea si modificamos 
+
+         
+          //console.log($('form[name="form"]').serializeArray());//$('#form').serialize());
+          console.log($('#formEditarHorarios').serializeArray());
+          //console.log($('#form').serializeArray());
+         
+         // console.log($("#cat_id2").val());
+          //console.log($('#form').show());
+         
+
+
+          $.ajax({
+
+            type: type,
+            url: my_url,
+            data: $('#formEditarHorarios').serializeArray(),
+            dataType: 'json',
+            success: function (data) {
+             console.log(data);
+            // data[0];
+            if(data['bandera']==1){
+              // $('#modalEditarHorarios').modal('hide');
+              //  $('#modalInfo').modal('hide');
+               
+               $.niftyNoty({
+                type: "success",
+                container : "floating",
+                title : "Bien Hecho!",
+                message : data['response'],
+                closeBtn : false,
+                timer : 3000
+                });
+                       
+               setTimeout(function(){
+                  ////////////////////--------------Lo mismo que infoHorariosModal------------/////////////
+                    $("#btnGuardarHorarios").hide();
+                    $('#infoModalHeader' ).removeClass();
+                    $('#infoModalHeader' ).addClass("modal-header alert-info");
+
+                    var form_id = $('#idCursosEditarHorarios').val();
+                     $("#botonEditarHorario").val(form_id);
+                        $("#tablainfo").empty();////Deja vacia la tabla
+                    $.ajax({
+
+                      type: "GET",
+                      url:$('#path').val()+ '/curso/buscarHorarios/'+form_id,
+                      data: form_id,
+                      dataType: 'json',
+                      success: function (data) {
+                        console.log(data);
+
+                        var row = '<th><td>Dia</td></th>';
+                        var row = '<tr><td width="30%"> Dia </td><td width="35%">hora inicio</td><td width="35%">hora fin</td></th>';
+                     
+                        for (var i = 0; i < data['message'].length; i++) {
+
+                        
+                    //    var row = '<tr><td width="30%">' + data[i].nombreDia + ': </td><td width="35%">' + data[i].horaInicio + '</td><td width="35%">' + data[i].horaFin + '</td>';
+                         row += '<tr><td width="30%">' + data['message'][i].nombreDia + ': </td><td width="35%">' + data['message'][i].horaInicio + '</td><td width="35%">' + data['message'][i].horaFin + '</td>';
+
+                        
+                      }
+
+                         $("#tablainfo").append(row);
+                      },
+                      error: function (data) {
+                        console.log('Error de boton Info:', data);
+                      }
+                    });
+
+                //  $("#form").trigger("reset");
+                 // window.location.reload();////recarga la pagina actual
+                 // $(location).attr('href','/peticionForm');
+               }, 2000);
+             } else{
+               ///menasje de error
+              $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Upps!",
+                message :  data['response'],
+                closeBtn : false,
+                timer : 3000
+                });
+
+             }
+
+
+
+
+             },
+             error: function (data) {
+              var errors=data.responseJSON;
+                console.log(errors);
+              ///menasje de error
+              $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Upps!",
+                message : "A ocurrido un problema"+errors.nombre,
+                closeBtn : false,
+                timer : 3000
+                });
+              
+              console.log('Error de peticion:', data);
+              
+                  }
+                });
+         
+        });
+
+
+
+ ////////////////////////////////////Actual Preicio/////////////////////////////////////////
+$(document).on('click','.actualPrecio',function(){
+     var value = $(this).val();
+      //token siempre para ingresar y modificar
+       $('#modalPrecioCategoria').modal('show'); ///modal de informacion
+       $('#idCategoria').val(value);
+       $('#idCursos').val($(this).attr('data-idcursos'));
+       $('#montoCategoria').val($(this).attr('data-cuota'));
+       //$('#montoCategoria').val(value);  
+    
+});
+
+$("#btnGuardarPrecio").click(function (e) {
+  $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+      })
+
+      e.preventDefault();
+var formData = {
+   idCategoria:$('#idCategoria').val(),
+  idCursos:$('#idCursos').val(),
+   montoCategoria:$('#montoCategoria').val(),
+    
+ }
+  $.ajax({
+          type: "PUT",
+          url: $('#path').val()+'/curso/actualizarPrecio',//+value,
+          data: formData,
+          dataType: 'json',
+          success: function (data) {
+              console.log(data);
+             if(data['bandera']==1){
+            
+             $.niftyNoty({
+              type: "success",
+              container : "floating",
+              title : "Bien Hecho!",
+              message : data['response'],
+              closeBtn : false,
+              timer : 3000
+              });
+             $('#modalPrecioCategoria').modal('hide');
+
+              setTimeout(function(){
+                  window.location.reload();////recarga la pagina actual
+
+
+               }, 4000);
+            }else{
+              $.niftyNoty({
+              type: "danger",
+              container : "floating",
+              title : "Upps!",
+              message : "A ocurrido un problema"+data['response'] ,
+              closeBtn : false,
+              timer : 3000
+              });
+
+            }
+          },
+          error: function (data) {
+              //console.log('Error al dar Baja:', data);
+              $.niftyNoty({
+              type: "danger",
+              container : "floating",
+              title : "Upps!",
+              message : "A ocurrido un problema no se de que",
+              closeBtn : false,
+              timer : 3000
+              });
+          }
+     });
+
+    //$('#modalPrecioCategoria').modal('hide');
+});
+/////////////////////////////////Fin actual precio//////////////////////////////////////////////////////
+
+
+
+
+/////////////////////////////////nueva categoria//////////////////////////////////////////////////////
+$("#btnGuardarNuevaCat").click(function (e) {
+  $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+      })
+
+      e.preventDefault();
+
+      //$('#formNuevaCat').submit();
+      console.log($('#formNuevaCat').serializeArray());
+/*var formData = {
+   idCategoria:$('#idCategoria').val(),
+  idCursos:$('#idCursos').val(),
+   montoCategoria:$('#montoCategoria').val(),
+    
+ }*/
+
+  $.ajax({
+          type: "POST",
+          url: $('#path').val()+'/curso/createCategoria',//+value,
+          data: $('#formNuevaCat').serializeArray(),
+          dataType: 'json',
+          success: function (data) {
+              console.log(data);
+             if(data['bandera']==1){
+            
+             $.niftyNoty({
+              type: "success",
+              container : "floating",
+              title : "Bien Hecho!",
+              message : data['response'],
+              closeBtn : false,
+              timer : 3000
+              });
+             $('#modalPrecioCategoria').modal('hide');
+
+              setTimeout(function(){
+                  window.location.reload();////recarga la pagina actual
+
+
+               }, 4000);
+            }else{
+              $.niftyNoty({
+              type: "danger",
+              container : "floating",
+              title : "Upps!",
+              message : data['response'] ,
+              closeBtn : false,
+              timer : 3000
+              });
+
+            }
+          },
+          error: function (data) {
+              //console.log('Error al dar Baja:', data);
+              $.niftyNoty({
+              type: "danger",
+              container : "floating",
+              title : "Upps!",
+              message : "A ocurrido un problema no se de que",
+              closeBtn : false,
+              timer : 3000
+              });
+          }
+     });
+
+    //$('#modalPrecioCategoria').modal('hide');
+});
+/////////////////////////////////Fin nueva categoria //////////////////////////////////////////////////////

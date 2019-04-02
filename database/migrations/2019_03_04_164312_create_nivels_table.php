@@ -18,10 +18,11 @@ class CreateNivelsTable extends Migration
             $table->integer('numNivel');
             
             $table->integer('ididiomas');
-            $table->integer('ididcategorias');
+            $table->integer('idcategorias');
             $table->integer('idmodalidads');
             $table->enum('estado',array('ACTIVO','INACTIVO'));
            
+            $table->integer('idcursos');
             
 
 

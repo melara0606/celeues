@@ -23,6 +23,7 @@ class createCursoRequest extends FormRequest
      */
     public function rules()
     {
+        
        return [
                 'nombre' => 'required|max:30',
                 //'apellido' => ['required','max:30'],

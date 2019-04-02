@@ -226,7 +226,7 @@
                             <div class="">
                             <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Cuota:*</label>
                             <div class="col-md-6" >
-                                <input class="form-control" type="number" placeholder="$##.##" id="nombre" name="nombre" required="true">
+                                <input class="form-control" type="number" placeholder="$##.##" id="nombre" name="nombre" required="required">
                                 <div id="descripcionfeed" class="form-control-feedback"></div>                   
                             </div>
                             </div>

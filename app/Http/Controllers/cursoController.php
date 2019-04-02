@@ -13,6 +13,8 @@ use App\categoria;
 use App\horariocurso;
 use App\dia;
 use App\curso;
+use App\nivel;
+
 
 use App\cursocategoria;
 use Illuminate\Support\Facades\Response;
@@ -47,6 +49,39 @@ class cursoController extends Controller
 		
     	return $message;
 	}
+    public function showNiveles($id){
+        $cursocategoria=cursocategoria::find($id);
+        $categoria=categoria::find($cursocategoria->idcategorias);
+        $curso=DB::table('cursos')
+         ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
+         ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
+         ->select('cursos.*',
+            'modalidads.nombre as nombreModalidad',
+            'modalidads.turno',
+            'idiomas.nombre as nombreIdioma')
+
+         ->where("cursos.id",$cursocategoria->idcursos)
+         ->get()->first();
+
+         $nivel=nivel::where('idcursocategorias',$id)->orderBy('numNivel')->get();
+         
+
+        return view('grupos.showNiveles',[
+                 'cursocategoria' =>$cursocategoria,
+                    'categoria' =>$categoria,
+                    'curso' =>$curso,             
+                    'nivels'=>$nivel, 
+                ]); 
+        return Response::json([
+                    'cursocategoria' =>$cursocategoria->idcursos,
+                    'categoria' =>$categoria,
+                    'curso' =>$curso,
+                    
+                    //'response'=>'Ya existe un registro con esos parametros',                 
+                    ]); 
+
+
+    }
     public function show(){
     	/* $categorias=DB::table('cursocategorias')
          ->join('categorias', 'cursocategorias.idcategorias', '=', 'categorias.id')
@@ -55,12 +90,15 @@ class cursoController extends Controller
          ->where('cursocategorias.estado','ACTIVO')->get();
 	
 return Response::json($categorias);
-	*/		$message=DB::table('horariocursos')
+	*/
+    /*		$message=DB::table('horariocursos')
          ->join('dias', 'horariocursos.iddias', '=', 'dias.id')
          ->select('dias.*')
          ->where('horariocursos.idcursos',12)
          ->get();
-		
+*/
+         
+		$ididiomas=idioma::first();
 		//return Response::json($message);
     	$curso=DB::table('cursos')
          ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
@@ -69,18 +107,132 @@ return Response::json($categorias);
          	'modalidads.nombre as nombreModalidad',
          	'modalidads.turno',
          	'idiomas.nombre as nombreIdioma')
-         ->get();
 
+         ->where("cursos.ididiomas",$ididiomas->id)
+         ->where("cursos.estado","ACTIVO")
+         ->get();
+         $estado="DISPONIBLE";///no sirve aqui solo parareferencia
          $count=count(categoria::get());
+
+         $idiomas=idioma::get();
+        //$count=count(categoria::where("idcursos",$curso->id)get());
+        
     	//$curso=curso::latest()->get(); 
 
-        	  return view('curso.showCurso',[
+        	  return view('curso.showCurso2',[
             	 'cursos' => $curso, 
-            	 'numCategorias'=> $count,                
+            	 'numCategorias'=> $count,
+                 'estado'=>$estado,
+                 'idiomas'=>$idiomas,  
+                 'firstIdioma'=>$ididiomas->id,              
             	]);
       }
+      public function showPorIdioma($id){
+        $curso=DB::table('cursos')
+         ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
+         ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
+         ->select('cursos.*',
+            'modalidads.nombre as nombreModalidad',
+            'modalidads.turno',
+            'idiomas.nombre as nombreIdioma')
 
-    public function create(createCursoRequest $request){
+         ->where("cursos.ididiomas",$id)
+         ->where("cursos.estado","ACTIVO")
+         ->get();
+         $estado="DISPONIBLE";
+        $count=count(categoria::get());
+
+         $idiomas=idioma::get();
+        
+              return view('curso.showCurso2',[
+                 'cursos' => $curso, 
+                 'numCategorias'=> $count,
+                 'estado'=>$estado,
+                 'idiomas'=>$idiomas,  
+                 'firstIdioma'=>$id,              
+                ]);
+
+      }
+      public function showPorEstado($estado,$id){
+        if($estado=='Disponible'){
+                $curso=DB::table('cursos')
+         ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
+         ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
+         ->select('cursos.*',
+            'modalidads.nombre as nombreModalidad',
+            'modalidads.turno',
+            'idiomas.nombre as nombreIdioma')
+
+         ->where("cursos.ididiomas",$id)
+         ->where("cursos.estado","ACTIVO")
+         ->get();
+         $estado="DISPONIBLE";
+        }else{
+                $curso=DB::table('cursos')
+         ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
+         ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
+         ->select('cursos.*',
+            'modalidads.nombre as nombreModalidad',
+            'modalidads.turno',
+            'idiomas.nombre as nombreIdioma')
+
+         ->where("cursos.ididiomas",$id)
+         ->where("cursos.estado","INACTIVO")
+         ->get();
+         $estado="NODISPONIBLE";
+        }
+              $count=count(categoria::get());
+
+              $idiomas=idioma::get();
+        
+              return view('curso.showCurso2',[
+                 'cursos' => $curso, 
+                 'numCategorias'=> $count,
+                 'estado'=>$estado,
+                 'idiomas'=>$idiomas,  
+                 'firstIdioma'=>$id,              
+                ]);
+
+      }
+     public function createCategoria(Request $request){
+        $ncatid=$request->input('ncatid');
+        $precio=$request->input('nnombre');
+        $niveles=$request->input('nniveles');
+        $idcursos=$request->input('idCursosModificarCat');
+        if($request->input('nnombre')==""){
+             return Response::json([
+            'bandera' =>0,
+            'response'=>'introduzca un precio',                 
+             ]);
+        }else{
+            $contar=count(cursocategoria::where('idcategorias',$ncatid)->where('idcursos',$idcursos)->get());
+            
+            if($contar==0){
+                 $message= cursocategoria::create([
+                    'cuota'=> $precio,//id nombre es cuota en vista
+                    'estado'=>'ACTIVO',
+                    'idcategorias'=> $ncatid,
+                    'idcursos'=> $idcursos
+                    ]);
+                    return Response::json([
+                    'bandera' =>1,
+                    'response'=>'Registro Guardado Exitosamente',                 
+             ]); 
+             }else{
+                 return Response::json([
+                    'bandera' =>0,
+                    'response'=>'Ya existe un registro con esos parametros',                 
+                    ]); 
+             }
+        }
+
+
+
+
+     }
+
+    public function create(Request $request){
+//return Response::json($request);
  //////////////////////////////////////////////////////////////////////////////////////////////
     	/////////////////////////////para ver si dos categorias son iguales
     	///////////////primero comparamos la que no esta en el array de las categorias
@@ -226,6 +378,25 @@ return Response::json($categorias);
 		    		'idcategorias'=> $request->input('cat_id'),
 		    		'idcursos'=> $curso->id,
 		    		]);*/
+
+                    //--------------------------------> crear registros de tabla niveles
+                    $categoriasNiveles=cursocategoria::where('idcategorias',$request->input('cat_id'))
+                    ->where('idcursos',$curso->id)->orderBy('id', 'desc')->first();
+            
+                    for($k=1;$k<=$request->input('niveles');$k++){
+                        $nivels=nivel::create([
+                        'numNivel'=> $k,
+                        'ididiomas'=>$request->input('idioma_id'),
+                        'idcategorias'=> $request->input('cat_id'),//ver si cambie bien el nombre en db
+                        'idmodalidads'=> $request->input('moda_id'),
+                        'estado'=> 'ACTIVO',
+                        'idcursocategorias'=> $categoriasNiveles->id,
+                        'idcursos'=> $curso->id,                    
+                        ]);
+                    }
+                     ///--------------------------------> fin crear registros de tabla niveles
+
+                    
 	    		}else{
 
 	    			$message= cursocategoria::create([
@@ -234,6 +405,23 @@ return Response::json($categorias);
 		    		'idcategorias'=> $request->input('cat_id'),
 		    		'idcursos'=> $curso->id,
 		    		]);
+
+                        //--------------------------------> crear registros de tabla niveles
+                        $categoriasNiveles=cursocategoria::where('idcategorias',$request->input('cat_id'))
+                        ->where('idcursos',$curso->id)->orderBy('id', 'desc')->first();
+                
+                        for($k=1;$k<=$request->input('niveles');$k++){
+                            $nivels=nivel::create([
+                            'numNivel'=> $k,
+                            'ididiomas'=>$request->input('idioma_id'),
+                            'idcategorias'=> $request->input('cat_id'),//ver si cambie bien el nombre en db
+                            'idmodalidads'=> $request->input('moda_id'),
+                            'estado'=> 'ACTIVO',
+                            'idcursocategorias'=> $categoriasNiveles->id,
+                            'idcursos'=> $curso->id,                    
+                            ]);
+                        }
+                         ///--------------------------------> fin crear registros de tabla niveles
 
 		    		for($i=1;$i<=$request->input('cont');$i++){
 
@@ -244,6 +432,24 @@ return Response::json($categorias);
 				    		'idcategorias'=> $request->input('cat_id'.$i),
 				    		'idcursos'=> $curso->id,
 				    		]);
+
+                                //--------------------------------> crear registros de tabla niveles
+                                $categoriasNiveles=cursocategoria::where('idcategorias',$request->input('cat_id'.$i))
+                                ->where('idcursos',$curso->id)->orderBy('id', 'desc')->first();
+                        
+                                for($k=1;$k<=$request->input('niveles'.$i);$k++){
+                                    $nivels=nivel::create([
+                                    'numNivel'=> $k,
+                                    'ididiomas'=>$request->input('idioma_id'),
+                                    'idcategorias'=> $request->input('cat_id'.$i),//ver si cambie bien el nombre en db
+                                    'idmodalidads'=> $request->input('moda_id'),
+                                    'estado'=> 'ACTIVO',
+                                    'idcursocategorias'=> $categoriasNiveles->id,
+                                    'idcursos'=> $curso->id,                    
+                                    ]);
+                                }
+                                 ///--------------------------------> fin crear registros de tabla niveles
+
 				    		
 			    		}
 
@@ -495,11 +701,31 @@ $x=DB::table('cursos')
                 return Response::json('No pudo cambiar de Estado');
 
     }
+    public function cambiarEstadoCurso(Request $request,$id){
+        $message = curso::find($id);
+        if ($request->input('estado')==0) {
+            $message->fill([
+            'estado'=>'INACTIVO',
+            ]);
+        }else if ($request->input('estado')==1) {
+            $message->fill([
+            'estado'=>'ACTIVO',
+            ]);
+        }
+
+        if($message->save()){
+          // bitacoraController::bitacora('Modificó datos de peticion');
+            return Response::json('Cambio de Estado Exitoso');
+            }else
+                return Response::json('No pudo cambiar de Estado');
+
+    }
 	public function actualizarPrecio(Request $request){
-		$montoCategoria=$request->input('montoCategoria');
+		///---------------------------Antgua forma pero ya no---------------///////
+        $montoCategoria=$request->input('montoCategoria');
 		$idCategoria=$request->input('idCategoria');
 		$idCursos=$request->input('idCursos');
-		$messsages=cursocategoria::where('estado','ACTIVO')->where('idcategorias',$idCategoria)->where('idcursos',$idCursos)->get();
+		/* $messsages=cursocategoria::where('estado','ACTIVO')->where('idcategorias',$idCategoria)->where('idcursos',$idCursos)->get();
 		foreach ($messsages as $message) {
 			//$x=cursocategoria::find($message->id);
 			//return Response::json($message);
@@ -507,19 +733,78 @@ $x=DB::table('cursos')
             'estado'=>'INACTIVO',
             ])->save();
 		}
+           $message= cursocategoria::create([
+                    'cuota'=> $montoCategoria,//id nombre es cuota en vista
+                    'estado'=>'ACTIVO',//montoCategoria
+                    'idcategorias'=> $idCategoria,
+                    'idcursos'=> $idCursos,
+            ]);
+         return Response::json([
+            'bandera' =>1,
+            'response'=>'Cuota Actualizada Exitosamente',                 
+                 ]);
+        */
+        ///---------------------------FIn ntgua forma pero ya no---------------///////
 		
-
+        
+        $message=cursocategoria::where('idcategorias',$idCategoria)->where('idcursos',$idCursos)->first();
+        
+/*return Response::json([
+                    'bandera' =>0,
+                    'response'=>$message, 
+                    ]);    
+  */      
+        $message->fill([
+            'cuota'=>$montoCategoria,
+            ]);
+        if($message->save()){
+          // bitacoraController::bitacora('Modificó datos de peticion');
+            return Response::json([
+            'bandera' =>1,
+            'response'=>'Cuota Actualizada Exitosamente',                 
+                 ]);
+            }else{
+                return Response::json([
+                    'bandera' =>0,
+                    'response'=>'No pudo Modificarse', 
+                    ]);                
+            }
+                return Response::json('No pudo Modificarse');
+            
 		
-		
-		$message= cursocategoria::create([
-		    		'cuota'=> $montoCategoria,//id nombre es cuota en vista
-		    		'estado'=>'ACTIVO',//montoCategoria
-		    		'idcategorias'=> $idCategoria,
-		    		'idcursos'=> $idCursos,
-    		]);
-    	 return Response::json('Cuota Actualizada Exitosamente');
+	
 
 	}
+
+     public function modificarHorarios(Request $request){
+//                return Response::json($request->input('idCursosEditarHorarios'));
+//return Response::json($request);
+
+        //return Response::json([
+         //               'bandera' =>0,
+         //               'response'=>$request,
+
+         //               ]);
+                $idcurso=$request->input('idCursosEditarHorarios');
+        horariocurso::where('idcursos', $idcurso)->delete();
+        for($i=0;$i<$request->input('countDiasHorarios');$i++){
+                        if(!empty($request->input('first'.$i))){// != null){
+                            $message= horariocurso::create([
+                                'horaInicio'=> $request->input('second'.$i),
+                                'horaFin'=> $request->input('third'.$i),
+                                'idcursos'=> $idcurso,
+                                'iddias'=> $request->input('first'.$i),
+                                ]); 
+                        }
+
+                }
+        return Response::json([
+                        'bandera' =>1,
+                        'response'=>'Actualizacion Exitosa',
+
+                       ]);
+
+     }
     
 
 

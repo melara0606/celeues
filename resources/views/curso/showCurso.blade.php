@@ -82,10 +82,9 @@
 						</div>-->
 					</div>
 						<div class="row col-md-12">
-		
 	 					 @forelse($cursos as $curso)
 	 					 <div style="display: none;">{{ $contador=0 }}
-			</div>
+						</div>
 					
 					            <!-- Contact Widget -->
 					            <!---------------------------------->

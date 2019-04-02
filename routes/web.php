@@ -69,6 +69,8 @@ Route::put('/responsable/update/{id?}', 'responsableController@update')->middlew
 Route::get('/responsable/buscar/{id?}', 'responsableController@buscar')->name('responsableBuscar')->middleware('auth');
 
 Route::get('/curso', 'cursoController@show')->name('cursoShow')->middleware('auth');
+Route::get('/curso/{id?}', 'cursoController@showPorIdioma')->name('cursoShowIdioma')->middleware('auth');
+Route::get('/curso/estado/{estado?}/{id?}', 'cursoController@showPorEstado')->name('cursoShow2')->middleware('auth');
 Route::post('/curso/create', 'cursoController@create')->middleware('auth');
 Route::get('/curso/bus/idioma','cursoController@busquedaSelectIdioma');
 Route::get('/curso/bus/modalidad','cursoController@busquedaSelectModalidad');
@@ -76,6 +78,21 @@ Route::get('/curso/bus/categoria','cursoController@busquedaSelectCategoria');
 Route::get('/curso/buscarHorarios/{id?}', 'cursoController@buscarHorarios')->middleware('auth');;
 Route::put('/curso/cambiarEstado/{id?}', 'cursoController@cambiarEstado')->middleware('auth');
 Route::put('/curso/actualizarPrecio', 'cursoController@actualizarPrecio')->middleware('auth');
+Route::post('/curso/modificarHorarios', 'cursoController@modificarHorarios')->middleware('auth');
+Route::post('/curso/createCategoria', 'cursoController@createCategoria')->middleware('auth');
+Route::put('/curso/cambiarEstadoCurso/{id?}', 'cursoController@cambiarEstadoCurso')->middleware('auth');
+Route::get('/cursoNiveles/{id?}', 'cursoController@showNiveles')->name('cursoShowNiveles')->middleware('auth');
+
+Route::put('/nivel/cambiarEstado/{id?}', 'nivelController@cambiarEstado')->middleware('auth');
+Route::post('/nivel/create', 'nivelController@create')->middleware('auth');
+
+Route::get('/periodo', 'periodoController@show')->name('periodoShow')->middleware('auth');
+Route::post('/periodo/create', 'periodoController@create')->middleware('auth');
+Route::put('/periodo/update/{id?}', 'periodoController@update')->middleware('auth');
+Route::get('/periodo/buscar/{id?}', 'periodoController@buscar')->name('periodoBuscar')->middleware('auth');
+Route::put('/periodo/cambiarEstado/{id?}', 'periodoController@cambiarEstado')->middleware('auth');
+Route::get('/periodo/filtrar/{anho?}/{nperiodofiltro?}', 'periodoController@filtrar')->name('periodoFiltrar')->middleware('auth');
+
 
 Route::get('/grupos', 'grupoController@show')->name('grupoShow')->middleware('auth');
 

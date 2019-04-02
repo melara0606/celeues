@@ -24,7 +24,9 @@
 					
         
 					<div class="row col-sm-12">
-						<label for="" class="control-label text-main text-bold ">Cursos:</label>
+						<label for="" class="control-label text-main text-bold ">Cursos:
+							<button class="btn btn-icon btn-trans btn-xs  add-tooltip infoHorariosModal" data-original-title="Ver Informacion de Curso" data-container="body" value=""><i class="ion-eye icon-lg " ></i></button>
+						</label>
 						<select class="form-control" id="" name="">
                  
 	            			<option value="1">INGLES INTENSIVO MATUTINO</option>
@@ -125,9 +127,9 @@
 		<div class="row col-md-9">
 			<!--Main Panel-->
 			<!--===================================================-->
-			<div class="panel" style=" background:#eee;border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
+			<div class="panel" style=" background:#eee;border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;height: 100%;">
 
-				<div class="panel-heading ">
+				<div class="panel-heading " >
 					<div class="panel-control ">
 						<!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
 						<button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
@@ -154,7 +156,7 @@
 				<div class="panel-body ">
 					<!--1rst Row Panel Body-->
 					<!--===================================================-->
-					<div class="row">
+					<div class="row" >
 						<div class="col-sm-6 table-toolbar-left">
 							<button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo</button>
 							<button class="btn btn-default imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
@@ -164,7 +166,7 @@
 								<button class="btn btn-default"><i class="demo-pli-recycling"></i>
 								</button>--}}
 								<div class="btn-group btn-group-sm ">
-	                        <button class="btn btn-warning">Adulto</button>
+	                        <button class="btn btn-warning active">Adulto</button>
 	                        <button class="btn btn-warning">Adolecente</button>
 	                        <button class="btn btn-warning">Ninho</button>
 	                   	</div>
@@ -173,15 +175,15 @@
 					</div>
 					<!--End 1rst Row Panel Body-->
 					<!--===================================================-->
-
+						<div style="display: none;">
 							{{ $last=5}}
 						    {{ $now =1 }}
-						    
+						    </div>
 				    @for ($i = $now; $i <= $last; $i++)
 
 					<!--COL ROW CARTAS DE GRUPO-->
 					<!--===================================================-->
-					<div class="row col-md-6">
+					<div class="col-md-6">
 						<div class="col-sm-12 col-md-12">
 							
 							 <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">
@@ -195,17 +197,25 @@
 					                                <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>Adulto | Teacher Lic. kelvin Adonay Flores</p>
 
 					                            </div>
-					                            <p class=" media-left text-sm">30 estudiantes </p>
+					                            <p class=" media-left text-sm">30 estudiantes ----- 3 disponibles </p>
 					                            {{--<a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-exclamation"></i></a>
 					                            <a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-heart-2"></i></a>--}}
 
-					                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
-					                           
-					                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Asignar aula y maestro" data-container="body" value=""><i class="demo-pli-add icon-lg " ></i> </button>
-					                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Modificar Grupo" data-container="body" value=""><i class="demo-psi-pen-5 icon-md " ></i> </button>
-					                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
+												
+
 					                        </div>
-					                    </div>
+					                </div>
+
+			                            <!-------------------------------------->
+										<div class="text-right">
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
+			                           
+					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Asignar aula y maestro" data-container="body" value=""><i class="demo-pli-add icon-lg " ></i> </button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Modificar Grupo" data-container="body" value=""><i class="demo-psi-pen-5 icon-md " ></i> </button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
+			                             </div>
+			                            <!-------------------------------------->
+
 							 		{{--<p align="left" style="color: black" class="text-m text-bold mar-no text-main"> Intensivo Tarde  <strong style="color: black; font-size: 13px;">kelvin</strong> kjnwjk</p>--}}
 							 	</div>
 							 	
