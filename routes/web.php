@@ -95,6 +95,10 @@ Route::get('/periodo/filtrar/{anho?}/{nperiodofiltro?}', 'periodoController@filt
 
 
 Route::get('/grupos', 'grupoController@show')->name('grupoShow')->middleware('auth');
+Route::post('/grupos/create', 'grupoController@create')->middleware('auth');
+Route::get('/grupos/categorias/{idcurso?}', 'grupoController@buscarCategorias')->middleware('auth');
+Route::get('/grupos/niveles/{idcursocategorias?}', 'grupoController@buscarNiveles')->middleware('auth');
+
 
 
 //Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');

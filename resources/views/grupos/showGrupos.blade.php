@@ -14,6 +14,8 @@
 		<!--Row Main Left COL-MD -->
 		<!--===================================================-->
 		<div class="row col-md-3">
+			<input type="text" name="path"  id="path" value="{{url('/')}}">
+			
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">
@@ -24,14 +26,17 @@
 					
         
 					<div class="row col-sm-12">
+
+
 						<label for="" class="control-label text-main text-bold ">Cursos:
 							<button class="btn btn-icon btn-trans btn-xs  add-tooltip infoHorariosModal" data-original-title="Ver Informacion de Curso" data-container="body" value=""><i class="ion-eye icon-lg " ></i></button>
 						</label>
-						<select class="form-control" id="" name="">
-                 
-	            			<option value="1">INGLES INTENSIVO MATUTINO</option>
-	            			<option value="2">SABATINO MATUTINO</option>
-	            			<option value="3">SABATINO VESPERTINO</option>
+						<select class="form-control" id="cursofiltro" name="cursofiltro">
+                 				
+	            			 @forelse($cursos as $curso)
+						          <option value="{{$curso->id}}">{{$curso->nombreIdioma}} {{$curso->nombreModalidad}} {{$curso->turno}}</option>
+								@empty
+						          @endforelse
             			</select>
 					</div>
 					<div class="row">
@@ -42,12 +47,13 @@
 
 					<div class="row col-sm-12">
 						<label for="" class="control-label text-main text-bold ">Anho:</label>
-						<select class="form-control" id="" name="">
-                 
-	            			<option value="1">INTENSIVO MATUTINO</option>
-	            			<option value="2">SABATINO MATUTINO</option>
-	            			<option value="3">SABATINO VESPERTINO</option>
-            			</select>
+						<select class="form-control" id="añofiltro" name="añofiltro" >
+						          @forelse($anhos as $anho)
+						          <option value="{{$anho->año}}">{{$anho->año}}</option>
+								@empty
+						          @endforelse
+				        </select>
+
 					</div>
 					<div class="row">
 						
@@ -55,12 +61,10 @@
 					<br>
 					<div class="row col-sm-12">
 						<label for="" class="control-label text-main text-bold ">Periodos:</label>
-						<select class="form-control" id="" name="">
-                 
-	            			<option value="1">INTENSIVO MATUTINO</option>
-	            			<option value="2">SABATINO MATUTINO</option>
-	            			<option value="3">SABATINO VESPERTINO</option>
-            			</select>
+						 <select class="form-control" id="periodofiltro" name="periodofiltro" >
+				              <option value="5">5 periodos</option>
+				              <option value="10">10 periodos</option>
+				          </select>
 					</div>
 					<div class="row">
 						
@@ -157,18 +161,22 @@
 					<!--1rst Row Panel Body-->
 					<!--===================================================-->
 					<div class="row" >
-						<div class="col-sm-6 table-toolbar-left">
+						<div class="col-sm-12 table-toolbar-left">
 							<button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo</button>
 							<button class="btn btn-default imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
-							<div class="btn-group text-right">
+							<div class="btn-group text-right ">
 								{{--<button class="btn btn-default"><i class="demo-pli-exclamation"></i>
 								</button>
 								<button class="btn btn-default"><i class="demo-pli-recycling"></i>
 								</button>--}}
 								<div class="btn-group btn-group-sm ">
-	                        <button class="btn btn-warning active">Adulto</button>
+									@forelse($categorias as $categoria)
+										 <button class="btn btn-warning active" value="1">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}</button>
+									@empty
+									@endforelse
+	                       {{-- <button class="btn btn-warning active">Adulto</button>
 	                        <button class="btn btn-warning">Adolecente</button>
-	                        <button class="btn btn-warning">Ninho</button>
+	                        <button class="btn btn-warning">Ninho</button>--}}
 	                   	</div>
 							</div>
 						</div>
@@ -257,7 +265,7 @@
 	<!--Default Bootstrap Modal-->
 	<!--===================================================-->
 	<div class="modal fade" id="modalIngreso" 	name="modalIngreso" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" >
-		<div class="modal-dialog {{----}}modal-lg" >
+		<div class="modal-dialog {{--modal-lg--}}" >
 			<div class="modal-content" style="background: {{ asset('demo/img/bg-img/1.jpg') }}">
 
 				<!--Modal header-->
@@ -269,7 +277,84 @@
 				<!--Modal body-->
 				<div class="modal-body "  style="overflow-y: auto;  max-height: 500px;{{--background:#eee;--}}"	>
 					
-					@include('curso.formCurso')
+						<form  id="form" name="form" class="panel-body form-horizontal form-padding" action="" method="post">
+							 <input type="hidden" id="form_id" name="form_id" value="0">
+								<br>
+					          <div class="row form-group">
+					            <div class="col-md-1 col-sm-1"></div>
+					              <label class="col-md-2 col-sm-2 control-label text-main text-bold ">Curso:</label>
+					              <div class="col-md-6 col-sm-6">
+					                  <select class="form-control" id="cursoSelect" name="cursoSelect">
+					                  	<option value="" selected="selected" disabled>Seleccione un curso</option>
+                               			    @forelse($cursos as $curso)
+									          <option value="{{$curso->id}}">{{$curso->nombreIdioma}} {{$curso->nombreModalidad}} {{$curso->turno}}</option>
+											@empty
+									          @endforelse
+			            			</select>
+					              </div>
+
+					          </div>
+					          <br>
+					          <div  class="row form-group">
+					            <div class="col-md-1 col-sm-1"></div>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Categoria:</label>
+					            <div class="col-md-6 col-sm-6">
+					            	<select class="form-control" id="categoriaSelect" name="categoriaSelect">
+					            		<option selected disabled label="Seleccione una categoria"></option>
+					               @forelse($categorias as $categoria)
+					               		<option value="{{$categoria->id}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}</option>
+									@empty
+									@endforelse
+									</select>
+					            </div>
+
+					          </div>
+					          <br>
+					          <div  class="row form-group">
+					             <div class="col-md-1 col-sm-1"></div>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Nivel:</label>
+					            <div class="col-md-6 col-sm-6">
+					               <select class="form-control" id="nivelSelect" name="nivelSelect">
+					               	<option selected disabled label="Seleccione un nivel"></option>
+                               			  
+									          
+			            			</select>
+					            </div>
+					            {{--<div class="col-md-2 col-sm-2">
+
+					              <button style="margin-top: 5px" class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip nada" data-original-title="Modificar Grupo" data-container="body" value=""><i class="demo-psi-add icon-lg "></i> </button>
+					            </div>
+					            --}}
+
+					          </div>
+					          <br>
+					          <div class="row form-group">
+					            <div class="col-md-1 col-sm-1"></div>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Cantidad de Grupos:</label>
+					            <div class="col-md-3 col-sm-3">
+					                 <select class="form-control" id="numGrupos" name="numGrupos">
+                               			   @for($i=1;$i<=6;$i++)
+									          <option value="{{$i}}">{{$i}}</option>
+											@endfor
+									          
+			            			</select>
+					            </div>
+
+					          </div>
+					          <br>
+					          
+					          <div  class="row form-group">
+					             <div class="col-md-1 col-sm-1"></div>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Cupos:</label>
+					            <div class="col-md-3 col-sm-3">
+					               <input class="form-control" type="number" value="20" id="cupos" name="cupos">
+					            </div>
+
+					          </div>
+					          <br>
+
+
+					        </form>
 				</div>
 
 				{{----}}<!--Modal footer-->
@@ -368,8 +453,8 @@
 
 	@section('script')
 
-	{{--<script src="{{asset('js/curso.js')}}"></script> 
-	<script src="{{asset('js/jquery.easyPaginate.js')}}"></script>
+	<script src="{{asset('js/grupo.js')}}"></script> 
+	{{--<script src="{{asset('js/jquery.easyPaginate.js')}}"></script>
 
 <script src="{{asset('js/jquery.snippet.min.js')}}"></script> 
 	--}}<script type="text/javascript">
