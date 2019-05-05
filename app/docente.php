@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class docente extends Model
 {
     //
+    protected $guarded=[];
 }

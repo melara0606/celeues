@@ -27,13 +27,13 @@
         <div class="row col-sm-12">
           <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Año:*</label>
           <div class="col-md-7  ">
-            <select class="form-control" id="añofiltro" name="añofiltro" >
+            <select class="form-control" id="anhofiltro" name="anhofiltro" >
               @forelse($anhos as $anho)
-              <option value="{{$anho->año}}">{{$anho->año}}</option>
+              <option value="{{$anho->anho}}">{{$anho->anho}}</option>
 @empty
               @endforelse
             </select>
-            <div id="añofeed" class="form-control-feedback"></div>
+            <div id="anhofeed" class="form-control-feedback"></div>
           </div>
         <div class="row">
 
@@ -199,7 +199,7 @@
               @forelse($periodos as $periodo)
               <tr id="{{ $periodo->id }}">
                 <td align="center">{{ $correlativo++ }}</td>
-                <td align="Center">Periodo {{ $periodo->numPeriodo }}-{{ $periodo->año }}</td>
+                <td align="Center">Periodo {{ $periodo->numPeriodo }}-{{ $periodo->anho }}</td>
 
                 <td >{{ $periodo->fechaIni }}</td>
                 <td >{{ $periodo->fechaFin }}</td>

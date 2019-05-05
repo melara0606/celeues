@@ -17,7 +17,7 @@ class CreatePeriodosTable extends Migration
             $table->increments('id');
             $table->integer('numPeriodo');
             $table->enum('nombre', array('5','10'));//esto es periodos
-            $table->integer('año');
+            $table->integer('anho');
             $table->date('fechaIni')->nullable()->default(null);
             $table->date('iniPago')->nullable()->default(null);
             $table->date('fechaFin')->nullable()->default(null);

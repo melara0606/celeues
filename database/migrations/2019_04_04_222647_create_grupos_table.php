@@ -28,6 +28,8 @@ class CreateGruposTable extends Migration
 
              $table->integer('idaulas')->unsigned()->nullable()->default(null);
              $table->foreign('idaulas')->references('id')->on('aulas');
+             $table->integer('iddocentes')->unsigned()->nullable()->default(null);
+             $table->foreign('iddocentes')->references('id')->on('docentes');
             
              
     

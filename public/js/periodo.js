@@ -11,7 +11,7 @@ $(document).ready(function(){
   //$.niftyNav('colExpToggle');
 
 $.niftyAside('darkTheme');
-$('#añofiltro').val($('#year').val());
+$('#anhofiltro').val($('#year').val());
 
   $('#nperiodofiltro').val($('#hiddenPeriodo').val());
 });
@@ -49,7 +49,7 @@ $.ajax({
     console.log(data);
 
     var row = '<tr><td width="30%"> Periodo: </td><td width="70%">' + data.nperiodo + '</td>';
-    row +='<tr><td> Año: </td><td>' + data.año + '</td>';
+    row +='<tr><td> Año: </td><td>' + data.anho + '</td>';
     row +='<tr><td> Fecha Inicio: </td><td>' + data.fechaIni + '</td>';
     row +='<tr><td> Inicio de Pago: </td><td>' + data.iniPago + '</td>';
     row +='<tr><td> Fecha Fin: </td><td>' + data.fechaFin + '</td>';
@@ -78,7 +78,7 @@ $(document).on('click','.editarmodal',function(){
           //success data
           console.log(data);
           $('#nperiodo').val(data.nperiodo);
-          $('#año').val(data.año);
+          $('#anho').val(data.anho);
           $('#fechaIniModal').val(data.fechaIni);
           $('#iniPagoModal').val(data.iniPago);
           $('#fechaFinModal').val(data.fechaFin);
@@ -114,7 +114,7 @@ $("#btnGuardar").click(function (e) {
  /////Datos que se envian para recibir en el controlador
  var formData = {
    nperiodo:$('#nperiodo').val(),
-   año:$('#año').val(),
+   anho:$('#anho').val(),
    fechaIni:$('#fechaIni').val(),
    iniPago:$('#iniPago').val(),
    fechaFin:$('#fechaFin').val(),
@@ -245,7 +245,7 @@ var formData = {
 
   $(document).on('click','.filtrar',function(){
   //  var form_id = $(this).val();
-    console.log($('#añofiltro').val()+'/'+$('#nperiodofiltro').val());
+    console.log($('#anhofiltro').val()+'/'+$('#nperiodofiltro').val());
     //$("#form_id").val(form_id);
  $("#myTable").empty();////Deja vacia la tabla
  var row="";
@@ -262,12 +262,12 @@ var formData = {
   });
       //Otra forma de realizar el get ajax el mismo de infomodal
       //no poner pleca antes de la url
-      $.get('periodo/filtrar/' + $('#añofiltro').val()+'/'+$('#nperiodofiltro').val(), function (data) {
+      $.get('periodo/filtrar/' + $('#anhofiltro').val()+'/'+$('#nperiodofiltro').val(), function (data) {
             //success data
             console.log(data);
             for (var i = 0; i < data.length; i++) {
               row +='<tr><td align="center">' + data[i].numPeriodo +'</td>';
-              row +='<td align="center">Periodo ' + data[i].numPeriodo +'-'+ data[i].año + '</td>';
+              row +='<td align="center">Periodo ' + data[i].numPeriodo +'-'+ data[i].anho + '</td>';
               if (data[i].fechaIni==null) {
                 row +='<td align="center">--</td>';
               }else {
@@ -306,6 +306,9 @@ var formData = {
           };
 
 $("#myTable").append(row);
+//$('[data-toggle="add-tooltip"').tooltip();
+$(".editarmodal").tooltip();
+$(".infoModal").tooltip();
 
 
 

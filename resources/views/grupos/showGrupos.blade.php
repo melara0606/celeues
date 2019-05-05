@@ -1,9 +1,26 @@
 	@extends('layouts.appPlantilla')
 
-	@section('content')
+	  @section('links')
+	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
 
+	@endsection
+
+	@section('content')
+<?php use App\Http\Controllers\grupoController;
+	?>
 	<style type="text/css">
-		
+	.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+
 	</style>
 		
 	
@@ -14,19 +31,26 @@
 		<!--Row Main Left COL-MD -->
 		<!--===================================================-->
 		<div class="row col-md-3">
-			<input type="text" name="path"  id="path" value="{{url('/')}}">
+			<input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
 			
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">
 						<h4>Filtrar	</h4>
+		
 					</div>
 
 					
 					
         
 					<div class="row col-sm-12">
-
+		<div style="display: none;"><input class=""  type="text" id="hiddenCurso" name="year" value="{{$selectCurso}}" >
+		<input class=""  type="text" id="year" name="year" value="{{$selectYear}}" >
+        <input class=""  type="text" id="hiddenModulo" name="hiddenModulo" value="{{$selectModulo}}" >
+		<input class=""  type="text" id="hiddenPeriodo" name="hiddenPeriodo" value="{{$selectPeriodo}}" >
+		</div>
+		{{-- <input class="" type="text" id="hiddenIdCategoria" name="hiddenIdCategoria" value="{{$selectCategoria}}" >
+            --}}
 
 						<label for="" class="control-label text-main text-bold ">Cursos:
 							<button class="btn btn-icon btn-trans btn-xs  add-tooltip infoHorariosModal" data-original-title="Ver Informacion de Curso" data-container="body" value=""><i class="ion-eye icon-lg " ></i></button>
@@ -43,13 +67,28 @@
 						
 					</div>
 					<br>
-					<hr>
 
+					<hr>
+					<div class="row col-sm-12">
+						<label for="" class="control-label text-main text-bold ">Categorias:</label>
+
+						 <select class="form-control" id="categoriafiltro" name="categoriafiltro" >
+						 	@forelse($categorias as $categoria)
+				              <option value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}</option>
+				              @empty
+									@endforelse
+				          </select>
+					</div>
+					<div class="row">
+						
+					</div>
+					<br>	
+					
 					<div class="row col-sm-12">
 						<label for="" class="control-label text-main text-bold ">Anho:</label>
-						<select class="form-control" id="añofiltro" name="añofiltro" >
+						<select class="form-control" id="anhofiltro" name="anhofiltro" >
 						          @forelse($anhos as $anho)
-						          <option value="{{$anho->año}}">{{$anho->año}}</option>
+						          <option value="{{$anho->anho}}">{{$anho->anho}}</option>
 								@empty
 						          @endforelse
 				        </select>
@@ -59,19 +98,23 @@
 						
 					</div>
 					<br>
+					
 					<div class="row col-sm-12">
-						<label for="" class="control-label text-main text-bold ">Periodos:</label>
-						 <select class="form-control" id="periodofiltro" name="periodofiltro" >
-				              <option value="5">5 periodos</option>
-				              <option value="10">10 periodos</option>
-				          </select>
+						<label for="" class="control-label text-main text-bold ">Periodos o Modulos:</label>
+						<select class="form-control" id="periodofiltro" name="periodofiltro" >
+						          @forelse($periodos as $periodo)
+						          <option value="{{$periodo->id}}">{{$periodo->numPeriodo}}</option>
+								@empty
+						          @endforelse
+				        </select>
+
 					</div>
 					<div class="row">
 						
 					</div>
-					<br>	
+					<br>
 					<div class="row col-sm-12" align="right">
-						<button class="btn btn-default btn-mint">Filtrar</button>
+						<button class="btn btn-default btn-mint filtrar" value="0" type="button" >Filtrar</button>
 
 					</div>
 					<br>
@@ -131,10 +174,12 @@
 		<div class="row col-md-9">
 			<!--Main Panel-->
 			<!--===================================================-->
-			<div class="panel" style=" background:#eee;border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;height: 100%;">
+			<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-				<div class="panel-heading " >
+				<div class="panel-heading " style="background-color: white; box-shadow: 0px 1px #bbb !important">
+
 					<div class="panel-control ">
+
 						<!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
 						<button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
 						-->
@@ -149,7 +194,8 @@
 							</ul>
 						</div>
 					</div>
-					<h3 class="panel-title ">Grupos</h3>
+					 <div id="cursoNombreDiv">
+					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">GRUPOS DE {{$cursoNombreDiv}} {{$selectYear}} {{$selectModulo}}</strong></p></h3></div>
 						
 
 
@@ -160,7 +206,7 @@
 				<div class="panel-body ">
 					<!--1rst Row Panel Body-->
 					<!--===================================================-->
-					<div class="row" >
+					<div class="row bord-btm " style="margin-bottom: 15px;" >
 						<div class="col-sm-12 table-toolbar-left">
 							<button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo</button>
 							<button class="btn btn-default imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
@@ -170,10 +216,20 @@
 								<button class="btn btn-default"><i class="demo-pli-recycling"></i>
 								</button>--}}
 								<div class="btn-group btn-group-sm ">
+									<table>
+										<tbody id="tableCategorias">
+											<tr>
 									@forelse($categorias as $categoria)
-										 <button class="btn btn-warning active" value="1">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}</button>
+										 <td>
+										 	<!--@if($selectCategoria==$categoria->idcategorias) readonly @else @endif -->
+										 	<button type="button" class="btn btn-mint @if($selectCategoria==$categoria->idcategorias)active @else @endif filtrar"
+										 	value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}} <span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted">{{grupoController::numeroCategorias($selectPeriodo,$categoria->idcategorias)}}</span></button> 
+										 </td>
 									@empty
 									@endforelse
+											</tr>
+										</tbody>
+									</table>
 	                       {{-- <button class="btn btn-warning active">Adulto</button>
 	                        <button class="btn btn-warning">Adolecente</button>
 	                        <button class="btn btn-warning">Ninho</button>--}}
@@ -181,17 +237,25 @@
 							</div>
 						</div>
 					</div>
+					
+
 					<!--End 1rst Row Panel Body-->
 					<!--===================================================-->
 						<div style="display: none;">
 							{{ $last=5}}
 						    {{ $now =1 }}
 						    </div>
-				    @for ($i = $now; $i <= $last; $i++)
+				   {{-- @for ($i = $now; $i <= $last; $i++)
+--}}
 
+					<div class="col-md-12" >
+					<table id="myTable" style="display: none;">
+						<tbody>
+							<tr>
+								<td width="500px">
 					<!--COL ROW CARTAS DE GRUPO-->
 					<!--===================================================-->
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<div class="col-sm-12 col-md-12">
 							
 							 <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">
@@ -201,9 +265,8 @@
 					                        {{--<a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="img/profile-photos/2.png"></a>--}}
 					                        <div class="media-body">
 					                            <div class="comment-header">
-					                                <a href="#" class="media-heading box-inline text-main text-semibold ">Ingles Nivel 5 </a> <a href="#" class="media-heading box-inline text-main text-semibold media-right text-sm">Aula 2-1</a>
-					                                <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>Adulto | Teacher Lic. kelvin Adonay Flores</p>
-
+					                                <a href="#" class="media-heading box-inline text-main text-semibold ">Ingles Nivel 5 EJEMPLO</a> <a href="#" class="media-heading box-inline text-main text-semibold media-right text-sm"><p style="color: green">Aula 2-1</p></a>
+					                                <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>Adulto | Teacher <strong style="color: green">Lic. kelvin Adonay Flores</strong></p>
 					                            </div>
 					                            <p class=" media-left text-sm">30 estudiantes ----- 3 disponibles </p>
 					                            {{--<a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-exclamation"></i></a>
@@ -238,7 +301,225 @@
 					</div>
 					<!--End COL ROW CARTAS DE GRUPO-->
 					<!--===================================================-->
-					@endfor
+					{{--@endfor
+						--}}
+							</td>
+							<td  width="500px">
+					<!--COL ROW CARTAS DE GRUPO-->
+					<!--===================================================-->
+					<div class="col-md-12">
+						<div class="col-sm-12 col-md-12">
+							
+							 <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">
+
+							 	<div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
+							 		<div class="comments media-block">
+					                        {{--<a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="img/profile-photos/2.png"></a>--}}
+					                        <div class="media-body">
+					                            <div class="comment-header">
+					                                <a href="#" class="media-heading box-inline text-main text-semibold ">Ingles Nivel 5 EJEMPLO</a> <a href="#" class="media-heading box-inline text-main text-semibold media-right text-sm"><p style="color: green">Aula 2-1</p></a>
+					                                <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>Adulto | Teacher <strong style="color: green">Lic. kelvin Adonay Flores</strong></p>
+					                            </div>
+					                            <p class=" media-left text-sm">30 estudiantes ----- 3 disponibles </p>
+					                            {{--<a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-exclamation"></i></a>
+					                            <a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-heart-2"></i></a>--}}
+
+												
+
+					                        </div>
+					                </div>
+
+			                            <!-------------------------------------->
+										<div class="text-right">
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
+			                           
+					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Asignar aula y maestro" data-container="body" value=""><i class="demo-pli-add icon-lg " ></i> </button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Modificar Grupo" data-container="body" value=""><i class="demo-psi-pen-5 icon-md " ></i> </button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
+			                             </div>
+			                            <!-------------------------------------->
+
+							 		{{--<p align="left" style="color: black" class="text-m text-bold mar-no text-main"> Intensivo Tarde  <strong style="color: black; font-size: 13px;">kelvin</strong> kjnwjk</p>--}}
+							 	</div>
+							 	
+							 	{{--<div class="pad-all text-right " style="border-top-left-radius:15px; border-top-right-radius:15px">
+							 		jnkjn
+							 	</div>--}}
+							 	
+							 </div>
+							
+						</div>
+						
+					</div>
+					<!--End COL ROW CARTAS DE GRUPO-->
+					<!--===================================================-->
+					{{--@endfor
+						--}}
+							</td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+						<!--COL ROW CARTAS DE GRUPO CON FOR ELSE-->
+					<!--===================================================-->
+
+					<?php
+					$seccion = array('1' =>'A' ,
+				            '2' =>'B' ,
+				            '3' =>'C' ,
+				            '4' =>'D' ,
+				            '5' =>'E' ,
+				            '6' =>'F' ,
+				            
+				         );
+
+					 ?>
+					 <div id="divCardsGrupos" class="" name="divCardsGrupos" {{--style="display: none;"--}}>
+					 	{{--<a href="" class="updateAula" data-name="email" data-type="text" data-pk="2" data-title="Enter email">email</a>--}}
+					@forelse($grupos as $grupo)
+					<div class="col-md-6 single-item">
+						<div class="col-sm-12 col-md-12">
+							
+							 <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">
+
+							 	<div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
+							 		<div class="comments media-block">
+					                        {{--<a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="img/profile-photos/2.png"></a>--}}
+					                        <div class="media-body">
+					                            <div class="comment-header">
+					                            	<div class="" style="width: 100%;height: 25px;display: inline-block;">
+					                                <a href="" style="" class="media-heading  text-md box-inline  text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))) }} Nivel {{$grupo->numNivel}}  {{$seccion[$grupo->numGrupo] }}
+					                                </a>
+
+					                                 <a style="float: right; " class="media-heading box-inline text-md text-main  text-semibold  text-xs updateAula" data-name="name" data-type="text" data-pk="{{ $grupo->id }}" data-title="Enter name">
+					                                 	@if($grupo->idaulas==null)
+					                                 		<p  class="text-lg" id="aula{{$grupo->idgrupos}}" ><i class="pli-board icon-sm"></i> <u>N/A</u></p>
+					                                 	@else
+					                                 	<p class="text-lg" id="aula{{$grupo->idgrupos}}" style="color: green"><i class="pli-board icon-sm"></i> {{ucwords(strtolower(grupoController::verAula($grupo->idaulas))) }}<u></u></p>
+					                                 	@endif
+
+					                                 </a>
+					                                 </div>
+					                                 <div class="" >
+					                                <p class="text-muted text-sm " style="display: inline-block;">{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | <i class="pli-professor icon-lg"></i>&nbsp </p>
+
+					                                	@if($grupo->iddocentes==null)                                 
+							                                <p class="text-muted text-sm " id="docente{{$grupo->idgrupos}}" style="display: inline-block;">{{-- <i class="demo-pli-smartphone-3 icon-lg"></i>--}}<u>N/A</u></p>
+								                        @else
+								                            <p class="text-muted text-sm text-semibold" id="docente{{$grupo->idgrupos}}" style="display: inline-block; color: green"> {{ucwords(strtolower(grupoController::verDocente($grupo->iddocentes))) }}</p>
+								                         @endif
+								                         </div>
+								                          <p class=" media-left text-sm ">30 Inscritos - {{$grupo->cupos}} Cupos </p>  
+					                            </div>
+					                            
+					                             <!-------------------------------------->
+										<div class="text-right" >
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
+			                           
+				                             
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip editEd" data-original-title="Modificar Grupo" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
+											
+					                          
+				                             
+
+			                             </div>
+			                            <!-------------------------------------->
+												
+
+					                        </div>
+					                </div>
+					                <!--<div class="text-left" style="display: inline;font-size: 10px">1</div>-->
+			                           <!--------------------qui se ve mas abajo------------------
+										<div class="text-right" {{--style="display: inline;float: right;"--}}>
+
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip editEd" data-original-title="Modificar Grupo" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
+			                           
+					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
+
+			                             </div>
+			                            ------------------------------------>
+							 		{{--<p align="left" style="color: black" class="text-m text-bold mar-no text-main"> Intensivo Tarde  <strong style="color: black; font-size: 13px;">kelvin</strong> kjnwjk</p>--}}
+							 	</div>
+							 	
+							 	{{--<div class="pad-all text-right " style="border-top-left-radius:15px; border-top-right-radius:15px">
+							 		jnkjn
+							 	</div>--}}
+							 	
+							 </div>
+							
+						</div>
+						
+					</div>
+					@empty
+					No hay datos
+					@endforelse
+					</div>
+					{{-- $grupos->render() --}}
+					<!--End COL ROW CARTAS DE GRUPO  CON FOR ELSE-->
+					<!--===================================================-->
+
+
+					<div class="col-md-12" style="display: none;">
+						 
+
+						<table class="table  table-sm ">
+							<tbody>
+								@forelse($grupos as $grupo)
+
+								<tr>
+									<!--<td>
+										<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="img/profile-photos/2.png">
+
+										 <p class="text-muted text-sm "><li class="demo-ti-user icon-lg"></li></p>
+										   <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | Teacher Lic. </p>
+									</td>-->
+									<td>
+										<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
+									</td>
+									<td>
+										
+					                            <div class="comment-header">
+					                                <a href="" class="media-heading box-inline text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))) }} Nivel {{$grupo->numNivel}}  {{$seccion[$grupo->numGrupo] }}</a>
+					                                <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | Teacher Lic. </p>
+					                                <p class="text-muted text-sm">30 estudiantes ----- {{$grupo->cupos}} disponibles </p>
+					                             
+					                            
+					                            </div>
+					                            
+												
+
+									</td>
+									<td>
+										 
+										  	<div class="text-right">
+										  		<a href="" class="media-heading box-inline text-main text-semibold media-right text-sm updateAula" data-name="name" data-type="text" data-pk="{{ $grupo->id }}" data-title="Enter name">{{ucwords(strtolower(grupoController::verAula($grupo->idaulas))) }}</a>
+										 <br><br>
+											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
+			                           
+					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigDocente" data-original-title="Asignar aula y maestro" data-container="body" value="{{$grupo->id}}"><i class="demo-pli-add icon-lg " ></i> </button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigAula" data-original-title="Modificar Grupo" data-container="body" value="{{$grupo->id}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
+				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
+			                             </div>
+									</td>
+									
+								</tr>
+					@empty No hay datos
+					@endforelse
+							</tbody>
+						</table>
+					
+					</div>
+
+
+
 				
 				</div>
 				<!--End Panel Body-->
@@ -301,10 +582,10 @@
 					            <div class="col-md-6 col-sm-6">
 					            	<select class="form-control" id="categoriaSelect" name="categoriaSelect">
 					            		<option selected disabled label="Seleccione una categoria"></option>
-					               @forelse($categorias as $categoria)
+					            {{--   @forelse($categorias as $categoria)
 					               		<option value="{{$categoria->id}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}</option>
 									@empty
-									@endforelse
+									@endforelse--}}
 									</select>
 					            </div>
 
@@ -330,12 +611,17 @@
 					          <br>
 					          <div class="row form-group">
 					            <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Cantidad de Grupos:</label>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Secciones:</label>
 					            <div class="col-md-3 col-sm-3">
 					                 <select class="form-control" id="numGrupos" name="numGrupos">
-                               			   @for($i=1;$i<=6;$i++)
-									          <option value="{{$i}}">{{$i}}</option>
-											@endfor
+                               			   
+									          <option value="1">1  A </option>
+											  <option value="2">2  A B </option>
+											  <option value="3">3  A B C</option>
+											  <option value="4">4  A B C D</option>
+											  <option value="5">5  A B C D E</option>
+											  <option value="6">6  A B C D E F</option>
+											
 									          
 			            			</select>
 					            </div>
@@ -347,7 +633,7 @@
 					             <div class="col-md-1 col-sm-1"></div>
 					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Cupos:</label>
 					            <div class="col-md-3 col-sm-3">
-					               <input class="form-control" type="number" value="20" id="cupos" name="cupos">
+					               <input class="form-control input-number" type="number" value="20" id="cupos" name="cupos">
 					            </div>
 
 					          </div>
@@ -408,6 +694,93 @@
 		</div>
 	</div>
 	<!--===================================================-->
+
+	<!--End Large Bootstrap Modal-->
+<!--INFO Bootstrap Modal-->
+	<!--===================================================-->
+	<div id="modalAsigDocenteAula" class="modal fade" tabindex="-1">
+		<div class="modal-dialog {{--modal-lg--}}">
+			<div class="modal-content">
+				<div class="modal-header alert-mint">
+					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+					<h4 class="modal-title" style="color: white;" id="modalAsigDocenteAulaLabel">Horarios</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<div class="table-responsive">
+						{{--<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Asignar Docente</h6>
+					     --}}
+					     <input type="text" hidden="true" id="modalAsigDocenteAulaToggle" name="modalAsigDocenteAulaToggle" value="">
+
+					     <input type="text" hidden="true" id="modalAsigDocenteAulaIdGrupo" name="modalAsigDocenteAulaIdGrupo" value="">
+
+					     <div class="input-group mar-btm">
+					                        <input type="text" placeholder="Buscar" class="form-control" id="search" name="search">
+					                        <span class="input-group-btn">
+					                            <button class="btn btn-mint" type="button">Buscar</button>
+					                        </span>
+					                    </div> 
+						<table   class="table {{--table-bordered--}} table-sm " align="center">
+            					<tbody id="tablaAsigDocenteAula">
+            						@for($i=1;$i<5;$i++)
+            						<tr class='clickable-row'>
+            							<td align="center" >
+            								<!--<i class="demo-pli-smartphone-3 icon-lg" style="padding-top: 10px">
+            								-->	<i class="pli-professor icon-lg" style="padding-top: 5pX"></i>
+            									<i class="pli-board icon-lg"></i>
+            							</td>
+            						
+            								<td>
+            									<div class="comment-header">
+					                                <label class="media-heading box-inline text-main text-sm text-semibold ">Kelvin Adonay Flores Mejia</label> 
+					                                <p class="text-muted text-xs">Email@gmail.com </p>
+
+
+					                            </div>
+					                        </td>
+					                        <td align="center">
+<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigDocente" data-original-title="Asignar" data-container="body" value="" disabled="true">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>
+					                        </td>
+ 
+            						</tr>
+            						@endfor
+
+            						<tr >
+            							<td align="center" >
+            									<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
+            									<i class="pli-conference icon-sm" style="padding-top: 5pX"></i>
+            									
+            							</td>
+        								<td>
+        									<div class="comment-header">
+				                                <label class="media-heading box-inline text-main text-sm text-semibold ">Aula 2-1</label> 
+				                                <p class="text-muted text-xs">Capacidad 20 personas </p>
+
+
+				                            </div>
+				                        </td>
+				                        <td align="center">
+<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAula" data-original-title="Asignar Aula" data-container="body" value="">Asignar aula<i class="demo-psi-arrow-right icon-md "></i> </button>
+				                        </td>
+
+            						</tr>
+            						
+
+            						
+            					</tbody>
+            			</table>
+					<!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
+						</div>
+					</div>
+				</div>
+				<!--Modal footer-->
+				<div class="modal-footer">
+					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--===================================================-->
 	<!--End Large Bootstrap Modal-->
 
 
@@ -453,7 +826,7 @@
 
 	@section('script')
 
-	<script src="{{asset('js/grupo.js')}}"></script> 
+	
 	{{--<script src="{{asset('js/jquery.easyPaginate.js')}}"></script>
 
 <script src="{{asset('js/jquery.snippet.min.js')}}"></script> 
@@ -461,14 +834,36 @@
 		 $(document).ready(function(){
 		 	$.niftyNav('collapse');
 
+  $('#anhofiltro').val($('#year').val());
+  $('#periodofiltro').val($('#hiddenPeriodo').val());
+  $('#cursofiltro').val($('#hiddenCurso').val());
+   $('#myTable').DataTable({
+      //"dom": '<"top"lf>rt<"bottom"pi>'
+    });
+$('.updateAula').editable({
+
+           url: '/update-user',
+
+           type: 'text',
+
+           pk: 1,
+
+           name: 'name',
+
+           title: 'Enter name'
+
+    });
+
 /*$('#easyPaginate').easyPaginate({
     paginateElement: 'div',
     elementsPerPage: 5,
     effect: 'climb'
 });*/
 
+
 		 });
 	</script>
+	<script src="{{asset('js/grupo.js')}}"></script> 
 	
 
 	@endsection

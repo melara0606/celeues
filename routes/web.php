@@ -95,9 +95,17 @@ Route::get('/periodo/filtrar/{anho?}/{nperiodofiltro?}', 'periodoController@filt
 
 
 Route::get('/grupos', 'grupoController@show')->name('grupoShow')->middleware('auth');
+Route::get('/gruposExample', 'grupoController@showEditable')->name('grupoShowEditable')->middleware('auth');
 Route::post('/grupos/create', 'grupoController@create')->middleware('auth');
 Route::get('/grupos/categorias/{idcurso?}', 'grupoController@buscarCategorias')->middleware('auth');
+Route::put('/grupos/categoriasPeriodoFiltro/{idcurso?}', 'grupoController@buscarCategoriasPeriodofiltro')->middleware('auth');
 Route::get('/grupos/niveles/{idcursocategorias?}', 'grupoController@buscarNiveles')->middleware('auth');
+Route::put('/grupos/filtrar', 'grupoController@filtrar')->middleware('auth');
+Route::get('/grupos/busquedaAula/{texto?}', 'grupoController@busquedaAula')->middleware('auth');
+Route::put('/grupos/updateAula/{idgrupos?}', 'grupoController@updateAula')->middleware('auth');
+Route::get('/grupos/busquedaDocente/{texto?}', 'grupoController@busquedaDocente')->middleware('auth');
+Route::put('/grupos/updateDocente/{idgrupos?}', 'grupoController@updateDocente')->middleware('auth');
+Route::put('/grupos/periodos', 'grupoController@buscarPeriodos')->middleware('auth');
 
 
 

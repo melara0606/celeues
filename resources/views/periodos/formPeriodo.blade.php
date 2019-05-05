@@ -11,10 +11,10 @@
 
    {{-- <div class="row">
         <h6 class="text-main" style="font-weight:bold;">Formulario</h6></div>       --}}
-        <div id="añodiv" class="form-group">
+        <div id="anhdiv" class="form-group">
             <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Año:*</label>
             <div class="col-md-7  ">
-              <select class="form-control" id="año" name="año" >
+              <select class="form-control" id="anho" name="anho" >
                   <option value="2019 ">2019</option>
                   <option value="2020 ">2020</option>
                   <option value="2021 ">2021</option>

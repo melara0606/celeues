@@ -74,7 +74,13 @@
 
 
  <link rel="stylesheet" href="{{ asset('demo/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css') }}">
-    <!--=================================================
+
+<link rel="stylesheet" href="{{ asset('demo/plugins/x-editable/css/bootstrap-editable.css') }}">
+
+  
+     @yield('links')
+
+   <!--=================================================
 
     REQUIRED
     You must include this in your project.
@@ -1127,6 +1133,10 @@
 
  <script src="{{ asset('demo/plugins/select2/js/select2.min.js') }}"></script> 
  <script src="{{ asset('demo/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script> 
+
+ <script src="{{ asset('demo/plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
+<!-------Jona no lo tiene ------->
+ 
  
     @yield('script')
     

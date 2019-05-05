@@ -13,21 +13,21 @@ class periodoController extends Controller
      public function show(){
        $year=date("Y");
 //return Response::json($year);
-     	$periodos=periodo::where('año',$year)->where('nombre','10')->get();
-          $años=periodo::distinct()->get(['año']);
+     	$periodos=periodo::where('anho',$year)->where('nombre','10')->get();
+          $anhos=periodo::distinct()->get(['anho']);
           //$periodos=periodo::where('nombre',10)->where('año',)->get();
 
 
         	  return view('periodos.showPeriodo',[
             	 'periodos' => $periodos,
-               'anhos' => $años,
+               'anhos' => $anhos,
                'selectYear'=>$year,
                'selectPeriodo'=>10,
         	//'noticias'=> $noticias,
             	]);
       }
      public function create(Request $request){//createBeneficiariosRequest $request){
-$contperiodo=count(periodo::where('nombre',$request->input('nperiodo'))->where('año',$request->input('año'))->get());
+$contperiodo=count(periodo::where('nombre',$request->input('nperiodo'))->where('anho',$request->input('anho'))->get());
 
 //return Response::json($contperiodo);
 
@@ -48,7 +48,7 @@ if ($contperiodo==0) {
     $message= periodo::create([
       //'numperiodo'=> $i,
       'nombre'=> $request->input('nperiodo'),
-      'año'=> $request->input('año'),
+      'anho'=> $request->input('anho'),
       'fechaIni'=>$request->input('fechaIni'),
       'iniPago'=>$request->input('iniPago'),
       'fechaFin'=>$request->input('fechaFin'),
@@ -100,7 +100,7 @@ if ($contperiodo==0) {
 
     }
     public function filtrar($anho,$nperiodofiltro){
-      $message=periodo::where('año',$anho)->where('nombre',$nperiodofiltro)->get();
+      $message=periodo::where('anho',$anho)->where('nombre',$nperiodofiltro)->get();
       return Response::json($message);
 
 
