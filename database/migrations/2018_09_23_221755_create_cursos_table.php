@@ -17,7 +17,7 @@ class CreateCursosTable extends Migration
             $table->increments('id');
             $table->enum('modulos',array('5 MODULOS','10 MODULOS'));
             $table->enum('estado',array('ACTIVO','INACTIVO'));
-            $table->string('motivoBaja');
+            $table->string('motivoBaja')->unsigned()->nullable()->default(null);
            // $table->string('horaInicio')->nullable()->default(null);
            // $table->string('horaFin')->nullable()->default(null);
 

@@ -23,7 +23,7 @@
 
 		<!--Row Main Right COL-MD -->
 		<!--===================================================-->
-		<div class="row col-md-10">
+		<div class="row col-md-12">
 			<input type="text" name="path" hidden="true"  id="path" value="{{url('/')}}">
 			
 			<!--Main Panel-->

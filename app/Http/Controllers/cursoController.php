@@ -212,7 +212,7 @@ return Response::json($categorias);
                     'cuota'=> $precio,//id nombre es cuota en vista
                     'estado'=>'ACTIVO',
                     'idcategorias'=> $ncatid,
-                    'idcursos'=> $idcursos
+                    'idcursos'=> $idcursos,
                     ]);
                     return Response::json([
                     'bandera' =>1,
@@ -317,6 +317,7 @@ return Response::json($categorias);
 	    		'estado'=>'ACTIVO',
 	    		'ididiomas'=> $request->input('idioma_id'),
 	    		'idmodalidads'=> $request->input('moda_id'),
+                'motivoBaja'=>'',
 	    		]);	
  		//------------------------------------// din ingreso tabla curso
         

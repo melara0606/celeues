@@ -325,7 +325,7 @@ function calculate_age(birth_month, birth_day, birth_year) {
              console.log(data);
             // data[0];
             if(data['bandera']==1){
-               $('#modalIngreso').modal('hide');
+              // $('#modalIngreso').modal('hide');
                $.niftyNoty({
                 type: "success",
                 container : "floating",
@@ -336,8 +336,8 @@ function calculate_age(birth_month, birth_day, birth_year) {
                 });
                        
                setTimeout(function(){
-                  $("#form").trigger("reset");
-                  window.location.reload();////recarga la pagina actual
+                 // $("#form").trigger("reset");
+                 // window.location.reload();////recarga la pagina actual
                  // $(location).attr('href','/peticionForm');
                }, 4000);
              } else{
@@ -535,3 +535,123 @@ function calculate_age(birth_month, birth_day, birth_year) {
                 });
         });
 
+
+
+$(document).on('click','.crearUsuarioEstudiante',function(){
+    var form_id = $(this).val();
+    $('#estudiante_id').val(form_id);
+    $('#modalIngresoUsuario').modal('show');
+    $('#parrafoUsuario').html("Esta a punto de crear un usuario al estudiante <br>"+ $(this).data('nombre'));    
+    $('#usuarioEstudiante').val($(this).data('email'));    
+
+});
+
+
+ $("#btnGuardarUsuario").click(function (e) {
+   $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
+
+   e.preventDefault();
+   /////Datos que se envian para recibir en el controlador 
+   var formData = {
+     estudiante_id:$('#estudiante_id').val(),
+     usuario:$('#usuarioEstudiante').val(),
+     contrasenha:$('#contraUsurioEstudiante').val(),
+     repetirContrasenha:$('#contraRepeUsurioEstudiante').val(),
+     
+   }       
+
+
+        $("#btnGuardarUsuario").attr("disabled", "disabled");
+        setTimeout(function() {
+            $("#btnGuardarUsuario").removeAttr("disabled");      
+        }, 3000);
+         // var state = $('#guardarResp').val();///para ver si es add o update
+          var type = "POST"; //for creating new resource
+          var my_url = "estudiante/createUser";
+         // var form_id = $('#estudiante_id').val();///el id del registro ya sea si modificamos 
+
+          /*if (state == "update"){
+            type = "PUT"; //for updating existing resource
+            my_url = 'responsable/update/'+form_id;
+        }*/
+          console.log(formData);
+
+          $.ajax({
+
+            type: type,
+            url: my_url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                 console.log(data);
+                 if (data['bandera']==3) {
+                    var msj='';
+                    msj+='</ul>';
+                    for(var i=0;i<data['errors'].length;i++)
+                    {
+                      msj+='<li>'+data['errors'][i]+'</li>'; 
+                    }
+                    msj+='</ul>';
+                        $.niftyNoty({
+                        type: 'danger',
+                       // icon : 'fa fa-bolt fa-2x',
+                        container : 'floating',
+                        title : 'Upps!!',
+                        message : msj,
+                        //timer : 6000
+                    });
+
+                 }
+                // data[0];
+                if(data['bandera']==1){
+                    // $('#modalIngreso').modal('hide');
+                     $.niftyNoty({
+                      type: "info",
+                      container : "floating",
+                      title : "Bien Hecho!",
+                      message : data['response'],
+                      closeBtn : false,
+                      timer : 3000
+                      });
+                    
+                    /* setTimeout(function(){
+                        $("#form").trigger("reset");
+                        window.location.reload();////recarga la pagina actual
+                       // $(location).attr('href','/peticionForm');
+                     }, 4000);*/
+                 } else if(data['bandera']==0){
+                     ///menasje de error
+                    $.niftyNoty({
+                      type: "danger",
+                      container : "floating",
+                      title : "Upps!",
+                      message :  data['response'],
+                      closeBtn : false,
+                      timer : 3000
+                      });
+
+                 }
+
+
+
+
+             },
+             error: function (data) {
+              ///menasje de error
+                  $.niftyNoty({
+                    type: "danger",
+                    container : "floating",
+                    title : "Upps!",
+                    message : "A ocurrido un problema",
+                    closeBtn : false,
+                    timer : 3000
+                    });
+                     console.log('Error de peticion:', data);
+               
+                  }
+          });
+  });

@@ -1,7 +1,13 @@
 	@extends('layouts.appPlantilla')
 
-	@section('content')
 
+	  @section('links')
+	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
+
+	@endsection
+	@section('content')
+<?php use App\Http\Controllers\estudianteController;
+	?>
 	<!--CONTENT CONTAINER-->
 	<!--===================================================-->
 
@@ -130,14 +136,22 @@
 							@forelse($estudiantes as $estudiante)
 							<tr id="{{ $estudiante->id }}">
 								<td align="center">{{ $correlativo++ }}</td>
-								<td align="Center"><div class="label label-table bg-dark add-tooltip" data-original-title="{{ $estudiante->nombre }}" data-container="body" value="{{ $estudiante->id }}" ><div class="text-xs text-bold"></div>{{ $estudiante->nombre }}</div></td>
+								<td align="Center"><i class="pli-student-male icon-lg" style="padding-top: 5pX"></i> <div class="label label-table bg-dark add-tooltip" data-original-title="{{ $estudiante->nombre }}" data-container="body" value="{{ $estudiante->id }}" ><div class="text-xs text-bold"></div>{{ $estudiante->nombre }}</div></td>
 								<td >{{ $estudiante->descripcion }}</td>
-								<td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold"></div></div></td>
+								<td align="center">
+									<i class="pli-student-male icon-lg" style="padding-top: 5pX"></i>
+									<div class="label label-table bg-gray"><div class="text-xs text-bold"></div></div>
+								</td>
 								
 								<td align="center">
 								
 									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $estudiante->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> {{--Editar--}}</button>
 									<button class="btn btn-icon btn-default btn-sm  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $estudiante->id }}"><i class="demo-pli-exclamation icon-sm " ></i> {{--Info--}}</button>
+									@if($estudiante->idusers==null)
+									<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $estudiante->nombre }} {{ $estudiante->apellido }}" data-email="{{ $estudiante->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $estudiante->id }}"><i class="pli-add-user icon-lg "></i></button>
+									@else
+									<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $estudiante->nombre }} {{ $estudiante->apellido }}" data-email="{{ $estudiante->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $estudiante->id }}"><i class="pli-id-card icon-lg "></i></button>
+									@endif
 									{{-- nose si agregarle estado a categoria @if($categoria->estado=='ACTIVO')
 									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-danger darbaja" value="{{ $categoria->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
 									@endif
@@ -286,6 +300,67 @@
 	<!--===================================================-->
 	<!--End DarBaja y Alta Bootstrap Modal-->
 
+
+<!-- Modal con tabindex -1 no funciona select2 en bootstrap 4 -->
+	<div class="modal fade" id="modalIngresoUsuario" 	name="modalIngreso" role="dialog"  tabindex="-1"  aria-labelledby="demo-default-modal" aria-hidden="true" >
+		<div class="modal-dialog {{--modal-lg--}}">
+			<div class="modal-content">
+
+				<!--Modal header-->
+				<div class="modal-header alert-primary" id="modalIngresoUsuarioHeader" >
+					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+					<h4 class="modal-title" style="color: white;" id="modalIngresoUsuarioLabel">Crear Usuario Estudiante</h4>
+				</div>
+<br>
+						<h4 style="font-size: 14px;text-align: center;" class="text-main col-md-12" id="parrafoUsuario" ></h4>
+						<br>
+						 
+				<!--Modal body-->
+				<div id="pruebatarget" class="modal-body" style="overflow-y: auto;  max-height: 700px;"	>
+				
+					<form>
+						<input hidden="true" type="text" id="estudiante_id" name="estudiante_id">
+
+						<div  id="" class="col-md-12 form-group @if($errors->has('nombre')) has-danger @endif" >
+					        <div class="col-md-1"></div>
+					        <label for="example-text-input" class="col-md-2 control-label text-main text-bold ">Usuario:</label>
+					        <div class="col-md-7 " >
+								     <input class="form-control" type="text" placeholder="Ingrese usuario o email" id="usuarioEstudiante" name="usuarioEstudiante">
+					                  <div id="" class="form-control-feedback"></div>
+					        </div>
+					    </div>
+					    <div  id="" class="col-md-12 form-group @if($errors->has('nombre')) has-danger @endif" >
+					        <div class="col-md-1"></div>
+					        <label for="example-text-input" class="col-md-2 control-label text-main text-bold ">Contraseña: </label>
+					        <div class="col-md-7 " >
+								     <input class="form-control" type="password" placeholder="Ingroduzca Contraseña" id="contraUsurioEstudiante" name="contraUsurioEstudiante">
+					                  <div id="" class="form-control-feedback"></div>
+					        </div>
+					    </div>
+					    
+					    <div  id="" class="col-md-12 form-group @if($errors->has('nombre')) has-danger @endif" >
+					        <div class="col-md-1"></div>
+					        <label for="example-text-input" class="col-md-2 control-label text-main text-bold ">Comprobar Contraseña:</label>
+					        <div class="col-md-7 " >
+								     <input class="form-control" type="password" placeholder="Ingroduzca nuevamente su Contraseña" id="contraRepeUsurioEstudiante" name="contraRepeUsurioEstudiante">
+					                  <div id="" class="form-control-feedback"></div>
+					        </div>
+					    </div>
+					</form>
+
+				</div>
+				<br>
+
+				{{----}}<!--Modal footer-->
+				<div class="modal-footer">
+					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+					<button class="btn btn-primary" id="btnGuardarUsuario">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--===================================================-->
+	<!--End Default Bootstrap Modal-->
 
 
 

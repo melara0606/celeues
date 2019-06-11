@@ -41,6 +41,7 @@ Route::get('/categoria/buscar/{id?}', 'categoriaController@buscar')->name('categ
 
 Route::get('/estudiante', 'estudianteController@show')->name('estudianteShow')->middleware('auth');
 Route::post('/estudiante/create', 'estudianteController@create')->middleware('auth');
+Route::post('/estudiante/createUser', 'estudianteController@createUser')->middleware('auth');
 Route::put('/estudiante/update/{id?}', 'estudianteController@update')->middleware('auth');
 Route::get('/estudiante/buscar/{id?}', 'estudianteController@buscar')->name('estudianteBuscar')->middleware('auth');
 Route::get('/estudiante/buscar1/{id?}', 'estudianteController@buscar1')->name('estudianteBuscar')->middleware('auth');
@@ -97,6 +98,7 @@ Route::get('/periodo/filtrar/{anho?}/{nperiodofiltro?}', 'periodoController@filt
 Route::get('/grupos', 'grupoController@show')->name('grupoShow')->middleware('auth');
 Route::get('/gruposExample', 'grupoController@showEditable')->name('grupoShowEditable')->middleware('auth');
 Route::post('/grupos/create', 'grupoController@create')->middleware('auth');
+Route::put('/grupos/update/{idgrupos?}', 'grupoController@update')->middleware('auth');
 Route::get('/grupos/categorias/{idcurso?}', 'grupoController@buscarCategorias')->middleware('auth');
 Route::put('/grupos/categoriasPeriodoFiltro/{idcurso?}', 'grupoController@buscarCategoriasPeriodofiltro')->middleware('auth');
 Route::get('/grupos/niveles/{idcursocategorias?}', 'grupoController@buscarNiveles')->middleware('auth');
@@ -106,6 +108,17 @@ Route::put('/grupos/updateAula/{idgrupos?}', 'grupoController@updateAula')->midd
 Route::get('/grupos/busquedaDocente/{texto?}', 'grupoController@busquedaDocente')->middleware('auth');
 Route::put('/grupos/updateDocente/{idgrupos?}', 'grupoController@updateDocente')->middleware('auth');
 Route::put('/grupos/periodos', 'grupoController@buscarPeriodos')->middleware('auth');
+Route::get('/grupos/buscar/{idgrupos?}', 'grupoController@buscarGrupos')->middleware('auth');
+
+Route::get('/grupos/estudiantes/{idgrupos?}', 'estudianteGrupoController@show')->middleware('auth');
+Route::get('/estudiantegrupo/{idgrupos?}', 'estudianteGrupoController@busquedaEstudiante')->middleware('auth');
+Route::post('/estudiantegrupo/create', 'estudianteGrupoController@create')->middleware('auth');
+Route::put('/estudiantegrupo/cambiarEstado/{id?}', 'estudianteGrupoController@cambiarEstado')->middleware('auth');
+Route::put('/estudiantegrupo/createPonderacion', 'estudianteGrupoController@createPonderacion')->middleware('auth');
+
+Route::get('/grupos/notas/{idgrupos?}', 'notaController@show')->middleware('auth');
+Route::put('/estudiantegrupo/createNota', 'notaController@createNota')->middleware('auth');
+
 
 
 

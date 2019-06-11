@@ -56,6 +56,8 @@ class grupoController extends Controller
     	$message=docente::find($iddocentes);
     	return ''.$message->nombre.' '.$message->apellido;
     }
+    
+
     public static function numeroCategorias($idperiodos,$idcursocategorias){
         $grupos=DB::table('grupos')
           ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
@@ -74,6 +76,44 @@ class grupoController extends Controller
 
         //return Response::json($count);          
           return $count;
+
+    }////Aca terminan los static function
+
+    public function buscarGrupos($idgrupos){
+        $message=grupo::find($idgrupos);
+        $grupos=DB::table('grupos')
+          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
+          ->join('periodos', 'grupos.idperiodos', '=', 'periodos.id')
+          ->select('grupos.*','nivels.numNivel')
+          ->where('grupos.id',$idgrupos)/////parametros
+          ->get()->first();
+         //return Response::json($grupos); 
+        $aula=grupoController::verAula($grupos->idaulas);
+        $docente=grupoController::verDocente($grupos->iddocentes);
+        $seccion = array('1' =>'A' ,
+                            '2' =>'B' ,
+                            '3' =>'C' ,
+                            '4' =>'D' ,
+                            '5' =>'E' ,
+                            '6' =>'F' ,
+                            
+                         );
+         return Response::json([
+                'grupo'=>$grupos,
+                'aula'=>$aula,
+                'docente'=>$docente,
+                'seccion'=>$seccion[$grupos->numGrupo],
+                ]);
+        /*$cursocategorias=DB::table('cursocategorias')
+         ->join('categorias', 'cursocategorias.idcategorias', '=', 'categorias.id')
+         ->select('categorias.nombre',
+            'cursocategorias.id as idcursocategorias',
+            'categorias.id as idcategorias',
+            'categorias.edadInicio',
+            'categorias.edadFin')
+         ->where("cursocategorias.idcursos",$curso->first()->id)
+         ->where("cursocategorias.estado","ACTIVO")
+         ->get();*/
 
     }
     
@@ -122,7 +162,7 @@ class grupoController extends Controller
 		  //->join('aulas', 'grupos.idaulas', '=', 'aulas.id')
 		  ->join('periodos', 'grupos.idperiodos', '=', 'periodos.id')
 		  //->join('docentes', 'grupos.iddocentes', '=', 'docentes.id')
-		  ->select('grupos.*','nivels.*','grupos.id as idgrupos')
+		  ->select('grupos.*','nivels.*','grupos.id as idgrupos','grupos.estado as estadoGrupo')
          // ->where('periodos.anho',$year)
 		 // ->where('periodos.estado','ACTIVO')
 		  ->where('periodos.id',$periodoActual->id)////////////////////////nno se si sive o no
@@ -185,7 +225,7 @@ class grupoController extends Controller
              $grupos=DB::table('grupos')
           ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
           ->join('periodos', 'grupos.idperiodos', '=', 'periodos.id')
-          ->select('grupos.*','nivels.*','grupos.id as idgrupos')
+          ->select('grupos.*','nivels.*','grupos.id as idgrupos','grupos.estado as estadoGrupo')
           //->where('periodos.anho',$year)
           ->where('periodos.id',$request->input('periodofiltro'))
           //->where('nivels.idcursos',$idcurso)//no se si son necesaios
@@ -349,6 +389,28 @@ class grupoController extends Controller
 
     }//fin create
 
+    public function update(Request $request,$idgrupos){
+         $message=grupo::find($idgrupos);
+        //return Response::json($message);
+
+         $message->fill([
+           'cupos'=> $request->input('cupos'),
+            ]);
+        if($message->save()){
+          // bitacoraController::bitacora('Modificó datos de peticion');
+            return Response::json([
+            'bandera' =>1,
+            'response'=>'Cupos Actualizados',                
+             ]);
+        }else{
+             return Response::json([
+            'bandera' =>0,
+            'response'=>'No pudo Modificar',                 
+             ]);
+            
+        }
+    }//fin update
+
 
     public function buscarCategorias($idcursos){
     	//$message = periodo::find($id);
@@ -446,12 +508,12 @@ class grupoController extends Controller
                                             '</td>'.
                                             '<td align="center">';
                      if($message->estado=='ACTIVO'){
-                        $output.='<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>'.
+                        $output.='<button class="btn btn-default btn-trans btn-sm  btn-hover add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>'.
                                                 '</td>'.
 
                                             '</tr>';
                      }else{
-                         $output.= '<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'" disabled="true">Inactivo </button>'.
+                         $output.= '<button class="btn btn-default btn-trans btn-sm  btn-hover add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'" disabled="true">Inactivo </button>'.
                                                 '</td>'.
 
                                             '</tr>';
@@ -488,7 +550,7 @@ class grupoController extends Controller
                                                 '</div>'.
                                             '</td>'.
                                             '<td align="center">'.
-    '<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>'.
+    '<button class="btn btn-default btn-trans btn-sm  btn-hover  add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>'.
                                             '</td>'.
 
                                         '</tr>';

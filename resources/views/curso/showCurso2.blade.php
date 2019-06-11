@@ -95,7 +95,7 @@
 			<!--Main Panel-->
 			<!--===================================================-->
 			<div class="panel" style=" background:#eee;border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 715px;">
-				<div class="panel-heading ">
+				<div class="panel-heading " style="background-color: white; box-shadow: 0px 1px #bbb !important">
 					<div class="panel-control ">
 						<!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
 						<button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
@@ -111,15 +111,21 @@
 							</ul>
 						</div>
 					</div>
-					<h3 class="panel-title ">curso</h3>
+					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">CURSOS</strong></p></h3>
 						
 
 
 				</div>
 
+<div style="display: none;">{{ $verifica=1 }}</div>
+				<!--Panel Body-->
+				<!--===================================================-->
+				<div class="panel-body">
+
+
 				<!--Seccion Botones principales-->
 				<!--===================================================-->
-				<div class="row col-md-12">
+				<div class="row col-md-12 bord-btm " style="margin-bottom: 15px;">
 							<div class="col-sm-6 table-toolbar-left">
 								<button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo</button>
 								<button class="btn btn-default imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
@@ -156,10 +162,6 @@
 				<!--End Seccion Botones principales-->
 				<!--===================================================-->
 				
-<div style="display: none;">{{ $verifica=1 }}</div>
-				<!--Panel Body-->
-				<!--===================================================-->
-				<div class="panel-body">
 
 					 @forelse($cursos as $curso)
 					 

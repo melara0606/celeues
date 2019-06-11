@@ -8,9 +8,30 @@
     $("#modalIngresoLabel").html("Registro de Curso");
     //$('#form').trigger('reset');
     $("#btnGuardar").removeClass("btn-success");
-    $('#modalIngreso').modal('show');   
+    $('#modalIngreso').modal('show'); 
+    $('#nuevoFormulario').show();
+     $('#modificarFormulario').hide(); 
+
 
     });
+
+  $(document).on('click','.editarmodal',function(){
+    var form_id = $(this).val();
+    $("#form_id").val(form_id);
+      $('#btnGuardar').val("update");///valor update para cuando actulize
+      $("#btnGuardar").html("Modificar");///cambia el boton modificar
+      $("#btnGuardar").removeClass("btn-info");
+      $("#btnGuardar").addClass("btn-mint"); 
+      $("#modalIngresoHeader").addClass("alert-mint"); 
+      $("#modalIngresoLabel").html("Modificacion de Cupos");///titulo del modal
+      $('#modalIngreso').modal('show');
+       $('#nuevoFormulario').hide();
+       $('#modificarFormulario').show();  
+      $('#cuposModificar').val($(this).data('cupos'));  
+        
+          
+    });
+
 
 $('#cursoSelect').on('change', function (e) {
     var optionSelected = $("option:selected", this);
@@ -73,8 +94,6 @@ $("#btnGuardar").click(function (e) {
      nivel :$('#nivelSelect').val(),
      cupos:$('#cupos').val(),
      numGrupos :$('#numGrupos').val(),
-     
-   //  edadFin:$('#edadFin').val(),
    }      
 
       //  $('#btnGuardar').attr("disabled", true);
@@ -85,8 +104,12 @@ $("#btnGuardar").click(function (e) {
 
           if (state == "update"){
             type = "PUT"; //for updating existing resource
-            my_url = 'hvbn/update/'+form_id;
-        }
+            my_url = $('#path').val()+"/grupos/update/"+form_id;
+            formData ={
+               cupos:$('#cuposModificar').val(),
+             } 
+
+          }
         
         // $('#modalIngreso').modal('hide');
         console.log($('#form').serializeArray());
@@ -465,6 +488,39 @@ $("#divCardsGrupos").pagify(4, ".single-item");
                   }
                 });
 });
+  $(document).on('click','.infoModal',function(){
+
+  var form_id = $(this).val();
+
+       $("#tablainfo").empty();////Deja vacia la tabla
+  $.ajax({
+
+    type: "GET",
+    url: 'grupos/buscar/'+form_id,
+    data: form_id,
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+
+      var row = '<tr><td width="30%"> Nivel: </td><td width="70%">Nivel ' + data['grupo'].numNivel + '</td>';
+      //row +='<tr><td> Idioma: </td><td>' + data.descripcion + '</td>';
+      row +='<tr><td> Sección: </td><td>' + data['seccion'] + '</td>';
+      row +='<tr><td> Aula Asignada: </td><td>' + data['aula'] + '</td>';
+      row +='<tr><td> Docente Asignado: </td><td>' + data['docente'] + '</td>';
+      row +='<tr><td> Cupos: </td><td>' + data['grupo'].cupos + '</td>';
+      row +='<tr><td> Estado: </td><td>' + data['grupo'].estado + '</td>';
+      
+      $("#tablainfo").append(row); ///Se anhade a la tabla           
+
+    },
+    error: function (data) {
+      console.log('Error de boton Info:', data);
+    }
+  });
+
+  $('#modalInfo').modal('show'); ///modal de informacion
+  });
+
 
  
 /* $(document).on('click','.updateAula',function(e){
@@ -734,6 +790,8 @@ $(document).on('click','.btnAsigAulaDocente',function(e){
                      }else{
                         $('#docente'+idgrupos).html(data['nomDocente']);
                         $('#docente'+idgrupos).css("color","green");
+                        $('#estado'+idgrupos).html("INICIADO");
+                        
                      }
                      
                      

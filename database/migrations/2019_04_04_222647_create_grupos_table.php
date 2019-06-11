@@ -19,7 +19,7 @@ class CreateGruposTable extends Migration
             $table->integer('numGrupo');    
             $table->enum('estado',array('INICIADO','EN CURSO','FINALIZADO'));
 
-             $table->integer('idnivels');
+             $table->integer('idnivels')->unsigned();
              $table->foreign('idnivels')->references('id')->on('nivels');
     
 
@@ -28,6 +28,7 @@ class CreateGruposTable extends Migration
 
              $table->integer('idaulas')->unsigned()->nullable()->default(null);
              $table->foreign('idaulas')->references('id')->on('aulas');
+             
              $table->integer('iddocentes')->unsigned()->nullable()->default(null);
              $table->foreign('iddocentes')->references('id')->on('docentes');
             
