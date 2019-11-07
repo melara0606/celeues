@@ -50,8 +50,11 @@ Route::get('/estudiante/bus/responsables','estudianteController@busquedaSelect')
 
 Route::get('/docente', 'docenteController@show')->name('docente')->middleware('auth');
 Route::post('/docente/create', 'docenteController@create');
+Route::post('/docente/createUser', 'docenteController@createUser')->middleware('auth');
 Route::put('/docente/update/{id?}', 'docenteController@update')->middleware('auth');
 Route::get('/docente/buscar/{id?}', 'docenteController@buscar')->name('docenteBuscar')->middleware('auth');
+Route::put('/docente/cambiarEstado/{id?}', 'docenteController@cambiarEstado')->middleware('auth');
+
 
 Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');
 Route::post('/modalidad/create', 'modalidadController@create')->middleware('auth');
@@ -116,9 +119,16 @@ Route::post('/estudiantegrupo/create', 'estudianteGrupoController@create')->midd
 Route::put('/estudiantegrupo/cambiarEstado/{id?}', 'estudianteGrupoController@cambiarEstado')->middleware('auth');
 Route::put('/estudiantegrupo/createPonderacion', 'estudianteGrupoController@createPonderacion')->middleware('auth');
 
+Route::group(['middleware'=>['adminDocente:1,2']],function(){
 Route::get('/grupos/notas/{idgrupos?}', 'notaController@show')->middleware('auth');
 Route::put('/estudiantegrupo/createNota', 'notaController@createNota')->middleware('auth');
+});
 
+Route::get('/record', 'userRecordEstudianteController@show')->middleware('auth');
+Route::get('/record/{ididiomas?}', 'userRecordEstudianteController@showParametros')->middleware('auth');
+Route::put('/record/filtrar', 'userRecordEstudianteController@filtrar')->middleware('auth');
+
+Route::get('/notas', 'userNotasEstudianteController@show')->middleware('auth');
 
 
 

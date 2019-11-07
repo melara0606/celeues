@@ -1,5 +1,10 @@
 @extends('layouts.appPlantilla')
 
+ @section('links')
+    <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
+
+  @endsection
+
 @section('content')
 <!--CONTENT CONTAINER-->
 <!--===================================================-->
@@ -33,7 +38,7 @@
 <div id="page-content" >
 
 
-  <div class="panel">
+  <div class="panel" style="border: 1px bold #ccc; box-shadow: 2px 2px #bbb !important" >
 
     <div class="panel-heading {{--bg-mint--}}">
       <div class="panel-control ">
@@ -43,11 +48,8 @@
         <div class="dropdown">
           <button class="dropdown-toggle btn btn-default btn-active-primary" data-toggle="dropdown" aria-expanded="false"><i class="demo-psi-dot-vertical"></i></button>
           <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">Ayuda</a></li>
+            <li><a href="#">Acerca de </a></li>
           </ul>
         </div>
       </div>
@@ -121,8 +123,9 @@
               <th>Email</th>
               <th>DUI</th>
               <th>Teléfono</th>
-              <th>NIT</th>
-              
+              <th>Genero</th>
+              <th>Estado</th>
+
               <th class="text-center">Acciones</th>
 
             </tr>
@@ -136,9 +139,9 @@
               <td >{{ $docente->apellido }}</td>
               <td >{{ $docente->email }}</td>
               <td >{{ $docente->dui }}</td>
-              <td >{{ $docente->teléfono }}</td>
-              <td >{{ $docente->nit }}</td>
-
+              <td >{{ $docente->telefono }}</td>
+              <td >{{ $docente->genero }}</td>
+              
               @if($docente->estado=='ACTIVO')
               <td align="center"><div class="label label-table bg-mint"><div class="text-xs text-bold"></div>{{ $docente->estado }}</div></td>
               @endif
@@ -161,7 +164,11 @@
                 @endif
                 {{--<button type="button" class="btn btn-outline-info btn-sm infomodal" value="{{ $docente->id }}">Info</button>--}}
 
-
+@if($docente->idusers==null)
+                  <button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $docente->nombre }} {{ $docente->apellido }}" data-email="{{ $docente->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $docente->id }}"><i class="pli-add-user icon-lg "></i></button>
+                  @else
+                  <button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $docente->nombre }} {{ $docente->apellido }}" data-email="{{ $docente->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $docente->id }}"><i class="pli-id-card icon-lg "></i></button>
+                  @endif
               <!--	{{--<button class="btn btn-default btn-sm btn-circle"><i class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></i></button>
 
                 <button class="btn btn-lg btn-default btn-hover-warning">Hover Me!</button>
@@ -314,6 +321,67 @@
 <!--End DarBaja y Alta Bootstrap Modal-->
 
 
+  <div class="modal fade" id="modalIngresoUsuario"  name="modalIngreso" role="dialog"  tabindex="-1"  aria-labelledby="demo-default-modal" aria-hidden="true" >
+    <div class="modal-dialog {{--modal-lg--}}">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header alert-primary" id="modalIngresoUsuarioHeader" >
+          <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+          <h4 class="modal-title" style="color: white;" id="modalIngresoUsuarioLabel">Crear Usuario a Docente</h4>
+        </div>
+<br>
+            <h4 style="font-size: 14px;text-align: center;" class="text-main col-md-12" id="parrafoUsuario" ></h4>
+            <br>
+      <!------/////////////// SE ENTENDERA ESTUDIANTE COMO DOCENTE NO QUERIA CAMBIAR VARIABLE /////////////////////// -->
+        <!--Modal body-->
+        <div id="pruebatarget" class="modal-body" style="overflow-y: auto;  max-height: 700px;" >
+        
+          <form>
+            <input hidden="true" type="text" id="estudiante_id" name="estudiante_id">
+
+            <div  id="" class="col-md-12 form-group @if($errors->has('nombre')) has-danger @endif" >
+                  <div class="col-md-1"></div>
+                  <label for="example-text-input" class="col-md-2 control-label text-main text-bold ">Usuario:</label>
+                  <div class="col-md-7 " >
+                     <input class="form-control" type="text" placeholder="Ingrese usuario o email" id="usuarioEstudiante" name="usuarioEstudiante">
+                            <div id="" class="form-control-feedback"></div>
+                  </div>
+              </div>
+              <div  id="" class="col-md-12 form-group @if($errors->has('nombre')) has-danger @endif" >
+                  <div class="col-md-1"></div>
+                  <label for="example-text-input" class="col-md-2 control-label text-main text-bold ">Contraseña: </label>
+                  <div class="col-md-7 " >
+                     <input class="form-control" type="password" placeholder="Ingroduzca Contraseña" id="contraUsurioEstudiante" name="contraUsurioEstudiante">
+                            <div id="" class="form-control-feedback"></div>
+                  </div>
+              </div>
+              
+              <div  id="" class="col-md-12 form-group @if($errors->has('nombre')) has-danger @endif" >
+                  <div class="col-md-1"></div>
+                  <label for="example-text-input" class="col-md-2 control-label text-main text-bold ">Comprobar Contraseña:</label>
+                  <div class="col-md-7 " >
+                     <input class="form-control" type="password" placeholder="Ingroduzca nuevamente su Contraseña" id="contraRepeUsurioEstudiante" name="contraRepeUsurioEstudiante">
+                            <div id="" class="form-control-feedback"></div>
+                  </div>
+              </div>
+          </form>
+
+        </div>
+        <br>
+
+        {{----}}<!--Modal footer-->
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+          <button class="btn btn-primary" id="btnGuardarUsuario">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--===================================================-->
+  <!--End Default Bootstrap Modal-->
+
+
 
 
 
@@ -322,5 +390,6 @@
 @section('script')
 
 <script src="{{asset('js/docente.js')}}"></script>
+
 
 @endsection

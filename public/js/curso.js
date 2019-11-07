@@ -539,10 +539,10 @@ $(document).on('click','.masDias',function(){
                              '<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
                                    
                                     '<span class="input-group-addon">Inicio</span>'+
-                                    '<input type="time" placeholder="Hora Inicio" class="form-control"  id="horaInicio'+(valor)+'" name="horaInicio'+(valor)+'" />'+
+                                    '<input type="time" placeholder="Hora Inicio" class="form-control"  id="horaInicio'+(valor)+'" name="horaInicio'+(valor)+'" value="'+$('#horaInicio').val()+'" />'+
                                     '<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'+
                                     '<span class="input-group-addon">Fin</span>'+
-                                    '<input type="time" placeholder="Hora Fin" class="form-control" id="horaFin'+(valor)+'" name="horaFin'+(valor)+'" />'+
+                                    '<input type="time" placeholder="Hora Fin" class="form-control" id="horaFin'+(valor)+'" name="horaFin'+(valor)+'" value="'+$('#horaFin').val()+'" />'+
                                 '</div>'+
                                 
 

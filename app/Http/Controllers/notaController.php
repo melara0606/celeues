@@ -59,7 +59,7 @@ class notaController extends Controller
 
 " max="10" min="1" class="form-control bord-btm has-success enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="" ></div></td>';
 	          	}else{
-	          		$tbody.='<td  align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;box-shadow: 0 1px 1px rgba(1, 1, 1, 0) inset, 0 0 1px rgba(1, 1, 1, 1);" max="10" min="1" class="form-control bord-btm enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="'.$estudiantesNota->nota.'" ></div></td>';
+	          		$tbody.='<td  align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;box-shadow: 0 1px 1px rgba(1, 1, 1, 0) inset, 0 0 1px rgba(1, 1, 1, 1);" max="10" min="1" class="form-control bord-btm enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="'.$estudiantesNota->nota.'"></div></td>';
 	          	}
 	          	
 	          }///finforeach

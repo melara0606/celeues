@@ -252,7 +252,7 @@ class grupoController extends Controller
             foreach ($grupos as $key => $grupo) {
                 
                 
-            $outputGrupos.='<div class="col-md-6 single-item">'.
+          /* */ $outputGrupos.='<div class="col-md-6 single-item">'.
                 '<div class="col-sm-12 col-md-12">'.
                     
                      '<div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">'.
@@ -286,6 +286,80 @@ class grupoController extends Controller
                 '</div>'.
                 
             '</div>';
+            /* $outputGrupos.='<div class="col-md-6 single-item">
+                        <div class="col-sm-12 col-md-12">
+                            
+                             <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px 3px #bbbbbb !important; border-radius: 5px;">
+
+                                <div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
+                                    <div class="comments media-block">
+                                            {{--<a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="img/profile-photos/2.png"></a>--}}
+                                            <div class="media-body">
+                                                <div class="comment-header">
+                                                    <div class="" style="width: 100%;height: 25px;display: inline-block;">
+                                                    <a href="" style="" class="media-heading  text-md box-inline  text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))) }} Nivel {{$grupo->numNivel}}  {{$seccion[$grupo->numGrupo] }}
+                                                    </a>
+
+                                                     <a style="float: right; " class="media-heading box-inline text-md text-main  text-semibold  text-xs updateAula" data-name="name" data-type="text" data-pk="{{ $grupo->id }}" data-title="Enter name">
+                                                        @if($grupo->idaulas==null)
+                                                            <p  class="text-lg" id="aula{{$grupo->idgrupos}}" ><i class="pli-board icon-sm"></i> <u>N/A</u></p>
+                                                        @else
+                                                        <p class="text-lg" id="aula{{$grupo->idgrupos}}" style="color: green"><i class="pli-board icon-sm"></i> {{ucwords(strtolower(grupoController::verAula($grupo->idaulas))) }}<u></u></p>
+                                                        @endif
+
+                                                     </a>
+                                                     </div>
+                                                     <div class="" >
+                                                    <p class="text-muted text-sm " style="display: inline-block;">{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | <i class="pli-professor icon-lg"></i>&nbsp </p>';
+
+                                                        if($grupo->iddocentes==null){                                 
+                                                            $outputGrupos.='<p class="text-muted text-sm " id="docente{{$grupo->idgrupos}}" style="display: inline-block;">{{-- <i class="demo-pli-smartphone-3 icon-lg"></i>--}}<u>N/A</u></p>';
+                                                        }else{
+                                                             $outputGrupos.='<p class="text-muted text-sm text-semibold" id="docente{{$grupo->idgrupos}}" style="display: inline-block; color: green"> {{ucwords(strtolower(grupoController::verDocente($grupo->iddocentes))) }}</p>';
+                                                         }
+                                                          $outputGrupos.='</div>';
+                                                         if($grupo->estadoGrupo=='INICIADO'){
+                                                           $outputGrupos.='<p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-gray text-sm">Iniciado</span>&nbsp&nbsp 30 Inscritos</p>'; 
+                                                          }
+
+                                                         if($grupo->estadoGrupo=='EN CURSO'){
+                                                           $outputGrupos.='<p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label badge-primary text-sm">En curso</span>&nbsp&nbsp 30 Inscritos</p> ';
+                                                        }
+
+                                                         if($grupo->estadoGrupo=='FINALIZADO'){
+                                                           $outputGrupos.='<p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-danger text-sm">Finalizado</span>&nbsp&nbsp 30 Inscritos</p> ';
+                                                          }
+                                                 $outputGrupos.='</div>';
+                                                
+                                             
+                                         $outputGrupos.='<div class="text-right" style="padding-top: 15px">
+                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip deleteGrupo" data-original-title="Eliminar grupo" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-remove icon-md " ></i> </button>
+
+                                            <button onclick="location.href='{{url('/')}}/grupos/notas/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigNotas" data-cupos="{{$grupo->cupos}}" data-original-title="Asignar Notas" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-notepad icon-lg " ></i> </button>
+                                            <button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-student-male-female icon-lg " ></i> </button>
+                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
+                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
+                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip infoModal" data-original-title="Información" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-exclamation icon-lg " ></i> </button>
+                                       
+                                             
+                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip editarmodal" data-cupos="{{$grupo->cupos}}" data-original-title="Modificar Cupos" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
+
+                            
+                        
+                                            
+                                              
+                                             
+
+                                         </div>
+                                   
+                                  
+                                </div>
+                                
+                             </div>
+                            
+                        </div>
+                        
+                    </div>';*/
             
                /*$output.='<tr>'.
                         '<td>'.$message->apodo.'</td>'.
@@ -527,6 +601,7 @@ class grupoController extends Controller
          $output="";
         $messages=docente::where('nombre','like','%'.$texto.'%')
         ->orWhere('apellido','like','%'.$texto.'%')
+
         //->where("estado","ACTIVO")
         ->limit(4)
         ->get();
@@ -548,12 +623,28 @@ class grupoController extends Controller
 
 
                                                 '</div>'.
-                                            '</td>'.
-                                            '<td align="center">'.
-    '<button class="btn btn-default btn-trans btn-sm  btn-hover  add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>'.
-                                            '</td>'.
+                                            '</td>';
+                        if($message->idusers==null || $message->estado=='INACTIVO'){
+                            if($message->idusers==null){
+                                 $output.= '<td align="center">'.
+    '<button class="btn btn-default btn-trans btn-sm  btn-hover  add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'" disabled>Sin Usuario </button>'.
+                                            '</td>';
 
-                                        '</tr>';
+                            }else{
+                            $output.= '<td align="center">'.
+                            '<button class="btn btn-default btn-trans btn-sm  btn-hover  add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'" disabled>Inactivo<i class="demo-psi-arrow-right icon-md "></i> </button>'.
+                                                                    '</td>';
+                            }
+                        }else{
+
+                                            $output.= '<td align="center">'.
+    '<button class="btn btn-default btn-trans btn-sm  btn-hover  add-tooltip btnAsigAulaDocente" data-original-title="Asignar Aula"data-container="body" value="'.$message->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>'.
+                                            '</td>';
+                        }
+
+
+
+                                         $output.='</tr>';
                 
                 
             }
@@ -566,9 +657,16 @@ class grupoController extends Controller
         $message=grupo::find($idgrupos);
         //return Response::json($message);
 
-         $message->fill([
+        if ($message->iddocentes==null) {
+            $message->fill([
            'idaulas'=> $request->input('idaulas'),
             ]);
+        }else{
+         $message->fill([
+           'idaulas'=> $request->input('idaulas'),
+           'estado'=> 'EN CURSO'
+            ]);
+         }
         if($message->save()){
           // bitacoraController::bitacora('Modificó datos de peticion');
             $message=aula::find($request->input('idaulas'));

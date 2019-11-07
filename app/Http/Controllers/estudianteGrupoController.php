@@ -27,14 +27,43 @@ class estudianteGrupoController extends Controller
           ->select('estudiantes.*','estudiantegrupos.estado as estadoEstudiante','estudiantegrupos.id as idestudiantegrupo')
           ->where('estudiantegrupos.idgrupos',$idgrupos)
           ->get();
+
+          $table="";
+        $grupo=DB::table('grupos')
+          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
+          ->join('aulas', 'grupos.idaulas', '=', 'aulas.id')
+          ->join('docentes', 'grupos.iddocentes', '=', 'docentes.id')
+          
+          ->select('aulas.nombre as nombreAula','docentes.nombre as nombreDocente','docentes.apellido','grupos.cupos','grupos.estado')
+          ->where('grupos.id',$idgrupos)
+          ->get()->first();
+
+          $table.='<tr>
+                  <td class="" >Aula</td>
+                  <td class="">'.$grupo->nombreAula.'</td>
+                </tr>';
+          $table.='<tr>
+                  <td class="">Docente</td>
+                  <td class="">'.$grupo->nombreDocente.' '.$grupo->apellido.'</td>
+                </tr>';
+           $table.='<tr>
+                  <td class="">Cupos</td>
+                  <td class="">'.$grupo->cupos.'</td>
+                </tr>';
+           $table.='<tr>
+                  <td class="">Estado</td>
+                  <td class="">'.$grupo->estado.'</td>
+                </tr>';     
+
          // ->paginate(7);
-  			//return Response::json($estudiantegrupos);
+  			//return Response::json($grupo);
 
      	$estudiante=estudiante::latest()->get(); ///quitar luego
         	  return view('pagos.showEstudiantePago',[
             	 'selectGrupo' => $idgrupos, 
             	 'estudiantegrupos' => $estudiantegrupos,
             	  'estudiantes' => $estudiante, ///quitar luego
+                'llenarGrupos'=>$table,
             	]);
       }
       public function busquedaEstudiante($texto){
@@ -88,6 +117,7 @@ $output.='<td align="center">'.
     	$idestudiantes=$request->input('idestudiantes');
     	$message=estudiantegrupo::where('idgrupos',$idgrupos)->where('idestudiantes',$idestudiantes)->get();
 
+      
     	$grupo=DB::table('grupos')
           ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
           ->select('nivels.idcursocategorias')

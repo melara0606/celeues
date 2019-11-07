@@ -181,9 +181,9 @@
 					
 					
 					{{--<div class="col-md-1"></div>--}}	
-					<div class="col-md-12" style="background-color: white">
-						<div class="">
-					<table id="myTable" class="table bord-top table-responsive bord-btm table-striped table-dark table-dark row-border dataTable no-footer">
+					<div class="col-md-12 col-sm-12" style="background-color: white">
+						<div class="table-responsive ">
+					<table id="myTable" class="table bord-top bord-btm table-striped  row-border dataTable no-footer">
 							<thead id="thead">
 										
 								</thead>

@@ -22,6 +22,11 @@ class CreateDocentesTable extends Migration
             $table->string('telefono');
             $table->string('nit');
             $table->string('ncuenta');
+            $table->enum('estado',array('ACTIVO','INACTIVO'));
+            $table->enum('genero',array('FEMENINO','MASCULINO'));
+           
+            $table->integer('idusers')->unsigned()->nullable()->default(null);
+            $table->foreign('idusers')->references('id')->on('users');
            
             $table->timestamps();
         });

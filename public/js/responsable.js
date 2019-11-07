@@ -136,6 +136,24 @@ $.niftyAside('darkTheme');
             dataType: 'json',
             success: function (data) {
              console.log(data);
+              if (data['bandera']==3) {
+              var msj='';
+              msj+='</ul>';
+              for(var i=0;i<data['errors'].length;i++)
+              {
+                msj+='<li>'+data['errors'][i]+'</li>'; 
+              }
+              msj+='</ul>';
+              $.niftyNoty({
+                type: 'danger',
+                       // icon : 'fa fa-bolt fa-2x',
+                       container : 'floating',
+                       title : 'llenar Campos Requeridos!!',
+                       message : msj,
+                       timer : 6000
+                     });
+
+            }
             // data[0];
             if(data['bandera']==1){
                $('#modalIngreso').modal('hide');
@@ -153,7 +171,7 @@ $.niftyAside('darkTheme');
                   window.location.reload();////recarga la pagina actual
                  // $(location).attr('href','/peticionForm');
                }, 4000);
-             } else{
+             } else if(data['bandera']==2){
                ///menasje de error
               $.niftyNoty({
                 type: "danger",

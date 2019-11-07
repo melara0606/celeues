@@ -29,6 +29,8 @@ class CreateEstudiantesTable extends Migration
             $table->integer('idresponsables')->unsigned()->nullable()->default(null);
             $table->foreign('idresponsables')->references('id')->on('responsables');
             
+            $table->integer('idusers')->unsigned()->nullable()->default(null);//->after('idresponsables');
+            $table->foreign('idusers')->references('id')->on('users');
 
        
             $table->timestamps();

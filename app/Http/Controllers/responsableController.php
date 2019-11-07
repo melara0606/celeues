@@ -21,7 +21,34 @@ class responsableController extends Controller
       }
 
     public function create(Request $request){//createBeneficiariosRequest $request){
+        $attributes = [
+            'nombre' => 'nombre',
+            'apellido' => 'apellido',
+            'email' => 'email',
+            'telefono' => 'telefono',
 
+            'dui' => 'dui',
+        ];
+        $validator = \Validator::make($request->all(), [
+            'nombre' => 'required|min:2',
+            'apellido' => 'required|min:2',
+            'dui' => 'required | unique:users,email',
+            'telefono' => 'required',
+            'email' => 'required',
+        ], [
+         // 'usuario.unique' => 'El usuario '.$request->input('usuario').' ya esta en uso',
+        ]
+        , $attributes);
+
+/////////////////////////////////////////////////////////////////////
+        if ($validator->fails())
+        {
+            return response()->json([
+             'bandera' =>3,
+             'errors'=>$validator->errors()->all(),
+         ]);
+        }
+//////////////////////////////////////////////////////////////////////   
    		$message= responsable::create([
     		'nombre'=> strtoupper($request->input('nombre')),
     		'apellido'=> strtoupper($request->input('apellido')),

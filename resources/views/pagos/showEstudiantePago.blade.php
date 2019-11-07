@@ -34,11 +34,12 @@
 		<!--===================================================-->
 		<div class="row col-md-3">
 			<input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
+			<input type="text" hidden="true" name="llenarGrupos"  id="llenarGrupos" value="{{$llenarGrupos}}">
 			
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">
-						<h4>Grupo	</h4>
+						<h4>Info Grupo	</h4>
 		
 					</div>
 
@@ -53,24 +54,24 @@
 		</div>
 		 <input class="" type="text" id="hiddenIdCategoria" name="hiddenIdCategoria" value="{{$selectCategoria}}" >
             --}}
-         <div {{--style="display: none;"--}}>
+         <div style="display: none;"{{----}}>
             		<input class=""  type="text" id="hiddenGrupo" name="hiddenGrupo" value="{{$selectGrupo}}" >
 		</div>
 
 						
 					</div>
-					
+
 					<div class="row col-md-12 col-sm-12">
 						<div class="comments media-block">
 					                        
 		                        <div class="media-body">
 		                            <div class="comment-header">
-		                            	<div class="" style="width: 100%;height: 25px;display: inline-block;">
-			                                <a href="" style="" class="media-heading  text-lg box-inline  text-main text-semibold ">Ingles Nivel 10 Seccion A
+		                            	{{--<div class="" style="width: 100%;height: 25px;display: inline-block;">
+			                                <a href="" style="font-size: 14px;" class="media-heading  text-md box-inline  text-main text-semibold ">Ingles Nivel 10 Seccion A
 			                                </a>
 
 		                               
-		                                 </div>
+		                                 </div>--}}
 		                                 <div class="media-body">
 				                              {{--  <p class=" text-muted text-md " >Categoria Adulto</p>
 
@@ -80,26 +81,27 @@
 				                                  <p class="  text-sm ">Estado:<span id="estado1" class="label bg-gray text-sm">Iniciado</span></p> 
 					                        <p class="  text-sm ">Inscritos 30 Inscritos</p>
 					                        <p class="  text-sm ">Cupos 10 cupos</p>--}}
-					                        <table class="table table-bordered " >
+					                        <h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">informacion</h6>
+					                        <table class="table bord-btm bord-top bord-lft bord-rgt table-striped table-sm " style="">
 							
-							<tbody>
+							<tbody id="llenarTabla">
 								<tr>
 
-									<td >Nombre</td>
-									<td >Ingles Nivel 10</td>
+									<td class="" >Aula</td>
+									<td class="">Aesip</td>
 				
 								</tr>
 								<tr>
-									<td>Nombre</td>
-									<td>Docente</td>
+									<td class="">Docente</td>
+									<td class="">Cheyoylk asldk adslkf as laskd </td>
 								</tr>
 								<tr>
-									<td>Nombre</td>
-									<td>Estudiante</td>
+									<td class="">Cupos</td>
+									<td class="">30</td>
 								</tr>
 								<tr>
-									<td>Nombre</td>
-									<td>INICIADO</td>
+									<td class="">Estado</td>
+									<td class="">INICIADO</td>
 								</tr>
 							</tbody>
 						</table>
@@ -120,25 +122,25 @@
 						
 					<div class="row">
 						
-						<div class="col-sm-12 table-toolbar-left">
+						<div class="col-sm-11 table-toolbar-right">
 							<button id="btnnuevo" class="btn btn-purple" ><i class="demo-pli-add"></i> Agregar Estudiante</button>
 
-							<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
+							{{--<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
 
 							<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
-							
+							--}}
 						</div>
 						<div class="col-sm-6 table-toolbar-right">
 							
 						</div>
 					</div>
-					<br>
+					{{--<br>
 					
 				
 					<div class="row">
 						
 					</div>
-					<br>
+					<br>--}}
 					
 				</div><!--End Panel Body -->
 			</div><!--End Pannel -->		
@@ -567,7 +569,10 @@
 
 <script src="{{asset('js/jquery.snippet.min.js')}}"></script> 
 	--}}<script type="text/javascript">
-		 $(document).ready(function(){		 	
+		 $(document).ready(function(){	
+		  $('#llenarTabla').empty();
+   $('#llenarTabla').html($('#llenarGrupos').val());
+	 	
 $.niftyNav('collapse');
    $('#myTable').DataTable({
   //    "dom": '<"top"lf>rt<"bottom"pi>'

@@ -8,9 +8,18 @@
 
                         </div>
                         <div class="col-lg-10 ">
-
+                          @if ( count ($errors) > 0 )
+                            <div class= "alert alert-danger" >
+                              <ul>
+                                @<?php foreach ($errors->all() as $error): ?>
+                                  <li> {{ $error }}</li>
+                                <?php endforeach; ?>
+                              </ul>
+                            </div>
+                          @endif
    {{-- <div class="row">
         <h6 class="text-main" style="font-weight:bold;">Formulario</h6></div>       --}}
+
     <div  id="nombrediv" class="form-group @if($errors->has('nombre')) has-danger @endif" >
         <label for="example-text-input" class="col-md-3 control-label text-main text-bold "> Nombre: *</label>
         <div class="col-md-7 " >
@@ -58,6 +67,17 @@
         </div>
     </div>
 
+    <div id="generodiv" class="form-group">
+        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Genero*</label>
+        <div class="col-md-7  ">
+            <select class="col-md-7 form-control" name="genero" id="genero">
+              <option value="0">MASCULINO</option>
+              <option value="1">FEMENINO</option>
+            </select>
+            <div id="generofeed" class="form-control-feedback"></div>
+        </div>
+    </div>
+
     {{-- <div id="apellidodiv" class="form-group">
         <label for="example-text-input" class="col-md-3 control-label text-main text-bold ">Apellido: *</label>
         <div class="col-md-7">
@@ -95,14 +115,15 @@
             <div id="nitfeed" class="form-control-feedback"></div>
         </div>
     </div>
-
+<br>
     <div id="ncuentadiv" class="form-group row">
-        <label for="example-number-input" class="col-md-3 control-label text-main text-bold">N° Cuenta: *</label>
+        <label for="example-number-input" class="col-md-3 control-label text-main text-bold">N Cuenta: *</label>
         <div class="col-md-7">
             <input class="form-control" type="text"  id="ncuenta" name="ncuenta">
             <div id="ncuentafeed" class="form-control-feedback"></div>
         </div>
     </div>
+
     </div><!--=Fincol 10=-->
 
 </div>

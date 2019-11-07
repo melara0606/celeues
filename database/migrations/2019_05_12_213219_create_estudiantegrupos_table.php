@@ -20,7 +20,7 @@ class CreateEstudiantegruposTable extends Migration
             $table->double('notaFinal',4);
             
 
-            $table->integer('idanteriorgrupos')->unsigned()->nullable()->default(null);
+            $table->integer('idanteriorgrupos')->nullable()->default(null);
 
             $table->integer('idgrupos')->unsigned()->nullable()->default(null);
             $table->foreign('idgrupos')->references('id')->on('grupos');

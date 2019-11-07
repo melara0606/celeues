@@ -126,7 +126,7 @@
 								<th class="text-center">Nombre</th>
 								<th>Edad</th>
 
-								<th class="text-center">Rango de edades</th>
+								<th class="text-center">Rango de edadesuuu</th>
 								<th class="text-center">Acciones</th>
 
 							</tr>
