@@ -32,6 +32,15 @@
           
     });
 
+  $(document).on('click','.asigNotas',function(){
+    var value = $(this).val();
+window.location.href = value;
+    });
+
+  $(document).on('click','.asigEstudiantes',function(){
+    var value = $(this).val();
+window.location.href = value;
+    });
 
 $('#cursoSelect').on('change', function (e) {
     var optionSelected = $("option:selected", this);
@@ -467,8 +476,13 @@ $(document).on('click','.filtrar',function(e){
 $("#divCardsGrupos").pagify(4, ".single-item");
 //$("#divCardsGrupos").pagify();
 //$("#divCardsGrupos").pagify(2, ".single-item");
-
-
+            $(".editarmodal").tooltip();
+            $(".infoModal").tooltip();
+            $(".asigDocente").tooltip();
+            $(".asigAula").tooltip();
+            $(".asigNotas").tooltip();
+            $(".asigEstudiantes").tooltip();
+  
 
              },
              error: function (data) {
@@ -487,6 +501,10 @@ $("#divCardsGrupos").pagify(4, ".single-item");
               
                   }
                 });
+
+        
+           
+
 });
   $(document).on('click','.infoModal',function(){
 

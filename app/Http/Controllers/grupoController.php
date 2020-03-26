@@ -175,20 +175,24 @@ class grupoController extends Controller
 
         //return Response::json($periodo);
 
-    	   return view('grupos.showGrupos',[
-    			 //'periodos' => $periodos,
-               	 'anhos' => $anhos,
-				 'cursos' => $curso, 
-				 'cursoNombreDiv'=>$curso->first()->nombreIdioma.' '.$curso->first()->nombreModalidad.' '.$curso->first()->turno,
-            	 'grupos'=>$grupos,           
-            	 'selectCategoria'=> $cursocategorias->first()->idcategorias,/////parametros
-            	 'selectCurso'=> $curso->first()->id,  /////parametros
-            	 'categorias'=> $cursocategorias,   
-            	 'selectYear'=>$year,/////parametros
+            $infoJSON=[//Docente',[
+                 //'periodos' => $periodos,
+                 'anhos' => $anhos,
+                 'cursos' => $curso, 
+                 'cursoNombreDiv'=>$curso->first()->nombreIdioma.' '.$curso->first()->nombreModalidad.' '.$curso->first()->turno,
+                 'grupos'=>$grupos,           
+                 'selectCategoria'=> $cursocategorias->first()->idcategorias,/////parametros
+                 'selectCurso'=> $curso->first()->id,  /////parametros
+                 'categorias'=> $cursocategorias,   
+                 'selectYear'=>$year,/////parametros
                  'selectModulo'=>$curso->first()->modulos,/////parametros  
                  'selectPeriodo'=>$periodoActual->id,/////parametros  
                  'periodos'=>$periodos,        
-            	]);
+                ];
+
+    	   return view('grupos.showGrupos',$infoJSON);
+
+           //return view('grupos.showGruDocente',$infoJSON);
 
     }//fin show
 
@@ -251,8 +255,77 @@ class grupoController extends Controller
             $outputCategorias="";
             foreach ($grupos as $key => $grupo) {
                 
+     $outputGrupos.='<div class="col-md-6 single-item">'.
+            '<div class="col-sm-12 col-md-12">'.     
+                 '<div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px 3px #bbbbbb !important; border-radius: 5px;">'.
+                    '<div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
+                        <div class="comments media-block">
+                                <div class="media-body">
+                                    <div class="comment-header">
+                                        <div class="" style="width: 100%;height: 25px;display: inline-block;">'.
+                                        '<a href="" style="" class="media-heading  text-md box-inline  text-main text-semibold ">'.ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))).' Nivel '.$grupo->numNivel.' '. $seccion[$grupo->numGrupo].'  </a>
+
+                                         <a style="float: right; " class="media-heading box-inline text-md text-main  text-semibold  text-xs updateAula" data-name="name" data-type="text" data-pk="'.$grupo->id.'" data-title="Enter name">
+                                            ';
+                                            if($grupo->idaulas==null){
+                                                
+                                                 $outputGrupos.='    <p  class="text-lg" id="aula'.$grupo->idgrupos.'" ><i class="pli-board icon-sm"></i> <u>N/A</u></p>';
+                                           
+                                            }else{
+                                                 $outputGrupos.='<p class="text-lg" id="aula'.$grupo->idgrupos.'" style="color: green"><i class="pli-board icon-sm"></i> '.ucwords(strtolower(grupoController::verAula($grupo->idaulas))) .'<u></u></p>';
+                                            }
+                                        
+                         $outputGrupos.=' </a>
+                                         </div>
+                                         <div class="" >
+                                        <p class="text-muted text-sm " style="display: inline-block;">'.ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))).'| <i class="pli-professor icon-lg"></i>&nbsp </p>';
+
+                                            if($grupo->iddocentes==null){                                 
+                                                    $outputGrupos.='   <p class="text-muted text-sm " id="docente'.$grupo->idgrupos.'" style="display: inline-block;"><u>N/A</u></p>';
+                                            }else{
+                                                    $outputGrupos.='  <p class="text-muted text-sm text-semibold" id="docente'.$grupo->idgrupos.'" style="display: inline-block; color: green">'.ucwords(strtolower(grupoController::verDocente($grupo->iddocentes))).'</p>';
+                                             }
+                     $outputGrupos.='   </div>';
+                                             if($grupo->estadoGrupo=="INICIADO"){
+                                                     $outputGrupos.='<p class=" media-left text-sm "><span id="estado'.$grupo->idgrupos.'" class="label bg-gray text-sm">Iniciado</span>&nbsp&nbsp 30 Inscritos</p>';
+                                              }
+
+                                             if($grupo->estadoGrupo=="EN CURSO"){
+                                                    $outputGrupos.='<p class=" media-left text-sm "><span id="estado'.$grupo->idgrupos.'" class="label badge-primary text-sm">En curso</span>&nbsp&nbsp 30 Inscritos</p>';
+                                              }
+
+                                             if($grupo->estadoGrupo=="FINALIZADO"){
+                                                    $outputGrupos.='<p class=" media-left text-sm "><span id="estado'.$grupo->idgrupos.'" class="label bg-danger text-sm">Finalizado</span>&nbsp&nbsp 30 Inscritos</p>';
+                                             }
+                  $outputGrupos.='     </div>
+                                    
+                                     <!-------------------------------------->
+                            <div class="text-right" style="padding-top: 15px">
+                                <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip deleteGrupo" data-original-title="Eliminar grupo" data-container="body" value="'.$grupo->idgrupos.'"><i class="demo-pli-remove icon-md " ></i> </button>
+
+                                <button onclick="" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigNotas" data-cupos="'.$grupo->cupos.'" data-original-title="Asignar Notas" data-container="body" value="'.url('/').'/grupos/notas/'.$grupo->idgrupos.'"><i class="pli-notepad icon-lg " ></i> </button>
+                                <button onclick="" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigEstudiantes" data-original-title="Listado de Estudiantes" data-container="body" value="'.url('/').'/grupos/estudiantes/'.$grupo->idgrupos.'"><i class="pli-student-male-female icon-lg " ></i> </button>
+                                <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="'.$grupo->idgrupos.'"><i class="pli-board icon-lg"></i></button>
+                                <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="'.$grupo->idgrupos.'"><i class="pli-professor icon-lg" ></i> </button>
+                                <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip infoModal" data-original-title="Información" data-container="body" value="'.$grupo->idgrupos.'"><i class="demo-pli-exclamation icon-lg " ></i> </button>
+                           
+                                 
+                                <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip editarmodal" data-cupos="'.$grupo->cupos.'" data-original-title="Modificar Cupos" data-container="body" value="'.$grupo->idgrupos.'"><i class="demo-psi-pen-5 icon-md " ></i> </button>       
+
+                             </div>
+                                    
+
+                                </div>
+                        </div>
+                    </div>
+                    
+                 </div>
                 
-          /* */ $outputGrupos.='<div class="col-md-6 single-item">'.
+            </div>
+            
+        </div>
+        ';
+          /*  $outputGrupos.='<div class="col-md-6 single-item">'.
                 '<div class="col-sm-12 col-md-12">'.
                     
                      '<div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">'.
@@ -285,82 +358,8 @@ class grupoController extends Controller
                     
                 '</div>'.
                 
-            '</div>';
-            /* $outputGrupos.='<div class="col-md-6 single-item">
-                        <div class="col-sm-12 col-md-12">
-                            
-                             <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px 3px #bbbbbb !important; border-radius: 5px;">
-
-                                <div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
-                                    <div class="comments media-block">
-                                            {{--<a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="img/profile-photos/2.png"></a>--}}
-                                            <div class="media-body">
-                                                <div class="comment-header">
-                                                    <div class="" style="width: 100%;height: 25px;display: inline-block;">
-                                                    <a href="" style="" class="media-heading  text-md box-inline  text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))) }} Nivel {{$grupo->numNivel}}  {{$seccion[$grupo->numGrupo] }}
-                                                    </a>
-
-                                                     <a style="float: right; " class="media-heading box-inline text-md text-main  text-semibold  text-xs updateAula" data-name="name" data-type="text" data-pk="{{ $grupo->id }}" data-title="Enter name">
-                                                        @if($grupo->idaulas==null)
-                                                            <p  class="text-lg" id="aula{{$grupo->idgrupos}}" ><i class="pli-board icon-sm"></i> <u>N/A</u></p>
-                                                        @else
-                                                        <p class="text-lg" id="aula{{$grupo->idgrupos}}" style="color: green"><i class="pli-board icon-sm"></i> {{ucwords(strtolower(grupoController::verAula($grupo->idaulas))) }}<u></u></p>
-                                                        @endif
-
-                                                     </a>
-                                                     </div>
-                                                     <div class="" >
-                                                    <p class="text-muted text-sm " style="display: inline-block;">{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | <i class="pli-professor icon-lg"></i>&nbsp </p>';
-
-                                                        if($grupo->iddocentes==null){                                 
-                                                            $outputGrupos.='<p class="text-muted text-sm " id="docente{{$grupo->idgrupos}}" style="display: inline-block;">{{-- <i class="demo-pli-smartphone-3 icon-lg"></i>--}}<u>N/A</u></p>';
-                                                        }else{
-                                                             $outputGrupos.='<p class="text-muted text-sm text-semibold" id="docente{{$grupo->idgrupos}}" style="display: inline-block; color: green"> {{ucwords(strtolower(grupoController::verDocente($grupo->iddocentes))) }}</p>';
-                                                         }
-                                                          $outputGrupos.='</div>';
-                                                         if($grupo->estadoGrupo=='INICIADO'){
-                                                           $outputGrupos.='<p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-gray text-sm">Iniciado</span>&nbsp&nbsp 30 Inscritos</p>'; 
-                                                          }
-
-                                                         if($grupo->estadoGrupo=='EN CURSO'){
-                                                           $outputGrupos.='<p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label badge-primary text-sm">En curso</span>&nbsp&nbsp 30 Inscritos</p> ';
-                                                        }
-
-                                                         if($grupo->estadoGrupo=='FINALIZADO'){
-                                                           $outputGrupos.='<p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-danger text-sm">Finalizado</span>&nbsp&nbsp 30 Inscritos</p> ';
-                                                          }
-                                                 $outputGrupos.='</div>';
-                                                
-                                             
-                                         $outputGrupos.='<div class="text-right" style="padding-top: 15px">
-                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip deleteGrupo" data-original-title="Eliminar grupo" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-remove icon-md " ></i> </button>
-
-                                            <button onclick="location.href='{{url('/')}}/grupos/notas/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigNotas" data-cupos="{{$grupo->cupos}}" data-original-title="Asignar Notas" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-notepad icon-lg " ></i> </button>
-                                            <button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-student-male-female icon-lg " ></i> </button>
-                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
-                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
-                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip infoModal" data-original-title="Información" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-exclamation icon-lg " ></i> </button>
-                                       
-                                             
-                                            <button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip editarmodal" data-cupos="{{$grupo->cupos}}" data-original-title="Modificar Cupos" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
-
-                            
-                        
-                                            
-                                              
-                                             
-
-                                         </div>
-                                   
-                                  
-                                </div>
-                                
-                             </div>
-                            
-                        </div>
-                        
-                    </div>';*/
-            
+            '</div>';*/
+           
                /*$output.='<tr>'.
                         '<td>'.$message->apodo.'</td>'.
                         '<td>'.$message->nombre.
@@ -436,12 +435,22 @@ class grupoController extends Controller
     		$modulos="10";
 
     	}
-    	$periodo=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
-//return Response::json($periodo);
-   
+    	//-- Periodo Actual --//
+        $periodo=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
+       
     	for ($i=1; $i <=$numGrupo ; $i++) { 
-    		//return Response::json('entro');
-  
+
+            $grupos=grupo::where('numGrupo',$i)->where('idnivels',$nivel)->where('idperiodos',$periodo->id)->get()->first();
+           
+            //-- VErifica si existe un grupo con los mismos paramteros --//                         
+            if(count($grupos)>0){
+                 return Response::json([
+                    'bandera'=>0,
+                    'response'=>'Ya existe un grupo con esos registros',
+                 ]);
+            }
+           
+   
     		 $message= grupo::create([
 		      //'numperiodo'=> $i,
 		      'cupos'=> $cupos,

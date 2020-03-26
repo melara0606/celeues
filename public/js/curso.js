@@ -125,6 +125,7 @@ $(document).on('click','.deleteHorariosDias',function(){
   var value = $(this).val();
     $('#modalCategoriaNueva').modal('show');  
     $('#idCursosModificarCat').val(value); 
+    $("#ncatid").empty();
       $.getJSON($('#path').val()+'/curso/bus/categoria', function (data) {
           //success data
             console.log(data);     
@@ -497,7 +498,8 @@ $(document).on('click','.masCategoria',function(){
 
 $(document).on('click','.menosCategoria',function(){
    var value= $(this).val();
-   
+   $("#cont").val($("#cont").val()-1); 
+  $("#nombre" + value).remove(); 
   $("#trow" + value).remove(); 
   $("#trow2" + value).remove(); 
   
@@ -627,7 +629,7 @@ $("#btnGuardar").click(function (e) {
    //  edadFin:$('#edadFin').val(),
    }      
 
-$('#btnGuardar').attr("disabled", true);
+  $('#btnGuardar').attr("disabled", true);
           var state = $('#btnGuardar').val();///para ver si es add o update
           var type = "POST"; //for creating new resource
           var my_url = $('#path').val()+"/curso/create";
@@ -643,7 +645,7 @@ $('#btnGuardar').attr("disabled", true);
          
          // console.log($("#cat_id2").val());
           console.log($('#form').show());
-         $('#modalIngreso').modal('hide');
+         
 
           $.ajax({
 
@@ -655,7 +657,7 @@ $('#btnGuardar').attr("disabled", true);
              console.log(data);
             // data[0];
             if(data['bandera']==1){
-               
+                $('#modalIngreso').modal('hide');
                $.niftyNoty({
                 type: "success",
                 container : "floating",
@@ -671,7 +673,24 @@ $('#btnGuardar').attr("disabled", true);
                  // $(location).attr('href','/peticionForm');
                }, 4000);
              } else{
-               ///menasje de error
+              $('#btnGuardar').attr("disabled", false);
+               var msj='';
+              msj+='</ul>';
+              for(var i=0;i<data['errors'].length;i++)
+              {
+                msj+='<li>'+data['errors'][i]+'</li>'; 
+              }
+              msj+='</ul>';
+              $.niftyNoty({
+                type: 'danger',
+                       // icon : 'fa fa-bolt fa-2x',
+                       container : 'floating',
+                       title : 'Llenar Campos Requeridos!!',
+                       message : msj,
+                       timer : 6000
+                     });
+  
+               /*//menasje de error
               $.niftyNoty({
                 type: "danger",
                 container : "floating",
@@ -679,7 +698,7 @@ $('#btnGuardar').attr("disabled", true);
                 message :  data['response'],
                 closeBtn : false,
                 timer : 3000
-                });
+                });*/
 
              }
 
@@ -696,7 +715,7 @@ $('#btnGuardar').attr("disabled", true);
                 type: "danger",
                 container : "floating",
                 title : "Upps!",
-                message : "A ocurrido un problema"+errors.nombre,
+                message : "A ocurrido un problema"+data['response'],
                 closeBtn : false,
                 timer : 3000
                 });

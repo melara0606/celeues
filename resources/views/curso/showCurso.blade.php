@@ -348,7 +348,8 @@
 						                    			<td {{-- style="border-color:purple;"--}} align="left"><div class="text-sm text-bold">{{ $categoria->nombre }}</div>
 						                    				 
 						                    			</td>
-						                    			<td><div class="label label-table bg-primary add-tooltip" data-original-title="Adulto" data-container="body" value="id" style="border-radius:15px !important;"><div class="text-xs text-bold" ></div>
+						                    			<td>
+						                    				<div class="label label-table bg-primary add-tooltip" data-original-title="Adulto" data-container="body" value="id" style="border-radius:15px !important;"><div class="text-xs text-bold" ></div>
 						                    				${{ $categoria->cuota }}</div>
 						                    			</td>
 						                    			<td  align="right">

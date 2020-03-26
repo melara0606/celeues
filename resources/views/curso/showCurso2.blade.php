@@ -1,4 +1,4 @@
-	@extends('layouts.appPlantilla')
+	@extends('layouts.shared.appPlantilla')
 
 	@section('content')
 <?php use App\Http\Controllers\cursoController;
@@ -271,7 +271,7 @@ $verifica++ --}}
 						                    			<td>
 						                    				<div class="text-sm text-muted text-bold">
 						                    					<a href="{{url('/')}}/cursoNiveles/{{$categoria->idcursocategoria}}">
-						                    				<u>20 Niveles</u>
+						                    				<u>{{cursoController::verCantidadNiveles($categoria->idcursocategoria)}}    Niveles</u>
 						                    				</a>
 						                    				</div> 
 						                    			</td>
@@ -593,7 +593,7 @@ $verifica++ --}}
 			                        
 			                            
 			                            <div class="col-md-7">
-			                                <input class="form-control" type="number" placeholder="$##.##" id="nnombre" name="nnombre" required="required">
+			                                <input class="form-control" type="number" placeholder="##.##" id="nnombre" name="nnombre" required="required">
 			                                <div id="descripcionfeed" class="form-control-feedback"></div>                   
 			                            </div>
 			                            

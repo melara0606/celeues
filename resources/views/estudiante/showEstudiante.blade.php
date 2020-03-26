@@ -1,4 +1,4 @@
-	@extends('layouts.appPlantilla')
+	@extends('layouts.shared.appPlantilla')
 
 
 	  @section('links')
@@ -123,10 +123,12 @@
 							<tr>
 								<th class="text-center">#</th>
 								
-								<th class="text-center">Nombre</th>
-								<th>Edad</th>
+								<th class="text-left">Nombre</th>
+								<th class="text-center">Usuario</th>
+								<th class="text-center">Edad</th>
+								<th class="text-center">Telefono</th>
 
-								<th class="text-center">Rango de edadesuuu</th>
+								
 								<th class="text-center">Acciones</th>
 
 							</tr>
@@ -136,12 +138,26 @@
 							@forelse($estudiantes as $estudiante)
 							<tr id="{{ $estudiante->id }}">
 								<td align="center">{{ $correlativo++ }}</td>
-								<td align="Center"><i class="pli-student-male icon-lg" style="padding-top: 5pX"></i> <div class="label label-table bg-dark add-tooltip" data-original-title="{{ $estudiante->nombre }}" data-container="body" value="{{ $estudiante->id }}" ><div class="text-xs text-bold"></div>{{ $estudiante->nombre }}</div></td>
-								<td >{{ $estudiante->descripcion }}</td>
-								<td align="center">
-									<i class="pli-student-male icon-lg" style="padding-top: 5pX"></i>
-									<div class="label label-table bg-gray"><div class="text-xs text-bold"></div></div>
+								<td align="bord-left">
+									<div class="text-sm text-bold">
+										{{ $estudiante->nombre}} {{ $estudiante->apellido}}
+									</div> 
 								</td>
+								
+								{{--<td align="Center"><i class="pli-student-male icon-lg" style="padding-top: 5pX"></i> <div class="label label-table bg-dark add-tooltip" data-original-title="{{ $estudiante->nombre }}" data-container="body" value="{{ $estudiante->id }}" ><div class="text-xs text-bold"></div>{{ estudianteController::getUserName($estudiante->id) }}</div></td>
+								--}}			
+								<td align="center">
+									
+									<div class="label label-table bg-dark">
+										<div class="text-sm text-bold">
+											{{ estudianteController::getUserName($estudiante->id) }}	
+										</div>
+									</div>
+								</td>
+								<td align="center">{{ estudianteController::getNumberYears($estudiante->fechaNac) }}</td>
+								
+								<td align="center">{{ $estudiante->telefono }}</td>
+								
 								
 								<td align="center">
 								

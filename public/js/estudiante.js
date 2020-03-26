@@ -1,6 +1,6 @@
   $(document).ready(function(){
     $('#myTable').DataTable({
-      //"dom": '<"top"lf>rt<"bottom"pi>'
+      "dom": '<"top"l>frt<"bottom"pi>'
     });
     $('#modalIngreso').on('shown.bs.modal', function () {
       $('.modal-dialog').css('height', $('.modal-dialog').height() );
@@ -288,7 +288,7 @@ $("#btnGuardar").click(function (e) {
        dui:$('#dui').val(),
        telefono:$('#telefono').val(),
        email:$('#email').val(),
-      // idresponsables:$('#resp_id').val(),
+       idresponsables:null,//$('#resp_id').val(),
     }       
   }else{
    var formData = {

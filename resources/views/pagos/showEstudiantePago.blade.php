@@ -125,9 +125,9 @@
 						<div class="col-sm-11 table-toolbar-right">
 							<button id="btnnuevo" class="btn btn-purple" ><i class="demo-pli-add"></i> Agregar Estudiante</button>
 
-							{{--<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
+							<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
 
-							<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
+						{{--	<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
 							--}}
 						</div>
 						<div class="col-sm-6 table-toolbar-right">
@@ -176,7 +176,7 @@
 						</div>
 					</div>
 					 <div id="cursoNombreDiv">
-					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">GRUPOS DE </strong></p></h3></div>
+					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">{{$encabezadoGrupo}} </strong></p></h3></div>
 						
 
 

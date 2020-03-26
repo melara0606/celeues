@@ -19,17 +19,20 @@ class notaController extends Controller
 {
     public function show($idgrupos){
 
-     	//$estudiante=estudiante::latest()->get(); 
-     	 	$estudiantegrupos=DB::table('estudiantegrupos')
-          ->join('estudiantes', 'estudiantegrupos.idestudiantes', '=', 'estudiantes.id')
-          ->select('estudiantes.*','estudiantegrupos.estado as estadoEstudiante','estudiantegrupos.id as idestudiantegrupo')
-          ->where('estudiantegrupos.idgrupos',$idgrupos)
-          ->where('estudiantegrupos.estado','ACTIVO')
-          ->orderBY('estudiantes.nombre')
-          ->get();
-		  $tbody='';
-		  $x=0.00;
-		  $y=0.00;
+         $usuarioActual=\Auth::user();
+
+       	//$estudiante=estudiante::latest()->get(); 
+        $estudiantegrupos=DB::table('estudiantegrupos')
+        ->join('estudiantes', 'estudiantegrupos.idestudiantes', '=', 'estudiantes.id')
+        ->select('estudiantes.*','estudiantegrupos.estado as estadoEstudiante','estudiantegrupos.id as idestudiantegrupo')
+        ->where('estudiantegrupos.idgrupos',$idgrupos)
+        ->where('estudiantegrupos.estado','ACTIVO')
+        ->orderBY('estudiantes.nombre')
+        ->get();
+
+        $tbody='';
+        $x=0.00;
+        $y=0.00;
          
           foreach ($estudiantegrupos as $estudiantegrupo) {
           	$tbody.='<tr>';
@@ -42,28 +45,44 @@ class notaController extends Controller
                 '<p class="text-muted text-xs">'.$users->name.'</p>'.
             '</div></td>';
           	//$tbody.='<td>'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.'</td>';
-			$estudiantesNotas=DB::table('notas')
+	       
+         		$estudiantesNotas=DB::table('notas')
 	          ->join('ponderacions', 'notas.idponderacions', '=', 'ponderacions.id')
 	          ->select('notas.*','ponderacions.ponderacion','ponderacions.correlativo')
 	          ->where('notas.idestudiantegrupos',$estudiantegrupo->idestudiantegrupo)
 	          ->get();
 	          //return Response::json($estudiantesNotas);
 	          $x=0.00;
+
+            $grupo=grupo::find($idgrupos);
+
+            //return Response::json($grupo->periodos);
+
+            if($grupo->periodos->estado=="ACTIVO"){
+               if($grupo->estado=="FINALIZADO" && $usuarioActual->tipo=="DOCENTE"){///AND USER TIPO DOCENTE
+                  $readonly="readonly";
+                }else{
+                  $readonly="";
+                }
+            }else{
+              $readonly="readonly";
+            }
+            
 	         
-	          foreach ($estudiantesNotas as $estudiantesNota) {
-	          	$x=$x+($estudiantesNota->nota*($estudiantesNota->ponderacion)/100);
+            foreach ($estudiantesNotas as $estudiantesNota) {
+                $x=$x+($estudiantesNota->nota*($estudiantesNota->ponderacion)/100);
 
-	          	if ($estudiantesNota->nota==0) {
-	          		//style="background-color:#FBFBFB"
-	          		$tbody.='<td align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;
+                if ($estudiantesNota->nota==0) {
+    	          		//style="background-color:#FBFBFB"
+                   $tbody.='<td align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;
+                   " max="10" min="1" class="form-control bord-btm has-success enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="" '.$readonly.'></div></td>';
 
-" max="10" min="1" class="form-control bord-btm has-success enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="" ></div></td>';
-	          	}else{
-	          		$tbody.='<td  align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;box-shadow: 0 1px 1px rgba(1, 1, 1, 0) inset, 0 0 1px rgba(1, 1, 1, 1);" max="10" min="1" class="form-control bord-btm enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="'.$estudiantesNota->nota.'"></div></td>';
-	          	}
+               }else{
+                   $tbody.='<td  align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;box-shadow: 0 1px 1px rgba(1, 1, 1, 0) inset, 0 0 1px rgba(1, 1, 1, 1);" max="10" min="1" class="form-control bord-btm enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="'.$estudiantesNota->nota.'" '.$readonly.'></div></td>';
+               }
 	          	
 	          }///finforeach
-			$tbody.='<td align="center"><div class="form-group has-success" id="divetf'.$estudiantegrupo->idestudiantegrupo.'" ><input type="number"  data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" style="width:80px" max="10" min="1" class="form-control bord-btm enter" name="" id="etf'.$estudiantegrupo->idestudiantegrupo.'" value="'.$x.'" readonly="true"></div></td>';
+			 $tbody.='<td align="center"><div class="form-group has-success" id="divetf'.$estudiantegrupo->idestudiantegrupo.'" ><input type="number"  data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" style="width:80px" max="10" min="1" class="form-control bord-btm enter" name="" id="etf'.$estudiantegrupo->idestudiantegrupo.'" value="'.$x.'" readonly="true"></div></td>';
 /*
 			$tbody.='<td align="center"><div width="80px" class="panel media pad-all bg-info">
 					                   
@@ -75,37 +94,34 @@ class notaController extends Controller
 */	          	
 			
           $tbody.='</tr>';
-	  			//return Response::json($tbody);          	
           }///fin foreach
          
-
-         // ->paginate(7);
   			//return Response::json($estudiantegrupos);
 
-          ///////////cantdiad de notas
-         $notas=ponderacion::where('idgrupos',$idgrupos)->get();
-         $thead='';
-         $thead.='<tr>';
-         $thead.='<th>#</th>';
-         
-         $thead.='<th>Estudent Name</th>';
-         foreach ($notas as $nota) {
-         	$thead.='<th style="text-align:center;">'.$nota->nombreEvaluacion.' ('.$nota->ponderacion.'%)</th>';
-         }
-         $thead.='<th>Final Note</th>';
-         $thead.='</tr>';
+            ///////////cantdiad de notas
+            $notas=ponderacion::where('idgrupos',$idgrupos)->get();
+            $thead='';
+            $thead.='<tr>';
+            $thead.='<th>#</th>';
+
+            $thead.='<th>Estudent Name</th>';
+            foreach ($notas as $nota) {
+              $thead.='<th style="text-align:center;">'.$nota->nombreEvaluacion.' ('.$nota->ponderacion.'%)</th>';
+            }
+            $thead.='<th>Final Note</th>';
+            $thead.='</tr>';
 
 
-     	$estudiante=estudiante::latest()->get(); ///quitar luego
-        	  return view('notas.showNotas',[
+       	$estudiante=estudiante::latest()->get(); ///quitar luego
+         return view('notas.showNotas',[
 
-        	  	'tbody'=>$tbody,
-            	
-        	  	'thead'=>$thead,
-            	 'selectGrupo' => $idgrupos, 
-            	 'estudiantegrupos' => $estudiantegrupos,
-            	  'estudiantes' => $estudiante, ///quitar luego
-            	]);
+          'tbody'=>$tbody,
+
+          'thead'=>$thead,
+          'selectGrupo' => $idgrupos, 
+          'estudiantegrupos' => $estudiantegrupos,
+              	  'estudiantes' => $estudiante, ///quitar luego
+              	]);
       }///fin Show
 
 

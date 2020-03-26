@@ -1,26 +1,25 @@
-	@extends('layouts.appPlantilla')
+	@extends('layouts.shared.appPlantilla')
 
-	  @section('links')
-	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
+	@section('links')
+	<link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
 
 	@endsection
 
 	@section('content')
-<?php use App\Http\Controllers\grupoController;
+	<?php use App\Http\Controllers\grupoController;
 	?>
+
 	<style type="text/css">
 	.pagination {
-  display: inline-block;
-}
+		display: inline-block;
+	}
 
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-
+	.pagination a {
+		color: black;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+	}
 	</style>
 		
 	
@@ -43,11 +42,13 @@
 					
 					
         
-					<div class="row col-sm-12">
-		<div style="display: none;"><input class=""  type="text" id="hiddenCurso" name="year" value="{{$selectCurso}}" >
-		<input class=""  type="text" id="year" name="year" value="{{$selectYear}}" >
-        <input class=""  type="text" id="hiddenModulo" name="hiddenModulo" value="{{$selectModulo}}" >
-		<input class=""  type="text" id="hiddenPeriodo" name="hiddenPeriodo" value="{{$selectPeriodo}}" >
+		<div class="row col-sm-12">
+		
+		<div style="display: ;">
+			<input class="" placeholder="selectCurso"   type="text" id="hiddenCurso" name="year" value="{{$selectCurso}}" >
+			<input class="" placeholder="selectYear"  type="text" id="year" name="year" value="{{$selectYear}}" >
+	        <input class="" placeholder="selectModulo" type="text" id="hiddenModulo" name="hiddenModulo" value="{{$selectModulo}}" >
+			<input class="" placeholder="selectPeriodo"  type="text" id="hiddenPeriodo" name="hiddenPeriodo" value="{{$selectPeriodo}}" >
 		</div>
 		{{-- <input class="" type="text" id="hiddenIdCategoria" name="hiddenIdCategoria" value="{{$selectCategoria}}" >
             --}}
@@ -123,44 +124,7 @@
 					</div>
 					<br>
 					
-					{{--<div class="row col-md-12 btn-group-vertical mar-rgt" >
-			            <button class="btn btn-default btn-mint">Anho</button>
-
-			            <div class="btn-group">
-			                <div class="dropdown">
-			                    <button class="btn btn-default dropdown-toggle btn-active-success" data-toggle="dropdown" aria-expanded="false">
-			                        Dropdown <i class="dropdown-caret"></i>
-			                    </button>
-			                    <ul class="dropdown-menu" style="">
-			                        <li><a href="#">Action</a></li>
-			                        <li><a href="#">Another action</a></li>
-			                        <li><a href="#">Something else here</a></li>
-			                        <li class="divider"></li>
-			                        <li><a href="#">Separated link</a></li>
-			                    </ul>
-			                </div>
-			            </div>
-			            <button class="btn btn-default btn-active-primary">Middle</button>
-			            <button class="btn btn-default btn-active-primary">Bottom</button>
-					</div>
-					<div class="row">
-						
-					</div>
-					<br>
-					<hr>
 					
-					<div class="row col-md-12 btn-group-vertical mar-rgt" >
-			            <button class="btn btn-default btn-mint">Periodo</button>
-			            <div class="btn-group">
-			              
-			            </div>
-			            <button class="btn btn-default btn-active-success">periodo 1 enero - marzo</button>
-			            <button class="btn btn-default btn-active-success">periodo 2 enero - marzo</button>
-
-			            <button class="btn btn-default btn-active-success">periodo 3 enero - marzo</button>
-			            <button class="btn btn-default btn-active-success">periodo 4 enero - marzo</button>
-			            <button class="btn btn-default btn-active-success">periodo 5 enero - marzo</button>
-					</div>--}}
 				</div><!--End Panel Body -->
 			</div><!--End Pannel -->		
 			<hr>
@@ -428,7 +392,7 @@
 										<div class="text-right" style="padding-top: 15px">
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip deleteGrupo" data-original-title="Eliminar grupo" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-remove icon-md " ></i> </button>
 
-											<button onclick="location.href='{{url('/')}}/grupos/notas/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigNotas" data-cupos="{{$grupo->cupos}}" data-original-title="Asignar Notas" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-notepad icon-lg " ></i> </button>
+											<button onclick="location.href='{{url('/')}}/grupos/notas/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip " data-cupos="{{$grupo->cupos}}" data-original-title="Asignar Notas" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-notepad icon-lg " ></i> </button>
 											<button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-student-male-female icon-lg " ></i> </button>
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
@@ -483,7 +447,7 @@
 					<!--===================================================-->
 
 
-					<div class="col-md-12" style="display: none;">
+<!--					<div class="col-md-12" style="display: none;">
 						 
 
 						<table class="table  table-sm ">
@@ -491,12 +455,7 @@
 								@forelse($grupos as $grupo)
 
 								<tr>
-									<!--<td>
-										<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="img/profile-photos/2.png">
-
-										 <p class="text-muted text-sm "><li class="demo-ti-user icon-lg"></li></p>
-										   <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | Teacher Lic. </p>
-									</td>-->
+									
 									<td>
 										<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
 									</td>
@@ -533,7 +492,7 @@
 						</table>
 					
 					</div>
-
+-->
 
 
 				
@@ -750,7 +709,7 @@
 					                    </div> 
 						<table   class="table {{--table-bordered--}} table-sm " align="center">
             					<tbody id="tablaAsigDocenteAula">
-            						@for($i=1;$i<30;$i++)
+            						@for($i=1;$i<10;$i++)
             						<tr class='clickable-row'>
             							<td align="center" >
             								<!--<i class="demo-pli-smartphone-3 icon-lg" style="padding-top: 10px">
@@ -857,30 +816,30 @@
 	
 	{{--<script src="{{asset('js/jquery.easyPaginate.js')}}"></script>
 
-<script src="{{asset('js/jquery.snippet.min.js')}}"></script> 
+	<script src="{{asset('js/jquery.snippet.min.js')}}"></script> 
 	--}}<script type="text/javascript">
-		 $(document).ready(function(){
-		 	$.niftyNav('collapse');
+		$(document).ready(function(){
+			$.niftyNav('collapse');
 
-  $('#anhofiltro').val($('#year').val());
-  $('#periodofiltro').val($('#hiddenPeriodo').val());
-  $('#cursofiltro').val($('#hiddenCurso').val());
-   $('#myTable').DataTable({
-      //"dom": '<"top"lf>rt<"bottom"pi>'
-    });
-$('.updateAula').editable({
+			$('#anhofiltro').val($('#year').val());
+			$('#periodofiltro').val($('#hiddenPeriodo').val());
+			$('#cursofiltro').val($('#hiddenCurso').val());
+			$('#myTable').DataTable({
+ 	    		 //"dom": '<"top"lf>rt<"bottom"pi>'
+ 			 });
+			$('.updateAula').editable({
 
-           url: '/update-user',
+				url: '/update-user',
 
-           type: 'text',
+				type: 'text',
 
-           pk: 1,
+				pk: 1,
 
-           name: 'name',
+				name: 'name',
 
-           title: 'Enter name'
+				title: 'Enter name'
 
-    });
+			});
 
 /*$('#easyPaginate').easyPaginate({
     paginateElement: 'div',
@@ -889,8 +848,8 @@ $('.updateAula').editable({
 });*/
 
 
-		 });
-	</script>
+});
+</script>
 	<script src="{{asset('js/grupo.js')}}"></script> 
 	
 

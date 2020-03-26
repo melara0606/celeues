@@ -11,6 +11,7 @@ use App\estudiantegrupo;
 use App\cursocategoria;
 use App\ponderacion;
 use App\nota;
+use App\idioma;
 
 use App\user;
 
@@ -19,6 +20,30 @@ use Illuminate\Support\Facades\Response;
 class estudianteGrupoController extends Controller
 {
     //
+  public static function getGrupoInfo($idgrupos){
+ 
+        //$message=user::find($id);
+        $msj="";
+        $grupos=DB::table('grupos')
+          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
+          ->join('periodos', 'grupos.idperiodos', '=', 'periodos.id')
+          ->select('grupos.*','nivels.*','grupos.id as idgrupos','grupos.estado as estadoGrupo')
+          ->where('grupos.id',$idgrupos)////////////////////////nno se si sive o no
+          ->get()->first();
+           $seccion = array('1' =>'A' ,
+                            '2' =>'B' ,
+                            '3' =>'C' ,
+                            '4' =>'D' ,
+                            '5' =>'E' ,
+                            '6' =>'F' ,
+                         );
+           $idioma=idioma::find($grupos->ididiomas);
+           //$idioma=idioma::find($grupos->ididiomas);
+         $msj=$idioma->nombre." NIVEL ".$grupos->numNivel." ".$seccion[$grupos->numGrupo] ; 
+      
+
+      return $msj;
+  }
     public function show($idgrupos){
 
      	//$estudiante=estudiante::latest()->get(); 
@@ -36,25 +61,37 @@ class estudianteGrupoController extends Controller
           
           ->select('aulas.nombre as nombreAula','docentes.nombre as nombreDocente','docentes.apellido','grupos.cupos','grupos.estado')
           ->where('grupos.id',$idgrupos)
-          ->get()->first();
+          ->get()
+          ->first();
+        
+        //-- Verificar si ggrupo tiene asignado o no aula o docente --//
+        $grupoVerificar=DB::table('grupos')
+         
+          ->where('grupos.id',$idgrupos)
+          ->get()
+          ->first();
+ //estudianteGrupoController::getGrupoInfo($idgrupos);
+      //  return Response::json(estudianteGrupoController::getGrupoInfo($idgrupos));
+          if($grupoVerificar->iddocentes!=null && $grupoVerificar->idaulas!=null){
 
-          $table.='<tr>
-                  <td class="" >Aula</td>
-                  <td class="">'.$grupo->nombreAula.'</td>
-                </tr>';
-          $table.='<tr>
-                  <td class="">Docente</td>
-                  <td class="">'.$grupo->nombreDocente.' '.$grupo->apellido.'</td>
-                </tr>';
-           $table.='<tr>
-                  <td class="">Cupos</td>
-                  <td class="">'.$grupo->cupos.'</td>
-                </tr>';
-           $table.='<tr>
-                  <td class="">Estado</td>
-                  <td class="">'.$grupo->estado.'</td>
-                </tr>';     
 
+            $table.='<tr>
+                    <td class="" >Aula</td>
+                    <td class="">'.$grupo->nombreAula.'</td>
+                  </tr>';
+            $table.='<tr>
+                    <td class="">Docente</td>
+                    <td class="">'.$grupo->nombreDocente.' '.$grupo->apellido.'</td>
+                  </tr>';
+             $table.='<tr>
+                    <td class="">Cupos</td>
+                    <td class="">'.$grupo->cupos.'</td>
+                  </tr>';
+             $table.='<tr>
+                    <td class="">Estado</td>
+                    <td class="">'.$grupo->estado.'</td>
+                  </tr>';     
+          }      
          // ->paginate(7);
   			//return Response::json($grupo);
 
@@ -64,6 +101,7 @@ class estudianteGrupoController extends Controller
             	 'estudiantegrupos' => $estudiantegrupos,
             	  'estudiantes' => $estudiante, ///quitar luego
                 'llenarGrupos'=>$table,
+                'encabezadoGrupo'=>estudianteGrupoController::getGrupoInfo($idgrupos)
             	]);
       }
       public function busquedaEstudiante($texto){

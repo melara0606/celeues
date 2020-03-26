@@ -27,6 +27,17 @@ class cursoController extends Controller
 {
     //
        //
+    /** Funcion 
+      ** Parametro: idcurso.
+    **/
+    public static function verCantidadNiveles($idcursocategoria){
+            $cant=count(nivel::where('idcursocategorias',$idcursocategoria)->get());
+            return $cant;
+    }
+
+    /** Funcion 
+      ** Parametro: idcurso.
+    **/
 	public static function verCategorias($idcurso){
 		 
          $categorias=DB::table('cursocategorias')
@@ -99,7 +110,7 @@ return Response::json($categorias);
 */
          
 		$ididiomas=idioma::first();
-		//return Response::json($message);
+		
     	$curso=DB::table('cursos')
          ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
          ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
@@ -113,7 +124,7 @@ return Response::json($categorias);
          ->get();
          $estado="DISPONIBLE";///no sirve aqui solo parareferencia
          $count=count(categoria::get());
-
+//return Response::json($curso);
          $idiomas=idioma::get();
         //$count=count(categoria::where("idcursos",$curso->id)get());
         
@@ -127,6 +138,8 @@ return Response::json($categorias);
                  'firstIdioma'=>$ididiomas->id,              
             	]);
       }
+
+
       public function showPorIdioma($id){
         $curso=DB::table('cursos')
          ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
@@ -232,8 +245,36 @@ return Response::json($categorias);
      }
 
     public function create(Request $request){
-//return Response::json($request);
- //////////////////////////////////////////////////////////////////////////////////////////////
+        // lo encontre aca https://gilbitron.me/blog/laravel-custom-validation-attributes/
+    
+    $attributes = [
+      'nombre' => 'monto',
+      'contrasenha' => 'Contraseña',
+      'repetirContrasenha' => 'Comprobar Contraseña',
+      
+    ];
+
+    $validaciones = [
+      'nombre' => 'required',
+    ];
+
+    //------------------------------------// Verificamos los montos creados dinamicamente         
+    for ($i=1;$i<=$request->input('cont'); $i++) { 
+        $attributes['nombre'.$i]='monto';
+         $validaciones['nombre'.$i]='required';
+    }
+
+    //------------------------------------// Validamos el request         
+    $validator = \Validator::make($request->all(),$validaciones, []
+    , $attributes);
+
+  if ($validator->fails())
+  {
+    return response()->json([
+     'bandera' =>2,
+     'errors'=>$validator->errors()->all(),
+   ]);
+  }
     	/////////////////////////////para ver si dos categorias son iguales
     	///////////////primero comparamos la que no esta en el array de las categorias
     		for ($i=1;$i<=$request->input('cont'); $i++) { 
@@ -289,6 +330,7 @@ return Response::json($categorias);
             '6' =>'S' ,
             '7' =>'D' ,
          );
+        //-----------------------------------Verifica si en BD esta vacia la tabla dia  
          if(dia::count()>0){//Si existen dias registrados no hacer nada       
          }else{
          	for ($i=1 ;$i <=7 ; $i++) { //crear los registros de dias de semana en tabla dia
@@ -310,7 +352,12 @@ return Response::json($categorias);
 	    
 	         }
         //------------------------------------// modulos
-         
+       
+
+        //------------------------------------// TRNSACCION
+       
+        DB::beginTransaction();
+        try{    
         //------------------------------------> crear el registro en tabla curso    
          		$message= curso::create([
 	    		'modulos'=> $modulos,
@@ -459,12 +506,21 @@ return Response::json($categorias);
 	    		}
 	    		
  		//------------------------------------// fin ingreso tabla horarioscursos
-       
+        DB::commit();
 
            return Response::json([
             'bandera' =>1,
             'response'=>'Registro Guardado Exitosamente',                 
    			 ]);
+
+      } catch (\Throwable $e) {
+          DB::rollback();
+          return Response::json([
+                'bandera'=>0,
+                'response'=>'error en registrar a la BD',
+                ]); 
+         
+       }////fin catch
         
     }
    /* public function create(Request $request){

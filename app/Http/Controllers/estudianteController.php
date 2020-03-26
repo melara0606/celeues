@@ -9,18 +9,62 @@ use App\responsable;
 use App\user;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
-
-
+use DateTime;
 class estudianteController extends Controller
 {
-    //
-  static function getUserName($id){
-    $message=user::find($id);
-    return $message->name;
+    /** Funcion que obtiene numero de anhos
+      ** Parametro: fechaNacimiento.
+    **/
+   public static function getNumberYears($fechaNac){
+    //  $d1 = new DateTime('2011-03-12');
+    //  $d2 = new DateTime('2008-03-09');
+       $date1 = "2007-03-24";
+       $date2 = "2009-06-26";
+      $date2=date('Y/m/d');// new DateTime();
+
+      $diff = abs(strtotime($date2) - strtotime($fechaNac));
+
+      $years = floor($diff / (365*60*60*24));
+      $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+      $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+      //printf("%d years, %d months, %d days\n", $years, $months, $days);
+      return $years." anhos";
   }
 
-  public function show(){
+  /** Funcion que obtiene nombre de Usuario
+    ** Parametro: id.
+  **/
+  public static function getUserName($id){
 
+        //$message=user::find($id);
+        $msj="";
+        if(count(estudiante::find($id)->users()->get())>0){
+        $message=estudiante::find($id)->users()->first();//->first();
+        $msj=$message->name;
+      } 
+
+      return $msj;
+  }
+  
+  /** Funcion que muestra Vista de Estudiantes a blade.php
+    ** 
+  **/
+  public function show(){
+/* $estudiante=estudiante::find(2);
+
+ $users=user::find(3);
+
+ return response()->json([
+     'a' =>$users,//;->where('idusers',1)->get()->nombre(),
+ //    'b' =>$estudiante,
+   'x' =>$users->estudiantes()->get(),//->where('idddusers',2)->first(),
+ //'x2' =>$estudiante->users()->first(),//->where('idusersss',1)->get(),//;->where('idusers',1)->first(),
+    
+    // 'y' =>$estudiante->users(),
+
+  ]);
+*/
     $estudiante=estudiante::latest()->get();  
     return view('estudiante.showEstudiante',[
       'estudiantes' => $estudiante,      
@@ -28,6 +72,10 @@ class estudianteController extends Controller
         	//'noticias'=> $noticias,
     ]);
   }
+
+  /** Funcion que Crea un Usuario
+    ** Parametro: id.
+  **/
   public function createUser(Request $request){
 // lo encontre aca https://gilbitron.me/blog/laravel-custom-validation-attributes/
     $attributes = [
@@ -103,6 +151,10 @@ return response()->json(['success'=>'Record is successfully added']);
 
 }//fin createUser
 
+
+  /** Funcion que Guarda Estudiante
+    ** Parametro: Request  son datos de estudiantes.
+  **/
       public function create(Request $request){//createBeneficiariosRequest $request){
         if($request->input('dui')=="" && $request->input('edad') >= 18){
           return Response::json([
@@ -110,23 +162,46 @@ return response()->json(['success'=>'Record is successfully added']);
             'response'=>'El campo dui es obligatorio',                 
           ]);
         }
-        $attributes = [
-          'nombre' => 'estudiante',
-          'apellido' => 'apellido',
-          'fechaNac' => 'fecha de nacimiento',
-          'email' => 'email',
-          'telefono' => 'telefono',
-        ];
-        $validator = \Validator::make($request->all(), [
-          'nombre' => 'required|min:2',
-          'apellido' => 'required|min:2',
-          'email' => 'required | unique:users,email',
-          'fechaNac' => 'required',
-          'telefono' => 'required',
-        ], [
-                   // 'usuario.unique' => 'El usuario '.$request->input('usuario').' ya esta en uso',
-        ]
-        , $attributes);
+
+        if($request->input('edad') >= 18){
+          $attributes = [
+            'nombre' => 'estudiante',
+            'apellido' => 'apellido',
+            'fechaNac' => 'fecha de nacimiento',
+            'email' => 'email',
+            'telefono' => 'telefono',
+            'dui' => 'dui',
+          ];
+          $validator = \Validator::make($request->all(), [
+            'nombre' => 'required|min:2',
+            'apellido' => 'required|min:2',
+            'email' => 'required | unique:estudiantes,email',
+            'fechaNac' => 'required',
+            'telefono' => 'required',
+            'dui' => 'required | unique:estudiantes,dui',
+          ], [
+                     // 'usuario.unique' => 'El usuario '.$request->input('usuario').' ya esta en uso',
+          ]
+          , $attributes);
+        }else{
+            $attributes = [
+            'nombre' => 'estudiante',
+            'apellido' => 'apellido',
+            'fechaNac' => 'fecha de nacimiento',
+            'email' => 'email',
+            'telefono' => 'telefono',
+          ];
+          $validator = \Validator::make($request->all(), [
+            'nombre' => 'required|min:2',
+            'apellido' => 'required|min:2',
+            'email' => 'required | unique:estudiantes,email',
+            'fechaNac' => 'required',
+            'telefono' => 'required',
+          ], [
+                     // 'usuario.unique' => 'El usuario '.$request->input('usuario').' ya esta en uso',
+          ]
+          , $attributes); 
+        }
 
           /////////////////////////////////////////////////////////////////////
         if ($validator->fails())
@@ -175,8 +250,18 @@ return response()->json(['success'=>'Record is successfully added']);
 
       }
 
+
+
+  /** Funcion que Acctuliza Estudiante
+    ** Parametro: Request  son datos de estudiantes.
+    ** Parametro: id ==>id del estudiante
+  **/
       public function update(Request $request,$id){
         //dd($request->all());
+        /* return Response::json([
+        'bandera' =>$request->input(),                
+      ]);*/
+
         $message = estudiante::find($id);
         if($request->input('edad') >= 18){
 
@@ -188,8 +273,8 @@ return response()->json(['success'=>'Record is successfully added']);
            'dui'=> $request->input('dui'),
            'email'=> $request->input('email'),
            'telefono'=> $request->input('telefono'),
-           'direccion'=> $request->input('direccion'),
-		    	//	'idresponsables'=> strtoupper($request->input('idresponsables')),
+           'direccion'=> $request->input('direccion')
+		    		//'idresponsables'=>null,// strtoupper($request->input('idresponsables')),
 
          ]);
        }else{  
@@ -220,6 +305,8 @@ return response()->json(['success'=>'Record is successfully added']);
 	                //return Response::json('');
      }
    }
+
+
    public function buscar($id){
     $estudiantes = estudiante::find($id);
 
@@ -227,37 +314,38 @@ return response()->json(['success'=>'Record is successfully added']);
     // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre);  
     return Response::json($estudiantes);
   }
+
      public function buscar1($id){//solo es para infomodal estudiante especificamente debido a un campo
-      $estudiantes = estudiante::find($id);
-      $responsable= responsable::where('id',$estudiantes->idresponsables)->get(['nombre as nombreResp']);
-      if($estudiantes->idresponsables!=null){
-       foreach ($responsable as $value) {
-        $nombreResp=$value->nombreResp;
-	        	# code...
-      }
+          $estudiantes = estudiante::find($id);
+          $responsable= responsable::where('id',$estudiantes->idresponsables)->get(['nombre as nombreResp']);
+          if($estudiantes->idresponsables!=null){
+           foreach ($responsable as $value) {
+            $nombreResp=$value->nombreResp;
+        	        	# code...
+          }
 
-    }
-    $estudiante=DB::table('estudiantes')
-    ->join('responsables','estudiantes.idresponsables','=','responsables.id')
-    ->select('estudiantes.*','responsables.nombre as nombreResp')
-    ->where('estudiantes.id',$id)
-    ->get();
+        }
+        $estudiante=DB::table('estudiantes')
+        ->join('responsables','estudiantes.idresponsables','=','responsables.id')
+        ->select('estudiantes.*','responsables.nombre as nombreResp')
+        ->where('estudiantes.id',$id)
+        ->get();
 
-    //return Response::json( bitacoraController::bitacora('vio info de beneficiario'));    
-    // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre); 
-    if($estudiantes->idresponsables!=null){
-      return Response::json([
-       '1' => $estudiantes,
-       '2'=> $nombreResp,                 
-     ]); 
+            //return Response::json( bitacoraController::bitacora('vio info de beneficiario'));    
+            // bitacoraController::bitacora('Visualizó informacion de un beneficiario con nombre '.$beneficiario->nombre); 
+        if($estudiantes->idresponsables!=null){
+          return Response::json([
+           '1' => $estudiantes,
+           '2'=> $nombreResp,                 
+         ]); 
 
-    }
+        }
 
-    return Response::json([
-     '1' => $estudiantes,
-     '2'=> '',                 
-   ]); 
-    return Response::json($responsable);
+        return Response::json([
+         '1' => $estudiantes,
+         '2'=> '',                 
+       ]); 
+        return Response::json($responsable);
     }///finbuscar1 
 
     public function busquedaSelect(){
