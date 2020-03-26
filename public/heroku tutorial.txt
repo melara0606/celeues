@@ -1,0 +1,218 @@
+https://www.youtube.com/watch?v=eLsd3srShfc
+
+commands
+C:\Windows\system32>cd c://xampp/htdocs
+
+c:\xampp\htdocs>cd celeues
+
+c:\xampp\htdocs\celeues>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        Procfile
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+c:\xampp\htdocs\celeues>git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+c:\xampp\htdocs\celeues>heroku create
+Creating app... !
+ !    Invalid credentials provided.
+heroku: Press any key to open up the browser to login or q to exit:
+Opening browser to https://cli-auth.heroku.com/auth/cli/browser/4ccc7d1a-24e2-4786-a6eb-811a522f3bf4
+Logging in... done
+Logged in as kelvinnay@gmail.com
+Creating app... done, ? sleepy-fjord-97716
+https://sleepy-fjord-97716.herokuapp.com/ | https://git.heroku.com/sleepy-fjord-97716.git
+
+c:\xampp\htdocs\celeues>git remote -v
+heroku  https://git.heroku.com/sleepy-fjord-97716.git (fetch)
+heroku  https://git.heroku.com/sleepy-fjord-97716.git (push)
+origin  https://gitlab.com/tesis_celeues/celeues.git (fetch)
+origin  https://gitlab.com/tesis_celeues/celeues.git (push)
+
+c:\xampp\htdocs\celeues>git push heroku master
+Enumerating objects: 4357, done.
+Counting objects: 100% (4357/4357), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (4299/4299), done.
+Writing objects: 100% (4357/4357), 32.73 MiB | 211.00 KiB/s, done.
+Total 4357 (delta 1589), reused 0 (delta 0)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote:  !     Warning: Multiple default buildpacks reported the ability to handle this app. The first buildpack in the list below will be used.
+remote:                         Detected buildpacks: PHP,Node.js
+remote:                         See https://devcenter.heroku.com/articles/buildpacks#buildpack-detect-order
+remote: -----> PHP app detected
+remote: -----> Bootstrapping...
+remote: -----> Installing platform packages...
+remote:        - php (7.4.4)
+remote:        - ext-mbstring (bundled with php)
+remote:        - apache (2.4.41)
+remote:        - nginx (1.16.1)
+remote: -----> Installing dependencies...
+remote:        Composer version 1.10.1 2020-03-13 20:34:27
+remote:        Loading composer repositories with package information
+remote:        Installing dependencies from lock file
+remote:        Package operations: 32 installs, 0 updates, 0 removals
+remote:          - Installing doctrine/inflector (v1.1.0): Downloading (100%)
+remote:          - Installing erusev/parsedown (1.7.1): Downloading (100%)
+remote:          - Installing jakub-onderka/php-console-color (0.1): Downloading (100%)
+remote:          - Installing symfony/polyfill-mbstring (v1.8.0): Downloading (100%)
+remote:          - Installing symfony/var-dumper (v3.4.9): Downloading (100%)
+remote:          - Installing psr/log (1.0.2): Downloading (100%)
+remote:          - Installing symfony/debug (v3.4.9): Downloading (100%)
+remote:          - Installing symfony/console (v3.4.9): Downloading (100%)
+remote:          - Installing nikic/php-parser (v3.1.5): Downloading (100%)
+remote:          - Installing jakub-onderka/php-console-highlighter (v0.3.2): Downloading (100%)
+remote:          - Installing dnoegel/php-xdg-base-dir (0.1): Downloading (100%)
+remote:          - Installing psy/psysh (v0.9.3): Downloading (100%)
+remote:          - Installing vlucas/phpdotenv (v2.4.0): Downloading (100%)
+remote:          - Installing symfony/css-selector (v3.4.9): Downloading (100%)
+remote:          - Installing tijsverkoyen/css-to-inline-styles (2.2.1): Downloading (100%)
+remote:          - Installing symfony/routing (v3.4.9): Downloading (100%)
+remote:          - Installing symfony/process (v3.4.9): Downloading (100%)
+remote:          - Installing paragonie/random_compat (v2.0.12): Downloading (100%)
+remote:          - Installing symfony/polyfill-php70 (v1.8.0): Downloading (100%)
+remote:          - Installing symfony/http-foundation (v3.4.9): Downloading (100%)
+remote:          - Installing symfony/event-dispatcher (v3.4.9): Downloading (100%)
+remote:          - Installing symfony/http-kernel (v3.4.9): Downloading (100%)
+remote:          - Installing symfony/finder (v3.4.9): Downloading (100%)
+remote:          - Installing swiftmailer/swiftmailer (v5.4.9): Downloading (100%)
+remote:          - Installing ramsey/uuid (3.7.3): Downloading (100%)
+remote:          - Installing symfony/translation (v3.4.9): Downloading (100%)
+remote:          - Installing nesbot/carbon (1.27.0): Downloading (100%)
+remote:          - Installing mtdowling/cron-expression (v1.2.1): Downloading (100%)
+remote:          - Installing monolog/monolog (1.23.0): Downloading (100%)
+remote:          - Installing league/flysystem (1.0.45): Downloading (100%)
+remote:          - Installing laravel/framework (v5.4.36): Downloading (100%)
+remote:          - Installing laravel/tinker (v1.0.6): Downloading (100%)
+remote:        Generating optimized autoload files
+remote:        > Illuminate\Foundation\ComposerScripts::postInstall
+remote:        > php artisan optimize
+remote:        Generating optimized class loader
+remote:        The compiled services file has been removed.
+remote: -----> Preparing runtime environment...
+remote: -----> Checking for additional extensions to install...
+remote: -----> Discovering process types
+remote:        Procfile declares types -> web
+remote:
+remote: -----> Compressing...
+remote:        Done: 63.8M
+remote: -----> Launching...
+remote:        Released v3
+remote:        https://sleepy-fjord-97716.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To https://git.heroku.com/sleepy-fjord-97716.git
+ * [new branch]      master -> master
+
+c:\xampp\htdocs\celeues>heroku pg:credetials:url
+ »   Warning: pg:credetials:url is not a heroku command.
+Did you mean pg:credentials:url? [y/n]:
+ »   Error: Run heroku help pg for a list of available commands.
+
+c:\xampp\htdocs\celeues>heroku pg:credentials:url
+Connection information for default credential.
+Connection info string:
+   "dbname=d4ef8qa4m8hukh host=ec2-23-20-129-146.compute-1.amazonaws.com port=5432 user=uzvuusnmfdjhqa password=ffc7dceec303c2fb6c332ecdeb6cb251f145e1b3f7af452748767c40602d2653 sslmode=require"
+Connection URL:
+   postgres://uzvuusnmfdjhqa:ffc7dceec303c2fb6c332ecdeb6cb251f145e1b3f7af452748767c40602d2653@ec2-23-20-129-146.compute-1.amazonaws.com:5432/d4ef8qa4m8hukh
+
+c:\xampp\htdocs\celeues>heroku config:add DB_CONNECTION=pgsql
+Setting DB_CONNECTION and restarting ? sleepy-fjord-97716... done, v11
+DB_CONNECTION: pgsql
+
+c:\xampp\htdocs\celeues>heroku config:add DB_HOST=ec2-23-20-129-146.compute-1.amazonaws.com
+Setting DB_HOST and restarting ? sleepy-fjord-97716... done, v12
+DB_HOST: ec2-23-20-129-146.compute-1.amazonaws.com
+
+c:\xampp\htdocs\celeues>heroku config:add DB_PORT=5432
+Setting DB_PORT and restarting ? sleepy-fjord-97716... done, v13
+DB_PORT: 5432
+
+c:\xampp\htdocs\celeues>heroku config:add DB_DATABASE=d4ef8qa4m8hukh
+Setting DB_DATABASE and restarting ? sleepy-fjord-97716... done, v14
+DB_DATABASE: d4ef8qa4m8hukh
+
+c:\xampp\htdocs\celeues>heroku config:add DB_USERNAME uzvuusnmfdjhqa
+ !    DB_USERNAME is invalid. Must be in the format FOO=bar.
+
+c:\xampp\htdocs\celeues>heroku config:add DB_USERNAME=uzvuusnmfdjhqa
+Setting DB_USERNAME and restarting ? sleepy-fjord-97716... done, v15
+DB_USERNAME: uzvuusnmfdjhqa
+
+c:\xampp\htdocs\celeues>heroku config:add DB_PASSWORD=ffc7dceec303c2fb6c332ecdeb6cb251f145e1b3f7af452748767c40602d2653
+Setting DB_PASSWORD and restarting ? sleepy-fjord-97716... done, v16
+DB_PASSWORD: ffc7dceec303c2fb6c332ecdeb6cb251f145e1b3f7af452748767c40602d2653
+
+c:\xampp\htdocs\celeues>heroku run migrate
+Running migrate on ? sleepy-fjord-97716... up, run.7681 (Free)
+bash: migrate: command not found
+
+c:\xampp\htdocs\celeues>heroku run php artisan migrate
+Running php artisan migrate on ? sleepy-fjord-97716... up, run.4333 (Free)
+**************************************
+*     Application In Production!     *
+**************************************
+
+ Do you really wish to run this command? (yes/no) [no]:
+ > yes
+
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+Migrating: 2018_05_17_034656_create_noticias_table
+Migrated:  2018_05_17_034656_create_noticias_table
+Migrating: 2018_05_17_035236_create_interesados_table
+Migrated:  2018_05_17_035236_create_interesados_table
+Migrating: 2018_06_11_164208_create_idiomas_table
+Migrated:  2018_06_11_164208_create_idiomas_table
+Migrating: 2018_06_11_172003_create_docentes_table
+Migrated:  2018_06_11_172003_create_docentes_table
+Migrating: 2018_08_06_212634_create_modalidads_table
+Migrated:  2018_08_06_212634_create_modalidads_table
+Migrating: 2018_08_10_161314_create_aulas_table
+Migrated:  2018_08_10_161314_create_aulas_table
+Migrating: 2018_08_13_211045_create_categorias_table
+Migrated:  2018_08_13_211045_create_categorias_table
+Migrating: 2018_08_14_201658_create_responsables_table
+Migrated:  2018_08_14_201658_create_responsables_table
+Migrating: 2018_08_14_202121_create_estudiantes_table
+Migrated:  2018_08_14_202121_create_estudiantes_table
+Migrating: 2018_09_04_152549_create_periodos_table
+Migrated:  2018_09_04_152549_create_periodos_table
+Migrating: 2018_09_23_221755_create_cursos_table
+Migrated:  2018_09_23_221755_create_cursos_table
+Migrating: 2018_10_25_204622_create_dias_table
+Migrated:  2018_10_25_204622_create_dias_table
+Migrating: 2018_10_25_211348_create_horariocursos_table
+Migrated:  2018_10_25_211348_create_horariocursos_table
+Migrating: 2018_11_08_165037_create_cursocategorias_table
+Migrated:  2018_11_08_165037_create_cursocategorias_table
+Migrating: 2019_03_04_164312_create_nivels_table
+Migrated:  2019_03_04_164312_create_nivels_table
+Migrating: 2019_04_04_222647_create_grupos_table
+Migrated:  2019_04_04_222647_create_grupos_table
+Migrating: 2019_05_12_213219_create_estudiantegrupos_table
+Migrated:  2019_05_12_213219_create_estudiantegrupos_table
+Migrating: 2019_06_08_155928_create_ponderacions_table
+Migrated:  2019_06_08_155928_create_ponderacions_table
+Migrating: 2019_06_08_163712_create_notas_table
+Migrated:  2019_06_08_163712_create_notas_table
+
+c:\xampp\htdocs\celeues>
+
+
+
