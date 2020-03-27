@@ -15,7 +15,7 @@
 		<!--Row Main Left COL-MD -->
 		<!--===================================================-->
 		<div class="row col-md-3">
-			<input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
+			<input type="text"  name="path"  id="path" value="{{url('/')}}">
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">
