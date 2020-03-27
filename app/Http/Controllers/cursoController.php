@@ -712,6 +712,16 @@ return Response::json($categorias);
         $message=categoria::get(); 
         return Response::json($message);
     }
+    public function llenarSelectFormulario(){
+        $idioma=idioma::get();
+        $categoria=categoria::get(); 
+        $modalidad=modalidad::get(); 
+        return Response::json([
+            'idioma' =>$idioma,
+            'categoria'=>$categoria,            
+            'modalidad'=>$modalidad,                 
+             ]);
+    }
 
     public function buscarHorarios($idcurso){
     	 $message=DB::table('horariocursos')

@@ -356,6 +356,26 @@ $.ajax({
 $('#modalInfo').modal('show'); ///modal de informacion
 });
 
+/*function llenarSelectFormulario(){
+  //  $("#resp_id").empty();
+ //Otra forma de realizar el get ajax el mismo de infomodal    
+    $.getJSON($('#path').val()+'/curso/bus/selectformulario', function (data) {
+          //success data
+            console.log(data);     
+         for (var i = 0; i < data['idioma'].length; i++) {
+                $("#idioma_id").append('<option value="' + data['idioma'][i].id + '">' + data['idioma'][i].nombre + '</option>');
+         };  
+         for (var i = 0; i < data['modalidad'].length; i++) {
+                 $("#moda_id").append('<option value="' + data['modalidad'][i].id + '">' + data['modalidad'][i].nombre + ' ' + data['modalidad'][i].turno + '</option>');
+         };  
+         for (var i = 0; i < data['categoria'].length; i++) {
+                $("#cat_id").append('<option value="' + data['categoria'][i].id + '">' + data['categoria'][i].nombre + '   ' + data['categoria'][i].edadInicio + ' - ' + data['categoria'][i].edadFin + ' años</option>');
+         };   
+
+    });
+
+
+}*/
 
 function llenarSelectIdioma(){
   //  $("#resp_id").empty();

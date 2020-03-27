@@ -1,4 +1,4 @@
-	@extends('layouts.shared.appplantilla')
+	@extends('layouts.appplantilla')
 
 	@section('content')
 <?php use App\Http\Controllers\cursoController;
@@ -731,6 +731,7 @@ $.niftyAside('alignLeft');
 llenarSelectIdioma();
 llenarSelectModalidad();
 llenarSelectCategoria();
+//llenarSelectFormulario();
 
 		 });
 	</script>
