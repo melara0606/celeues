@@ -1,4 +1,4 @@
-	@extends('layouts.shared.appPlantilla')
+	@extends('layouts.shared.appplantilla')
 
 	@section('content')
 <?php use App\Http\Controllers\cursoController;

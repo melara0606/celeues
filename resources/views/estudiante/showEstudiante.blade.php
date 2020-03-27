@@ -1,4 +1,4 @@
-	@extends('layouts.shared.appPlantilla')
+	@extends('layouts.shared.appplantilla')
 
 
 	  @section('links')
