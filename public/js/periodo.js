@@ -298,8 +298,14 @@ var formData = {
               row +='<td align="center">';
     row +='<button class="btn btn-icon btn-trans btn-sm  add-tooltip editarmodal" data-original-title="Editar Fechas" data-container="body" value="' + data[i].id +'"><i class="demo-psi-pen-5 icon-sm " ></i> </button>';
             row +='<button class="btn btn-icon btn-trans btn-sm  infoModal add-tooltip " data-original-title="Información" data-container="body" value="' + data[i].id +'"><i class="demo-pli-exclamation icon-sm " ></i> </button>';
-              row +='</td></tr>'
-
+             
+               if(data[i].estado=='ACTIVO'){
+                 row +=' <button class="btn btn-icon btn-trans btn-sm   darbaja" data-original-title="Desactivar" value="' + data[i].id +'"><div class="demo-icon"><i class="ion-chevron-down"></i><span> </span></div> </button>';
+                }
+                if(data[i].estado=='INACTIVO'){
+                 row +=' <button class="btn btn-icon btn-trans btn-sm   darAlta" data-original-title="Activar" value="' + data[i].id +'"><div class="demo-icon"><i class="ion-chevron-up"></i><span> </span></div> </button>';
+                }
+ row +='</td></tr>'
               console.log(row);
 
             //  row +='<tr><td>' + data[i].año + '</td>';
@@ -309,7 +315,8 @@ $("#myTable").append(row);
 //$('[data-toggle="add-tooltip"').tooltip();
 $(".editarmodal").tooltip();
 $(".infoModal").tooltip();
-
+$(".darbaja").tooltip();
+$(".darAlta").tooltip();
 
 
           });
