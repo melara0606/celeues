@@ -154,13 +154,13 @@ class grupoController extends Controller
              }else{
                  $modulos='10';
              }
-        $periodos=periodo::where('nombre',$modulos)->where('anho',$year)->get();
+        $periodos=periodo::where('nombre',"5")->where('anho',$year)->get();
         //$periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
         return Response::json([
             'periodos'=>$periodos,
            'anhos'=>$anhos,
             'modulos'=>$modulos,
-            'year'=>$year
+            'year'=>$year,
              
         ]);
           $grupos=DB::table('grupos')
