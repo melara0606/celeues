@@ -155,14 +155,14 @@ class grupoController extends Controller
                  $modulos="10";
              }
         $periodos=periodo::where('nombre',$modulos)->where('anho',$year)->get();
-        //$periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
-        return Response::json([
+        $periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
+        /*return Response::json([
             'periodos'=>$periodos,
            'anhos'=>$anhos,
             'modulos'=>$modulos,
             'year'=>$year,
              
-        ]);
+        ]);*/
           $grupos=DB::table('grupos')
           ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
 		  //->join('aulas', 'grupos.idaulas', '=', 'aulas.id')
