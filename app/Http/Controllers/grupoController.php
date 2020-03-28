@@ -446,8 +446,8 @@ class grupoController extends Controller
        
     	for ($i=1; $i <=$numGrupo ; $i++) { 
 
-            $grupos=grupo::where('numGrupo',$i)->where('idnivels',$nivel)->where('idperiodos',$periodo->id)->get()->first();
-           
+            $grupos=grupo::where('numGrupo',$i)->where('idnivels',$nivel)->where('idperiodos',$periodo->id)->get();
+
             //-- VErifica si existe un grupo con los mismos paramteros --//                         
             if(count($grupos)>0){
                  return Response::json([
