@@ -150,11 +150,11 @@ class grupoController extends Controller
      	//$periodos=periodo::where('año',$year)->where('nombre','10')->get();
          $anhos=periodo::distinct()->get(['anho']);
           if($curso->first()->modulos=="5 MODULOS"){
-                $modulos='5';
+                $modulos="5";
              }else{
-                 $modulos='10';
+                 $modulos="10";
              }
-        $periodos=periodo::where('nombre',"10")->where('anho',$year)->get();
+        $periodos=periodo::where('nombre',$modulos)->where('anho',$year)->get();
         //$periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
         return Response::json([
             'periodos'=>$periodos,
