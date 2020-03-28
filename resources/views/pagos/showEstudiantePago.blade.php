@@ -1,4 +1,4 @@
-	@extends('layouts.appplantilla')
+	@extends('layouts.shared.appplantilla')
 
 	  @section('links')
 	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
@@ -574,6 +574,8 @@
    $('#llenarTabla').html($('#llenarGrupos').val());
 	 	
 $.niftyNav('collapse');
+$.niftyNav('bind');
+
    $('#myTable').DataTable({
   //    "dom": '<"top"lf>rt<"bottom"pi>'
     });

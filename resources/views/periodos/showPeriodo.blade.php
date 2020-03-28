@@ -478,7 +478,7 @@
    $(document).ready(function(){
 
     $.niftyNav('collapse');
-
+      $.niftyNav('bind');
 /*$('#easyPaginate').easyPaginate({
   paginateElement: 'div',
   elementsPerPage: 5,

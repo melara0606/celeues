@@ -41,11 +41,12 @@
     <!--Ion Icons [ OPTIONAL ]-->
     {{-- <link href="plugins/ionicons/css/ionicons.min.css" rel="stylesheet">--}}
     <link href="{{ asset('demo/plugins/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('demo/plugins/select2/css/select2.min.css') }}">
+   <!-- <link rel="stylesheet" href="{{ asset('demo/plugins/select2/css/select2.min.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('demo/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('demo/plugins/x-editable/css/bootstrap-editable.css') }}">
-    <link rel="stylesheet" href="{{ asset("css/index.css") }}"/>
-
+  <!-- Venia con codigo de melara  
+  <link rel="stylesheet" href="{{ asset("css/index.css") }}"/>
+-->
     @yield('links')
 </head>
 <body>

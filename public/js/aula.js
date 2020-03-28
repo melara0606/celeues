@@ -6,8 +6,9 @@ $(document).ready(function(){
   //No se para que es pero en la documentacion dice que sirve para algo
   //$(document).trigger('nifty.ready');
 //  $.niftyNav('refresh');
-  $.niftyNav('bind');
-  //$.niftyNav('collapse');
+ // $.niftyNav('bind');
+ // $.niftyNav('collapse');
+  $.niftyNav('expand');
   //$.niftyNav('colExpToggle');
 
 $.niftyAside('darkTheme');

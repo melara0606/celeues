@@ -821,6 +821,7 @@
 		$(document).ready(function(){
 			$.niftyNav('collapse');
 
+			$.niftyNav('bind');
 			$('#anhofiltro').val($('#year').val());
 			$('#periodofiltro').val($('#hiddenPeriodo').val());
 			$('#cursofiltro').val($('#hiddenCurso').val());
