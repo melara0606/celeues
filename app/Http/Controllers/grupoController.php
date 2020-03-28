@@ -118,7 +118,8 @@ class grupoController extends Controller
     }
     
     public function show(){
-
+ //$usuarioActual=\Auth::user();
+ //return Response::json(decrypt  ($usuarioActual->password));
     	 $curso=DB::table('cursos')
          ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
          ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')

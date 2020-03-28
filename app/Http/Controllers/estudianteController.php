@@ -118,7 +118,7 @@ class estudianteController extends Controller
     'tipo'=> "ESTUDIANTE",
     'name'=> $request->input('usuario'),
     'email'=> $request->input('usuario'),
-    'password'=> $request->input('contrasenha'),
+    'password'=> bcrypt($request->input('contrasenha')),
 
   ]); 
 
