@@ -21,7 +21,30 @@
 		text-decoration: none;
 	}
 	</style>
-		
+	<div id="page-head">
+
+	  <!--Page Title-->
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  {{--<div id="page-title">
+	    <h1 class="page-header text-overflow"></h1>
+
+	  </div>--}}
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  <!--End page title-->
+
+
+	  <!--Breadcrumb-->
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  <ul class="breadcrumb">
+	    <li><a href=""><i class="demo-pli-home"></i></a></li>
+	    <li><a href="">Inscripcion</a></li>
+	    <li class="active">Grupos</li>
+	  </ul>
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  <!--End breadcrumb-->
+
+	</div>
+	
 	
 	<!--Page content-->
 	<!--===================================================-->
@@ -44,7 +67,7 @@
         
 		<div class="row col-sm-12">
 		
-		<div style="display: ;">
+		<div style="display: none ;">
 			<input class="" placeholder="selectCurso"   type="text" id="hiddenCurso" name="year" value="{{$selectCurso}}" >
 			<input class="" placeholder="selectYear"  type="text" id="year" name="year" value="{{$selectYear}}" >
 	        <input class="" placeholder="selectModulo" type="text" id="hiddenModulo" name="hiddenModulo" value="{{$selectModulo}}" >

@@ -24,6 +24,30 @@
 }
 
 	</style>
+	<div id="page-head">
+
+	  <!--Page Title-->
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  {{--<div id="page-title">
+	    <h1 class="page-header text-overflow"></h1>
+
+	  </div>--}}
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  <!--End page title-->
+
+
+	  <!--Breadcrumb-->
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  <ul class="breadcrumb">
+	    <li><a href=""><i class="demo-pli-home"></i></a></li>
+	    <li><a href="">Inscripcion</a></li>
+	    <li class=""><a href="{{url('/')}}/grupos">Grupos</a></li>
+	    <li class="active">Estudiantes</li>
+	  </ul>
+	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	  <!--End breadcrumb-->
+
+	</div>
 		
 	
 	<!--Page content-->

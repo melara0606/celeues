@@ -1,4 +1,4 @@
-	@extends('layouts.appplantilla')
+	@extends('layouts.shared.appplantilla')
 
 	@section('content')
 <?php use App\Http\Controllers\cursoController;
@@ -6,7 +6,29 @@
 	<style type="text/css">
 		
 	</style>
-		
+	<div id="page-head">
+
+		<!--Page Title-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		{{--<div id="page-title">
+			<h1 class="page-header text-overflow">kjk</h1>
+
+		</div>--}}
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!--End page title-->
+
+
+		<!--Breadcrumb-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<ol class="breadcrumb">
+			<li><a href=""><i class="demo-pli-home"></i></a></li>
+			<li><a href="">Configuracion</a></li>
+			<li class="active">Cursos</li>
+		</ol>
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!--End breadcrumb-->
+
+	</div>	
 	
 	<!--Page content-->
 	<!--===================================================-->
@@ -15,7 +37,7 @@
 		<!--Row Main Left COL-MD -->
 		<!--===================================================-->
 		<div class="row col-md-3">
-			<input type="text"  name="path"  id="path" value="{{url('/')}}">
+			<input type="text" hidden="true"  name="path"  id="path" value="{{url('/')}}">
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">

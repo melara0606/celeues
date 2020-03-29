@@ -18,11 +18,11 @@
 
   <!--Breadcrumb-->
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="demo-pli-home"></i></a></li>
-    <li><a href="#">Forms</a></li>
+  <ul class="breadcrumb">
+    <li><a href=""><i class="demo-pli-home"></i></a></li>
+    <li><a href="">Configuracion</a></li>
     <li class="active">Modalidad</li>
-  </ol>
+  </ul>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <!--End breadcrumb-->
 
@@ -33,9 +33,9 @@
 <div id="page-content" >
 
 
-  <div class="panel">
+  <div class="panel"  style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-    <div class="panel-heading {{--bg-mint--}}">
+    <div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
       <div class="panel-control ">
         <!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
         <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
@@ -51,14 +51,14 @@
           </ul>
         </div>
       </div>
-      <h3 class="panel-title ">Modalidad</h3>
+     <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main bg"> <strong style="font-size: 14px;">MODALIDAD</strong></p></h3>
 
     </div>
 
 
     <!--Data Table-->
     <!--===================================================-->
-    <div class="panel-body ">
+    <div class="panel-body "  style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
       {{----}}<div class="pad-btm form-inline">
         <div class="row">
           <div class="col-sm-6 table-toolbar-left">

@@ -33,7 +33,7 @@
 <div id="page-content" >
 
 
-  <div class="panel">
+  <div class="panel " style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;min-height: 515px;">
 
     <div class="panel-heading {{--bg-mint--}}">
       <div class="panel-control ">

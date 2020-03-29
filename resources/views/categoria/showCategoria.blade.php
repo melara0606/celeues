@@ -3,30 +3,40 @@
 	@section('content')
 	<!--CONTENT CONTAINER-->
 	<!--===================================================-->
+	<div id="page-head">
 
+		<!--Page Title-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		{{--<div id="page-title">
+			<h1 class="page-header text-overflow">lkhkhhkjh</h1>
+
+		</div>--}}
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!--End page title-->
+
+
+		<!--Breadcrumb-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<ul class="breadcrumb">
+			<li><a href=""><i class="demo-pli-home"></i></a></li>
+			<li><a href="">Cofiguracion</a></li>
+			<li class="active">Categoria</li>
+		</ul>
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!--End breadcrumb-->
+
+	</div>
 	<!--Page content-->
 	<!--===================================================-->
 	<div id="page-content" >
-		<!--Row Main Left COL-MD -->
-		<!--===================================================-->
-		<div class="row col-md-1">
-			
-		</div>
-		<!--End Main Left Row COL-MD -->
-		<!--===================================================-->
 		
-		<!--Row Main Right COL-MD -->
-		<!--===================================================-->
-		<div class="row col-md-10">
 
 
-			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;min-height: 515px;">
+			<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-				<div class="panel-heading {{--bg-mint--}}">
+				<div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
 					<div class="panel-control ">
-						<!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
-						<button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
-						-->
+					
 						<div class="dropdown">
 							<button class="dropdown-toggle btn btn-default btn-active-primary" data-toggle="dropdown" aria-expanded="false"><i class="demo-psi-dot-vertical"></i></button>
 							<ul class="dropdown-menu dropdown-menu-right">
@@ -38,14 +48,14 @@
 							</ul>
 						</div>
 					</div>
-					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">CATEGORIAS</strong></p></h3>
+					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main bg"> <strong style="font-size: 14px;">CATEGORIAS</strong></p></h3>
 
 				</div>
 
 
 				<!--Data Table-->
 				<!--===================================================-->
-				<div class="panel-body ">
+				<div class="panel-body " style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
 					{{----}}<div class="pad-btm form-inline">
 						<div class="row">
 							<div class="col-sm-6 table-toolbar-left">
@@ -59,50 +69,16 @@
 								</div>--}}
 							</div>
 							<div class="col-sm-6 table-toolbar-right">
-								<!--<div class="form-group">
-									<input id="demo-input-search2" type="text" placeholder="Buscar" class="form-control" autocomplete="off">
-								</div>
-								<div class="btn-group">
-									<button class="btn btn-default"><i class="demo-pli-download-from-cloud"></i></button>
-									<div class="btn-group dropdown">
-										<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-											<i class="demo-pli-gear"></i>
-											<span class="caret"></span>
-										</button>
-										<ul role="menu" class="dropdown-menu dropdown-menu-right">
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Separated link</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>-->
+								
 						</div>
 					</div>
+	
 
-		<!--===================================================-->
-		<!--	MENSAJE FLOTANTE -->
-	<!--
-	<div id="floating-top-right" class="floating-container">
-		<div class="alert alert-mint" style="display: none;" id="msjshow">
-			<button class="close" data-dismiss="alert">
-				<i class="pci-cross pci-circle"></i>
-			</button><strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-		</div>
-		
-	</div>-->
-
-		<!--===================================================-->
-		<!--End mensajeflotante-->
-					 <div class="col-md-1"></div>
-
-					<!--COL ROW CARTAS DE GRUPO-->
+					<!--COL ROW  DE CATEGORIA-->
 					<!--===================================================-->
-					<div class="col-md-10">
+					<div class="col-md-12">
 
-						<div class=" ">
+					
 							<table id="myTable" class="table table-striped row-border">
 								<thead>
 									<tr>
@@ -160,15 +136,18 @@
 
 
 							</table>
-						</div>
-					</div></div>
 						
+					</div>
+					<!--===================================================-->
+					<!--COL ROW  DE CATEGORIA-->
+					</div>
+					<!--===================================================-->
+					<!--EN PANEL BODY-->	
 				</div>
 				<!--===================================================-->
-				<!--End Data Table-->
-			</div>
+				<!--END PANEL-->
+			
 
-			{{-- aqui termina col 10 --}}
 
 		</div>
 		<!--End Main Right COL-MD-->
@@ -293,6 +272,6 @@
 
 	@section('script')
 
-	<script src="{{asset('js/categoria.js')}}"></script>
+	<script src="{{asset('js/categoria.js')}}"></script>		
 
 	@endsection
