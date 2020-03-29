@@ -33,9 +33,9 @@
 <div id="page-content" >
 
 
-  <div class="panel " style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;min-height: 515px;">
+  <div class="panel " style="background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-    <div class="panel-heading {{--bg-mint--}}">
+    <div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
       <div class="panel-control ">
         <!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
         <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
@@ -58,7 +58,7 @@
 
     <!--Data Table-->
     <!--===================================================-->
-    <div class="panel-body ">
+    <div class="panel-body " style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
       {{----}}<div class="pad-btm form-inline">
         <div class="row">
           <div class="col-sm-6 table-toolbar-left">
@@ -111,7 +111,7 @@
 <!--End mensajeflotante-->
 
       <div class=" table-responsive">
-        <table id="myTable" class="table table-striped row-border">
+        <table id="myTable" class="table table-striped row-border" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
           <thead>
             <tr>
               <th class="text-center">#</th>

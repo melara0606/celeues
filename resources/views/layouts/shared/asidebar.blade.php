@@ -107,7 +107,7 @@
 						</li>
 						<li>
 							<a href="#">
-								<i class="demo-pli-boot-2"></i>
+								<i class="demo-pli-gear icon-lg icon-fw"></i>
 								<span class="menu-title">Configuracion</span>
 								<i class="arrow"></i>
 							</a>

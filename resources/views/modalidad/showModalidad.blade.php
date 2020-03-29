@@ -111,7 +111,7 @@
 <!--End mensajeflotante-->
 
       <div class=" table-responsive">
-        <table id="myTable" class="table table-striped row-border">
+        <table id="myTable" class="table table-striped row-border"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
           <thead>
             <tr>
               <th class="text-center">#</th>

@@ -1,11 +1,35 @@
-	@extends('layouts.appplantilla')
+	@extends('layouts.shared.appplantilla')
 
 	@section('content')
 
 	<style type="text/css">
 		
 	</style>
-		
+	<div id="page-head">
+
+		<!--Page Title-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		{{--<div id="page-title">
+			<h1 class="page-header text-overflow">kjk</h1>
+
+		</div>--}}
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!--End page title-->
+
+
+		<!--Breadcrumb-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<ol class="breadcrumb">
+			<li><a href=""><i class="demo-pli-home"></i></a></li>
+			<li><a href="">Configuracion</a></li>
+			<li><a href="{{url('/')}}/curso">Cursos</a></li>
+
+			<li class="active">Niveles</li>
+		</ol>
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!--End breadcrumb-->
+
+	</div>		
 	
 	<!--Page content-->
 	<!--===================================================-->
@@ -28,9 +52,9 @@
 			
 			<!--Main Panel-->
 			<!--===================================================-->
-			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;height: 100%;">
+			<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-				<div class="panel-heading ">
+				<div class="panel-heading " style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important" >
 					<div class="panel-control ">
 						
 					</div>
@@ -46,7 +70,7 @@
 
 				<!--Panel Body-->
 				<!--===================================================-->
-				<div class="panel-body ">
+				<div class="panel-body " style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
 					<div style="display: none;">
 					<label>ididiomas</label>
 					<input type="text" name="ididiomas" id="ididiomas" placeholder="ididiomas" value="{{$curso->ididiomas}}">
@@ -88,7 +112,7 @@
 					<div class="col-md-10">
 
 						<div class="col-sm-12 col-md-12">
-							<table id="myTable" class="table table-hover table-vcenter row-border">
+							<table id="myTable" class="table table-hover table-vcenter row-border"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 						<thead>
 							<tr>
 								
