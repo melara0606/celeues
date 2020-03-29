@@ -36,9 +36,12 @@
     <!--DataTables [ OPTIONAL ]-->
     {{-- <link href="plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
     <link href="plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css" rel="stylesheet"> --}}
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    
+    <!--
     <link href="{{ asset('demo/plugins/plugins/datatables/media/css/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('demo/datatables/extensions/Responsive/css/responsive.dataTables.min.css') }}" rel="stylesheet">
-    <!--Ion Icons [ OPTIONAL ]-->
+   --> <!--Ion Icons [ OPTIONAL ]-->
     {{-- <link href="plugins/ionicons/css/ionicons.min.css" rel="stylesheet">--}}
     <link href="{{ asset('demo/plugins/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
    <!-- <link rel="stylesheet" href="{{ asset('demo/plugins/select2/css/select2.min.css') }}"> -->
@@ -90,7 +93,11 @@
     <script src="{{ asset('demo/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
     <!--DataTables Sample [ SAMPLE ]-->
     {{--<script src="js/demo/tables-datatables.js"></script>--}}
+    <!--
     <script src="{{ asset('demo/js/demo/tables-datatables.js') }}"></script>
+-->
+         <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
     <script src="{{ asset('demo/plugins/select2/js/select2.min.js') }}"></script> 
     <script src="{{ asset('demo/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script> 
     <script src="{{ asset('demo/plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
