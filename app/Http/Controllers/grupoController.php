@@ -14,6 +14,8 @@ use App\grupo;
 use App\idioma;
 use App\aula;
 use App\docente;
+use App\estudiante;
+
 
 
 
@@ -725,5 +727,44 @@ class grupoController extends Controller
             
         }
         //return Response::json($message);
+    }
+
+    /* Metodo que visualisza pantalla de Traspaso de Grupo
+    **
+    */
+     public function showTraspasoGrupo(){
+       $idiomas=idioma::latest()->get();  
+        $curso=DB::table('cursos')
+         ->join('idiomas', 'cursos.ididiomas', '=', 'idiomas.id')
+         ->join('modalidads', 'cursos.idmodalidads', '=', 'modalidads.id')
+         ->select('cursos.*',
+            'modalidads.nombre as nombreModalidad',
+            'modalidads.turno',
+            'idiomas.nombre as nombreIdioma')
+         //->where("cursos.ididiomas",$ididiomas->id)
+         ->where("cursos.estado","ACTIVO")
+         ->get();
+
+           $cursocategorias=DB::table('cursocategorias')
+         ->join('categorias', 'cursocategorias.idcategorias', '=', 'categorias.id')
+         ->select('categorias.nombre',
+
+            'cursocategorias.id as idcursocategorias',
+            
+            'categorias.id as idcategorias',
+            'categorias.edadInicio',
+            'categorias.edadFin')
+         ->where("cursocategorias.idcursos",$curso->first()->id)
+         ->where("cursocategorias.estado","ACTIVO")
+         ->get();
+          $estudiante=estudiante::latest()->get();  
+        //return Response::json($message);
+         return view('grupos.showTraspasoGrupo',[
+            'cursos'=>$curso,
+             'categorias'=>$cursocategorias,
+        'estudiantes'=>$estudiante,
+                  
+     ]);
+
     }
 }

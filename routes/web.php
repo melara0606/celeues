@@ -124,6 +124,7 @@ Route::group(['middleware'=>['adminDocente:1,2']],function(){
 Route::get('/grupos/notas/{idgrupos?}', 'notaController@show')->middleware('auth');
 Route::put('/estudiantegrupo/createNota', 'notaController@createNota')->middleware('auth');
 });
+Route::get('/grupos/traspasos', 'grupoController@showTraspasoGrupo')->name('traspaso')->middleware('auth');
 
 Route::get('/record', 'userRecordEstudianteController@show')->middleware('auth');
 Route::get('/record/{ididiomas?}', 'userRecordEstudianteController@showParametros')->middleware('auth');

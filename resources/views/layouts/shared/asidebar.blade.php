@@ -79,6 +79,8 @@
 								<li><a href="{{ route('aula') }}">Aulas</a></li>
 								<li><a href="{{ route('estudiante') }}">Estudiante</a></li>
 								<li><a href="{{ route('responsable') }}">Responsables</a></li>
+
+								<li><a href="{{ route('traspaso') }}">Traspasos</a></li>
 							</ul>
 						</li>
 						<li>

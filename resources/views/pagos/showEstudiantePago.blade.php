@@ -214,7 +214,7 @@
 					{{--<div class="col-md-1"></div>--}}	
 					<div class="col-md-12" style="background-color: white">
 						<div class="">
-					<table id="myTable" class="table bord-top bord-btm table-striped table-dark row-border dataTable no-footer">
+					<table id="myTable" class="table bord-top bord-btm table-striped table-dark row-border dataTable no-footer" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 							<thead>
 										<tr>
 									<th width="3%">#</th>
