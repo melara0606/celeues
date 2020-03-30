@@ -35,6 +35,7 @@
 		<!--col-md-12-->
 	    <!--===================================================-->
 		<div class="col-md-12">
+			<input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
 		<!--panel 1-->
 	    <!--===================================================-->
 		<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
@@ -55,10 +56,13 @@
 				<div class="panel-group" >
 				  <div class="panel panel-default">
 				    <div class="panel-heading" style="border: 1px solid #ccc;">
-				      	<div align="right">
-					      <h4 class="panel-title">
+				      	<div style="display: inline-block;width: 100%;">
+					      	  
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="font-size: 13px; " >GRUPO</strong></p></h4>
+				      		
+					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
-					        <a data-toggle="collapse" href="#collapse1">ver mas</a>
+					        <a data-toggle="collapse" href="#collapse1"><i class="ion-plus"></i></a>
 					      </h4>
 				  		</div>
 				    </div>
@@ -67,8 +71,8 @@
 				     	<div class="row pad-btm form-inline">
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Cursos:</label>
-								<select class="form-control col-md-6" id="cursofiltro" name="cursofiltro">
-		                 				
+								<select class="form-control col-md-6" id="cursofiltro1" name="cursofiltro1">
+		                 			<option value="" selected="selected" disabled>Seleccione un curso</option>
 			            			 @forelse($cursos as $curso)
 								          <option value="{{$curso->id}}">{{$curso->nombreIdioma}} {{$curso->nombreModalidad}} {{$curso->turno}}
 								          </option>
@@ -81,12 +85,9 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Categorias:</label>
 
-								 <select class="form-control  col-md-6" id="categoriafiltro" name="categoriafiltro" >
-								 	@forelse($categorias as $categoria)
-						              <option value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}
-						              </option>
-						              @empty
-											@endforelse
+								 <select class="form-control  col-md-6" id="categoriafiltro1" name="categoriafiltro1" >
+								 	<option selected disabled label="Seleccione una categoria"></option>
+								 	
 						          </select>
 						          
 							</div>
@@ -95,7 +96,7 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Grupo:</label>
 
-								 <select class="form-control  col-md-6" id="categoriafiltro" name="categoriafiltro" >
+								 <select class="form-control  col-md-6" id="categoriafiltro1" name="categoriafiltro1" >
 								 	@forelse($categorias as $categoria)
 						              <option value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}
 						              </option>
@@ -128,6 +129,16 @@
 								</tr>
 							</thead>
 							<tbody>
+								<div style="display: none;">{{ $correlativo=1 }}</div>
+								@forelse($estudiantes as $estudiante)
+								<tr id="{{ $estudiante->id }}">
+								<td align="center">{{ $correlativo++ }}</td>
+								<td align="Center"><div class="label label-table bg-dark"><div class="text-xs text-bold"></div>{{ $estudiante->nombre }}</div></td>
+								<td align="center">uno</td>
+								</tr>
+								@empty
+							<p>No hay mensajes destacados</p>
+							@endforelse
 							</tbody>
 						</table>
 					</div>
@@ -154,8 +165,8 @@
 				     	<div class="row pad-btm form-inline">
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Cursos:</label>
-								<select class="form-control col-md-6" id="cursofiltro" name="cursofiltro">
-		                 				
+								<select class="form-control col-md-6" id="cursofiltro2" name="cursofiltro2">
+		                 			<option value="" selected="selected" disabled>Seleccione un curso</option>	
 			            			 @forelse($cursos as $curso)
 								          <option value="{{$curso->id}}">{{$curso->nombreIdioma}} {{$curso->nombreModalidad}} {{$curso->turno}}
 								          </option>
@@ -168,12 +179,9 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Categorias:</label>
 
-								 <select class="form-control  col-md-6" id="categoriafiltro" name="categoriafiltro" >
-								 	@forelse($categorias as $categoria)
-						              <option value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}
-						              </option>
-						              @empty
-											@endforelse
+								 <select class="form-control  col-md-6" id="categoriafiltro2" name="categoriafiltro2" >
+								 	<option selected disabled label="Seleccione una categoria"></option>
+								 	
 						          </select>
 						          
 							</div>
@@ -182,7 +190,7 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Grupo:</label>
 
-								 <select class="form-control  col-md-6" id="categoriafiltro" name="categoriafiltro" >
+								 <select class="form-control  col-md-6" id="categoriafiltro2" name="categoriafiltro2" >
 								 	@forelse($categorias as $categoria)
 						              <option value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}
 						              </option>
@@ -215,10 +223,12 @@
 								</tr>
 							</thead>
 							<tbody>
+								<div style="display: none;">{{ $correlativo=1 }}</div>
 								@forelse($estudiantes as $estudiante)
 								<tr id="{{ $estudiante->id }}">
+								<td align="center">{{ $correlativo++ }}</td>
 								<td align="Center"><div class="label label-table bg-dark"><div class="text-xs text-bold"></div>{{ $estudiante->nombre }}</div></td>
-								
+								<td align="center">uno</td>
 								</tr>
 								@empty
 							<p>No hay mensajes destacados</p>
@@ -376,12 +386,14 @@
 	@section('script')
 	<script type="text/javascript">
 	$(document).ready(function() {
-    $('table.display').DataTable();
+    $(".display").DataTable();
+    $.niftyNav('collapse');
+    //$.niftyNav('bind');
+   // $('table.display').DataTable().ajax.reload();
 
-    //$('table.display2').DataTable();
 } );
 </script>
 
-	<!--<script src="{{asset('js/idioma.js')}}"></script>
--->
+	<script src="{{asset('js/traspaso.js')}}"></script>
+
 	@endsection
