@@ -141,10 +141,13 @@
 				<div class="panel-group" >
 				  <div class="panel panel-default">
 				    <div class="panel-heading" style="border: 1px solid #ccc;">
-				      	<div align="right">
-					      <h4 class="panel-title">
+				      	<div style="display: inline-block;width: 100%;">
+					      	  
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="font-size: 13px; " >GRUPO</strong></p></h4>
+				      		
+					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
-					        <a data-toggle="collapse" href="#collapse2">ver mas</a>
+					        <a data-toggle="collapse" href="#collapse2"><i class="ion-plus"></i></a>
 					      </h4>
 				  		</div>
 				    </div>
@@ -178,19 +181,16 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Grupo:</label>
 
-								 <select class="form-control  col-md-6" id="categoriafiltro2" name="categoriafiltro2" >
-								 	@forelse($categorias as $categoria)
-						              <option value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}
-						              </option>
-						              @empty
-											@endforelse
+								 <select class="form-control  col-md-6" id="grupofiltro2" name="grupofiltro2" >
+								 	
+		                 			<option value="" selected="selected" disabled>Seleccione un grupo</option>
 						          </select>
 						          
 							</div>
 							<div class=" col-md-12">
 								<br>
 								<div class="col-md-9"></div>
-								<button id="btnnuevo"  class="btn btn-purple col-md-3"><i class="demo-pli-add"></i> Nuevo</button>
+								<button id="filtrarTwo" name="filtrarTwo" class="btn btn-purple col-md-3" disabled="true"><i class="demo-pli-add"></i> Nuevo</button>
 							</div>
 						</div>
 				    </div>
@@ -210,7 +210,7 @@
 
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="tbodyTwo" name="tbodyTwo">
 								<div style="display: none;">{{ $correlativo=1 }}</div>
 								@forelse($estudiantes as $estudiante)
 								<tr id="{{ $estudiante->id }}">
