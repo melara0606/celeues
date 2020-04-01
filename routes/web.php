@@ -125,6 +125,8 @@ Route::get('/grupos/notas/{idgrupos?}', 'notaController@show')->middleware('auth
 Route::put('/estudiantegrupo/createNota', 'notaController@createNota')->middleware('auth');
 });
 Route::get('/grupos/traspasos', 'grupoController@showTraspasoGrupo')->name('traspaso')->middleware('auth');
+Route::post('/grupos/obtenerGruposTraspaso', 'grupoController@obtenerGruposTraspaso')->middleware('auth');
+Route::post('/grupos/obtenerEstudiantes', 'grupoController@obtenerEstudiantes')->middleware('auth');
 
 Route::get('/record', 'userRecordEstudianteController@show')->middleware('auth');
 Route::get('/record/{ididiomas?}', 'userRecordEstudianteController@showParametros')->middleware('auth');

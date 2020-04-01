@@ -767,4 +767,83 @@ class grupoController extends Controller
      ]);
 
     }
+    public function obtenerGruposTraspaso(Request $request){
+            $idcurso=$request->input('cursofiltro');
+            //$year=$request->input('anhofiltro');
+            $idcursocategorias=$request->input('categoriafiltro');
+
+            $curso=curso::find($idcurso);
+            if($curso->modulos=="5 MODULOS"){
+                $modulos="5";
+             }else{
+                 $modulos="10";
+             }
+
+              $year=date("Y");
+             // $periodos=periodo::where('nombre',$modulos)->where('anho',$year)->get();
+              $periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
+        
+               $grupos=DB::table('grupos')
+              ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
+              ->join('periodos', 'grupos.idperiodos', '=', 'periodos.id')
+              ->select('grupos.*','nivels.*','grupos.id as idgrupos','grupos.estado as estadoGrupo')
+              //->where('periodos.anho',$year)
+              ->where('periodos.id',$periodoActual->id)
+             // ->where('grupos.estado','INICIADO')
+              //->where('nivels.idcursos',$idcurso)//no se si son necesaios
+              //->where('periodos.nombre',$modulos)//no se si son necesaios
+              ->where('nivels.idcursocategorias',$idcursocategorias)/////parametros
+              ->orderBy('nivels.numNivel')
+              ->orderBy('grupos.numGrupo')
+              
+              ->get();
+
+              $seccion = array('1' =>'A' ,
+                                '2' =>'B' ,
+                                '3' =>'C' ,
+                                '4' =>'D' ,
+                                '5' =>'E' ,
+                                '6' =>'F' ,
+                                
+                             );
+              return Response::json($grupos);
+             
+
+         /*   if($grupos){
+            $outputGrupos="";
+            $outputCategorias="";
+            foreach ($grupos as $key => $grupo) {
+
+            }*/
+
+    }
+
+    public function obtenerEstudiantes(Request $request){
+        $idgrupos=$request->input('idgrupofiltro');
+        $estudiantegrupos=DB::table('estudiantegrupos')
+          ->join('estudiantes', 'estudiantegrupos.idestudiantes', '=', 'estudiantes.id')
+          ->select('estudiantes.*','estudiantegrupos.estado as estadoEstudiante','estudiantegrupos.id as idestudiantegrupo')
+          ->where('estudiantegrupos.idgrupos',$idgrupos)
+          ->get();
+        $table="";
+          $i=1;
+          foreach ($estudiantegrupos as $estudiantegrupo) {       
+            $table.='<tr>
+                    <td class="" align="center" >'.$i++.'</td>
+                    <td style="width: 45%" align="left">
+                        <div class="comment-header">
+                            <label class="media-heading box-inline text-main text-sm text-semibold ">'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.' </label> 
+                        
+
+                        </div>
+                    </td>
+                    
+                    <td class="" align="center">Accion</td>
+                     </tr>';
+                        //<td class="">'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.' </td>
+          }
+         return Response::json($table);
+          
+    }
+
 }

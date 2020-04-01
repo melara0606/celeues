@@ -96,19 +96,16 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">Grupo:</label>
 
-								 <select class="form-control  col-md-6" id="categoriafiltro1" name="categoriafiltro1" >
-								 	@forelse($categorias as $categoria)
-						              <option value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}
-						              </option>
-						              @empty
-											@endforelse
+								 <select class="form-control  col-md-6" id="grupofiltro1" name="grupofiltro1" >
+								 	
+		                 			<option value="" selected="selected" disabled>Seleccione un grupo</option>
 						          </select>
 						          
 							</div>
 							<div class=" col-md-12">
 								<br>
 								<div class="col-md-9"></div>
-								<button id="btnnuevo"  class="btn btn-purple col-md-3"><i class="demo-pli-add"></i> Nuevo</button>
+								<button id="filtrarOne" name="filtrarOne"  class="btn btn-purple col-md-3" disabled="true"><i class="demo-pli-add"></i> Nuevo</button>
 							</div>
 						</div>
 				    </div>
@@ -123,22 +120,13 @@
 								<tr>
 									<th class="text-center">#</th>
 									
-									<th class="text-center">Nombre</th>
+									<th class="text-left">Nombre</th>
 									<th class="text-center">Acciones</th>
 
 								</tr>
 							</thead>
-							<tbody>
-								<div style="display: none;">{{ $correlativo=1 }}</div>
-								@forelse($estudiantes as $estudiante)
-								<tr id="{{ $estudiante->id }}">
-								<td align="center">{{ $correlativo++ }}</td>
-								<td align="Center"><div class="label label-table bg-dark"><div class="text-xs text-bold"></div>{{ $estudiante->nombre }}</div></td>
-								<td align="center">uno</td>
-								</tr>
-								@empty
-							<p>No hay mensajes destacados</p>
-							@endforelse
+							<tbody id="tbodyOne" name="tbodyOne">
+								
 							</tbody>
 						</table>
 					</div>
