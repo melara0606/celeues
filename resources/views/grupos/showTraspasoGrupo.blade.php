@@ -62,7 +62,7 @@
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
-					        <a data-toggle="collapse" href="#collapse1"><i class="ion-plus"></i></a>
+					        <a data-toggle="collapse" href="#collapse1" class="colapOne" ><i class="ion-plus"></i></a>
 					      </h4>
 				  		</div>
 				    </div>
@@ -147,7 +147,7 @@
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
-					        <a data-toggle="collapse" href="#collapse2"><i class="ion-plus"></i></a>
+					        <a data-toggle="collapse" href="#collapse2" class="colapTwo"><i class="ion-plus"></i></a>
 					      </h4>
 				  		</div>
 				    </div>
@@ -200,7 +200,7 @@
 
 					
 					<div class=" table-responsive">
-						<table id="" class="table table-striped row-border display"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
+						<table  class="table table-striped row-border display"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
@@ -211,7 +211,7 @@
 								</tr>
 							</thead>
 							<tbody id="tbodyTwo" name="tbodyTwo">
-								<div style="display: none;">{{ $correlativo=1 }}</div>
+							<!--	<div style="display: none;">{{ $correlativo=1 }}</div>
 								@forelse($estudiantes as $estudiante)
 								<tr id="{{ $estudiante->id }}">
 								<td align="center">{{ $correlativo++ }}</td>
@@ -220,7 +220,7 @@
 								</tr>
 								@empty
 							<p>No hay mensajes destacados</p>
-							@endforelse
+							@endforelse -->
 							</tbody>
 						</table>
 					</div>
@@ -374,7 +374,7 @@
 	@section('script')
 	<script type="text/javascript">
 	$(document).ready(function() {
-    $(".display").DataTable();
+    //$(".display").DataTable();
     $.niftyNav('collapse');
     //$.niftyNav('bind');
    // $('table.display').DataTable().ajax.reload();

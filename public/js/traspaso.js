@@ -177,6 +177,8 @@ $('#grupofiltro2').on('change', function (e) {
 
 
 $("#filtrarOne").click(function (e) {
+
+  $(".colapOne").click();
 //$('#filtrarOne').on('click', function (e) {
   var optionSelected = $("option:selected", this);
     var valueSelected = this.value;
@@ -205,6 +207,8 @@ $("#filtrarOne").click(function (e) {
               //success data
             console.log(data); 
             $('#tbodyOne').append(data);
+
+$(".display").DataTable();  
              //$('.display').DataTable().ajax.reload();
             //table.ajax.reload();
  //           $(".display").DataTable().destroy();
@@ -237,6 +241,7 @@ $('#grupofiltro2').on('change', function (e) {
 
 
 $("#filtrarTwo").click(function (e) {
+  $(".colapTwo").click();
 //$('#filtrarOne').on('click', function (e) {
   var optionSelected = $("option:selected", this);
     var valueSelected = this.value;
@@ -263,8 +268,12 @@ $("#filtrarTwo").click(function (e) {
             dataType: 'json',
             success: function (data) {
               //success data
-            console.log(data); 
-            $('#tbodyTwo').append(data);
+            console.log(data);
+$('#tbodyTwo').append(data);
+           
+$(".display").DataTable();
+            //clear().rows.add(data).draw(); 
+           // $('#tbodyTwo').append(data);
              //$('.display').DataTable().ajax.reload();
             //table.ajax.reload();
  //           $(".display").DataTable().destroy();

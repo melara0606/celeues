@@ -827,6 +827,17 @@ class grupoController extends Controller
           ->get();
         $table="";
           $i=1;
+        /* $table.= '<thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Acciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody  >';
+                            */
           foreach ($estudiantegrupos as $estudiantegrupo) {       
             $table.='<tr>
                     <td class="" align="center" >'.$i++.'</td>
@@ -838,10 +849,13 @@ class grupoController extends Controller
                         </div>
                     </td>
                     
-                    <td class="" align="center">Accion</td>
+                    <td class="" align="center">
+                    <button class="btn btn-default btn-trans btn-sm  btn-hover btn-primary  add-tooltip btnCreateEstudiante" data-original-title="Asignar Aula" data-container="body" value="4">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>
+                    </td>
                      </tr>';
                         //<td class="">'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.' </td>
           }
+          // $table.= '</tbody>';
          return Response::json($table);
           
     }
