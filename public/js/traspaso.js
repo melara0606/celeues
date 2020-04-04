@@ -172,12 +172,13 @@ $('#grupofiltro1').on('change', function (e) {
 });
 
 $('#grupofiltro2').on('change', function (e) {
-  $("#filtrarTwo").prop( "disabled", false );  
+  $("#filtrarTwo").prop( "disabled", false );
+    
 });
 
 
 $("#filtrarOne").click(function (e) {
-
+ $('.display').DataTable().destroy();//.clear().destroy();
   $(".colapOne").click();
 //$('#filtrarOne').on('click', function (e) {
   var optionSelected = $("option:selected", this);
@@ -190,6 +191,7 @@ $("#filtrarOne").click(function (e) {
     e.preventDefault();
     $('#tbodyOne').empty();
     var formData = {
+       numTable:1,
      //cursofiltro:$('#cursofiltro1').val(),
     // idcursocategoriafiltro:$('#categoriafiltro1').val(),
      idgrupofiltro:$('#grupofiltro1').val(),
@@ -241,6 +243,7 @@ $('#grupofiltro2').on('change', function (e) {
 
 
 $("#filtrarTwo").click(function (e) {
+  $('.display').DataTable().destroy();//.clear().destroy();
   $(".colapTwo").click();
 //$('#filtrarOne').on('click', function (e) {
   var optionSelected = $("option:selected", this);
@@ -253,6 +256,7 @@ $("#filtrarTwo").click(function (e) {
     e.preventDefault();
     $('#tbodyTwo').empty();
     var formData = {
+      numTable:2,
      //cursofiltro:$('#cursofiltro1').val(),
     // idcursocategoriafiltro:$('#categoriafiltro1').val(),
      idgrupofiltro:$('#grupofiltro2').val(),

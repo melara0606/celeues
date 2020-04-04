@@ -729,9 +729,9 @@ $('#modalIngreso').on('hidden.bs.modal', function () {
     //$.niftyNav('collapse');
     //$.niftyNav('colExpToggle');
    
-$.niftyAside('darkTheme');
+//$.niftyAside('darkTheme');
 //$.niftyNav('collapse');
-$.niftyAside('alignLeft');
+//$.niftyAside('alignLeft');
 
 /* $("#idioma_id").select2({
      dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3

@@ -849,12 +849,23 @@ class grupoController extends Controller
                         </div>
                     </td>
                     
-                    <td class="" align="center">
-                    <button class="btn btn-default btn-trans btn-sm  btn-hover btn-primary  add-tooltip btnCreateEstudiante" data-original-title="Asignar Aula" data-container="body" value="4">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>
-                    </td>
+                    <td class="" align="center">';
+                    if($request->input('numTable')==1){
+                    $table.='<button class="btn btn-default btn-trans btn-xs  btn-hover btn-primary  add-tooltip btnCreateEstudiante" data-original-title="Asignar Aula" data-container="body" value="'.$estudiantegrupo->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>';
+                    }else{
+                        $table.='';
+                    }
+                  $table.='   </td>
                      </tr>';
                         //<td class="">'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.' </td>
           }
+
+         /*  if($request->input('numTabla')==1){
+                    $table.='<button class="btn btn-default btn-trans btn-sm  btn-hover btn-primary  add-tooltip btnCreateEstudiante" data-original-title="Asignar Aula" data-container="body" value="4">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>';
+                    }else{
+                        $table.='<button class="btn btn-default btn-trans btn-sm  btn-hover btn-primary  add-tooltip btnCreateEstudiante" data-original-title="Asignar Aula" data-container="body" value="4">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>';
+                    }
+               $table.='</td>*/
           // $table.= '</tbody>';
          return Response::json($table);
           
