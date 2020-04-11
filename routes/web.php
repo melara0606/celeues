@@ -45,8 +45,10 @@ Route::post('/estudiante/createUser', 'estudianteController@createUser')->middle
 Route::put('/estudiante/update/{id?}', 'estudianteController@update')->middleware('auth');
 Route::get('/estudiante/buscar/{id?}', 'estudianteController@buscar')->name('estudianteBuscar')->middleware('auth');
 Route::get('/estudiante/buscar1/{id?}', 'estudianteController@buscar1')->name('estudianteBuscar1')->middleware('auth');
-Route::get('/estudiante/bus/responsables','estudianteController@busquedaSelect');
-
+Route::get('/estudiante/bus/responsables','estudianteController@busquedaSelect');//->middleware('auth');
+Route::get('/estudiante/record/{id?}','estudianteController@showRecord')->middleware('auth');
+Route::get('/estudiante/record/{id?}/idioma/{idioma?}','estudianteController@showRecordParametro')->middleware('auth');
+Route::get('/estudiante/record/nota/{idestudiantegrupo?}','estudianteController@showRecordNotas')->middleware('auth');
 
 Route::get('/docente', 'docenteController@show')->name('docente')->middleware('auth');
 Route::post('/docente/create', 'docenteController@create');
@@ -127,6 +129,7 @@ Route::put('/estudiantegrupo/createNota', 'notaController@createNota')->middlewa
 Route::get('/grupos/traspasos', 'grupoController@showTraspasoGrupo')->name('traspaso')->middleware('auth');
 Route::post('/grupos/obtenerGruposTraspaso', 'grupoController@obtenerGruposTraspaso')->middleware('auth');
 Route::post('/grupos/obtenerEstudiantes', 'grupoController@obtenerEstudiantes')->middleware('auth');
+Route::put('/grupos/transferirEstudiante', 'grupoController@transferirEstudiante')->middleware('auth');
 
 Route::get('/record', 'userRecordEstudianteController@show')->middleware('auth');
 Route::get('/record/{ididiomas?}', 'userRecordEstudianteController@showParametros')->middleware('auth');

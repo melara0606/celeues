@@ -27,8 +27,8 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="demo-pli-home"></i></a></li>
-			<li><a href="#">Forms</a></li>
-			<li class="active">Estudiantesss</li>
+			<li><a href="#">Inscripcion</a></li>
+			<li class="active">Estudiantes</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--End breadcrumb-->
@@ -149,7 +149,7 @@
 								<td align="center">
 									
 									<div class="label label-table bg-dark">
-										<div class="text-sm text-bold">
+										<div class="text-xs text-bold">
 											{{ estudianteController::getUserName($estudiante->id) }}	
 										</div>
 									</div>
@@ -161,21 +161,21 @@
 								
 								<td align="center">
 								
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $estudiante->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> {{--Editar--}}</button>
-									<button class="btn btn-icon btn-default btn-sm  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $estudiante->id }}"><i class="demo-pli-exclamation icon-sm " ></i> {{--Info--}}</button>
+									<button class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $estudiante->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> {{--Editar--}}</button>
+									<button class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $estudiante->id }}"><i class="demo-pli-exclamation icon-sm " ></i> {{--Info--}}</button>
 									@if($estudiante->idusers==null)
-									<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $estudiante->nombre }} {{ $estudiante->apellido }}" data-email="{{ $estudiante->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $estudiante->id }}"><i class="pli-add-user icon-lg "></i></button>
+									<button class="{{--btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip--}}btn btn-icon btn-default btn-default btn-xs  btn-hover-primary add-tooltip  crearUsuarioEstudiante" data-nombre="{{ $estudiante->nombre }} {{ $estudiante->apellido }}" data-email="{{ $estudiante->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $estudiante->id }}"><i class="pli-add-user icon-lg "></i></button>
 									@else
-									<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $estudiante->nombre }} {{ $estudiante->apellido }}" data-email="{{ $estudiante->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $estudiante->id }}"><i class="pli-id-card icon-lg "></i></button>
+									<button class="btn btn-icon btn-default btn-default btn-xs  btn-hover-primary add-tooltip  crearUsuarioEstudiante" data-nombre="{{ $estudiante->nombre }} {{ $estudiante->apellido }}" data-email="{{ $estudiante->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $estudiante->id }}"><i class="pli-id-card icon-lg "></i></button>
 									@endif
 									{{-- nose si agregarle estado a categoria @if($categoria->estado=='ACTIVO')
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-danger darbaja" value="{{ $categoria->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
+									<button class="btn btn-icon btn-default btn-default btn-xs  btn-hover-danger darbaja" value="{{ $categoria->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
 									@endif
 									@if($categoria->estado=='INACTIVO')
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-primary darAlta" value="{{ $categoria->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> Dar Alta</span></div> </button>
+									<button class="btn btn-icon btn-default btn-default btn-xs  btn-hover-primary darAlta" value="{{ $categoria->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> Dar Alta</span></div> </button>
 									@endif --}}
-									{{--<button type="button" class="btn btn-outline-info btn-sm infomodal" value="{{ $categoria->id }}">Info</button>--}}
-									
+									{{--<button type="button" class="btn btn-outline-info btn-xs infomodal" value="{{ $categoria->id }}">Info</button>--}}
+									<button onclick="location.href='{{url('/')}}/estudiante/record/{{$estudiante->id}}'" class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Record Academico" data-container="body" value="{{ $estudiante->id }}"><i class="pli-student-male-female icon-lg " ></i> </button>
 									
 								<!--	{{--<button class="btn btn-default btn-sm btn-circle"><i class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></i></button>
 

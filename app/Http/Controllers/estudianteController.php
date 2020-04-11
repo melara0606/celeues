@@ -7,6 +7,14 @@ use App\estudiante;
 use App\responsable;
 
 use App\user;
+
+use App\grupo;
+
+use App\estudiantegrupo;
+use App\nota;
+
+use App\idioma;
+
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -367,4 +375,71 @@ return response()->json(['success'=>'Record is successfully added']);
       }*/
       return Response::json($responsables);  
     }
+
+
+    public function showRecord($id){
+      $estudiante=estudiante::find($id);
+      $estudiantegrupos=estudiantegrupo::Where('idestudiantes',$estudiante->id)
+      ->leftJoin('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+      ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
+      ->select('estudiantegrupos.*')
+      ->orderBy('nivels.numNivel','ASC')
+      ->orderBy('grupos.numGrupo','ASC')
+      ->get();
+      $idiomas=idioma::where('estado','ACTIVO')->get();
+      //$estudiantegrupos=estudiantegrupo::Where('idestudiantes',$estudiante->id)->get();//asi funciona sin relacion
+      //return Response::json($estudiantegrupos); 
+      if(count($estudiantegrupos)>0){
+        $ididioma=$estudiantegrupos->first()->grupos->nivels->ididiomas;
+      }else{
+        $ididioma=1;
+      }
+      return view('estudiante.showRecord',[
+        'estudiantegrupos' => $estudiantegrupos, 
+        'estudiante'=>$estudiante,
+        'idiomas' => $idiomas, 
+        'ididioma'=> $ididioma,
+            //'noticias'=> $noticias,
+      ]);
+    }
+    public function showRecordParametro($id,$idioma){
+      $idioma=idioma::where('nombre',$idioma)->get()->first();
+      $estudiante=estudiante::find($id);
+      $estudiantegrupos=estudiantegrupo::Where('idestudiantes',$estudiante->id)
+      ->leftJoin('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+      ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
+      ->select('estudiantegrupos.*')
+      ->where('nivels.ididiomas',$idioma->id)
+      ->orderBy('nivels.numNivel','ASC')
+      ->orderBy('grupos.numGrupo','ASC')
+      ->get();
+      $idiomas=idioma::where('estado','ACTIVO')->get();
+      //$estudiantegrupos=estudiantegrupo::Where('idestudiantes',$estudiante->id)->get();//asi funciona sin relacion
+      //return Response::json($estudiantegrupos->first()->grupos->nivels->idiomas);  
+      return view('estudiante.showRecord',[
+        'estudiantegrupos' => $estudiantegrupos, 
+        'estudiante'=>$estudiante,
+        'idiomas' => $idiomas,   
+        'ididioma'=> $idioma->id,
+            //'noticias'=> $noticias,
+      ]);
+    }
+    public function showRecordNotas($idestudiantegrupo){
+    //  $notas=nota::where('idestudiantegrupos',$idestudiantegrupo)->join('')->get();
+      $notas=DB::table('notas')
+        ->join('ponderacions','notas.idponderacions','=','ponderacions.id')
+        ->select('ponderacions.*','notas.nota')
+        ->where('notas.idestudiantegrupos',$idestudiantegrupo)
+        ->orderBy('ponderacions.correlativo','ASC')
+        ->get();
+        $notaFinal=estudiantegrupo::find($idestudiantegrupo);
+      return Response::json([
+        'notas'=>$notas,
+        'notaFinal'=>$notaFinal,
+        
+      ]);  
+
+
+    }
+
   }

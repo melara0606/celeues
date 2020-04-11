@@ -53,12 +53,12 @@
 			<!--col-md-6-->
 		    <!--===================================================-->
 			<div class="col-md-6">
-				<div class="panel-group" >
-				  <div class="panel panel-default">
-				    <div class="panel-heading" style="border: 1px solid #ccc;">
+				<div class="{{--panel-group --}}" >
+				  <div class="panel {{--panel-default--}}">
+				    <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
 				      	<div style="display: inline-block;width: 100%;">
 					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="font-size: 13px; " >GRUPO</strong></p></h4>
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >GRUPO</strong></p></h4>
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
@@ -138,12 +138,12 @@
 				<!--col-md-6-->
 		    <!--===================================================-->
 			<div class="col-md-6">
-				<div class="panel-group" >
-				  <div class="panel panel-default">
-				    <div class="panel-heading" style="border: 1px solid #ccc;">
+				<div class="{{-- panel-group --}}" >
+				  <div class="panel {{--panel-default--}}">
+				    <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
 				      	<div style="display: inline-block;width: 100%;">
 					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="font-size: 13px; " >GRUPO</strong></p></h4>
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >GRUPO</strong></p></h4>
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
@@ -337,17 +337,17 @@
 	<div id="modalMsj" class="modal fade" tabindex="-1">
 		<div class="modal-dialog {{--modal-lg--}}">
 			<div class="modal-content">
-				<div class="modal-header alert-danger">
+				<div class="modal-header alert-mint">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Alerta</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Mover Estudiante</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
-						<h4 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<p>Esta seguro de continuar con la accion?.</p></h4>
+						<h5 id="txtModalBodyMsj" class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
+					<p>Esta seguro de continuar con la accion?.</p></h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
-					 <form>
-					 <input type="hidden" class="form-control" type="text"  id="estadoAB" name="estadoAB">
+					 <form id="formmodalMsj" name="formmodalMsj">
+					 <input type="hidden" class="form-control" type="text"  id="txtModalidestudiante" name="txtModalidestudiante">
 					  <input type="hidden" class="form-control" type="text"  id="registro_id" name="registro_id">
       			</form>
       			
@@ -357,7 +357,7 @@
 				<!--Modal footer-->
 				<div class="modal-footer">
 					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-					<button class="btn btn-danger" id="btnGuardarMsj">Continuar</button>
+					<button class="btn btn-mint" id="btnGuardarTraspasar">Continuar</button>
 				</div>
 			</div>
 		</div>

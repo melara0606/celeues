@@ -16,4 +16,11 @@ class estudiante extends Model
     	//return $this->hasOne('App\Phone', 'foreign_key_id','local_Key');
         return $this->hasMany(user::class,'id','idusers');
     }
+
+     public function responsables()
+    {
+    	//return $this->hasOne('App\Phone', 'foreign_key_id','local_Key');
+        return $this->hasOne(responsable::class,'id','idresponsables');
+    }
+
 }

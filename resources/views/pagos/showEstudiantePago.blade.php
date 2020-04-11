@@ -218,10 +218,11 @@
 							<thead>
 										<tr>
 									<th width="3%">#</th>
-									<th width="50%"  colspan="2" > &nbsp&nbsp Nombre</th>
+									<th width="30%"  colspan="2" > &nbsp&nbsp Nombre</th>
 									
-									<th width="20%">Estado</th>
-									<th width="20%" style="text-align: center;">Accion </th>
+									<th width="15%">Usuario</th>
+									<th width="10%">Estado</th>
+									<th width="30%" style="text-align: center;">Accion </th>
 
 				                        {{--<th>nota</th>
 				                        
@@ -267,9 +268,9 @@
             								<!--<i class="demo-pli-smartphone-3 icon-lg" style="padding-top: 10px">
             								-->	
             								@if($estudiantegrupo->genero=="MASCULINO")
-            								<i class="pli-student-male icon-lg" style="padding-top: 5pX"></i>
+            								<i class="pli-student-male icon-md" style="padding-top: 0pX"></i>
             								@else
-            								<i class="pli-student-female icon-lg" style="padding-top: 5pX"></i>
+            								<i class="pli-student-female icon-md" style="padding-top: 0pX"></i>
             								
             								@endif
             							</td>
@@ -277,10 +278,13 @@
             								<td style="width: 45%" align="left">
             									<div class="comment-header">
 					                                <label class="media-heading box-inline text-main text-sm text-semibold ">{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}</label> 
-					                                <p class="text-muted text-xs">{{$estudiantegrupo->email}}</p>
+					                               <!-- <p class="text-muted text-xs">{{$estudiantegrupo->email}}</p> -->
 
 
 					                            </div>
+					                        </td>
+					                        <td align="left">
+					                        	<label class="media-heading box-inline text-main text-sm text-semibold ">{{$estudiantegrupo->email}}</label> 
 					                        </td>
 					                        <td>
 					                        	@if($estudiantegrupo->estadoEstudiante=='PREINSCRITO')
@@ -297,62 +301,32 @@
 <!--<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip " data-original-title="Asignar" data-container="body" value="" ="true"><i class="pli-dollar-sign icon-md "></i> </button>
 
 -->
-													<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip infoModal" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="info estudiante" data-container="body" value="{{ $estudiantegrupo->id }}"><i class="pli-eye icon-lg "></i></button>
+													<button class="btn btn-icon btn-default btn-xs media-right btn-hover add-tooltip infoModal" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="info estudiante" data-container="body" value="{{ $estudiantegrupo->id }}"><i class="pli-eye icon-lg "></i></button>
 
 												@if($estudiantegrupo->estadoEstudiante=='PREINSCRITO')
-						                        	<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip asigPago" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-cupos="20" data-original-title="Asignar Pago" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-financial icon-lg "></i></button>
+						                        	<button class="btn btn-icon btn-default btn-xs media-right btn-hover add-tooltip asigPago" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-cupos="20" data-original-title="Asignar Pago" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-financial icon-lg "></i></button>
 
-						                        	<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip asigOyente" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="convertir a oyente" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-dj icon-lg "></i></button>
-						                        	<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip deleteEstudiante" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="remover estudiante" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-remove-user icon-lg "></i></button>
+						                        	<button class="btn btn-icon btn-default btn-xs media-right btn-hover add-tooltip asigOyente" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="convertir a oyente" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-dj icon-lg "></i></button>
+						                        	<button class="btn btn-icon btn-default btn-xs media-right btn-hover add-tooltip deleteEstudiante" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="remover estudiante" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-remove-user icon-lg "></i></button>
 						                        				
 						                        	
 						                        @endif
 					                        	@if($estudiantegrupo->estadoEstudiante=='OYENTE')
 					                        		
-						                        	<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip asigPago" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}"  data-original-title="Asignar Pago" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-financial icon-lg "></i></button>
-						                        	<button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip deleteEstudiante" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="remover estudiante" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-remove-user icon-lg "></i></button>
+						                        	<button class="btn btn-icon btn-default btn-xs media-right btn-hover add-tooltip asigPago" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}"  data-original-title="Asignar Pago" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-financial icon-lg "></i></button>
+						                        	<button class="btn btn-icon btn-default btn-xs media-right btn-hover add-tooltip deleteEstudiante" data-nombre="{{$estudiantegrupo->nombre}} {{$estudiantegrupo->apellido}}" data-original-title="remover estudiante" data-container="body" value="{{ $estudiantegrupo->idestudiantegrupo }}"><i class="pli-remove-user icon-lg "></i></button>
 						                        				
 					                        	@endif
 					                        	@if($estudiantegrupo->estadoEstudiante=='ACTIVO')
 					                        	{{--	N/A	--}}
 					                        	@endif
 
-					                        
-					                        
-					                        	
 					                        </td>
-					                       <!-- <td><input type="number" style="width:80px" max="10" min="1" class="form-control bord-btm" name=""></td>
-<td><div class="form-group has-success">
-					                                
-					                                    <input style="width:80px" type="number" class="form-control" name="name" placeholder="Name" >
-					                            </div></td>
-					                        <td><input type="number" style="width:80px" class="form-control" name=""></td>
-<td><input type="number" style="width:80px" class="form-control" name=""></td>
--->
- 
+					                        
             						</tr>
  								@empty
 						          @endforelse
-            						<!--<tr >
-            							<td align="center" >
-            									<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
-            									<i class="pli-conference icon-sm" style="padding-top: 5pX"></i>
-            									
-            							</td>
-        								<td>
-        									<div class="comment-header">
-				                                <label class="media-heading box-inline text-main text-sm text-semibold ">Aula 2-1</label> 
-				                                <p class="text-muted text-xs">Capacidad 20 personas </p>
-
-
-				                            </div>
-				                        </td>
-				                        <td align="center">
-<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAula" data-original-title="Asignar Aula" data-container="body" value="">Asignar aula<i class="demo-psi-arrow-right icon-md "></i> </button>
-				                        </td>
-
-            						</tr>
--->            						
+            					 						
 
             						
             					</tbody>
@@ -360,13 +334,6 @@
             			</table>
             		</div>
 				</div>
-
-
-						
-
-
-
-
 				
 				</div>
 				<!--End Panel Body-->

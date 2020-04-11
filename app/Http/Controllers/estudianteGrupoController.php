@@ -234,11 +234,11 @@ $output.='<td align="center">'.
                         
                       }///fn foreach
                     }///fin else
-            // bitacoraController::bitacora('Modificó datos de peticion');
-          	 return Response::json([
-  			    'bandera'=>1,
-  			    'response'=>'Estudiante inscito como oyente',
-  			 ]);
+                    // bitacoraController::bitacora('Modificó datos de peticion');
+                  	 return Response::json([
+          			    'bandera'=>1,
+          			    'response'=>'Estudiante inscito como oyente',
+          			 ]);
               }else
                return Response::json([
   			    'bandera'=>0,

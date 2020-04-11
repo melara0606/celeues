@@ -8,4 +8,14 @@ class nivel extends Model
 {
     //
     protected $guarded=[];
+   
+
+    public function idiomas()
+    {
+    	  return $this->hasOne(idioma::class, 'id','ididiomas');
+    }
+    public function categorias()
+    {
+        return $this->hasOne(categoria::class, 'id','idcategorias');
+    }
 }

@@ -16,7 +16,7 @@ class CreateEstudiantegruposTable extends Migration
         Schema::create('estudiantegrupos', function (Blueprint $table) {
             $table->increments('id');
             $table->double('pago');
-            $table->enum('estado',array('ACTIVO','PREINSCRITO','OYENTE','EXONERADO'));
+            $table->enum('estado',array('ACTIVO','PREINSCRITO','OYENTE','EXONERADO','TRASLADADO'));
             $table->double('notaFinal',4);
             
 

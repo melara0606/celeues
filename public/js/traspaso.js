@@ -4,7 +4,7 @@
 $('#cursofiltro1').on('change', function (e) {
     var optionSelected = $("option:selected", this);
     var valueSelected = this.value;
-     $('#titleacordeon').html('<strong style="font-size: 13px; " >GRUPO INGLES SABATINO</strong>');
+    
     $('#categoriafiltro1').empty();
     var options="";
     options+='<option selected disabled label="Seleccione una categoria"></option>';
@@ -77,7 +77,7 @@ $('#categoriafiltro1').on('change', function (e) {
               //success data
             console.log(data);     
             for (var i = 0; i < data.length; i++) {
-                options+='<option value="' + data[i].idgrupos + '">' + data[i].numGrupo + '</option>';
+                options+='<option value="' + data[i].id + '">' + data[i].nombreGrupo + '</option>';
 
             };      
              //console.log(options);
@@ -137,7 +137,7 @@ $('#categoriafiltro2').on('change', function (e) {
               //success data
             console.log(data);     
             for (var i = 0; i < data.length; i++) {
-                options+='<option value="' + data[i].idgrupos + '">' + data[i].numGrupo + '</option>';
+                options+='<option value="' + data[i].id + '">' + data[i].nombreGrupo + '</option>';
 
             };      
              //console.log(options);
@@ -168,11 +168,14 @@ $('#categoriafiltro2').on('change', function (e) {
 
 
 $('#grupofiltro1').on('change', function (e) {
-  $("#filtrarOne").prop( "disabled", false );  
+  $("#filtrarOne").prop( "disabled", false ); 
+   $('#titleacordeon').html('<strong style="font-size: 13px; " >GRUPO '+$('#grupofiltro1 option:selected').text()+'</strong>'); 
 });
 
 $('#grupofiltro2').on('change', function (e) {
   $("#filtrarTwo").prop( "disabled", false );
+
+   $('#titleacordeonTwo').html('<strong style="font-size: 13px; " >GRUPO '+$('#grupofiltro2 option:selected').text()+'</strong>'); 
     
 });
 
@@ -237,13 +240,11 @@ $(".display").DataTable();
 
 });
 
-$('#grupofiltro2').on('change', function (e) {
-  $("#filtrarTwo").prop( "disabled", false );  
-});
-
 
 $("#filtrarTwo").click(function (e) {
-  $('.display').DataTable().destroy();//.clear().destroy();
+    if($('#grupofiltro2').val()!=$('#grupofiltro1').val()){
+      $('.display').DataTable().destroy();//.clear().destroy();
+    }
   $(".colapTwo").click();
 //$('#filtrarOne').on('click', function (e) {
   var optionSelected = $("option:selected", this);
@@ -260,6 +261,7 @@ $("#filtrarTwo").click(function (e) {
      //cursofiltro:$('#cursofiltro1').val(),
     // idcursocategoriafiltro:$('#categoriafiltro1').val(),
      idgrupofiltro:$('#grupofiltro2').val(),
+     idgrupoUno:$('#grupofiltro1').val(),
     }     
           var type = "POST"; //for creating new resource
           var my_url = $('#path').val()+"/grupos/obtenerEstudiantes";
@@ -273,9 +275,23 @@ $("#filtrarTwo").click(function (e) {
             success: function (data) {
               //success data
             console.log(data);
-$('#tbodyTwo').append(data);
-           
-$(".display").DataTable();
+            if(data['msj']!=null){
+              console.log(data['msj']);
+              $.niftyNoty({
+                        type: "danger",
+                        container : "floating",
+                        title : "Upps!",
+                        message : ""+data['msj'],
+                        closeBtn : false,
+                        timer : 3000
+                        });
+            }else{
+            console.log('Entroo a else');
+              
+    $('#tbodyTwo').append(data);
+               
+    $(".display").DataTable();
+    }
             //clear().rows.add(data).draw(); 
            // $('#tbodyTwo').append(data);
              //$('.display').DataTable().ajax.reload();
@@ -303,3 +319,114 @@ $(".display").DataTable();
             });
 
 });
+
+ $(document).on('click','.traspasar',function(e){
+ $('#btnGuardarTraspasar').attr("disabled", false);
+  var value = this.value;
+  $("#modalMsj").modal('show');
+   $("#txtModalBodyMsj").html('<p>El estudiante '+$(this).data('nombre')+' pasara a grupo '+$('#grupofiltro2 option:selected').text()+
+   '<br>Esta seguro de continuar con la accion?.</p>');
+    $("#txtModalidestudiante").val(value);
+  
+});
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$("#btnGuardarTraspasar").click(function (e) {
+   $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
+    //$('#modalIngreso').modal('hide'); 
+   e.preventDefault();
+   /////Datos que PUTse envian para recibir en el controlador 
+   var formData = {
+     idgrupoInicial:$('#grupofiltro1').val(),
+     idestudiante:$('#txtModalidestudiante').val(),
+     idGrupoDestino :$('#grupofiltro2').val(),
+   }      
+
+      $('#btnGuardarTraspasar').attr("disabled", false);
+        var state = $('#btnGuardar').val();///para ver si es add o update
+        type = "PUT"; //for updating existing resource
+        my_url = $('#path').val()+"/grupos/transferirEstudiante";
+           
+        //console.log($('#formmodalMsj').serializeArray());
+        console.log(formData);
+          $.ajax({
+
+            type: type,
+            url: my_url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                   console.log(data);
+                  // data[0];
+                  if(data['bandera']==1){
+                     
+                     $.niftyNoty({
+                      type: "success",
+                      container : "floating",
+                      title : "Bien Hecho!",
+                      message : data['response'],
+                      closeBtn : false,
+                      timer : 3000
+                      });
+                             
+                     setTimeout(function(){
+                      //  $("#form").trigger("reset");
+                      //  window.location.reload();////recarga la pagina actual
+                       // $(location).attr('href','/peticionForm');
+                     }, 4000);
+                     //$("#trow"+$('#txtModalidestudiante').val()).remove();
+                     $('#btnGuardarTraspasar').attr("disabled", true);
+                     $( "#filtrarOne" ).click();
+                     $( "#filtrarTwo" ).click();
+                   } else{
+                     ///menasje de error
+                    $.niftyNoty({
+                      type: "danger",
+                      container : "floating",
+                      title : "Upps!",
+                      message :  data['response'],
+                      closeBtn : false,
+                      timer : 3000
+                      });
+
+                   }
+
+
+
+
+             },
+             error: function (data) {
+              var errors=data.responseJSON;
+                console.log(errors);
+                $('#btnGuardarTraspasar').attr("disabled", false);
+              ///menasje de error
+              $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Upps!",
+                message : "A ocurrido un problema"+errors,
+                closeBtn : false,
+                timer : 3000
+                });
+              
+              console.log('Error de peticion:', data);
+              
+                  }
+                });
+          /* if(errors.nombre!=undefined)
+                {
+                  $('#montofeed').text(errors.monto);
+                  //$( '#montodiv' ).removeClass();
+                  $( '#nombrediv' ).addClass("has-danger");
+                }else{
+                  $( '#nombrediv' ).removeClass("has-danger");
+                  $( '#nombrefeed' ).text("");
+                  }*/
+        });
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

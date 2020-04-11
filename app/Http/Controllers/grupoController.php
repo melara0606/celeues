@@ -16,6 +16,10 @@ use App\aula;
 use App\docente;
 use App\estudiante;
 
+use App\estudiantegrupo;
+
+use App\ponderacion;
+use App\nota;
 
 
 
@@ -783,7 +787,7 @@ class grupoController extends Controller
              // $periodos=periodo::where('nombre',$modulos)->where('anho',$year)->get();
               $periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
         
-               $grupos=DB::table('grupos')
+            /*   $grupos=DB::table('grupos')
               ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
               ->join('periodos', 'grupos.idperiodos', '=', 'periodos.id')
               ->select('grupos.*','nivels.*','grupos.id as idgrupos','grupos.estado as estadoGrupo')
@@ -796,7 +800,7 @@ class grupoController extends Controller
               ->orderBy('nivels.numNivel')
               ->orderBy('grupos.numGrupo')
               
-              ->get();
+              ->get();*/
 
               $seccion = array('1' =>'A' ,
                                 '2' =>'B' ,
@@ -806,15 +810,24 @@ class grupoController extends Controller
                                 '6' =>'F' ,
                                 
                              );
+              $grupos=grupo::Where('idperiodos',$periodoActual->id)
+             // ->with('nivels')->with('periodos')
+             // ->has('nivels')
+              ->whereHas('nivels',function($q) use ($idcursocategorias){
+                   $q->where('idcursocategorias', $idcursocategorias);
+               })
+              ->get();
+              foreach ($grupos as $key => $grupo) {
+                if (!empty($grupo)) {
+                  //  $msj=grupo::find($grupo->id);
+                    $selectOption=$grupo->numNivel;
+                   $grupo['nombreGrupo']=$grupo->nivels->idiomas->nombre." NIVEL ".$grupo->nivels->numNivel.
+                   ' '.$seccion[$grupo->numGrupo];
+                }
+                  
+              }
+              
               return Response::json($grupos);
-             
-
-         /*   if($grupos){
-            $outputGrupos="";
-            $outputCategorias="";
-            foreach ($grupos as $key => $grupo) {
-
-            }*/
 
     }
 
@@ -822,11 +835,14 @@ class grupoController extends Controller
         $idgrupos=$request->input('idgrupofiltro');
         $estudiantegrupos=DB::table('estudiantegrupos')
           ->join('estudiantes', 'estudiantegrupos.idestudiantes', '=', 'estudiantes.id')
-          ->select('estudiantes.*','estudiantegrupos.estado as estadoEstudiante','estudiantegrupos.id as idestudiantegrupo')
+          ->select('estudiantes.*','estudiantegrupos.estado as estadoEstudiante','estudiantegrupos.id as idestudiantegrupo','estudiantegrupos.idgrupos')
           ->where('estudiantegrupos.idgrupos',$idgrupos)
           ->get();
         $table="";
           $i=1;
+          if($request->input('idgrupofiltro')==$request->input('idgrupoUno')){
+             return Response::json(['msj'=>'No puede selecionar el mismo grupo']);
+          }
         /* $table.= '<thead>
                                 <tr>
                                     <th class="text-center">#</th>
@@ -838,8 +854,10 @@ class grupoController extends Controller
                             </thead>
                             <tbody  >';
                             */
-          foreach ($estudiantegrupos as $estudiantegrupo) {       
-            $table.='<tr>
+
+          foreach ($estudiantegrupos as $estudiantegrupo) { 
+          if($estudiantegrupo->estadoEstudiante!='EXONERADO'){      
+            $table.='<tr id="trow'.$estudiantegrupo->id.'">
                     <td class="" align="center" >'.$i++.'</td>
                     <td style="width: 45%" align="left">
                         <div class="comment-header">
@@ -851,13 +869,14 @@ class grupoController extends Controller
                     
                     <td class="" align="center">';
                     if($request->input('numTable')==1){
-                    $table.='<button class="btn btn-default btn-trans btn-xs  btn-hover btn-primary  add-tooltip btnCreateEstudiante" data-original-title="Asignar Aula" data-container="body" value="'.$estudiantegrupo->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>';
+                    $table.='<button class="btn btn-default btn-trans btn-xs  btn-hover btn-primary  add-tooltip traspasar" data-nombre="'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.'" data-container="body" data-grupo="'.$estudiantegrupo->idgrupos.'" value="'.$estudiantegrupo->id.'">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>';
                     }else{
                         $table.='';
                     }
                   $table.='   </td>
                      </tr>';
                         //<td class="">'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.' </td>
+            }
           }
 
          /*  if($request->input('numTabla')==1){
@@ -869,6 +888,87 @@ class grupoController extends Controller
           // $table.= '</tbody>';
          return Response::json($table);
           
+    }
+
+    public function transferirEstudiante(Request $request){
+        $idgrupoInicial=$request->input('idgrupoInicial');
+        $idestudiante=$request->input('idestudiante');
+        $idGrupoDestino=$request->input('idGrupoDestino');
+
+        $estudiantegrupoInicial=estudiantegrupo::Where('idestudiantes', $idestudiante)
+        ->where('idgrupos',$idgrupoInicial)->get();
+
+        $estudiantegrupoDestino=estudiantegrupo::Where('idestudiantes', $idestudiante)
+        ->where('idgrupos',$idGrupoDestino)->get();
+        if(count($estudiantegrupoDestino)==0 && count($estudiantegrupoInicial)>0 ){
+                
+              //----------// TRNSACCION //----------/
+                DB::beginTransaction();
+                try{    
+                    $estadoInicial=$estudiantegrupoInicial->first()->estado;
+                    $var='';
+                    $message=estudiantegrupo::find($estudiantegrupoInicial->first()->id);   
+                      $message->fill([
+                         'estado'=> 'EXONERADO',
+                           ]);
+                    if($message->save()){
+                        $registro=estudiantegrupo::create([
+                            'pago'=> 0.0,
+                            'idgrupos'=>$idGrupoDestino,
+                            'idestudiantes'=>$idestudiante,
+                            'idcursocategorias'=>grupo::find($idGrupoDestino)->first()->nivels->idcursocategorias,
+                            'estado'=> $estadoInicial,
+                            'notaFinal'=>0.00,
+                            'idanteriorgrupos'=> $idgrupoInicial,
+                           ]);   
+                        $var='Guardo';
+
+                      
+                    }   
+
+        // return Response::json($table);
+
+                    if($estadoInicial=='ACTIVO' && $var=='Guardo'){
+                        $ponderacions=ponderacion::where('idgrupos',$idGrupoDestino)->get();
+
+                          if(count($ponderacions)>0){
+                                foreach($ponderacions as $ponderacion) {
+                                        nota::create([
+                                        'nota'=> 0,
+                                        'idestudiantegrupos'=>$registro->id,
+                                        'idponderacions'=>$ponderacion->id,
+                                        ]);  
+                                
+                              }///fn foreach
+                            }///fin if
+                            // bitacoraController::bitacora('Modificó datos de peticion');            
+                    }
+
+                    //----------// fin try  //----------/
+                    DB::commit();
+                     return Response::json([
+                        'bandera'=>1,
+                        'response'=>"Estudiante trasladado con exito", 
+                     ]);
+
+                } catch (\Throwable $e) {
+                  DB::rollback();
+                  return Response::json([
+                        'bandera'=>0,
+                        'response'=>'error en registrar a la BD '+$e ,
+                        ]); 
+                 
+               }////fin catch
+
+        }else{
+            return Response::json([
+                'bandera'=>2,
+                'response'=>'Ya existe estudiante en ese grupo',
+             ]);
+
+        }
+
+
     }
 
 }
