@@ -149,3 +149,5 @@ Route::get('/notas', 'userNotasEstudianteController@show')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+Route::resource('evaluaciones', 'EvaluacionesController');
