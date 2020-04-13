@@ -81,6 +81,7 @@
 								<li><a href="{{ route('responsable') }}">Responsables</a></li>
 
 								<li><a href="{{ route('traspaso') }}">Traspasos</a></li>
+								<li><a href="{{ route('evaluaciones.index') }}">Ponderaciones</a></li>
 							</ul>
 						</li>
 						<li>
@@ -92,7 +93,6 @@
 							<ul class="collapse">
 								<li><a href="{{ route('docente') }}">Docentes</a></li>
 								<li><a href="{{ route('docente') }}">Equipos</a></li>
-								<li><a href="{{ route('evaluaciones.index') }}">Evaluaciones</a></li>
 								<li><a href="{{ route('docente') }}">Materiales Didacticos</a></li>
 								<li><a href="{{ route('docente') }}">Prestamos</a></li>
 							</ul>

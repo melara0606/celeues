@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\docente;
+
+use App\estudiante;
+use App\estudiantegrupo;
+use App\idioma;
 use App\Http\Request\JonaRequest;
 use Illuminate\Support\Facades\Response;
 
@@ -164,6 +168,39 @@ class docenteController extends Controller
              }///fin else
 
 }//fin createUser
+
+public function showGrupos($id){
+      $docente=docente::find($id);
+      // $estudiante=estudiante::find($id);
+      $estudiantegrupos=estudiantegrupo::Where('grupos.iddocentes',$docente->id)
+      ->leftJoin('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+      ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
+      ->select('estudiantegrupos.*')
+      ->orderBy('nivels.numNivel','ASC')
+      ->orderBy('grupos.numGrupo','ASC')
+      ->get();
+      //$grupos=grupo::where()
+      $idiomas=idioma::where('estado','ACTIVO')->get();
+      //$estudiantegrupos=estudiantegrupo::Where('idestudiantes',$estudiante->id)->get();//asi funciona sin relacion
+      //return Response::json($estudiantegrupos); 
+      if(count($estudiantegrupos)>0){
+        $ididioma=$estudiantegrupos->first()->grupos->nivels->ididiomas;
+      }else{
+        $ididioma=1;
+      }
+      return view('docentes.showListGruposDocente',[
+        'estudiantegrupos' => $estudiantegrupos, 
+        'docente'=>$docente,
+        'idiomas' => $idiomas, 
+        'ididioma'=> $ididioma,
+            //'noticias'=> $noticias,
+      ]);
+    }
+
+// public function showGruposParametro($id,$idioma){
+
+// }
+
 
 
 

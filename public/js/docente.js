@@ -6,8 +6,8 @@ $(document).ready(function(){
   //No se para que es pero en la documentacion dice que sirve para algo
   //$(document).trigger('nifty.ready');
 //  $.niftyNav('refresh');
-  $.niftyNav('bind');
-  //$.niftyNav('collapse');
+ // $.niftyNav('bind');
+  $.niftyNav('expand');
   //$.niftyNav('colExpToggle');
 
 $.niftyAside('darkTheme');
@@ -81,7 +81,13 @@ $(document).on('click','.editarmodal',function(){
           $('#dui').val(data.dui);
           $('#nit').val(data.nit);
           $('#telefono').val(data.telefono);
-          $('#genero').val(data.genero);
+          if(data.genero=='MASCULINO'){
+            $('#genero').val(0);
+          }else
+          {
+             $('#genero').val(1);
+            
+          }
           $('#ncuenta').val(data.ncuenta);
         });
 

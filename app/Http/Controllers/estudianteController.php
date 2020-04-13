@@ -379,7 +379,7 @@ return response()->json(['success'=>'Record is successfully added']);
 
     public function showRecord($id){
       $estudiante=estudiante::find($id);
-      $estudiantegrupos=estudiantegrupo::Where('idestudiantes',$estudiante->id)
+      $estudiantegrupos=estudiantegrupo::Where('estudiantegrupos.idestudiantes',$estudiante->id)
       ->leftJoin('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
       ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
       ->select('estudiantegrupos.*')

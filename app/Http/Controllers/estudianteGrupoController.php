@@ -104,6 +104,7 @@ class estudianteGrupoController extends Controller
                 'encabezadoGrupo'=>estudianteGrupoController::getGrupoInfo($idgrupos)
             	]);
       }
+      
       public function busquedaEstudiante($texto){
          $output="";
         $messages=estudiante::where('nombre','like','%'.$texto.'%')

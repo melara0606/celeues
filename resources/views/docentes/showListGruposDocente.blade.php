@@ -26,9 +26,9 @@
 		<ol class="breadcrumb">
 			<li><a href=""><i class="demo-pli-home"></i></a></li>
 
-			<li><a href="{{url('/')}}/estudiante">Inscripcion</a></li>
-			<li><a href="{{url('/')}}/estudiante">Estudiantes</a></li>
-			<li class="active">Record</li>
+			<li><a href="{{url('/')}}/docente">Inscripcion</a></li>
+			<li><a href="{{url('/')}}/docente">Docentes</a></li>
+			<li class="active">Grupos</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--End breadcrumb-->
@@ -49,7 +49,7 @@
 
 			<div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
 				
-				<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">RECORD DE ESTUDIANTE {{$estudiante->nombre}} {{$estudiante->apellido}}</strong></p></h3>
+				<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">GRUPOS DE DOCENTE {{strtoupper($docente->nombre)}} {{strtoupper($docente->apellido)}}</strong></p></h3>
 
 			</div>
 
@@ -65,7 +65,7 @@
 				    <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
 				      	<div style="display: inline-block;width: 100%;">
 					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION ESTUDIANTE</strong></p></h4>
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION DE DOCENTE</strong></p></h4>
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
@@ -78,14 +78,14 @@
 				     	<div class="row pad-btm form-inline">
 							<div class=" col-md-12">
 								<label  class="control-label text-main text-bold col-md-3">NOMBRE:</label>
-								<label class="control-label  text-bold col-md-9 text-capitalize">{{$estudiante->nombre}} {{$estudiante->apellido}}</label>
+								<label class="control-label  text-bold col-md-9 text-capitalize">{{strtoupper($docente->nombre)}} {{strtoupper($docente->apellido)}}</label>
 							</div>
 							<br>
 							<br>
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">GENERO:</label>
 
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->genero}} </label>
+								 <label class="control-label  text-bold col-md-9">{{$docente->genero}} </label>
 						          
 							</div>
 							<br>
@@ -94,7 +94,7 @@
 								<label for="" class="control-label text-main text-bold col-md-3">EDAD:</label>
 
 								
-								 <label class="control-label  text-bold col-md-9">{{ estudianteController::getNumberYears($estudiante->fechaNac)}} </label>
+								 <label class="control-label  text-bold col-md-9">{{ estudianteController::getNumberYears($docente->fechaNac)}} </label>
 						        
 						          
 							</div>
@@ -103,7 +103,15 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">DUI:</label>
 
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->dui}} </label>
+								 <label class="control-label  text-bold col-md-9">{{$docente->dui}} </label>
+						          
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-3">NIT:</label>
+
+								 <label class="control-label  text-bold col-md-9">{{$docente->nit}} </label>
 						          
 							</div>
 							<br>
@@ -111,7 +119,7 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">EMAIL:</label>
 
-								 <label class="control-label  text-bold col-md-9 ">{{$estudiante->email}} </label>
+								 <label class="control-label  text-bold col-md-9 ">{{$docente->email}} </label>
 						          
 							</div>
 							<br>
@@ -119,96 +127,38 @@
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">TELEFONO:</label>
 
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->telefono}} </label>
+								 <label class="control-label  text-bold col-md-9">{{$docente->telefono}} </label>
 						          
-							</div>							<br>
+							</div>							
+							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">DIRECCION:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">CUENTA:</label>
 
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->direccion}} </label>
+								 <label class="control-label  text-bold col-md-9">{{$docente->ncuenta}} </label>
 						          
 							</div>
-							<!--<br>
+							<br>
 							<br>
 							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-3">ESTADO:</label>
 
-								  <label class="control-label  text-bold col-md-9"> </label> 
-								  @if($estudiante->estado=='ACTIVO')
+								 <!-- <label class="control-label  text-bold col-md-9"> </label> -->
+								  @if($docente->estado=='ACTIVO')
 								 <div class="label label-table bg-mint col-md-9">
 				                    <div class="text-sm text-bold">
-				                    {{$estudiante->estado}}
+				                    {{$docente->estado}}
 				                    </div>
 				                  </div>
 				                  @endif
-				                   @if($estudiante->estado=='INACTIVO')
+				                   @if($docente->estado=='INACTIVO')
 				                  <div class="label label-table bg-gray col-md-9">
 				                    <div class="text-sm text-bold">
-				                    {{$estudiante->estado}}
+				                    {{$docente->estado}}
 				                    </div>
 				                  </div>
 				                  @endif
 						          
-							</div>-->
-							<br>
-							<br>
-						</div>
-				    </div>
-				  </div>
-				</div>
-
-					@if($estudiante->idresponsables!=null)
-				<div class="{{--panel-group--}}" >
-				  <div class="panel {{--panel-default --}} ">
-				    <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
-				      	<div style="display: inline-block;width: 100%;">
-					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION RESPONSABLE</strong></p></h4>
-				      		
-					      <h4 class="panel-title" align="right" style="float: right;" >
-					      	
-					        <a data-toggle="collapse" href="#collapseProfe" class="colapOne" ><i class="ion-plus"></i></a>
-					      </h4>
-				  		</div>
-				    </div>
-				    <div id="collapseProfe" class="panel-collapse " style="border-bottom: 1px solid #ccc;">
-				    	<br>
-				     	<div class="row pad-btm form-inline">
-							<div class=" col-md-12">
-								<label  class="control-label text-main text-bold col-md-3">NOMBRE:</label>
-								<label class="control-label  text-bold col-md-9">{{$estudiante->responsables->nombre}} {{$estudiante->responsables->apellido}}</label>
-							</div>
-							<br>
-							<br>
-							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">DUI:</label>
-
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->responsables->dui}} </label>
-						          
-							</div>
-							<br>
-							<br>
-							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">EMAIL:</label>
-
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->responsables->email}} </label>
-						          
-							</div>
-							<br>
-							<br>
-							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">TELEFONO:</label>
-
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->responsables->telefono}} </label>
-						          
-							</div>							<br>
-							<br>
-							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">DIRECCION:</label>
-
-								 <label class="control-label  text-bold col-md-9">{{$estudiante->direccion}} </label>
-						          
 							</div>
 							<br>
 							<br>
@@ -216,26 +166,6 @@
 				    </div>
 				  </div>
 				</div>
-				@endif
-				
-
-					
-				<!--	<div class=" table-responsive">
-						<table id="" class="table table-striped row-border display"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
-							<thead>
-								<tr>
-									<th class="text-center">#</th>
-									
-									<th class="text-left">Nombre</th>
-									<th class="text-center">Acciones</th>
-
-								</tr>
-							</thead>
-							<tbody id="tbodyOne" name="tbodyOne">
-								
-							</tbody>
-						</table>
-					</div> -->
 				
 				</div>
 				<!--col-md-6-->
@@ -250,7 +180,7 @@
 				    <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
 				      	<div style="display: inline-block;width: 100%;">
 					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >RECORD DE GRUPOS</strong></p></h4>
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >GRUPOS</strong></p></h4>
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
@@ -305,7 +235,7 @@
 									<th class="text-left">Nombre</th>
 									<th class="text-left">Categoria</th>
 									
-									<th class="text-center">Estado Estudiante</th>
+									<th class="text-center">Estado</th>
 									
 									<th class="text-center">Acciones</th>
 
@@ -340,7 +270,7 @@
 										</div>
 									</div>
 								</td>
-								@if($estudiantegrupo->estado!='EXONERADO')
+								
 								<td align="center">
 									<div class="label label-table bg-dark">
 										<div class="text-xs text-bold">
@@ -348,7 +278,7 @@
 										</div>
 									</div>
 								</td>
-								@else
+								<!--@if($estudiantegrupo->estado!='EXONERADO')@else
 								<td align="center">
 									<div class="label label-table bg-info">
 										<div class="text-xs text-bold">
@@ -356,7 +286,7 @@
 										</div>
 									</div>
 								</td>
-								@endif
+								@endif-->
 								<td align="center">
 										<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip vernotaestudiante" data-original-title="Ver Notas de Estudiante" data-container="body" value="{{$estudiantegrupo->id}}"><i class="pli-notepad icon-lg "></i>{{--Info--}}</button>
 										<button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$estudiantegrupo->idgrupos}}'" class="btn btn-icon btn-default{{--btn-trans--}} btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$estudiantegrupo->idgrupos}}"><i class="pli-student-male-female icon-lg " ></i> </button>

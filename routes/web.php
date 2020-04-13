@@ -56,6 +56,8 @@ Route::post('/docente/createUser', 'docenteController@createUser')->middleware('
 Route::put('/docente/update/{id?}', 'docenteController@update')->middleware('auth');
 Route::get('/docente/buscar/{id?}', 'docenteController@buscar')->name('docenteBuscar')->middleware('auth');
 Route::put('/docente/cambiarEstado/{id?}', 'docenteController@cambiarEstado')->middleware('auth');
+Route::get('/docente/grupos/{id?}','docenteController@showGrupos')->middleware('auth');
+//Route::get('/docente/grupos/{id?}/idioma/{idioma?}','docenteController@showGruposParametro')->middleware('auth');
 
 
 Route::get('/modalidad', 'modalidadController@show')->name('modalidad')->middleware('auth');

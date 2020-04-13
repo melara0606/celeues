@@ -1,4 +1,4 @@
-@extends('layouts.appplantilla')
+@extends('layouts.shared.appplantilla')
 
  @section('links')
     <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
@@ -38,9 +38,9 @@
 <div id="page-content" >
 
 
-  <div class="panel" style="border: 1px bold #ccc; box-shadow: 2px 2px #bbb !important" >
+  <div class="panel" style="background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;" >
 
-    <div class="panel-heading {{--bg-mint--}}">
+    <div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
       <div class="panel-control ">
         <!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
         <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
@@ -53,14 +53,14 @@
           </ul>
         </div>
       </div>
-      <h3 class="panel-title ">Docentes</h3>
+     <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main bg"> <strong style="font-size: 14px;">DOCENTES</strong></p></h3>
 
     </div>
 
 
     <!--Data Table-->
     <!--===================================================-->
-    <div class="panel-body ">
+    <div class="panel-body " style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
       {{----}}<div class="pad-btm form-inline">
         <div class="row">
           <div class="col-sm-6 table-toolbar-left">
@@ -113,15 +113,13 @@
 <!--End mensajeflotante-->
 
       <div class=" table-responsive">
-        <table id="myTable" class="table table-striped row-border">
+        <table id="myTable" class="table table-striped row-border" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
           <thead>
             <tr>
               <th class="text-center">#</th>
 
-              <th class="text-center">Nombre</th>
-              <th>Apellido</th>
+              <th class="text-left">Nombre</th>
               <th>Email</th>
-              <th>DUI</th>
               <th>Teléfono</th>
               <th>Genero</th>
               <th>Estado</th>
@@ -135,40 +133,57 @@
             @forelse($docentes as $docente)
             <tr id="{{ $docente->id }}">
               <td align="center">{{ $correlativo++ }}</td>
-              <td align="Center"><div class="label label-table bg-dark"><div class="text-xs text-bold"></div>{{ $docente->nombre }}</div></td>
-              <td >{{ $docente->apellido }}</td>
+              <td align="left">
+                <div class="text-sm text-bold">
+                    {{ strtoupper($docente->nombre)}} {{ strtoupper($docente->apellido)}}
+                  </div> 
+              </td>
               <td >{{ $docente->email }}</td>
-              <td >{{ $docente->dui }}</td>
               <td >{{ $docente->telefono }}</td>
               <td >{{ $docente->genero }}</td>
               
               @if($docente->estado=='ACTIVO')
-              <td align="center"><div class="label label-table bg-mint"><div class="text-xs text-bold"></div>{{ $docente->estado }}</div></td>
+              <td align="center">
+                <div class="label label-table bg-mint"><div class="text-xs text-bold"></div> 
+               <div class="text-xs text-bold">
+                {{ $docente->estado }}
+              </div>
+              </div>
+
+              </td>
               @endif
               @if($docente->estado=='INACTIVO')
-              <td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold"></div>{{ $docente->estado }}</div></td>
+              <td align="center">
+               <!-- <div class="label label-table bg-gray"><div class="text-xs text-bold"></div>{{ $docente->estado }}</div> -->
+                <div class="label label-table bg-gray">
+                    <div class="text-xs text-bold">
+                    {{ $docente->estado }}
+                    </div>
+                  </div>
+              </td>
               @endif
 
               <td align="center">
-                {{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
+                {{--<button class="btn btn-mint btn-icon btn-xs"><i class="demo-psi-pen-5 icon-sm"></i></button>
                 <button class="btn btn-sm btn-rounded btn-default">Small</button>
                 <button class="btn btn-xs btn-rounded btn-default">Extra Small</button>
                 --}}
-                <button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $docente->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> Editar</button>
-                <button class="btn btn-icon btn-default btn-sm  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $docente->id }}"><i class="demo-pli-exclamation icon-sm " ></i> Info</button>
+                <button class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $docente->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> </button>
+                <button class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $docente->id }}"><i class="demo-pli-exclamation icon-sm " ></i> </button>
                 @if($docente->estado=='ACTIVO')
-                <button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-danger darbaja" value="{{ $docente->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> Dar Baja</span></div> </button>
+                <button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-danger darbaja" value="{{ $docente->id }}" data-original-title="Dar Baja"><div class="demo-icon"><i class="ion-chevron-down"></i><span></span></div> </button>
                 @endif
                 @if($docente->estado=='INACTIVO')
-                <button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-primary darAlta" value="{{ $docente->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> Dar Alta</span></div> </button>
+                <button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-primary darAlta" value="{{ $docente->id }}" ata-original-title="Dar Alta"><div class="demo-icon"><i class="ion-chevron-up"></i><span></span></div> </button>
                 @endif
-                {{--<button type="button" class="btn btn-outline-info btn-sm infomodal" value="{{ $docente->id }}">Info</button>--}}
+                {{--<button type="button" class="btn btn-outline-info btn-xs infomodal" value="{{ $docente->id }}">Info</button>--}}
 
 @if($docente->idusers==null)
-                  <button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $docente->nombre }} {{ $docente->apellido }}" data-email="{{ $docente->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $docente->id }}"><i class="pli-add-user icon-lg "></i></button>
+                  <button class="btn btn-icon btn-default btn-xs media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $docente->nombre }} {{ $docente->apellido }}" data-email="{{ $docente->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $docente->id }}"><i class="pli-add-user icon-lg "></i></button>
                   @else
-                  <button class="btn btn-icon btn-trans btn-md media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $docente->nombre }} {{ $docente->apellido }}" data-email="{{ $docente->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $docente->id }}"><i class="pli-id-card icon-lg "></i></button>
+                  <button class="btn btn-icon btn-defaul btn-xs media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $docente->nombre }} {{ $docente->apellido }}" data-email="{{ $docente->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $docente->id }}"><i class="pli-id-card icon-lg "></i></button>
                   @endif
+                  <button onclick="location.href='{{url('/')}}/docente/grupos/{{$docente->id}}'" class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Record Academico" data-container="body" value="{{ $docente->id }}"><i class="pli-student-male-female icon-lg " ></i> </button>
               <!--	{{--<button class="btn btn-default btn-sm btn-circle"><i class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></i></button>
 
                 <button class="btn btn-lg btn-default btn-hover-warning">Hover Me!</button>
