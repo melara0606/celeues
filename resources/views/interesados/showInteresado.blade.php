@@ -1,4 +1,4 @@
-@extends('layouts.appPlantilla')
+@extends('layouts.shared.appplantilla')
 
 @section('content')
 <!--CONTENT CONTAINER-->
@@ -20,8 +20,8 @@
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <ol class="breadcrumb">
 					<li><a href="#"><i class="demo-pli-home"></i></a></li>
-					<li><a href="#">Forms</a></li>
-					<li class="active">Noticias</li>
+					<li><a href="{{url('/')}}/noticia">Noticias</a></li>
+					<li class="active">Interesados</li>
                     </ol>
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <!--End breadcrumb-->
@@ -33,9 +33,9 @@
                 <div id="page-content" >
                    
 				
-					<div class="panel">
+					<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-					    <div class="panel-heading {{--bg-mint--}}">
+					    <div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
 					    	<div class="panel-control">
 					                        <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
 					                        <div class="dropdown">
@@ -49,14 +49,15 @@
 					                            </ul>
 					                        </div>
 					                    </div>
-					        <h3 class="panel-title ">Noticias</h3>
+
+				<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">INTERESADOS</strong></p></h3>
 
 					    </div>
 
 					
 					    <!--Data Table-->
 					    <!--===================================================-->
-					    <div class="panel-body">
+					    <div class="panel-body" style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
 					       {{--<div class="pad-btm form-inline">
 					            <div class="row">
 					                <div class="col-sm-6 table-toolbar-left">
@@ -92,7 +93,7 @@
 					        </div>--}}
 
 					        <div class="{{--table-responsive--}}">
-					            <table id="myTable" class="table table-striped">
+					            <table id="myTable" class="table table-striped" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 					                <thead>
 					                    <tr>
 					                        <th class="text-center">Titulo</th>
@@ -158,7 +159,30 @@
 <script >
 	$(document).ready(function(){
 	//$("#msjshow").hide();
- 	$('#myTable').DataTable();
+	$('#myTable').DataTable({
+      //"dom": '<"top"l>frt<"bottom"pi>'
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    }
+    });
+    $.niftyNav('expand');
 
 });
 </script>

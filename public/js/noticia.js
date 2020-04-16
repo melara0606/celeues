@@ -1,16 +1,31 @@
 $(document).ready(function(){
- // $('#myTable').DataTable({
-      //"dom": '<"top"lf>rt<"bottom"pi>'
-   // });
-
-    //No se para que es pero en la documentacion dice que sirve para algo
-    //$(document).trigger('nifty.ready');
-  //  $.niftyNav('refresh');
-    $.niftyNav('bind');
-    //$.niftyNav('collapse');
+ $('#myTable').DataTable({
+      //"dom": '<"top"l>frt<"bottom"pi>'
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    }
+    });
+    $.niftyNav('expand');
     //$.niftyNav('colExpToggle');
    
-$.niftyAside('darkTheme');
+//$.niftyAside('darkTheme');
  //$('#myTable').DataTable();
 //var data = {!! json_encode($estado) !!}; 
 // var sites = {!! json_encode($estado) !!}
@@ -77,7 +92,7 @@ $.niftyAside('darkTheme');
       $("#btnGuardar").removeClass("btn-info");
       $("#btnGuardar").addClass("btn-mint"); 
       $("#modalIngresoHeader").addClass("alert-mint"); 
-      $("#modalIngresoLabel").html("Modificar Idioma");///titulo del modal
+      $("#modalIngresoLabel").html("Modificar Noticia");///titulo del modal
       $('#modalIngreso').modal('show');    
     });
 
@@ -89,7 +104,7 @@ $.niftyAside('darkTheme');
     $("#btnGuardar").html("Nuevo");
     $("#btnGuardar").removeClass("btn-mint");
     $("#modalIngresoHeader").removeClass("alert-mint");
-    $("#modalIngresoLabel").html("Registro de Idioma");
+    $("#modalIngresoLabel").html("Registro de Noticia");
     $('#frm').trigger('reset');
     $("#btnGuardar").removeClass("btn-success");
     $('#modalIngreso').modal('show');   

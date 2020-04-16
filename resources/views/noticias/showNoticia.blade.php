@@ -1,5 +1,8 @@
-@extends('layouts.appPlantilla')
+@extends('layouts.shared.appplantilla')
+ @section('links')
+    <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
 
+  @endsection
 @section('content')
 <!--CONTENT CONTAINER-->
 <!--===================================================-->
@@ -19,9 +22,9 @@
                     <!--Breadcrumb-->
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <ol class="breadcrumb">
-					<li><a href="#"><i class="demo-pli-home"></i></a></li>
-					<li><a href="#">Forms</a></li>
-					<li class="active">Noticias</li>
+					<li><a href="{{url('/')}}/noticia"><i class="demo-pli-home"></i></a></li>
+					
+					<li class="active"  >Noticias</li>
                     </ol>
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <!--End breadcrumb-->
@@ -33,9 +36,9 @@
                 <div id="page-content" >
                    
 				
-					<div class="panel">
+					<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-					    <div class="panel-heading {{--bg-mint--}}">
+					    <div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
 					    	<div class="panel-control">
 					                        <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
 					                        <div class="dropdown">
@@ -49,14 +52,16 @@
 					                            </ul>
 					                        </div>
 					                    </div>
-					        <h3 class="panel-title ">Noticias</h3>
+
+				<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">NOTICIAS</strong></p></h3>
+					    
 
 					    </div>
 
 					
 					    <!--Data Table-->
 					    <!--===================================================-->
-					    <div class="panel-body">
+					    <div class="panel-body" style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
 					       <div class="pad-btm form-inline">
 					            <div class="row">
 					                <div class="col-sm-6 table-toolbar-left">
@@ -92,7 +97,7 @@
 					        </div>
 
 					        <div class="{{--table-responsive--}}">
-					            <table id="myTable" class="table table-striped">
+					            <table id="myTable" class="table table-striped" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 					                <thead>
 					                    <tr>
 					                        <th class="text-center">Titulo</th>
@@ -106,19 +111,27 @@
 					                <tbody>
 					                    @forelse($noticias as $noticia)
 										<tr id="{{ $noticia->id }}">
-											<td align="center">{{ $noticia->titulo }}</td>
-											<td >{{ $noticia->descripcion }}</td>
-											<td><span class="text-muted"><i class="demo-pli-clock"></i> {{ $noticia->modalidad }}</span></td>
+											<td align="center">
+											 
+								                <div class="text-sm text-bold">
+								                    {{ strtoupper($noticia->titulo) }}
+								                  </div> 
+								             
+											</td>
+											<td align="left"><label class="text-muted text-bold" >{{ $noticia->descripcion }}</label></td>
+											<td><label class="text-muted text-bold" > {{ strtoupper($noticia->modalidad) }}</label></td>
 											<td ><div class="label label-table bg-mint"><div class="text-sm text-bold">{{ $noticia->estado }}</div></div></td>
 											<td align="center">
 									{{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
 									<button class="btn btn-sm btn-rounded btn-default">Small</button>
 									<button class="btn btn-xs btn-rounded btn-default">Extra Small</button>
 									--}}
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $noticia->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> Editar</button>
-									<button class="btn btn-icon btn-default btn-sm  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $noticia->id }}"><i class="demo-pli-exclamation icon-sm " ></i> Info</button>
+									<button class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" data-original-title="Editar" value="{{ $noticia->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> </button>
+									<button class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" data-original-title="Informacion" value="{{ $noticia->id }}"><i class="demo-pli-exclamation icon-sm " ></i> </button>
 									
-									<button class="btn btn-icon btn-default btn-default btn-sm  btn-hover-primary darAlta" value="{{ $noticia->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> Dar Alta</span></div> </button>
+									<button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-primary darAlta" data-original-title="Dar Alta" value="{{ $noticia->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i></div> </button>
+
+                  					<button onclick="location.href='{{url('/')}}/noticia/{{$noticia->id}}/interesados'" class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Record Academico" data-container="body" value="{{ $noticia->id }}"><i class="pli-student-male-female icon-lg " ></i> </button>
 									{{--<button type="button" class="btn btn-outline-info btn-sm infomodal" value="{{ $noticia->id }}">Info</button>--}}
 									
 												
@@ -161,7 +174,7 @@
 				<!--Modal header-->
 				<div class="modal-header alert-primary" id="modalIngresoHeader" >
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalIngresoLabel"><label>Ingresar idioma</label></h4>
+					<h4 class="modal-title" style="color: white;" id="modalIngresoLabel"><label>Ingresar Noticia</label></h4>
 				</div>
 
 				<!--Modal body-->
@@ -202,7 +215,7 @@
 			<div class="modal-content">
 				<div class="modal-header alert-info">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Datos de Idioma</h4>
+					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Datos de Noticia</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
