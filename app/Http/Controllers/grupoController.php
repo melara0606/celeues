@@ -833,7 +833,7 @@ class grupoController extends Controller
 
               $year=date("Y");
              // $periodos=periodo::where('nombre',$modulos)->where('anho',$year)->get();
-              $periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
+              $periodoActual=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->first();
         
             /*   $grupos=DB::table('grupos')
               ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
@@ -850,6 +850,7 @@ class grupoController extends Controller
               
               ->get();*/
 
+            //  return Response::json($periodoActual);
               $seccion = array('1' =>'A' ,
                                 '2' =>'B' ,
                                 '3' =>'C' ,
@@ -861,12 +862,16 @@ class grupoController extends Controller
               $grupos=grupo::Where('idperiodos',$periodoActual->id)
              // ->with('nivels')->with('periodos')
              // ->has('nivels')
-              ->whereHas('nivels',function($q) use ($idcursocategorias){
+            /*  ->whereHas('nivels',function($q) use ($idcursocategorias){
                    $q->where('idcursocategorias', $idcursocategorias);
-               })
+               })*/
+              ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
+              ->select('grupos.*')
+              ->orderBy('numNivel','ASC')
+              ->orderBy('numGrupo','ASC')
               ->get();
               foreach ($grupos as $key => $grupo) {
-                if (!empty($grupo)) {
+                if (count($grupos)>0) {
                   //  $msj=grupo::find($grupo->id);
                     $selectOption=$grupo->numNivel;
                    $grupo['nombreGrupo']=$grupo->nivels->idiomas->nombre." NIVEL ".$grupo->nivels->numNivel.
