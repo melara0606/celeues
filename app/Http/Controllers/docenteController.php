@@ -46,6 +46,7 @@ class docenteController extends Controller
         'nit'=> $request->input('nit'),
         'telefono'=> $request->input('telefono'),
         'ncuenta'=> $request->input('ncuenta'),
+        'estado'=>'INACTIVO'
 
     		]);
     	return Response::json('Registro Guardado Exitosamente');

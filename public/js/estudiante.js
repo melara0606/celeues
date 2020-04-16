@@ -115,17 +115,17 @@
   if (((elegido.getMonth()+1) == today_month) && today_day < elegido.getDate()) {
     edad--;
   }
-  $.niftyNoty({
-    type: "success",
-    container : "floating",
-    title : "Bien Hecho!",
-                //message : elegido.getFullYear()+'/'+elegido.getMonth()+' year= '+(actual.getFullYear())+' month= '+(actual.getMonth()+1),
+              /*$.niftyNoty({
+                type: "success",
+                container : "floating",
+                title : "Bien Hecho!",
+                            //message : elegido.getFullYear()+'/'+elegido.getMonth()+' year= '+(actual.getFullYear())+' month= '+(actual.getMonth()+1),
                 message : edad+'anhos'+' actualMes= '+today_month+' elegidoMes= '+(elegido.getMonth()+2),
                 //message :  elegido.getFullYear()+'/'+(elegido.getMonth()+1)+'/'+(elegido.getDate()+1),
 
                 closeBtn : false,
                 timer : 3000
-              });
+              });*/
   $('#edad').val(edad);
   if(edad >= 18){
     $('#mayorEdad').show();
