@@ -1,4 +1,4 @@
-	@extends('layouts.appplantilla')
+	@extends('layouts.shared.appplantilla')
 
 	  @section('links')
 	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
@@ -183,7 +183,7 @@
 					{{--<div class="col-md-1"></div>--}}	
 					<div class="col-md-12 col-sm-12" style="background-color: white">
 						<div class="table-responsive ">
-					<table id="myTable" class="table bord-top bord-btm table-striped  row-border dataTable no-footer">
+					<table id="myTable" class="table bord-top bord-btm table-striped table-xs row-border {{--dataTable--}} tablaMod no-footer">
 							<thead id="thead">
 										
 								</thead>
@@ -431,9 +431,8 @@
 	    //$('#myTable').empty();
 	    //$("#myTable").empty();
 	    $('#myTable').append($('#hiddenThead').val());
-
-	    $('#myTable').append($('#hiddenTbody').val());
-	    
+	    $('#myTable').append($('#hiddenTbody').val());	 
+	    // $(".tablaMod").DataTable();
 
 	    });
 	</script>

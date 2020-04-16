@@ -33,7 +33,7 @@ class notaController extends Controller
         $tbody='';
         $x=0.00;
         $y=0.00;
-         
+         //for($i=1;$i<15;$i++){}
           foreach ($estudiantegrupos as $estudiantegrupo) {
           	$tbody.='<tr>';
           	 $y=$y+1;
@@ -42,7 +42,7 @@ class notaController extends Controller
 	         $users=user::find($estudiantegrupo->idusers);
 	         $tbody.='<td><div class="comment-header">'.
                 '<label class="media-heading box-inline text-main text-sm text-semibold ">'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.'</label>'. 
-                '<p class="text-muted text-xs">'.$users->name.'</p>'.
+               // '<p class="text-muted text-xs">'.$users->name.'</p>'.
             '</div></td>';
           	//$tbody.='<td>'.$estudiantegrupo->nombre.' '.$estudiantegrupo->apellido.'</td>';
 	       
@@ -74,15 +74,14 @@ class notaController extends Controller
 
                 if ($estudiantesNota->nota==0) {
     	          		//style="background-color:#FBFBFB"
-                   $tbody.='<td align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;
-                   " max="10" min="1" class="form-control bord-btm has-success enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="" '.$readonly.'></div></td>';
+                   $tbody.='<td align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:70px;height:25px" max="10" min="1" class="form-control input-sm bord-btm has-success enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="" '.$readonly.'></div></td>';
 
                }else{
-                   $tbody.='<td  align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:80px;box-shadow: 0 1px 1px rgba(1, 1, 1, 0) inset, 0 0 1px rgba(1, 1, 1, 1);" max="10" min="1" class="form-control bord-btm enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="'.$estudiantesNota->nota.'" '.$readonly.'></div></td>';
+                   $tbody.='<td  align="center"><div class="form-group" id="divet'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" ><input type="number" data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" data-idnotas="'.$estudiantesNota->id.'" style="width:70px;height:25px;box-shadow: 0 1px 1px rgba(1, 1, 1, 0) inset, 0 0 1px rgba(1, 1, 1, 1);" max="10" min="1" class="form-control input-sm bord-btm enter" name="" id="et'.$estudiantegrupo->idestudiantegrupo.'pn'.$estudiantesNota->correlativo.'" value="'.$estudiantesNota->nota.'" '.$readonly.'></div></td>';
                }
 	          	
 	          }///finforeach
-			 $tbody.='<td align="center"><div class="form-group has-success" id="divetf'.$estudiantegrupo->idestudiantegrupo.'" ><input type="number"  data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" style="width:80px" max="10" min="1" class="form-control bord-btm enter" name="" id="etf'.$estudiantegrupo->idestudiantegrupo.'" value="'.$x.'" readonly="true"></div></td>';
+			 $tbody.='<td align="center"><div class="form-group has-success" id="divetf'.$estudiantegrupo->idestudiantegrupo.'" ><input type="number"  data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" style="width:70px;height:25px" max="10" min="1" class="form-control input-sm bord-btm enter" name="" id="etf'.$estudiantegrupo->idestudiantegrupo.'" value="'.$x.'" readonly="true"></div></td>';
 /*
 			$tbody.='<td align="center"><div width="80px" class="panel media pad-all bg-info">
 					                   

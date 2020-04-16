@@ -93,15 +93,17 @@ class estudianteGrupoController extends Controller
                   </tr>';     
           }      
          // ->paginate(7);
-  			//return Response::json($grupo);
+          $grupos=grupo::find($idgrupos);
 
-     	$estudiante=estudiante::latest()->get(); ///quitar luego
+//        return Response::json(grupo::find($idgrupos)->nivels);
+     //	$estudiante=estudiante::latest()->get(); ///quitar luego
         	  return view('pagos.showEstudiantePago',[
             	 'selectGrupo' => $idgrupos, 
             	 'estudiantegrupos' => $estudiantegrupos,
-            	  'estudiantes' => $estudiante, ///quitar luego
+            	//  'estudiantes' => $estudiante, ///quitar luego
                 'llenarGrupos'=>$table,
-                'encabezadoGrupo'=>estudianteGrupoController::getGrupoInfo($idgrupos)
+                'encabezadoGrupo'=>estudianteGrupoController::getGrupoInfo($idgrupos),
+                'grupo'=>$grupos
             	]);
       }
       

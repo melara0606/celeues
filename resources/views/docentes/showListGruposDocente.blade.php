@@ -200,8 +200,8 @@
 										<option selected disabled label="No hay mensajes destacados"></option>
 									@endforelse 
 		            			</select>
-		            			@if(count($estudiantegrupos)>0)
-		            				<input type="number" hidden="true" name="idestudiante" id="idestudiante" value="{{$estudiantegrupos->first()->idestudiantes}}">
+		            			@if(count($grupos)>0)
+		            				<input type="number" hidden="true" name="iddocentes" id="iddocentes" value="{{$grupos->first()->iddocentes}}">
 		            			
 		            			@endif
 							</div>
@@ -209,7 +209,7 @@
 							<div class=" col-md-12">
 								<br>
 								<div class="col-md-9"></div>
-								@if(count($estudiantegrupos)>0)
+								@if(count($grupos)>0)
 								<button type="button" id="filtrar" name="filtrar" class="btn btn-mint col-md-3 filtrar" >Filtrar
 								</button>
 								@endif
@@ -252,21 +252,21 @@
 							?>
 							<tbody id="tbodyTwo" name="tbodyTwo">
 								<div style="display: none;">{{ $correlativo=1 }}</div>
-								@forelse($estudiantegrupos as $estudiantegrupo)
-								@if($ididioma == $estudiantegrupo->grupos->nivels->ididiomas)
-								<tr id="{{ $estudiantegrupo->id }}">
+								@forelse($grupos as $grupo)
+								@if($ididioma == $grupo->nivels->ididiomas)
+								<tr id="{{ $grupo->id }}">
 								<td align="center">{{ $correlativo++ }}</td>
 								<td align="left">
 									<div class="">
 										<div class="text-main text-bold">
-										{{ $estudiantegrupo->grupos->nivels->idiomas->nombre }} NIVEL {{ $estudiantegrupo->grupos->nivels->numNivel}} {{ $seccion[$estudiantegrupo->grupos->numGrupo] }}
+										{{ $grupo->nivels->idiomas->nombre }} NIVEL {{ $grupo->nivels->numNivel}} {{ $seccion[$grupo->numGrupo] }}
 										</div>
 									</div>
 								</td>
 								<td align="left">
 									<div class="">
 										<div class="text-main text-bold">
-										{{ $estudiantegrupo->grupos->nivels->categorias->nombre }}
+										{{ $grupo->nivels->categorias->nombre }}
 										</div>
 									</div>
 								</td>
@@ -274,23 +274,15 @@
 								<td align="center">
 									<div class="label label-table bg-dark">
 										<div class="text-xs text-bold">
-										{{ $estudiantegrupo->grupos->estado }}
+										{{ $grupo->estado }}
 										</div>
 									</div>
 								</td>
-								<!--@if($estudiantegrupo->estado!='EXONERADO')@else
 								<td align="center">
-									<div class="label label-table bg-info">
-										<div class="text-xs text-bold">
-											TRASLADADO
-										</div>
-									</div>
-								</td>
-								@endif-->
-								<td align="center">
-										<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip vernotaestudiante" data-original-title="Ver Notas de Estudiante" data-container="body" value="{{$estudiantegrupo->id}}"><i class="pli-notepad icon-lg "></i>{{--Info--}}</button>
-										<button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$estudiantegrupo->idgrupos}}'" class="btn btn-icon btn-default{{--btn-trans--}} btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$estudiantegrupo->idgrupos}}"><i class="pli-student-male-female icon-lg " ></i> </button>
-										<button onclick="location.href='{{url('/')}}/grupos/notas/{{$estudiantegrupo->idgrupos}}'"  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip " data-original-title="Ver Notas Grupo" data-container="body" value="{{$estudiantegrupo->idgrupos}}"><i class="pli-notepad icon-lg "></i>{{--Info--}}</button>
+									<!--	{{--<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip vernotaestudiante" data-original-title="Ver Notas de Estudiante" data-container="body" value="{{$grupo->id}}"><i class="pli-notepad icon-lg "></i>{{--Info--}}</button>
+									-->
+										<button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$grupo->id}}'" class="btn btn-icon btn-default{{--btn-trans--}} btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$grupo->id}}"><i class="pli-student-male-female icon-lg " ></i> </button>
+										<button onclick="location.href='{{url('/')}}/grupos/notas/{{$grupo->id}}'"  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip " data-original-title="Ver Notas Grupo" data-container="body" value="{{$grupo->id}}"><i class="pli-notepad icon-lg "></i>{{--Info--}}</button>
 										
 
 								</td>
@@ -450,7 +442,7 @@
 
   $(document).on('click','.filtrar',function(){
   //	window.location.reload();
-    $(location).attr('href',$("#path").val()+'/estudiante/record/'+$('#idestudiante').val()+'/idioma/'+$('#idioma option:selected').text());
+    $(location).attr('href',$("#path").val()+'/estudiante/record/'+$('#iddocentes').val()+'/idioma/'+$('#idioma option:selected').text());
                      
   });
 

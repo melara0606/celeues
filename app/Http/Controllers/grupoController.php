@@ -20,6 +20,9 @@ use App\estudiantegrupo;
 
 use App\ponderacion;
 use App\nota;
+use App\Evaluaciones;
+use App\EvaluacionesPonderaciones;
+
 
 
 
@@ -186,8 +189,8 @@ class grupoController extends Controller
           ->get();
 		  //return Response::json($grupos);
 
-        //return Response::json($periodo);
-
+            $evaluaciones=Evaluaciones::get();
+        //return Response::json($evaluaciones);
             $infoJSON=[//Docente',[
                  //'periodos' => $periodos,
                  'anhos' => $anhos,
@@ -200,7 +203,8 @@ class grupoController extends Controller
                  'selectYear'=>$year,/////parametros
                  'selectModulo'=>$curso->first()->modulos,/////parametros  
                  'selectPeriodo'=>$periodoActual->id,/////parametros  
-                 'periodos'=>$periodos,        
+                 'periodos'=>$periodos,
+                 'evaluaciones'=>$evaluaciones        
                 ];
 
     	   return view('grupos.showGrupos',$infoJSON);
@@ -437,7 +441,7 @@ class grupoController extends Controller
     	$nivel=$request->input('nivel');
     	$idcursocategorias=$request->input('idcursocategorias');
     	$idcursos=$request->input('idcursos');
- 
+        $idevaluacion=$request->input('idevaluacion');
 
     	$cursos=curso::find($idcursos);
         $year=date("Y");
@@ -448,37 +452,68 @@ class grupoController extends Controller
     		$modulos="10";
 
     	}
-    	//-- Periodo Actual --//
-        $periodo=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
-       
-    	for ($i=1; $i <=$numGrupo ; $i++) { 
 
-            $grupos=grupo::where('numGrupo',$i)->where('idnivels',$nivel)->where('idperiodos',$periodo->id)->get();
-
-            //-- VErifica si existe un grupo con los mismos paramteros --//                         
-            if(count($grupos)>0){
-                 return Response::json([
-                    'bandera'=>0,
-                    'response'=>'Ya existe un grupo con esos registros',
-                 ]);
-            }
-           
+         DB::beginTransaction();
+          
+        try {
    
-    		 $message= grupo::create([
-		      //'numperiodo'=> $i,
-		      'cupos'=> $cupos,
-		      'numGrupo'=> $i,
-		      'idnivels'=>$nivel,
-		     'idperiodos'=>$periodo->id,
-		      'estado'=> "INICIADO",
-		      ]);
-	    		
-    	}
+        	//-- Periodo Actual --//
+            $periodo=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
+           
+        	for ($i=1; $i <=$numGrupo ; $i++) { 
 
-    	return Response::json([
-		    'bandera'=>1,
-		    'response'=>'Registro Guardado extisamente',
-		 ]);
+                $grupos=grupo::where('numGrupo',$i)->where('idnivels',$nivel)->where('idperiodos',$periodo->id)->get();
+
+                //-- VErifica si existe un grupo con los mismos paramteros --//                         
+                if(count($grupos)>0){
+                     return Response::json([
+                        'bandera'=>0,
+                        'response'=>'Ya existe un grupo con esos registros',
+                     ]);
+                }
+               
+       
+        		 $message= grupo::create([
+    		      //'numperiodo'=> $i,
+    		      'cupos'=> $cupos,
+    		      'numGrupo'=> $i,
+    		      'idnivels'=>$nivel,
+    		     'idperiodos'=>$periodo->id,
+    		      'estado'=> "INICIADO",
+    		      ]);
+
+                 $ponderaciones=EvaluacionesPonderaciones::where('evalucion_id',$idevaluacion)->get();
+                // return Response::json($ponderaciones);
+                 $contador=1;
+                 foreach ($ponderaciones as $key => $ponderacion) {
+                     
+                     ponderacion::create([
+                    'correlativo'=> $contador,
+                    'nombreEvaluacion'=>$ponderacion->titulo,
+                    'ponderacion'=>$ponderacion->ponderacion,
+                    'idgrupos'=>$message->id,         
+                    ]);
+                     $contador++;
+                 }
+
+                                   
+    	    		
+        	}
+
+            DB::commit();
+        	return Response::json([
+    		    'bandera'=>1,
+    		    'response'=>'Registro Guardado extisamente',
+    		 ]);
+
+        } catch (\Throwable $e) {
+          DB::rollback();
+          return Response::json([
+                'bandera'=>0,
+                'response'=>'eroor',
+                ]); 
+         
+       }////fin catch
 
     	
 
@@ -574,6 +609,11 @@ class grupoController extends Controller
          return Response::json($message);
 
     }//fin buscarNiveles
+    public function buscarEvaluaciones($idevaluacion){
+        $message=EvaluacionesPonderaciones::where('evalucion_id',$idevaluacion)->get();
+
+        return Response::json($message);        
+    }//Fin buscarEvaluaciones
 
     public function busquedaAula($texto){
         $output="";

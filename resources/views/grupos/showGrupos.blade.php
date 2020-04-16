@@ -236,7 +236,7 @@
 --}}
 
 					<div class="col-md-12" >
-					<table id="myTable" style="display: none;">
+					<table id="myTable" style="display:none;">
 						<tbody>
 							<tr>
 								<td width="500px">
@@ -608,6 +608,48 @@
 
 					          </div>
 					          <br>
+					          <div  class="row form-group">
+					             <div class="col-md-1 col-sm-1"></div>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Evaluaciones:</label>
+					            <div class="col-md-6 col-sm-6">
+					               <select class="form-control" id="evaluacionesSelect" name="evaluacionesSelect">
+					               	<option selected disabled label="Seleccione una evaluacion"></option>
+					               		@forelse($evaluaciones as $evaluacion)
+					               			<option value="{{ $evaluacion->id }}">{{ $evaluacion->titulo }}</option>
+					               		@empty
+					               		@endforelse
+                               			  
+									          
+			            			</select>
+					            </div>
+
+					          </div>
+					          <br>
+					          <div class="row" id="divcollapseEvaluacion" style="display: none">
+					           <div class=" col-md-3 "></div>
+					           <div class=" col-md-6 col-sm-12">
+						          <div class="panel {{--panel-default--}}" >
+									    <div class="panel-heading bg-gray" style="height: 35px; border: 1px solid #ccc;">
+									      	<div style="display: inline-block;width: 100%;margin-top: 8px">
+										      	  
+											      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-sm text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="{{--color:white;--}}font-size: 13px; " >ponderaciones</strong></p></h4>
+									      		
+										      <h4 class="panel-title text-sm" align="right" style="float: right;" >
+										      	
+										        <a data-toggle="collapse" href="#collapse1" class="colapOne" ><i class="ion-plus"></i></a>
+										      </h4>
+									  		</div>
+									    </div>
+									    <div id="collapse1" class="panel-collapse collapse" style="border-bottom: 1px solid #ccc;">
+									    	<table  class="table {{--table-bordered--}} table-striped table-sm ">
+									    		<tbody id="tableEvaluaciones" name="tableEvaluaciones">
+									    			
+									    		</tbody>
+									    	</table>
+									    </div>
+									</div>   
+								  </div>
+							  </div>
 					          <div class="row form-group">
 					            <div class="col-md-1 col-sm-1"></div>
 					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Secciones:</label>

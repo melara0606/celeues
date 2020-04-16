@@ -5,7 +5,7 @@
     $("#btnGuardar").html("Nuevo");
     $("#btnGuardar").removeClass("btn-mint");
     $("#modalIngresoHeader").removeClass("alert-mint");
-    $("#modalIngresoLabel").html("Registro de Curso");
+    $("#modalIngresoLabel").html("Registro de Grupos");
     //$('#form').trigger('reset');
     $("#btnGuardar").removeClass("btn-success");
     $('#modalIngreso').modal('show'); 
@@ -84,7 +84,34 @@ $('#categoriaSelect').on('change', function (e) {
     console.log(valueSelected);
 });
 
+$('#evaluacionesSelect').on('change', function (e) {
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+    
+    $('#divcollapseEvaluacion').show();
+    $('#tableEvaluaciones').empty();
+    var options="";
 
+     $.getJSON($('#path').val()+'/grupos/evaluaciones/'+$('#evaluacionesSelect').val(), function (data) {
+          //success data
+            console.log(data);     
+            for (var i = 0; i < data.length; i++) {
+              //  options+='<option value="' + data[i].id + '">' + data[i].numNivel + '</option>';
+                options+='<tr>'+
+                '<td>' + data[i].titulo + '</td>'+
+                '<td>' + data[i].ponderacion + '%</td>'+
+                '</tr>';
+
+            };      
+             options+='<tr>'+
+                '<td>TOTAL</td>'+
+                '<td>100%</td>'+
+                '</tr>';
+             //console.log(options);
+        $('#tableEvaluaciones').append(options);
+    });
+    console.log(valueSelected);
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $("#btnGuardar").click(function (e) {
@@ -103,6 +130,7 @@ $("#btnGuardar").click(function (e) {
      nivel :$('#nivelSelect').val(),
      cupos:$('#cupos').val(),
      numGrupos :$('#numGrupos').val(),
+     idevaluacion:$('#evaluacionesSelect').val()
    }      
 
       //  $('#btnGuardar').attr("disabled", true);
@@ -120,8 +148,9 @@ $("#btnGuardar").click(function (e) {
 
           }
         
-        // $('#modalIngreso').modal('hide');
-        console.log($('#form').serializeArray());
+       //  $('#modalIngreso').modal('hide');
+       // console.log($('#form').serializeArray());
+         console.log(formData);
 
           $.ajax({
 

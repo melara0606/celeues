@@ -67,6 +67,93 @@
 		
 					</div>
 
+<!-- ----------------------------------------------------------------- -->
+					<div class="row pad-btm form-inline">
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">IDIOMA:</label>
+
+								 <label class="control-label  text-bold col-md-8">{{strtoupper($grupo->nivels->idiomas->nombre)}}</label>
+						          
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label  class="control-label text-main text-bold col-md-4">NIVEL:</label>
+								<label class="control-label  text-bold col-md-8 text-capitalize">{{strtoupper($grupo->nivels->numNivel)}} SECCION A </label>
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">AULA:</label>
+
+								@if($grupo->idaulas!=null)
+								 <label class="control-label  text-bold col-md-8">{{ strtoupper($grupo->aulas->nombre) }} </label>
+						        @else
+								 <label class="control-label  text-bold col-md-8">N/A </label>
+						        @endif
+						          
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">DOCENTE:</label>
+								 @if($grupo->iddocentes!=null)
+								 <label class="control-label  text-bold col-md-8">{{strtoupper($grupo->docentes->nombre)}} {{strtoupper($grupo->docentes->apellido)}}  </label>
+								 @else
+								 <label class="control-label  text-bold col-md-8">N/A </label>
+						          @endif
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">CUPOS:</label>
+
+								 <label class="control-label  text-bold col-md-8"> {{ $grupo->cupos}}</label>
+						          
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">ESTADO:</label>
+
+								  <label class="control-label  text-bold col-md-8">{{ $grupo->estado}} </label> 
+								<!--  @if($grupo->estado=='ACTIVO')
+								 <div class="label label-table bg-mint col-md-9">
+				                    <div class="text-sm text-bold">
+				                    {{$grupo->estado}}
+				                    </div>
+				                  </div>
+				                  @endif
+				                   @if($grupo->estado=='INACTIVO')
+				                  <div class="label label-table bg-gray col-md-9">
+				                    <div class="text-sm text-bold">
+				                    {{$grupo->estado}}
+				                    </div>
+				                  </div>
+				                  @endif
+				              -->
+						          
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">INICIO:</label>
+
+								 <label class="control-label  text-bold col-md-8"></label>
+						          
+							</div>							
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">FIN:</label>
+
+								 <label class="control-label  text-bold col-md-8"></label>
+						          
+							</div>
+							
+						</div>
+<!--------------------------------------------------------------------->
+
 					
 					
         
@@ -85,7 +172,8 @@
 						
 					</div>
 
-					<div class="row col-md-12 col-sm-12">
+
+				<!--	<div class="row col-md-12 col-sm-12">
 						<div class="comments media-block">
 					                        
 		                        <div class="media-body">
@@ -142,16 +230,17 @@
 					        </div>
 						
 					</div>
+				-->
 
 						
 					<div class="row">
 						
-						<div class="col-sm-11 table-toolbar-right">
+						<div class="col-sm-12 table-toolbar-right">
 							<button id="btnnuevo" class="btn btn-purple" ><i class="demo-pli-add"></i> Agregar Estudiante</button>
 
-							<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
+						{{--	<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
 
-						{{--	<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
+							<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
 							--}}
 						</div>
 						<div class="col-sm-6 table-toolbar-right">

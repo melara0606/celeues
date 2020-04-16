@@ -12,6 +12,8 @@ use App\Http\Request\JonaRequest;
 use Illuminate\Support\Facades\Response;
 
 use App\user;
+use App\grupo;
+
 class docenteController extends Controller
 {
     //
@@ -175,21 +177,31 @@ public function showGrupos($id){
       $estudiantegrupos=estudiantegrupo::Where('grupos.iddocentes',$docente->id)
       ->leftJoin('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
       ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
-      ->select('estudiantegrupos.*')
+      ->select('estudiantegrupos.*','grupos.*')
       ->orderBy('nivels.numNivel','ASC')
       ->orderBy('grupos.numGrupo','ASC')
       ->get();
-      //$grupos=grupo::where()
+      $grupos=grupo::where('iddocentes',$docente->id)
+      ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
+      ->select('grupos.*')
+      ->orderBy('nivels.numNivel','ASC')
+      ->orderBy('grupos.numGrupo','ASC')
+      ->get();
+      //$grupos=grupo::where()s
       $idiomas=idioma::where('estado','ACTIVO')->get();
       //$estudiantegrupos=estudiantegrupo::Where('idestudiantes',$estudiante->id)->get();//asi funciona sin relacion
-      //return Response::json($estudiantegrupos); 
-      if(count($estudiantegrupos)>0){
-        $ididioma=$estudiantegrupos->first()->grupos->nivels->ididiomas;
+     // return Response::json($grupos); 
+      //if(count($estudiantegrupos)>0){
+    if(count($grupos)>0){
+    //    $ididioma=$estudiantegrupos->first()->grupos->nivels->ididiomas;
+        $ididioma=$grupos->first()->nivels->ididiomas;
+     
       }else{
         $ididioma=1;
       }
       return view('docentes.showListGruposDocente',[
-        'estudiantegrupos' => $estudiantegrupos, 
+        'grupos'=>$grupos,
+        //'estudiantegrupos' => $estudiantegrupos, 
         'docente'=>$docente,
         'idiomas' => $idiomas, 
         'ididioma'=> $ididioma,
