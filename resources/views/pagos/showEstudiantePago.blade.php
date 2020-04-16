@@ -137,19 +137,12 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-4">INICIO:</label>
-
-								 <label class="control-label  text-bold col-md-8"></label>
-						          
+								<label for="" class="control-label text-main text-bold col-md-4">PERIODO:</label>
+								 @if($grupo->periodos->fechaFin!=null && $grupo->periodos->fechaIni != null)
+								 <label class="control-label  text-bold col-md-8">{{date("d-M-Y",strtotime($grupo->periodos->fechaIni))}} a<br> {{date("d-M-Y",strtotime($grupo->periodos->fechaFin))}}</label>
+						          @endif
 							</div>							
-							<br>
-							<br>
-							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-4">FIN:</label>
-
-								 <label class="control-label  text-bold col-md-8"></label>
-						          
-							</div>
+						
 							
 						</div>
 <!--------------------------------------------------------------------->

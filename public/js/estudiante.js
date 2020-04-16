@@ -36,7 +36,7 @@
     $.niftyNav('expand');
     //$.niftyNav('colExpToggle');
 
-    $.niftyAside('darkTheme');
+    //$.niftyAside('darkTheme');
 
     $("#resp_id").select2({
      dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
@@ -65,7 +65,7 @@
 
     var form_id =$('#resp_id').val();
 
-       $("#tablainfo").empty();////Deja vacia la tabla
+       $("#tablainfoResp").empty();////Deja vacia la tabla
        $.ajax({
 
         type: "GET",
@@ -82,15 +82,15 @@
           row +='<tr><td> Direccion: </td><td>' + data.direccion + '</td>';
 
           row +='<tr><td> Creado: </td><td>' + data.created_at + '</td>';
-      $("#tablainfo").append(row); ///Se anhade a la tabla           
+      $("#tablainfoResp").append(row); ///Se anhade a la tabla           
 
     },
     error: function (data) {
       console.log('Error de boton Info:', data);
     }
   });
-
-  $('#modalInfo').modal('show'); ///modal de informacion
+        $('#divcollapseResponsable').show();
+  //$('#modalInfo').modal('show'); ///modal de informacion
 });
 
 

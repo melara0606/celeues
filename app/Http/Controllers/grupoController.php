@@ -460,9 +460,9 @@ class grupoController extends Controller
         	//-- Periodo Actual --//
             $periodo=periodo::where('nombre',$modulos)->where('estado','ACTIVO')->where('anho',$year)->get()->first();
            
-        	for ($i=1; $i <=$numGrupo ; $i++) { 
+        	//for ($i=1; $i <=$numGrupo ; $i++) { 
 
-                $grupos=grupo::where('numGrupo',$i)->where('idnivels',$nivel)->where('idperiodos',$periodo->id)->get();
+                $grupos=grupo::where('numGrupo',$numGrupo)->where('idnivels',$nivel)->where('idperiodos',$periodo->id)->get();
 
                 //-- VErifica si existe un grupo con los mismos paramteros --//                         
                 if(count($grupos)>0){
@@ -476,14 +476,22 @@ class grupoController extends Controller
         		 $message= grupo::create([
     		      //'numperiodo'=> $i,
     		      'cupos'=> $cupos,
-    		      'numGrupo'=> $i,
-    		      'idnivels'=>$nivel,
+    		     // 'numGrupo'=> $i,
+    		      'numGrupo'=> $numGrupo,
+                  'idnivels'=>$nivel,
     		     'idperiodos'=>$periodo->id,
     		      'estado'=> "INICIADO",
     		      ]);
-
-                 $ponderaciones=EvaluacionesPonderaciones::where('evalucion_id',$idevaluacion)->get();
-                // return Response::json($ponderaciones);
+                 if($idevaluacion>0){   
+                        $ponderaciones=EvaluacionesPonderaciones::where('evalucion_id',$idevaluacion)->get();
+                 }else{
+                     DB::rollback();
+                        return Response::json([
+                       'bandera'=>0,
+                        'response'=>'debe ingresar una ponderacion de notas',
+                         ]); 
+                 }
+                 //return Response::json($idevaluacion);
                  $contador=1;
                  foreach ($ponderaciones as $key => $ponderacion) {
                      
@@ -498,7 +506,7 @@ class grupoController extends Controller
 
                                    
     	    		
-        	}
+        	//}
 
             DB::commit();
         	return Response::json([
@@ -510,7 +518,7 @@ class grupoController extends Controller
           DB::rollback();
           return Response::json([
                 'bandera'=>0,
-                'response'=>'eroor',
+                'response'=>'ocurrio un error en el servidor',
                 ]); 
          
        }////fin catch

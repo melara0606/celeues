@@ -533,7 +533,7 @@
 		
 
 	
-	<!--</div> No se por que si lo pongo se me hace feo el disenho del footer===================================================-->
+	</div><!-- No se por que si lo pongo se me hace feo el disenho del footer===================================================-->
 	<!--End page content-->
 
 
@@ -626,7 +626,8 @@
 					          </div>
 					          <br>
 					          <div class="row" id="divcollapseEvaluacion" style="display: none">
-					           <div class=" col-md-3 "></div>
+					           <label  class="col-md-3 col-sm-12 control-label text-main text-bold ">Visualizar:</label>
+					            
 					           <div class=" col-md-6 col-sm-12">
 						          <div class="panel {{--panel-default--}}" >
 									    <div class="panel-heading bg-gray" style="height: 35px; border: 1px solid #ccc;">
@@ -652,16 +653,22 @@
 							  </div>
 					          <div class="row form-group">
 					            <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Secciones:</label>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Seccion:</label>
 					            <div class="col-md-3 col-sm-3">
 					                 <select class="form-control" id="numGrupos" name="numGrupos">
                                			   
-									          <option value="1">1  A </option>
+									          <!-- <option value="1">1  A </option>
 											  <option value="2">2  A B </option>
 											  <option value="3">3  A B C</option>
 											  <option value="4">4  A B C D</option>
 											  <option value="5">5  A B C D E</option>
-											  <option value="6">6  A B C D E F</option>
+											  <option value="6">6  A B C D E F</option> -->
+											  <option value="1">A </option>
+											  <option value="2">B </option>
+											  <option value="3">C</option>
+											  <option value="4">D</option>
+											  <option value="5">E</option>
+											  <option value="6">F</option>
 											
 									          
 			            			</select>
@@ -774,48 +781,6 @@
 					                    </div> 
 						<table   class="table {{--table-bordered--}} table-sm " align="center">
             					<tbody id="tablaAsigDocenteAula">
-            						@for($i=1;$i<10;$i++)
-            						<tr class='clickable-row'>
-            							<td align="center" >
-            								<!--<i class="demo-pli-smartphone-3 icon-lg" style="padding-top: 10px">
-            								-->	<i class="pli-professor icon-lg" style="padding-top: 5pX"></i>
-            									<i class="pli-board icon-lg"></i>
-            							</td>
-            						
-            								<td>
-            									<div class="comment-header">
-					                                <label class="media-heading box-inline text-main text-sm text-semibold ">Kelvin Adonay Flores Mejia</label> 
-					                                <p class="text-muted text-xs">Email@gmail.com </p>
-
-
-					                            </div>
-					                        </td>
-					                        <td align="center">
-<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigDocente" data-original-title="Asignar" data-container="body" value="" disabled="true">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>
-					                        </td>
- 
-            						</tr>
-            						@endfor
-
-            						<tr >
-            							<td align="center" >
-            									<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
-            									<i class="pli-conference icon-sm" style="padding-top: 5pX"></i>
-            									
-            							</td>
-        								<td>
-        									<div class="comment-header">
-				                                <label class="media-heading box-inline text-main text-sm text-semibold ">Aula 2-1</label> 
-				                                <p class="text-muted text-xs">Capacidad 20 personas </p>
-
-
-				                            </div>
-				                        </td>
-				                        <td align="center">
-<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAula" data-original-title="Asignar Aula" data-container="body" value="">Asignar aula<i class="demo-psi-arrow-right icon-md "></i> </button>
-				                        </td>
-
-            						</tr>
             						
 
             						

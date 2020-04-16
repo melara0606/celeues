@@ -1,4 +1,4 @@
-<div class="tab-base bg-dark">
+<div class="tab-base ">
   <div class="tab-content ">
     
     <!-- Nav tabs -->
@@ -97,6 +97,39 @@
       
 
     </div>
+    <div class="row" id="divcollapseResponsable" style="display:none ">
+         <label  class="col-md-3 col-sm-12 control-label text-main text-bold ">Visualizar:</label>
+          
+         <div class=" col-md-5 col-sm-12">
+          <div class="panel panel-default" >
+          <div class="panel-heading " style="height: 35px; border: 1px solid #ccc;">
+              <div style="display: inline-block;width: 100%;margin-top: 8px">
+                  
+                <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-sm text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="font-size: 13px; " >Informacion Responsable</strong></p></h4>
+                
+              <h4 class="panel-title text-sm" align="right" style="float: right;" >
+                
+                <a data-toggle="collapse" href="#collapse1" class="colapOne" ><div class="demo-icon"><i class="ion-chevron-down"></i></div></a>
+              </h4>
+            </div>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse" style="border-bottom: 1px solid #ccc;">
+             <div class="table-responsive">
+                        
+                  <table   class="table {{--table-bordered--}} table-striped table-sm ">
+                            <tbody id="tablainfoResp">
+                              <tr>
+                              <td>dcdc</td> 
+                              </tr>
+                            </tbody>
+                  </table>
+                <!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
+            </div>
+          </div>
+      </div>   
+      </div>
+    </div>
+
   </div>
   <div style="display: none;" id="mayorEdad">
     <div  id="duidiv" class="form-group @if($errors->has('apellido')) has-danger @endif" >
