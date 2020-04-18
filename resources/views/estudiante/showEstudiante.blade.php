@@ -7,7 +7,7 @@
 	@endsection
 	@section('content')
 <?php use App\Http\Controllers\estudianteController;
-	?>
+	?>		
 	<!--CONTENT CONTAINER-->
 	<!--===================================================-->
 
@@ -69,8 +69,8 @@
 				{{----}}<div class="pad-btm form-inline">
 					<div class="row">
 						<div class="col-sm-6 table-toolbar-left">
-							<button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo</button>
-							<button class="btn btn-default imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
+							<button id="btnnuevo" class="btn btn-purple btn-sm"><i class="demo-pli-add btn-xs"></i> Nuevo</button>
+							<button class="btn btn-default btn-sm imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
 							{{--<div class="btn-group">
 								<button class="btn btn-default"><i class="demo-pli-exclamation"></i>
 								</button>
@@ -120,8 +120,8 @@
 				<div class=" table-responsive">
 					<table id="myTable" class="table table-striped row-border" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 						<thead class="">
-							<tr>
-								<th class="text-center">#</th>
+							<tr >
+								<th class="text-center" >#</th>
 								
 								<th class="text-left">Nombre</th>
 								<th class="text-center">Usuario</th>
@@ -229,7 +229,7 @@
 				</div>
 
 				<!--Modal body-->
-				<div class="modal-body" style="overflow-y: auto;  max-height: 500px;"	>
+				<div class="modal-body" style="overflow-y: auto;  max-height: 500px;{{--background-color: #eeeeee--}}"	>
 					
 					@include('estudiante.formEstudiante')
 				</div>

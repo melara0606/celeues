@@ -867,6 +867,7 @@ class grupoController extends Controller
                })*/
               ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
               ->select('grupos.*')
+              ->where('idcursocategorias', $idcursocategorias)
               ->orderBy('numNivel','ASC')
               ->orderBy('numGrupo','ASC')
               ->get();
@@ -909,7 +910,7 @@ class grupoController extends Controller
                             */
 
           foreach ($estudiantegrupos as $estudiantegrupo) { 
-          if($estudiantegrupo->estadoEstudiante!='EXONERADO'){      
+          if($estudiantegrupo->estadoEstudiante!='TRASLADADO'){      
             $table.='<tr id="trow'.$estudiantegrupo->id.'">
                     <td class="" align="center" >'.$i++.'</td>
                     <td style="width: 45%" align="left">
@@ -962,7 +963,7 @@ class grupoController extends Controller
                     $var='';
                     $message=estudiantegrupo::find($estudiantegrupoInicial->first()->id);   
                       $message->fill([
-                         'estado'=> 'EXONERADO',
+                         'estado'=> 'TRASLADADO',
                            ]);
                     if($message->save()){
                         $registro=estudiantegrupo::create([

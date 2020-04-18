@@ -1,5 +1,8 @@
 @extends('layouts.shared.appplantilla')
+@section('links')
+	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
 
+	@endsection
 @section('content')
 <!--CONTENT CONTAINER-->
 <!--===================================================-->
@@ -31,7 +34,11 @@
                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content" >
-                   
+
+                <!--col-md-12-->
+			    <!--===================================================-->
+				<div class="col-md-12">	
+                   <input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
 				
 					<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
@@ -91,66 +98,206 @@
 					                </div>
 					            </div>
 					        </div>--}}
+					        <!--col-md-6-->
+						    <!--===================================================-->
+							<div class="col-md-5">
+								
+									
+								<div class="{{--panel-group--}}" >
+								  <div class="panel {{--panel-default --}} ">
+								    <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
+								      	<div style="display: inline-block;width: 100%;">
+									      	  
+										      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION DE NOTICIA</strong></p></h4>
+								      		
+									      <h4 class="panel-title" align="right" style="float: right;" >
+									      	
+									        <a data-toggle="collapse" href="#collapseProfe" class="colapOne" ><i class="ion-plus"></i></a>
+									      </h4>
+								  		</div>
+								    </div>
+								    <div id="collapseProfe" class="panel-collapse " style="border-bottom: 1px solid #ccc;">
+								    	<br>
+								     	<div class="row pad-btm form-inline">
+											<div class=" col-md-12">
+												<label  class="control-label text-main text-bold col-md-3">TITULO:</label>
+												<label class="control-label  text-bold col-md-9">{{$noticia->titulo}} </label>
+											</div>
+											<br>
+											<br>
+											<div class=" col-md-12">
+												<label for="" class="control-label text-main text-bold col-md-3">DESCRIPCION:</label>
 
+												 <label class="control-label  text-bold col-md-9">{{$noticia->descripcion}} </label>
+										          
+											</div>
+											<br>
+											<br>
+											<div class=" col-md-12">
+												<label for="" class="control-label text-main text-bold col-md-3">MODULO:</label>
+
+												 <label class="control-label  text-bold col-md-9">{{$noticia->numModulo}} </label>
+										          
+											</div>
+											<br>
+											<br>
+											<div class=" col-md-12">
+												<label for="" class="control-label text-main text-bold col-md-3">MODALIDAD:</label>
+
+												 <label class="control-label  text-bold col-md-9">{{$noticia->modalidad}} </label>
+										          
+											</div>							<br>
+											<br>
+											<div class=" col-md-12">
+												<label for="" class="control-label text-main text-bold col-md-3">ESTADO:</label>
+
+												 <label class="control-label  text-bold col-md-9">{{$noticia->estado}} </label>
+										          
+											</div>
+											<br>
+											<br>
+										</div>
+								    </div>
+								  </div>
+								</div>
+
+							</div>
+							<!--col-md-6-->
+					    	<!--===================================================-->	
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+					        <!--col-md-7-->
+						    <!--===================================================-->
+							<div class="col-md-7">
+								<!--COLLAPSE INTERSADOS-->
+						    	<!--===================================================-->
+								<div class="{{--panel-group--}}" >
+								  <div class="panel {{--panel-default--}}">
+								    <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
+								      	<div style="display: inline-block;width: 100%;">
+									      	  
+										      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >INTERESADOS</strong></p></h4>
+								      		
+									      <h4 class="panel-title" align="right" style="float: right;" >
+									      	
+									       {{-- <a data-toggle="collapse" href="#collapse2" class="colapTwo"><i class="ion-plus"></i></a> --}}
+									      </h4>
+								  		</div>
+								    </div>
+								    <div id="collapse2" class="panel-collapse collapse" style="border-bottom: 1px solid #ccc;">
+								    	<br>
+								     	<div class="row pad-btm form-inline">
+											
+										</div>
+								    </div>
+								  </div>
+								</div>
+								<!--FIN COLLAPSE INTERSADOS-->
+						    	<!--===================================================-->
+								
 					        <div class="{{--table-responsive--}}">
 					            <table id="myTable" class="table table-striped" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 					                <thead>
 					                    <tr>
-					                        <th class="text-center">Titulo</th>
-					                        <th>Descripcion</th>
-					                        <th>Modalidad</th>
-					                        <th>Estado</th>
+
+											<th class="text-center">#</th>
+					                        <th class="text-left">Nombre</th>
+					                        <th>Fecha Nac.</th>
+					                        <th>Telefono</th>
 					                        <th>Acciones</th>
 					                       
 					                    </tr>
 					                </thead>
 					                <tbody>
+					                	<div style="display: none;">{{ $correlativo=1 }}</div>
 					                    @forelse($interesados as $interesado)
 										<tr id="{{ $interesado->id }}">
-											<td>{{ $interesado->nombre }}</td>
-											<td >{{ $interesado->apellido }}</td>
-											<td><span class="text-muted"><i class="demo-pli-clock"></i> {{ $interesado->fechaNac }}</span></td>
-											<td ><div class="label label-table bg-mint"><div class="text-sm text-bold">{{ $interesado->telefono }}</div></div></td>
-											<td>
-											{{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
-											<button class="btn btn-sm btn-rounded btn-default">Small</button>
-											<button class="btn btn-xs btn-rounded btn-default">Extra Small</button>
-											--}}
-											<button class="btn btn-default btn-sm btn-default btn-success"><i class="demo-pli-pencil icon-sm"></i></button>
-											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i class="demo-pli-exclamation icon-sm"></i></button>
+											<td align="center">{{ $correlativo++ }}</td>
+											<td align="left">
+												<div class="">
+													<div class="text-main text-bold">
+													{{ $interesado->nombre }} {{ $interesado->apellido }}
+													</div>
+												</div>
+											</td>
+											<td ><span class="text-muted">{{ date("d-m-Y",strtotime($interesado->fechaNac)) }}</span></td>
+											<td ><div class="label label-table bg-dark"><div class="text-sm text-bold">{{ $interesado->telefono }}</div></div></td>
+											<td align="center">
+											<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModalInteresado add-tooltip" data-original-title="Info Interesado" data-container="body" value="{{$interesado->id}}"><i class="demo-pli-exclamation icon-sm "></i>{{--Info--}}</button>
+											<button  class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Crear Estudiante" data-container="body" value="1">+<i class="pli-student-male icon-lg "></i> </button>
 
-											{{--<button class="btn btn-lg btn-default btn-hover-warning">Hover Me!</button>
-											<div class="demo-icon"><i class="demo-pli-internet-explorer"></i></div>--}}
+											<!--<button class="btn btn-default btn-sm btn-default btn-success"><i class="demo-pli-pencil icon-sm"></i></button>
+											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i class="demo-pli-exclamation icon-sm"></i></button>
+											-->
+											
 											</td>
 
-        </tr>
-       
-		@empty
-    	<p>No hay mensajes destacados</p>
-  		@endforelse
-		        
-									</tbody>
+									        </tr>
+									       
+											@empty
+									    	<p>No hay mensajes destacados</p>
+									  		@endforelse
+											        
+																		</tbody>
 
 
-	</table>
-		        </div>
+										</table><hr>
+							        </div>
+							 </div>
+							<!--col-md-7-->
+					    	<!--===================================================-->
 					    </div>
 					    <!--===================================================-->
-					    <!--End Data Table-->
+					    <!--End Panel Body-->
 					</div>
 
 					{{-- aqui termina col 10 --}}
-					
+		</div>
+		<!--===================================================-->
+		<!--End col-12-->
 				    
 
-                </div>
-                <!--===================================================-->
-                <!--End page content-->
+        </div>
+        <!--===================================================-->
+        <!--End page content-->
 
    
             <!--===================================================-->
             <!--END CONTENT CONTAINER-->
-
+<!--INFO Bootstrap Modal-->
+	<!--===================================================-->
+	<div id="modalInfo" class="modal fade" tabindex="-1">
+		<div class="modal-dialog {{--modal-lg--}}">
+			<div class="modal-content">
+				<div class="modal-header alert-info">
+					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+					<h4 class="modal-title" style="color: white;" >Informacion de Interesado</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel-body">
+						<div class="table-responsive">
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>
+            			<div class="col-md-12">
+						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
+            					<tbody id="tablainfo">
+            						<tr>
+            						<td></td> 
+            						</tr>
+            					</tbody>
+            			</table>
+            			</div>
+					<!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
+						</div>
+					</div>
+				</div>
+				<!--Modal footer-->
+				<div class="modal-footer">
+					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--===================================================-->
+	<!--End Large Bootstrap Modal-->
 
 @endsection
 
@@ -162,14 +309,15 @@
 	$('#myTable').DataTable({
       //"dom": '<"top"l>frt<"bottom"pi>'
       language: {
+      	"dom": '<"top"l>frt<"bottom"pi>',
         "decimal": "",
         "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ ",
         "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
         "infoFiltered": "(Filtrado de _MAX_ total entradas)",
         "infoPostFix": "",
         "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "lengthMenu": "Mostrar _MENU_ ",
         "loadingRecords": "Cargando...",
         "processing": "Procesando...",
         "search": "Buscar:",
@@ -182,8 +330,44 @@
         }
     }
     });
-    $.niftyNav('expand');
+    $.niftyNav('collapse');
 
+});
+
+	$(document).on('click','.infoModalInteresado',function(){
+
+  var value = $(this).val();
+
+       $("#tablainfo").empty();////Deja vacia la tabla
+       console.log(value);
+       $.ajax({
+
+        type: "GET",
+        url: $("#path").val()+'/interesados/buscar/'+value,
+        data: value,
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+         // for (var i = 0; i < data.length; i++) {
+
+          var row = '<tr><td width="30%"> Nombre: </td><td width="70%">' + data.nombre + ' ' + data.apellido + '</td>';
+          row +='<tr><td> Fecha de Nacimiento: </td><td>' + data.fechaNac + '</td>';
+  
+          row +='<tr><td> Email: </td><td>' + data.email + '</td>'
+          row +='<tr><td> Telefono: </td><td>' + data.telefono + '</td>';
+  
+
+
+          row +='<tr><td> Creado: </td><td>' + data.created_at + '</td>';
+              $("#tablainfo").append(row); ///Se anhade a la tabla           
+        //};
+      },
+      error: function (data) {
+        console.log('Error de boton Info:', data);
+      }
+    });/**/
+
+  $('#modalInfo').modal('show'); ///modal de informacion
 });
 </script>
 @endsection

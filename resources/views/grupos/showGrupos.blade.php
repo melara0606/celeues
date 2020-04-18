@@ -21,7 +21,7 @@
 		text-decoration: none;
 	}
 	</style>
-	<div id="page-head">
+	<div id="page-head" >
 
 	  <!--Page Title-->
 	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

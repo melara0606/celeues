@@ -1,11 +1,11 @@
-<div class="tab-base ">
-  <div class="tab-content ">
+<div class="tab-base " {{--style="height: 10px"--}}>
+  <div class="tab-content " {{--style="background-color: #eeeeee"--}}>
     
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
-      <li class="active" id="pestEst"><a href="#demo-bsc-tab-1" data-toggle="tab" aria-expanded="true">Estudiante</a></li>
+    <ul class="nav nav-tabs" >
+      <li class="active" style="border: 1px solid lightgray;border-bottom: 0px " id="pestEst"><a href="#demo-bsc-tab-1" data-toggle="tab" aria-expanded="true">Estudiante</a></li>
       
-      <li class="" style="display: none;" id="pestMenorEdad"><a href="#demo-bsc-tab-2" data-toggle="tab" aria-expanded="false">Responsable</a></li>
+      <li class="" style="display: none;border: 1px solid lightgray;border-bottom: 0px;border-left: 0px" id="pestMenorEdad"><a href="#demo-bsc-tab-2" data-toggle="tab" aria-expanded="false">Responsable</a></li>
       
     </ul> 
 

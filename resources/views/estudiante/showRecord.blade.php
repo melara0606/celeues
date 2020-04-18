@@ -297,7 +297,7 @@
 
 					
 					<div class=" table-responsive">
-						<table  class="table table-striped row-border display"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
+						<table id="myTable" class="table table-striped row-border display"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
@@ -321,6 +321,7 @@
                              );
 							?>
 							<tbody id="tbodyTwo" name="tbodyTwo">
+								<!-- {{--@for($i=1;$i<=3;$i++) --}} -->
 								<div style="display: none;">{{ $correlativo=1 }}</div>
 								@forelse($estudiantegrupos as $estudiantegrupo)
 								@if($ididioma == $estudiantegrupo->grupos->nivels->ididiomas)
@@ -340,7 +341,7 @@
 										</div>
 									</div>
 								</td>
-								@if($estudiantegrupo->estado!='EXONERADO')
+								@if($estudiantegrupo->estado!='TRASLADADO')
 								<td align="center">
 									<div class="label label-table bg-dark">
 										<div class="text-xs text-bold">
@@ -370,6 +371,7 @@
 							<p>No hay mensajes destacados</p>
 
 							@endforelse 
+							 <!-- {{--@endfor --}}-->
 							</tbody>
 						</table>
 					</div>
@@ -479,6 +481,29 @@
 	@section('script')
 	<script type="text/javascript">
 	$(document).ready(function() {
+	/*	$('#myTable').DataTable({
+      //"dom": '<"top"l>frt<"bottom"pi>'
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ ",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ ",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    }
+    });*/
     //$(".display").DataTable();
     $.niftyNav('collapse');
     //$.niftyNav('bind');

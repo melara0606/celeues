@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\interesado;
-//use App\noticiaInteresado;
+use App\noticia;
 use Illuminate\Support\Facades\Response;
 
 
@@ -12,9 +12,10 @@ class interesadoController extends Controller
 {
     //
      public function show($id){   
-        
+        $noticia=noticia::find($id)->first();
         $interesados=interesado::latest()->get();  
           return view('interesados.showInteresado',[
+            'noticia'=>$noticia,
              'interesados' => $interesados,      
            
         //'noticias'=> $noticias,
@@ -49,6 +50,10 @@ class interesadoController extends Controller
     return redirect('/home')->with('mensaje','Registro Guardado');  
         
         
+    }
+    public function buscar($id){
+        $interesado=interesado::find($id);//->first();
+        return Response::json($interesado);
     }
  
     

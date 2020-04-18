@@ -169,7 +169,7 @@ $('#categoriafiltro2').on('change', function (e) {
 
 $('#grupofiltro1').on('change', function (e) {
   $("#filtrarOne").prop( "disabled", false ); 
-   $('#titleacordeon').html('<strong style="font-size: 13px; " >GRUPO '+$('#grupofiltro1 option:selected').text()+'</strong>'); 
+   $('#titleacordeon').html('<strong style="font-size: 13px;color:white" >GRUPO '+$('#grupofiltro1 option:selected').text()+'</strong>'); 
 });
 
 $('#grupofiltro2').on('change', function (e) {

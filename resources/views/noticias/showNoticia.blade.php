@@ -131,7 +131,7 @@
 									
 									<button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-primary darAlta" data-original-title="Dar Alta" value="{{ $noticia->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i></div> </button>
 
-                  					<button onclick="location.href='{{url('/')}}/noticia/{{$noticia->id}}/interesados'" class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Record Academico" data-container="body" value="{{ $noticia->id }}"><i class="pli-student-male-female icon-lg " ></i> </button>
+                  					<button onclick="location.href='{{url('/')}}/noticia/{{$noticia->id}}/interesados'" class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Listado de interesados" data-container="body" value="{{ $noticia->id }}"><i class="pli-student-male-female icon-lg " ></i> </button>
 									{{--<button type="button" class="btn btn-outline-info btn-sm infomodal" value="{{ $noticia->id }}">Info</button>--}}
 									
 												

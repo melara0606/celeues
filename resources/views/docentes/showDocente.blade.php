@@ -228,13 +228,13 @@
     <div class="modal-content">
 
       <!--Modal header-->
-      <div class="modal-header alert-primary" id="modalIngresoHeader" >
+      <div class="modal-header alert-primary" id="modalIngresoHeader"  style="border-bottom:  1px solid lightgray">
         <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
         <h4 class="modal-title" style="color: white;" id="modalIngresoLabel"><label>Ingresar Docente</label></h4>
       </div>
 
       <!--Modal body-->
-      <div class="modal-body">
+      <div class="modal-body" {{--style="background-color: #eeeeee"--}}>
         {{--  <p class="text-semibold text-main">Bootstrap Modal Vertical Alignment Center</p>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
         <br>
@@ -254,7 +254,7 @@
       </div>
 
       <!--Modal footer-->
-      <div class="modal-footer">
+      <div class="modal-footer" style="border-top: 1px solid lightgray">
         <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
         <button class="btn btn-primary" id="btnGuardar">Save changes</button>
       </div>

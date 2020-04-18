@@ -1,4 +1,4 @@
-@extends('layouts.appPlantilla')
+@extends('layouts.shared.appplantilla')
 
 @section('content')
 <!--CONTENT CONTAINER-->
