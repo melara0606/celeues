@@ -194,7 +194,7 @@
 						<a class="btn-link text-bold add-tooltip" href="#" data-original-title="Tooltip">that link</a> should have tooltips on hover.
 					</p>
 					--}}
-					@include('noticias.formNoticias')
+					@include('noticias.formnoticias')
 				</div>
 
 				<!--Modal footer-->
