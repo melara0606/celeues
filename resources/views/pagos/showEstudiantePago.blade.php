@@ -84,6 +84,22 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
+								<label  class="control-label text-main text-bold col-md-4 text-sm">CATEGORIA: </label>
+								<label class="control-label  text-bold col-md-8 text-capitalize">{{strtoupper($grupo->nivels->categorias->nombre)}}</label>
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
+								<label for="" class="control-label text-main text-bold col-md-4">DOCENTE:</label>
+								 @if($grupo->iddocentes!=null)
+								 <label class="control-label  text-bold col-md-8 text-sm">{{strtoupper($grupo->docentes->nombre)}} {{strtoupper($grupo->docentes->apellido)}}  </label>
+								 @else
+								 <label class="control-label  text-bold col-md-8">N/A </label>
+						          @endif
+							</div>
+							<br>
+							<br>
+							<div class=" col-md-12">
 								<label for="" class="control-label text-main text-bold col-md-4">AULA:</label>
 
 								@if($grupo->idaulas!=null)
@@ -92,16 +108,6 @@
 								 <label class="control-label  text-bold col-md-8">N/A </label>
 						        @endif
 						          
-							</div>
-							<br>
-							<br>
-							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-4">DOCENTE:</label>
-								 @if($grupo->iddocentes!=null)
-								 <label class="control-label  text-bold col-md-8">{{strtoupper($grupo->docentes->nombre)}} {{strtoupper($grupo->docentes->apellido)}}  </label>
-								 @else
-								 <label class="control-label  text-bold col-md-8">N/A </label>
-						          @endif
 							</div>
 							<br>
 							<br>
@@ -282,7 +288,7 @@
 						</div>
 					</div>
 					 <div id="cursoNombreDiv">
-					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">{{$encabezadoGrupo}} </strong></p></h3></div>
+					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">{{$encabezadoGrupo}}  </strong></p></h3></div>
 						
 
 

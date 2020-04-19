@@ -289,21 +289,21 @@ var formData = {
                 row +='<td align="center">' + data[i].finPago +'</td>';
               }
               if(data[i].estado=='ACTIVO'){
-                row +='<td align="center"><div class="label label-table bg-mint"><div class="text-xs text-bold"></div>' + data[i].estado +'</div></td>';
+                row +='<td align="center"><div class="label label-table bg-mint"><div class="text-xs text-bold">' + data[i].estado +'</div></div></td>';
 
               }else {
-                row +='<td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold"></div>' + data[i].estado +'</div></td>';
+                row +='<td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold">' + data[i].estado +'</div></div></td>';
               }
 
               row +='<td align="center">';
-    row +='<button class="btn btn-icon btn-trans btn-sm  add-tooltip editarmodal" data-original-title="Editar Fechas" data-container="body" value="' + data[i].id +'"><i class="demo-psi-pen-5 icon-sm " ></i> </button>';
-            row +='<button class="btn btn-icon btn-trans btn-sm  infoModal add-tooltip " data-original-title="Información" data-container="body" value="' + data[i].id +'"><i class="demo-pli-exclamation icon-sm " ></i> </button>';
+    row +='<button class="btn btn-icon btn-default btn-xs  add-tooltip editarmodal" data-original-title="Editar Fechas" data-container="body" value="' + data[i].id +'"><i class="demo-psi-pen-5 icon-sm " ></i> </button>';
+            row +=' <button class="btn btn-icon btn-default btn-xs  infoModal add-tooltip " data-original-title="Información" data-container="body" value="' + data[i].id +'"><i class="demo-pli-exclamation icon-sm " ></i> </button>';
              
                if(data[i].estado=='ACTIVO'){
-                 row +=' <button class="btn btn-icon btn-trans btn-sm   darbaja" data-original-title="Desactivar" value="' + data[i].id +'"><div class="demo-icon"><i class="ion-chevron-down"></i><span> </span></div> </button>';
+                 row +=' <button class="btn btn-icon btn-default btn-xs   darbaja" data-original-title="Desactivar" value="' + data[i].id +'"><div class="demo-icon"><i class="ion-chevron-down"></i><span> </span></div> </button>';
                 }
                 if(data[i].estado=='INACTIVO'){
-                 row +=' <button class="btn btn-icon btn-trans btn-sm   darAlta" data-original-title="Activar" value="' + data[i].id +'"><div class="demo-icon"><i class="ion-chevron-up"></i><span> </span></div> </button>';
+                 row +=' <button class="btn btn-icon btn-default btn-xs   darAlta" data-original-title="Activar" value="' + data[i].id +'"><div class="demo-icon"><i class="ion-chevron-up"></i><span> </span></div> </button>';
                 }
  row +='</td></tr>'
               console.log(row);

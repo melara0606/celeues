@@ -223,7 +223,7 @@
 											<td ><div class="label label-table bg-dark"><div class="text-sm text-bold">{{ $interesado->telefono }}</div></div></td>
 											<td align="center">
 											<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModalInteresado add-tooltip" data-original-title="Info Interesado" data-container="body" value="{{$interesado->id}}"><i class="demo-pli-exclamation icon-sm "></i>{{--Info--}}</button>
-											<button  class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Crear Estudiante" data-container="body" value="1">+<i class="pli-student-male icon-lg "></i> </button>
+											<button  class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip addEstudiante" data-original-title="Crear Estudiante" data-container="body" value="1">+<i class="pli-student-male icon-lg "></i> </button>
 
 											<!--<button class="btn btn-default btn-sm btn-default btn-success"><i class="demo-pli-pencil icon-sm"></i></button>
 											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i class="demo-pli-exclamation icon-sm"></i></button>
@@ -299,6 +299,34 @@
 	<!--===================================================-->
 	<!--End Large Bootstrap Modal-->
 
+	<!-- Modal con tabindex -1 no funciona select2 en bootstrap 4 -->
+	<div class="modal fade" id="modalIngreso" 	name="modalIngreso" role="dialog"  tabindex="-1"  aria-labelledby="demo-default-modal" aria-hidden="true" >
+		<div class="modal-dialog {{----}}modal-lg">
+			<div class="modal-content">
+
+				<!--Modal header-->
+				<div class="modal-header alert-primary" id="modalIngresoHeader" >
+					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+					<h4 class="modal-title" style="color: white;" id="modalIngresoLabel"><label>Ingresar Estudiante</label></h4>
+				</div>
+
+				<!--Modal body-->
+				<div class="modal-body" style="overflow-y: auto;  max-height: 500px;{{--background-color: #eeeeee--}}"	>
+					
+					@include('estudiante.formEstudiante')
+				</div>
+
+				{{----}}<!--Modal footer-->
+				<div class="modal-footer">
+					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+					<button class="btn btn-primary" id="btnGuardar">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--===================================================-->
+	<!--End Default Bootstrap Modal-->
+
 @endsection
 
 @section('script')
@@ -331,12 +359,19 @@
     }
     });
     $.niftyNav('collapse');
+     $("#resp_id").select2({
+     dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
+     tags: "true", 
+     placeholder: "Selecione un responsable",
+     width: "100%"});
+
+
 
 });
 
 	$(document).on('click','.infoModalInteresado',function(){
 
-  var value = $(this).val();
+ 	 var value = $(this).val();
 
        $("#tablainfo").empty();////Deja vacia la tabla
        console.log(value);
@@ -367,7 +402,15 @@
       }
     });/**/
 
-  $('#modalInfo').modal('show'); ///modal de informacion
-});
+	  $('#modalInfo').modal('show'); ///modal de informacion
+	});
+
+
+	$(document).on('click','.addEstudiante',function(){
+		$('#modalIngreso').modal('show'); ///modal de informacion
+	});
+
 </script>
+
+	<script src="{{asset('js/estudiante.js')}}"></script>
 @endsection

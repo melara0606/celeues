@@ -1,52 +1,4 @@
-  $(document).ready(function(){
-    $('#myTable').DataTable({
-      //"dom": '<"top"l>frt<"bottom"pi>'
-      language: {
-        "decimal": "",
-        "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Entradas",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords": "Sin resultados encontrados",
-        "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-        }
-    }
-    });
-    $('#modalIngreso').on('shown.bs.modal', function () {
-      $('.modal-dialog').css('height', $('.modal-dialog').height() );
-    });
 
-    $('#modalIngreso').on('hidden.bs.modal', function () {
-      $('.modal-dialog').css('height', 'auto');
-    });
-   //No se para que es pero en la documentacion dice que sirve para algo
-    //$(document).trigger('nifty.ready');
-  //  $.niftyNav('refresh');
-  //$.niftyNav('bind');
-    $.niftyNav('expand');
-    //$.niftyNav('colExpToggle');
-
-    //$.niftyAside('darkTheme');
-
-    $("#resp_id").select2({
-     dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
-     tags: "true", 
-     placeholder: "Selecione un responsable",
-     width: "100%"});
-
-
-
-  });
 
   $(document).on('click','.nuevoResp',function(){
    $('#pestMenorEdad').show();
@@ -152,7 +104,7 @@
   function llenarSelectResp(){
     $("#resp_id").empty();
  //Otra forma de realizar el get ajax el mismo de infomodal    
- $.getJSON('estudiante/bus/responsables', function (data) {
+ $.getJSON($("#path").val()+'/estudiante/bus/responsables', function (data) {
           //success data
           console.log(data);     
           for (var i = 0; i < data.length; i++) {
@@ -464,17 +416,17 @@ $("#btnGuardar").click(function (e) {
              direccion:$('#direccionR').val(),
              telefono:$('#telefonoR').val(),
              dui:$('#duiR').val(),
-        //     email:$('#emailR').val(),
+             email:$('#emailR').val(),
         }       
 
           var state = $('#guardarResp').val();///para ver si es add o update
           var type = "POST"; //for creating new resource
-          var my_url = "responsable/create";
+          var my_url = $("#path").val()+"/responsable/create";
           var form_id = $('#form_idR').val();///el id del registro ya sea si modificamos 
 
           if (state == "update"){
             type = "PUT"; //for updating existing resource
-            my_url = 'responsable/update/'+form_id;
+            my_url = $("#path").val()+'/responsable/update/'+form_id;
           }
           console.log(formData);
 

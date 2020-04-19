@@ -1,4 +1,4 @@
-@extends('layouts.appplantilla')
+@extends('layouts.shared.appplantilla')
 
 @section('content')
 
@@ -6,6 +6,29 @@
 
 </style>
 
+<div id="page-head">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    {{--<div id="page-title">
+      <h1 class="page-header text-overflow"></h1>
+
+    </div>--}}
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ul class="breadcrumb">
+      <li><a href=""><i class="demo-pli-home"></i></a></li>
+      <li><a href="">Tareas Comunes</a></li>
+      <li class=""><a href="{{url('/')}}/periodo">Periodo</a></li>
+    </ul>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+
+  </div>
 
 <!--Page content-->
 <!--===================================================-->
@@ -108,9 +131,9 @@
   <div class="row col-md-9">
     <!--Main Panel-->
     <!--===================================================-->
-    <div class="panel" id="panelReload" name="panelReload" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;min-height: 700px;">
+    <div class="panel" id="panelReload" name="panelReload" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
-      <div class="panel-heading ">
+      <div class="panel-heading " style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
         <div class="panel-control ">
           <!--<button id="nuevoModal" class="btn btn-default btn-active-primary" ><i class="demo-pli-pen-5"></i></button>
           <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
@@ -119,18 +142,19 @@
             <button autocomplete="off" type="button" name="refresh" id="refresh" data-target="#panelReload" ></button>
           </div>
         </div>
-        <h3 class="panel-title ">Grupos</h3>
+        
+          <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">PERIODOS</strong></p></h3>
 
       </div>
 
       <!--Panel Body-->
       <!--===================================================-->
-      <div class="panel-body ">
+      <div class="panel-body " style="background-image: linear-gradient(#eeeeee 0.5%, #ffffff 0%);min-height: 500px;">
         {{----}}<div class="pad-btm form-inline">
           <div class="row">
             <div class="col-sm-6 table-toolbar-left">
-              <button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo</button>
-              <button class="btn btn-default imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
+              <button id="btnnuevo" class="btn btn-purple btn-sm"><i class="demo-pli-add"></i> Nuevo</button>
+              <button class="btn btn-default btn-sm imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
               {{--<div class="btn-group">
                 <button class="btn btn-default"><i class="demo-pli-exclamation"></i>
                 </button>
@@ -206,24 +230,36 @@
                 <td >{{ $periodo->iniPago }}</td>
                 <td >{{ $periodo->finPago }}</td>
                 @if($periodo->estado=='ACTIVO')
-                <td align="center"><div class="label label-table bg-mint"><div class="text-xs text-bold"></div>{{ $periodo->estado }}</div></td>
+                <td align="center">
+                 
+                <div class="label label-table bg-mint">
+                    <div class="text-xs text-bold">
+                      {{ $periodo->estado }}  
+                    </div>
+                  </div>
                 @endif
                 @if($periodo->estado=='INACTIVO')
-                <td align="center"><div class="label label-table bg-gray"><div class="text-xs text-bold"></div>{{ $periodo->estado }}</div></td>
+                <td align="center">
+                  <div class="label label-table bg-gray">
+                    <div class="text-xs text-bold">
+                      {{ $periodo->estado }}
+                    </div>
+                  </div>
+                  </td>
                 @endif
 
                 <td align="center">
-                  {{--<button class="btn btn-mint btn-icon btn-sm"><i class="demo-psi-pen-5 icon-sm"></i></button>
+                  {{--<button class="btn btn-mint btn-icon btn-xs"><i class="demo-psi-pen-5 icon-sm"></i></button>
                   <button class="btn btn-sm btn-rounded btn-default">Small</button>
                   <button class="btn btn-xs btn-rounded btn-default">Extra Small</button>
                   --}}
-                  <button class="btn btn-icon btn-trans btn-sm  add-tooltip editarmodal" data-original-title="Editar Fechas" data-container="body" value="{{ $periodo->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> </button>
-                  <button class="btn btn-icon btn-trans btn-sm  infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $periodo->id }}"><i class="demo-pli-exclamation icon-sm " ></i> </button>
+                  <button class="btn btn-icon {{--btn-trans--}} btn-default btn-xs  add-tooltip editarmodal" data-original-title="Editar Fechas" data-container="body" value="{{ $periodo->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> </button>
+                  <button class="btn btn-icon {{--btn-trans--}} btn-default btn-xs  infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $periodo->id }}"><i class="demo-pli-exclamation icon-sm " ></i> </button>
                   @if($periodo->estado=='ACTIVO')
-                  <button class="btn btn-icon btn-trans btn-sm   darbaja" value="{{ $periodo->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> </span></div> </button>
+                  <button class="btn btn-icon {{--btn-trans--}} btn-default btn-xs   darbaja" value="{{ $periodo->id }}"><div class="demo-icon"><i class="ion-chevron-down"></i><span> </span></div> </button>
                   @endif
                   @if($periodo->estado=='INACTIVO')
-                  <button class="btn btn-icon btn-trans btn-sm   darAlta" value="{{ $periodo->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> </span></div> </button>
+                  <button class="btn btn-icon {{--btn-trans--}} btn-default btn-xs   darAlta" value="{{ $periodo->id }}"><div class="demo-icon"><i class="ion-chevron-up"></i><span> </span></div> </button>
                   @endif
                   {{--<button type="button" class="btn btn-outline-info btn-sm infomodal" value="{{ $periodo->id }}">Info</button>--}}
 
@@ -243,8 +279,9 @@
 
             </tbody>
 
-
           </table>
+          
+              <hr>
         </div>
       </div>
       <!--===================================================-->

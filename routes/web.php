@@ -96,7 +96,7 @@ Route::get('/cursoNiveles/{id?}', 'cursoController@showNiveles')->name('cursoSho
 Route::put('/nivel/cambiarEstado/{id?}', 'nivelController@cambiarEstado')->middleware('auth');
 Route::post('/nivel/create', 'nivelController@create')->middleware('auth');
 
-Route::get('/periodo', 'periodoController@show')->name('periodoShow')->middleware('auth');
+Route::get('/periodo', 'periodoController@show')->name('periodo')->middleware('auth');
 Route::post('/periodo/create', 'periodoController@create')->middleware('auth');
 Route::put('/periodo/update/{id?}', 'periodoController@update')->middleware('auth');
 Route::get('/periodo/buscar/{id?}', 'periodoController@buscar')->name('periodoBuscar')->middleware('auth');

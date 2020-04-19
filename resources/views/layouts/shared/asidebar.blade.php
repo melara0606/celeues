@@ -110,6 +110,17 @@
 						<li>
 							<a href="#">
 								<i class="demo-pli-gear icon-lg icon-fw"></i>
+								<span class="menu-title">Tareas Comunes</span>
+								<i class="arrow"></i>
+							</a>
+							<ul class="collapse">
+								<li><a href="{{ route('periodo') }}">Periodos</a></li>
+								<li><a href="{{ route('curso') }}">Cursos</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<i class="demo-pli-gear icon-lg icon-fw"></i>
 								<span class="menu-title">Configuracion</span>
 								<i class="arrow"></i>
 							</a>
@@ -117,7 +128,6 @@
 								<li><a href="{{ route('idioma') }}">Idiomas</a></li>
 								<li><a href="{{ route('categoria') }}">Categorias</a></li>
 								<li><a href="{{ route('modalidad') }}">Modalidad</a></li>
-								<li><a href="{{ route('curso') }}">Cursos</a></li>
 							</ul>
 						</li>
 					</ul>

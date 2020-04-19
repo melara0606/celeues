@@ -39,7 +39,7 @@
 	<!--===================================================-->
 	<div id="page-content" >
 
-
+<input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
 		<div class="panel" style="background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
 			<div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
@@ -384,6 +384,57 @@
 	@endsection
 
 	@section('script')
+	<script type="text/javascript">
+		  $(document).ready(function(){
+    $('#myTable').DataTable({
+      //"dom": '<"top"l>frt<"bottom"pi>'
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    }
+    });
+    $('#modalIngreso').on('shown.bs.modal', function () {
+      $('.modal-dialog').css('height', $('.modal-dialog').height() );
+    });
+
+    $('#modalIngreso').on('hidden.bs.modal', function () {
+      $('.modal-dialog').css('height', 'auto');
+    });
+   //No se para que es pero en la documentacion dice que sirve para algo
+    //$(document).trigger('nifty.ready');
+  //  $.niftyNav('refresh');
+  //$.niftyNav('bind');
+    $.niftyNav('expand');
+    //$.niftyNav('colExpToggle');
+
+    //$.niftyAside('darkTheme');
+
+    $("#resp_id").select2({
+     dropdownParent: $('#modalIngreso'),///esto hace que muestre en modal 3
+     tags: "true", 
+     placeholder: "Selecione un responsable",
+     width: "100%"});
+
+
+
+  });
+	</script>
 	<script src="{{asset('js/estudiante.js')}}"></script>
 
 	@endsection

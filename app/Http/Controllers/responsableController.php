@@ -24,7 +24,7 @@ class responsableController extends Controller
         $attributes = [
             'nombre' => 'nombre',
             'apellido' => 'apellido',
-            'email' => 'email',
+           // 'email' => 'email',
             'telefono' => 'telefono',
 
             'dui' => 'dui',
@@ -34,7 +34,7 @@ class responsableController extends Controller
             'apellido' => 'required|min:2',
             'dui' => 'required | unique:users,email',
             'telefono' => 'required',
-            'email' => 'required',
+           // 'email' => 'required',
         ], [
          // 'usuario.unique' => 'El usuario '.$request->input('usuario').' ya esta en uso',
         ]
