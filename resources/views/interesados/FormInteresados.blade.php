@@ -147,7 +147,7 @@
             <!--CONTENT CONTAINER-->
             <!--===================================================-->
             
-            <div id="content-container" >
+            <div id="content-container" {{--style="background-color: lightgreen"--}} >
 
               <div id="page-head">
                
@@ -163,9 +163,10 @@
 
                     <!--Breadcrumb-->
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                    <ol class="breadcrumb">
-                    <li><a href="#"><i class="demo-pli-home"></i></a></li>
-                    <li><a href="#">Forms</a></li>
+                    <ol class="breadcrumb"  >
+
+                    <li><a href="#">&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp<i class="demo-pli-home"></i></a></li>
+                    <li><a href="#">Form</a></li>
                     <li class="active">Interesados</li>
                     </ol>
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -184,13 +185,59 @@
    </div>
 
                         <div class="card-body "></div>
-                        {{----}}<div class="col-lg-1">
+                        <div class="col-lg-1"></div>
+                        {{----}}<div class="col-lg-3">
+                                 <div class="panel" style=" {{-- background:#eeeeee--}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;" >
+                                <div class="panel-heading bg-gray-dark">
+                                   <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">NOTICIA</strong></p></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row pad-btm form-inline">
+                                            <div class=" col-md-12">
+                                                <label  class="control-label text-main text-bold col-md-5">TITULO:</label>
+                                                <label class="control-label  text-bold col-md-7">{{$noticia->titulo}} </label>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class=" col-md-12">
+                                                <label for="" class="control-label text-main text-bold col-md-5">DESCRIPCION:</label>
 
+                                                 <label class="control-label text-sm  text-bold col-md-7">{{$noticia->descripcion}} </label>
+                                                  
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class=" col-md-12">
+                                                <label for="" class="control-label text-main text-bold col-md-5">MODULO:</label>
+
+                                                 <label class="control-label  text-bold col-md-7">{{$noticia->numModulo}} </label>
+                                                  
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class=" col-md-12">
+                                                <label for="" class="control-label text-main text-bold col-md-5">MODALIDAD:</label>
+
+                                                 <label class="control-label  text-bold col-md-7">{{$noticia->modalidad}} </label>
+                                                  
+                                            </div>      
+                                            <br>
+                                            <br>
+                                            <div class=" col-md-12">
+                                                <label for="" class="control-label text-main text-bold col-md-5">INTERESADOS:</label>
+
+                                                 <label class="control-label  text-bold col-md-7">{{$noticia->numInteresados}} </label>
+                                                  
+                                            </div>      
+                                            
+                                        </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-10 ">
-                            <div class="panel" >
-                                <div class="panel-heading ">
-                                    <h3 class="panel-title">Nuevo Interesado</h3>
+                        <div class="col-lg-7 ">
+                            <div class="panel" style=" {{-- background:#eeeeee--}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;{{--min-height: 500px--}}" >
+                                <div class="panel-heading bg-gray-dark">
+                                   <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">DATOS DE INTERESADO</strong></p></h3>
                                 </div>
                      <div class="bord-all">
                        
@@ -208,7 +255,7 @@
                                     <br>
 
                                     <!--Text Input-->
-                                    <div class="form-group @if($errors->has('titulo')) has-error @endif">
+                                    <div class="form-group @if($errors->has('titulo')) has-error @endif" style="display: none;">
                                         <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">idnoticias</label>
                                         <div class="col-md-7">
                                             <input type="text" id="idnoticias" value="{{ $idNoticia }}" name="idnoticias" class="form-control" placeholder="idnoticias"  >

@@ -229,7 +229,7 @@
 				</div>
 
 				<!--Modal body-->
-				<div class="modal-body" style="overflow-y: auto;  max-height: 500px;{{--background-color: #eeeeee--}}"	>
+				<div class="modal-body" style="overflow-y: auto;  max-height: 470px;{{--background-color: #eeeeee--}}"	>
 					
 					@include('estudiante.formEstudiante')
 				</div>

@@ -22,8 +22,8 @@ class CreateInteresadosTable extends Migration
             //$table->string('dui', 10);
             $table->string('telefono');
             $table->string('email');
-
-             $table->integer('idnoticias')->unsigned()->nullable()->default(null);
+            $table->enum('estado',array('REGISTRADO','INTERESADO'));//->nuevo
+            $table->integer('idnoticias')->unsigned()->nullable()->default(null);
             $table->foreign('idnoticias')->references('id')->on('noticias');
             
 

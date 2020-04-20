@@ -17,7 +17,7 @@ use App\docente;
 use App\nota;
 
 use App\estudiante;
-use App\estadiantegrupo;
+use App\estudiantegrupo;
 use App\user;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;

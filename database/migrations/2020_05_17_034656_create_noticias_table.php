@@ -20,7 +20,12 @@ class CreateNoticiasTable extends Migration
             $table->string('numModulo');
             $table->date('fechaInicio');
             $table->date('fechaFin');
-            $table->enum('modalidad',array('Intensivo','Sabatino'));
+            $table->integer('numInteresados');//-->nuevo
+            $table->integer('numRegistrados');//-->nuevo
+
+            $table->enum('modalidad',array('Intensivo','Sabatino','Dominical'));
+           // $table->integer('idcursos')->unsigned()->nullable()->default(null);//-->nuevo
+            //$table->foreign('idcursos')->references('id')->on('cursos');
             
             $table->enum('estado',array('Disponible','Finalizado'));
            

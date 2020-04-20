@@ -44,7 +44,7 @@
 
 					    <div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
 					    	<div class="panel-control">
-					                        <button id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
+					                        <button onclick="location.href='{{url('/')}}/noticia/{{$noticia->id}}/interesados'"  id="demo-panel-network-refresh" class="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i class="demo-psi-repeat-2"></i></button>
 					                        <div class="dropdown">
 					                            <button class="dropdown-toggle btn btn-default btn-active-primary" data-toggle="dropdown" aria-expanded="false"><i class="demo-psi-dot-vertical"></i></button>
 					                            <ul class="dropdown-menu dropdown-menu-right">
@@ -146,7 +146,24 @@
 
 												 <label class="control-label  text-bold col-md-9">{{$noticia->modalidad}} </label>
 										          
-											</div>							<br>
+											</div>		
+											<br>
+											<br>
+											<div class=" col-md-12">
+												<label for="" class="control-label text-main text-bold col-md-3">INTERESADOS:</label>
+
+												 <label class="control-label  text-bold col-md-9">{{$noticia->numInteresados}} </label>
+										          
+											</div>		
+											<br>
+											<br>
+											<div class=" col-md-12">
+												<label for="" class="control-label text-main text-bold col-md-3">REGISTRADOS:</label>
+
+												 <label class="control-label  text-bold col-md-9">{{$noticia->numRegistrados}} </label>
+										          
+											</div>		
+											<br>
 											<br>
 											<div class=" col-md-12">
 												<label for="" class="control-label text-main text-bold col-md-3">ESTADO:</label>
@@ -223,8 +240,9 @@
 											<td ><div class="label label-table bg-dark"><div class="text-sm text-bold">{{ $interesado->telefono }}</div></div></td>
 											<td align="center">
 											<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModalInteresado add-tooltip" data-original-title="Info Interesado" data-container="body" value="{{$interesado->id}}"><i class="demo-pli-exclamation icon-sm "></i>{{--Info--}}</button>
-											<button  class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip addEstudiante" data-original-title="Crear Estudiante" data-container="body" value="1">+<i class="pli-student-male icon-lg "></i> </button>
-
+											@if($interesado->estado=='INTERESADO')
+											<button  class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip addEstudiante" data-original-title="Crear Estudiante" data-container="body" data-nombre="{{ $interesado->nombre }}" data-apellido="{{ $interesado->apellido }}" data-fechaNac="{{$interesado->fechaNac}}" data-email="{{$interesado->email}}" data-telefono="{{$interesado->telefono}}" value="1">+<i class="pli-student-male icon-lg "></i> </button>
+											@endif
 											<!--<button class="btn btn-default btn-sm btn-default btn-success"><i class="demo-pli-pencil icon-sm"></i></button>
 											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i class="demo-pli-exclamation icon-sm"></i></button>
 											-->
@@ -311,7 +329,7 @@
 				</div>
 
 				<!--Modal body-->
-				<div class="modal-body" style="overflow-y: auto;  max-height: 500px;{{--background-color: #eeeeee--}}"	>
+				<div class="modal-body" style="overflow-y: auto;  max-height: 470px;{{--background-color: #eeeeee--}}"	>
 					
 					@include('estudiante.formEstudiante')
 				</div>
@@ -407,6 +425,15 @@
 
 
 	$(document).on('click','.addEstudiante',function(){
+		$("#nombre").val($(this).data('nombre'));
+
+		$("#apellido").val($(this).data('apellido'));
+		$("#fechaNac").val($(this).data('fechaNac'));
+
+		$("#telefono").val($(this).data('telefono'));
+
+		$("#email").val($(this).data('email'));
+		
 		$('#modalIngreso').modal('show'); ///modal de informacion
 	});
 

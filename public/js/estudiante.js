@@ -278,7 +278,7 @@ $("#btnGuardar").click(function (e) {
   }
           var state = $('#btnGuardar').val();///para ver si es add o update
           var type = "POST"; //for creating new resource
-          var my_url = "estudiante/create";
+          var my_url =$("#path").val()+"/estudiante/create";
           var form_id = $('#form_id').val();///el id del registro ya sea si modificamos 
 
           if (state == "update"){

@@ -383,6 +383,11 @@ $("#btnGuardarTraspasar").click(function (e) {
                      //$("#trow"+$('#txtModalidestudiante').val()).remove();
                      $('#btnGuardarTraspasar').attr("disabled", true);
                      $( "#filtrarOne" ).click();
+                     setTimeout(function(){
+                      //  $("#form").trigger("reset");
+                      //  window.location.reload();////recarga la pagina actual
+                       // $(location).attr('href','/peticionForm');
+                     }, 4000);
                      $( "#filtrarTwo" ).click();
                    } else{
                      ///menasje de error

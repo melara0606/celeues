@@ -44,6 +44,8 @@ class noticiaController extends Controller
     		'fechaFin'=> $request->input('fechaFin'),
     		'modalidad'=> $request->input('modalidad'),
     		'estado'=> 'Disponible',
+            'numInteresados'=>0,
+            'numRegistrados'=>0,
     		]);	 
     return Response::json('Registro Guardado Exitosamente');
  
