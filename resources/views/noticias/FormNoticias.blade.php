@@ -8,7 +8,7 @@
                                     {{-- csrf_field() --}}
 					               
 					                <!--Text Input-->
-					                <div class="form-group {{--@if($errors->has('titulo'))--}} has-error @endif">
+					                <div class="form-group {{--@if($errors->has('titulo')) has-error @endif--}}">
 					                    <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Titulo</label>
 					                    <div class="col-md-7">
 					                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Ingrese titulo"  >

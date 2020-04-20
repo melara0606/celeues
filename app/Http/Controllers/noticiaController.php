@@ -13,6 +13,7 @@ class noticiaController extends Controller
     	$noticias=noticia::latest()->get(); 
     	  return view('noticias.showNoticia',[
     	'noticias'=> $noticias,
+        'algo'=>1,
     		]);
     }
       public function showForm(){   
