@@ -240,11 +240,11 @@ $("#btnnuevo").click(function(){
 
 
 $("#btnGuardar").click(function (e) {
- $.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-  }
-})
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
 
  e.preventDefault();
 
@@ -357,45 +357,10 @@ $("#btnGuardar").click(function (e) {
                 closeBtn : false,
                 timer : 3000
               });
-               /*///////mensaje de gaurdado o modificado
-               $("#floating-top-right").html(
-                '<div class="alert-wrap in animated jellyIn">'+
-                '<div class="alert alert-danger">'+
-                  '<button class="close" data-dismiss="alert">'+
-                      '<i class="pci-cross pci-circle"></i>'+
-                  '</button>'+'<strong>Error!!</strong> No pudo relizarse la accion correctamente '+
-                '</div>'+
-                '</div>'
-                );  
-               
-              /*/////////fin mensaje 
+                
               console.log('Error de peticion:', data);
-                // var errors=data.responseJSON;
-                 // console.log(errors);
-                 /* if(errors.titulo!=undefined)
-                  {
-                    $('#titulofeed').text(errors.titulo);
-                    //$( '#nombrediv' ).removeClass();
-                    $( '#titulodiv' ).addClass("has-danger");
-                  }else{
-                    $( '#titulodiv' ).removeClass("has-danger");
-                    $( '#titulofeed' ).text("");
-                    }
-                    
-                  if(errors.descripcion!=undefined)
-                  {
-                    $( '#descripciondiv' ).addClass("has-danger");
-                    $('#descripcionfeed').text(errors.descripcion);
-                  }else{
-                    $( '#descripciondiv' ).removeClass("has-danger");
-                    $( '#descripcionfeed' ).text("");
-                    }
-                    */  
 
-                      /*setTimeout(function(){
-                        $("#floating-top-right").html('');
-                      }, 4000);*/
-                    }
+            }
                   });
         });
 

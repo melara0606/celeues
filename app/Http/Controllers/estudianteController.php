@@ -15,6 +15,10 @@ use App\nota;
 
 use App\idioma;
 
+use App\noticia;
+
+use App\interesado;
+
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -219,6 +223,9 @@ return response()->json(['success'=>'Record is successfully added']);
            'errors'=>$validator->errors()->all(),
          ]);
         }
+         //----------// TRNSACCION //----------/
+       DB::beginTransaction();
+       try{ 
           //////////////////////////////////////////////////////////////////////        
         if($request->input('edad') >= 18){
           $message= estudiante::create([
@@ -247,16 +254,58 @@ return response()->json(['success'=>'Record is successfully added']);
 
          ]);	
         }
+        //-----  registro desde Pantalla de Interesado a Estudiante  -----//
+        if(!empty($request->input('idInteresado')) || $request->input('idInteresado')>0 ){
+          $idinteresado=$request->input('idInteresado');
+            $interesado=interesado::find($idinteresado);
+            $interesado->fill([
+              'estado'=> 'REGISTRADO',
+              
+            ]);
+            if($interesado->save()){
+                  $noticia=noticia::find($interesado->idnoticias);
+                  $count=count(interesado::where('estado','REGISTRADO')->get()); 
+                  $noticia->fill([
+                    'numRegistrados'=> $count,
+                    
+                  ]);
+                if($noticia->save()){
+                   
+                }else{
+                   DB::rollback();
+                }
+
+            }else{
+              DB::rollback();
+              return Response::json([
+                'bandera' =>2,
+                'response'=>'No pudo modificar interesado',                 
+              ]);
+                          //return Response::json('');
+            }
+
+        }
+        //-------------------------------------------------------------------//
+        DB::commit();
         return Response::json([
           'bandera' =>1,
           'response'=>'Registro Guardado Exitosamente',                 
         ]);
-    	//return Response::json('Registro Guardado Exitosamente');
+      //return Response::json('Registro Guardado Exitosamente');
+      } catch (\Throwable $e) {
+            DB::rollback();
+            return Response::json([
+              'bandera' =>2,
+              'response'=>'error en registrar a la BD ',                 
+            ]);
+           
+          
+      }////fin catch
 
-        return redirect('/home')->with('mensaje','Registro Guardado');	
+        //return redirect('/home')->with('mensaje','Registro Guardado');	
 
 
-      }
+    }
 
 
 

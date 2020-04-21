@@ -39,7 +39,9 @@
 			    <!--===================================================-->
 				<div class="col-md-12">	
                    <input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
+				   
 				
+				   <input type="text" hidden="true"   id="idinteresado" name="idinteresado" />
 					<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
 
 					    <div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
@@ -241,7 +243,7 @@
 											<td align="center">
 											<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModalInteresado add-tooltip" data-original-title="Info Interesado" data-container="body" value="{{$interesado->id}}"><i class="demo-pli-exclamation icon-sm "></i>{{--Info--}}</button>
 											@if($interesado->estado=='INTERESADO')
-											<button  class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip addEstudiante" data-original-title="Crear Estudiante" data-container="body" data-nombre="{{ $interesado->nombre }}" data-apellido="{{ $interesado->apellido }}" data-fechaNac="{{$interesado->fechaNac}}" data-email="{{$interesado->email}}" data-telefono="{{$interesado->telefono}}" value="1">+<i class="pli-student-male icon-lg "></i> </button>
+											<button  class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip addEstudiante" data-original-title="Crear Estudiante" data-container="body" data-nombre="{{ $interesado->nombre }}" data-apellido="{{ $interesado->apellido }}" data-fechaNac="{{$interesado->fechaNac}}" data-email="{{$interesado->email}}" data-telefono="{{$interesado->telefono}}" value="{{$interesado->id}}">+<i class="pli-student-male icon-lg "></i> </button>
 											@endif
 											<!--<button class="btn btn-default btn-sm btn-default btn-success"><i class="demo-pli-pencil icon-sm"></i></button>
 											<button class="btn btn-default btn-sm btn-circle btn-hover-info"><i class="demo-pli-exclamation icon-sm"></i></button>
@@ -330,14 +332,13 @@
 
 				<!--Modal body-->
 				<div class="modal-body" style="overflow-y: auto;  max-height: 470px;{{--background-color: #eeeeee--}}"	>
-					
 					@include('estudiante.formEstudiante')
 				</div>
 
 				{{----}}<!--Modal footer-->
 				<div class="modal-footer">
 					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-					<button class="btn btn-primary" id="btnGuardar">Save changes</button>
+					<button class="btn btn-primary" id="btnGuardarInteresado" value="POST">Save changes</button>
 				</div>
 			</div>
 		</div>
@@ -425,6 +426,7 @@
 
 
 	$(document).on('click','.addEstudiante',function(){
+		var id = $(this).val();
 		$("#nombre").val($(this).data('nombre'));
 
 		$("#apellido").val($(this).data('apellido'));
@@ -433,9 +435,130 @@
 		$("#telefono").val($(this).data('telefono'));
 
 		$("#email").val($(this).data('email'));
+		$('#idinteresado').val(id);
 		
 		$('#modalIngreso').modal('show'); ///modal de informacion
 	});
+
+	
+	$("#btnGuardarInteresado").click(function (e) {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
+
+ e.preventDefault();
+
+   /////Datos que se envian para recibir en el controlador 
+   if($('#edad').val() >= 18){
+     var formData = {
+		idInteresado:$('#idinteresado').val(),
+       edad:$('#edad').val(),
+       nombre:$('#nombre').val(),
+       apellido:$('#apellido').val(),
+       genero:$('#genero').val(),
+       fechaNac:$('#fechaNac').val(),
+       direccion:$('#direccion').val(),
+       dui:$('#dui').val(),
+       telefono:$('#telefono').val(),
+       email:$('#email').val(),
+	   idresponsables:null,//$('#resp_id').val(),
+    }       
+  }else{
+   var formData = {
+	idInteresado:$('#idinteresado').val(),
+     edad:$('#edad').val(),
+     nombre:$('#nombre').val(),
+     apellido:$('#apellido').val(),
+     genero:$('#genero').val(),
+     fechaNac:$('#fechaNac').val(),
+     direccion:$('#direccion').val(),
+      // dui:$('#dui').val(),
+      telefono:$('#telefono').val(),
+      email:$('#email').val(),
+      idresponsables:$('#resp_id').val(),
+    }       
+  }
+         // var state = $('#btnGuardarInteresado').val();///para ver si es add o update
+          var type = "POST"; //for creating new resource
+          var my_url =$("#path").val()+"/estudiante/create";
+          var form_id = $('#form_id').val();///el id del registro ya sea si modificamos 
+
+          console.log(formData);
+
+          $.ajax({
+
+            type: type,
+            url: my_url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+             console.log(data);
+             if (data['bandera']==3) {
+              var msj='';
+              msj+='</ul>';
+              for(var i=0;i<data['errors'].length;i++)
+              {
+                msj+='<li>'+data['errors'][i]+'</li>'; 
+              }
+              msj+='</ul>';
+              $.niftyNoty({
+                type: 'danger',
+                       // icon : 'fa fa-bolt fa-2x',
+                       container : 'floating',
+                       title : 'Llenar Campos Requeridos!!',
+                       message : msj,
+                       timer : 6000
+                     });
+
+            }
+            // data[0];
+            if(data['bandera']==1){
+              // $('#modalIngreso').modal('hide');
+              $.niftyNoty({
+                type: "success",
+                container : "floating",
+                title : "Bien Hecho!",
+                message : data['response'],
+                closeBtn : false,
+                timer : 3000
+              });
+
+              setTimeout(function(){
+                 // $("#form").trigger("reset");
+                 // window.location.reload();////recarga la pagina actual
+                 // $(location).attr('href','/peticionForm');
+               }, 4000);
+            } else  if(data['bandera']==2){
+               ///menasje de error
+               $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Llenar Campos Requeridos!",
+                message :  data['response'],
+                closeBtn : false,
+                timer : 3000
+              });
+
+             }
+           },
+           error: function (data) {
+              ///menasje de error
+              $.niftyNoty({
+                type: "danger",
+                container : "floating",
+                title : "Upps!",
+                message : "A ocurrido un problema",
+                closeBtn : false,
+                timer : 3000
+              });
+                
+              console.log('Error de peticion:', data);
+                
+        	}
+        });
+    });
 
 </script>
 
