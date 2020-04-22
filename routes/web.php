@@ -25,7 +25,7 @@ Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaFor
 Route::get('/noticia/buscar/{id?}', 'noticiaController@buscar')->middleware('auth');
 
 Route::get('/interesados/noticia/{id?}', 'interesadoController@showform')->name('interesado')->middleware('auth');
-Route::post('/interesados/create', 'interesadoController@create')->name('interesadoCreate')->middleware('auth');
+Route::post('/interesados/create', 'interesadoController@create');
 Route::get('/noticia/{id?}/interesados', 'interesadoController@show')->name('interesadoNoticia')->middleware('auth');
 Route::get('/interesados/buscar/{id?}', 'interesadoController@buscar');
 
