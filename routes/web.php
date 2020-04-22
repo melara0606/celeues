@@ -24,9 +24,9 @@ Route::put('/noticiaForm/update/{id?}','noticiaController@update');
 Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaForm')->middleware('auth');
 Route::get('/noticia/buscar/{id?}', 'noticiaController@buscar')->middleware('auth');
 
-Route::get('/interesados/noticia/{id?}', 'interesadoController@showForm');
-Route::post('/interesados/create', 'interesadoController@create');
-Route::get('/noticia/{id?}/interesados', 'interesadoController@show');
+Route::get('/interesados/noticia/{id?}', 'interesadoController@showform')->name('interesado')->middleware('auth');
+Route::post('/interesados/create', 'interesadoController@create')->name('interesadoCreate')->middleware('auth');
+Route::get('/noticia/{id?}/interesados', 'interesadoController@show')->name('interesadoNoticia')->middleware('auth');
 Route::get('/interesados/buscar/{id?}', 'interesadoController@buscar');
 
 Route::get('/idioma', 'idiomaController@show')->name('idioma')->middleware('auth');

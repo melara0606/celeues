@@ -23,7 +23,7 @@ class interesadoController extends Controller
         //'noticias'=> $noticias,
             ]);
 }
-     public function showForm($id){   
+     public function showform($id){   
     	
         //$interesados=interesado::latest()->paginate(8); 
         $noticia=noticia::find($id)->first(); 
