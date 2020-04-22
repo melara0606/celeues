@@ -27,7 +27,7 @@ class interesadoController extends Controller
     	
         //$interesados=interesado::latest()->paginate(8); 
         $noticia=noticia::find($id)->first(); 
-    	  return view('interesados.formInteresados',[
+    	  return view('interesados.ingresoInteresado',[
              'noticia'=>$noticia,
              'idNoticia' => $id,      
            
