@@ -183,7 +183,7 @@
     <div id="msjshow" name="msjshow" style="display: none"  class="alert alert-success col-md-5 " >
  <strong>Well done!</strong> You successfully read this important alert message.
    </div>
-
+   <input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
                         <div class="card-body "></div>
                         <div class="col-lg-1"></div>
                         {{----}}<div class="col-lg-3">

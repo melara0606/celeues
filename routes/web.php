@@ -102,6 +102,9 @@ Route::put('/periodo/update/{id?}', 'periodoController@update')->middleware('aut
 Route::get('/periodo/buscar/{id?}', 'periodoController@buscar')->name('periodoBuscar')->middleware('auth');
 Route::put('/periodo/cambiarEstado/{id?}', 'periodoController@cambiarEstado')->middleware('auth');
 Route::get('/periodo/filtrar/{anho?}/{nperiodofiltro?}', 'periodoController@filtrar')->name('periodoFiltrar')->middleware('auth');
+Route::get('/importar', 'periodoController@showImportarBlade')->name('importar')->middleware('auth');
+Route::post('/importar/obtenerGrupos', 'periodoController@obtenerGrupos')->middleware('auth');
+Route::post('/importar/obtenerEstudiantes', 'periodoController@obtenerEstudiantes')->name('importarEstudiantes')->middleware('auth');
 
 
 Route::get('/grupos', 'grupoController@show')->name('grupo')->middleware('auth');

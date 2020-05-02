@@ -18,6 +18,8 @@ class CreateGruposTable extends Migration
             $table->integer('cupos');
             $table->integer('numGrupo');    
             $table->enum('estado',array('INICIADO','EN CURSO','FINALIZADO'));
+            $table->enum('estadoTraspaso',array('NO ENVIADO','ENVIADO'))->nullable()->default(null);
+            
 
              $table->integer('idnivels')->unsigned();
              $table->foreign('idnivels')->references('id')->on('nivels');
