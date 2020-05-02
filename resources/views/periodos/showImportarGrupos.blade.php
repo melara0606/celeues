@@ -65,8 +65,8 @@
                 <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
                       <div style="display: inline-block;width: 100%;">
                             
-                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon">
-                           <strong style="font-size: 13px; " >GRUPO</strong></p></h4>
+                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="" name="">
+                           <strong style="font-size: 13px; " >BUSQUEDA</strong></p></h4>
                           
                       <h4 class="panel-title" align="right" style="float: right;" >
                           
@@ -135,7 +135,7 @@
                 <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
                       <div style="display: inline-block;width: 100%;">
                             
-                          <h4 class="panel-title " style="display: inline-block"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >GRUPO</strong></p></h4>
+                          <h4 class="panel-title " style="display: inline-block"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >PERIODO ACTUAL</strong></p></h4>
                           
                       
                       </div>
@@ -149,6 +149,8 @@
                                 <th class="text-center">#</th>
                                 
                                 <th class="text-left">Nombre</th>
+                                
+                                <th class="text-center">Categoria</th>
                                 
                                 <th class="text-left">Estado</th>
                                 <th class="text-center">Acciones</th>
@@ -173,7 +175,7 @@
                 <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
                       <div style="display: inline-block;width: 100%;">
                             
-                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >GRUPO</strong></p></h4>
+                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >PERIODO ANTERIOR</strong></p></h4>
                           
                       <h4 class="panel-title" align="right" style="float: right;" >
                       <button id="btnrefresh" class="btn btn-trans btn-active-primary" ><i class="demo-psi-repeat-2"></i></button>
@@ -199,8 +201,10 @@
                                 
                                 <th class="text-left">Nombre</th>
                                 
+                                <th class="text-center">Categoria</th>
+                                
                                 <th class="text-left">Estado</th>
-                                <th class="text-center"></th>
+                                <th class="text-center">Acciones</th>
 
                             </tr>
                         </thead>
@@ -405,8 +409,7 @@ $('#categoriafiltro1').on('change', function (e) {
     var valueSelected = this.value;
          
    $("#filtrarOne").prop( "disabled", false ); 
-   $('#titleacordeon').html('<strong style="font-size: 13px;color:white" >GRUPO '+$('#grupofiltro1 option:selected').text()+'</strong>'); 
-
+   
 
 });
 
@@ -461,6 +464,8 @@ $("#filtrarOne").click(function (e) {
                 console.log(data['actual']); 
                 $('#tbodyOne').append(data['anterior']);
                 $('#tbodyTwo').append(data['actual']);
+                $('#titleacordeon').html('<strong style="font-size: 13px;color:white" >'+data['periodoActual']+'</strong>'); 
+                $('#titleacordeonTwo').html('<strong style="font-size: 13px;" >'+data['periodoAntes']+' (ACTUAL)</strong>'); 
 
                 $(".display").DataTable();  
             

@@ -187,7 +187,7 @@ if ($contperiodo==0) {
           'actual'=>$var,
           'anterior'=>$year,
           ]);*/
-        $periodoAnterior=periodo::where('nombre',$modulos)->where('anho',$year)->where('numPeriodo',1)->first();//->where('anho',$year)->first();
+        $periodoAnterior=periodo::where('nombre',$modulos)->where('anho',$year)->where('numPeriodo',$var)->first();//->where('anho',$year)->first();
 
         $gruposActual=grupo::Where('idperiodos',$periodoActual->id)
         ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
@@ -220,6 +220,7 @@ if ($contperiodo==0) {
 
                   </div>
               </td>
+              <td class="" align="center">'.$grupo->nivels->categorias->nombre.'</td>
               <td class="" align="center">'.$grupo->estado.'</td>
               <td class="" align="center">';
               $tableActual.='<button class="btn btn-icon btn-default btn-default 
@@ -241,6 +242,7 @@ if ($contperiodo==0) {
 
                   </div>
               </td>
+              <td class="" align="center">'.$grupo->nivels->categorias->nombre.'</td>
               <td class="" align="center">'.$grupo->estado.'</td>
               <td class="" align="center">';
               $tableAnterior.='<button class="btn btn-icon btn-default btn-default 
@@ -248,7 +250,7 @@ if ($contperiodo==0) {
               data-original-title="Estudiantes" data-container="body" value="'.$grupo->id.'">
               <i class="pli-student-male-female icon-lg"></i> 
               </button>';
-              if($grupo->estado=="FINALIZADO"){
+            //  if($grupo->estado=="FINALIZADO"){
                 if(($grupo->estadoTraspasado==null || $grupo->estadoTraspasado=='NO ENVIADO') ){
                   $tableAnterior.='<button id="tab'.$grupo->id.'" class="btn btn-default btn-trans btn-xs  btn-hover btn-primary  add-tooltip traspasar" data-nombre="" 
                   data-container="body" 
@@ -260,17 +262,23 @@ if ($contperiodo==0) {
                   data-grupo="" 
                   value="'.$grupo->id.'">enviado </button>';
                 }
-              }
+             // }
             
             $tableAnterior.='   </td>
               </tr>';
       }
 
-
-        $grupos=grupo::get();
+      $periodoAntes="NO HAY REGISTROS DE PERIODO ANTERIOR";
+       // $grupos=grupo::get();
+       if($periodoAnterior!=null){
+        $periodoAntes="PERIODO ".$periodoAnterior->numPeriodo." ".$periodoAnterior->fechaIni." a ".$periodoAnterior->fechaFin;
+        
+       }
         return Response::json([
           'actual'=>$tableActual,
           'anterior'=>$tableAnterior,
+          'periodoActual'=>"PERIODO ".$periodoActual->numPeriodo." ".$periodoActual->fechaIni." a ".$periodoActual->fechaFin,
+          'periodoAntes'=>$periodoAntes,
           ]);
         return Response::json($tableActual);
 
