@@ -115,6 +115,7 @@
 							</a>
 							<ul class="collapse">
 								<li><a href="{{ route('periodo') }}">Periodos</a></li>
+								<li><a href="{{ route('importar') }}">Importar Grupos</a></li>
 								<li><a href="{{ route('curso') }}">Cursos</a></li>
 							</ul>
 						</li>

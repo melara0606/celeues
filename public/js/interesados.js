@@ -62,6 +62,8 @@ $("#btnGuardar").click(function (e) {
             error: function (data) {
               
               $("#btnGuardar").prop( "disabled", false ); 
+              $("#btnGuardar").text("enviar");  
+  
                 console.log('Error de peticion:', data);
               // var errors=data.responseJSON;
                // console.log(errors);
