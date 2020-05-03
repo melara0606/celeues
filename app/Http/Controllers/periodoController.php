@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\periodo;
 
+use App\estudiantegrupo;
+
+use App\nivel;
 use App\grupo;
 use App\curso;
+use App\ponderacion;
 use Illuminate\Support\Facades\Response;
 
 
@@ -120,11 +124,19 @@ if ($contperiodo==0) {
 
     public function cambiarEstado(Request $request,$id){
         $message = periodo::find($id);
+        
         if ($request->input('estado')==0) {
             $message->fill([
             'estado'=>'INACTIVO',
             ]);
         }else if ($request->input('estado')==1) {
+          $periodo=periodo::where('estado','ACTIVO')->where('nombre',$message->nombre)->first();
+          if($periodo!=null){
+            $periodo->fill([
+              'estado'=>'CURSADO',
+              ]);
+              if($periodo->save()){}
+          }
             $message->fill([
             'estado'=>'ACTIVO',
             ]);
@@ -210,7 +222,7 @@ if ($contperiodo==0) {
         $i=1;
         $j=1;
        foreach ($gruposActual as $grupo) { 
-              $tableActual.='<tr id="trow'.$grupo->id.'">
+              $tableActual.='<tr id="trowA'.$grupo->id.'">
               <td class="" align="center" >'.$i++.'</td>
               <td style="width: 45%" align="left">
                   <div class="comment-header">
@@ -251,16 +263,16 @@ if ($contperiodo==0) {
               <i class="pli-student-male-female icon-lg"></i> 
               </button>';
             //  if($grupo->estado=="FINALIZADO"){
-                if(($grupo->estadoTraspasado==null || $grupo->estadoTraspasado=='NO ENVIADO') ){
+                if($grupo->estadoTraspaso == null || $grupo->estadoTraspaso == "NO ENVIADO" ){
                   $tableAnterior.='<button id="tab'.$grupo->id.'" class="btn btn-default btn-trans btn-xs  btn-hover btn-primary  add-tooltip traspasar" data-nombre="" 
                   data-container="body" 
                   data-grupo="" 
                   value="'.$grupo->id.'">enviar<i class="demo-psi-arrow-right icon-xs "></i> </button>';
                 }else{
-                  $tableAnterior.='<button id="tab'.$grupo->id.'" class="btn btn-default btn-trans btn-xs  btn-hover btn-primary  add-tooltip traspasar" data-nombre="" 
+                  $tableAnterior.='<button id="tab'.$grupo->id.'" class="btn btn-default btn-trans btn-xs  btn-hover btn-success  add-tooltip traspasar" data-nombre="" 
                   data-container="body" 
                   data-grupo="" 
-                  value="'.$grupo->id.'">enviado </button>';
+                  value="'.$grupo->id.'" disabled>enviado </button>';
                 }
              // }
             
@@ -298,7 +310,7 @@ if ($contperiodo==0) {
       $table="";
         $i=1;
         foreach ($estudiantegrupos as $estudiantegrupo) { 
-        if($estudiantegrupo->estadoEstudiante!='TRASLADADO' && $estudiantegrupo->estadoEstudiante!='PREINSCRITO' ){      
+       // if($estudiantegrupo->estadoEstudiante!='TRASLADADO' && $estudiantegrupo->estadoEstudiante!='PREINSCRITO' ){      
           $table.='<tr id="trow'.$estudiantegrupo->id.'">
                   <td class="" align="center" >'.$i++.'</td>
                   <td style="width: 45%" align="left">
@@ -314,9 +326,103 @@ if ($contperiodo==0) {
                 $table.=''.$estudiantegrupo->estadoEstudiante.'</td>
                 <td><td>
                    </tr>';
-          }
+        //  }
         }
        return Response::json($table);
         
+  }
+
+  public function importarGrupo(Request $request){
+    $idgrupo=$request->input('idgrupofiltro');
+    $grupo=grupo::find($idgrupo);
+    $estudiantegrupos=estudiantegrupo::where('idgrupos',$grupo->id)->get();
+    //if($grupo->periodos->nombre=="5"){
+      $year=date("Y");
+      $periodoActual=periodo::where('nombre',$grupo->periodos->nombre)->where('anho',$year)->where('estado','ACTIVO')->first(); 
+      $nivel=nivel::find($grupo->idnivels);
+      $nivelActual=nivel::where('numNivel',$nivel->numNivel + 1)
+      ->where('ididiomas',$nivel->ididiomas)
+      ->where('idcategorias',$nivel->idcategorias)
+      ->where('idmodalidads',$nivel->idmodalidads)
+      ->where('idcursos',$nivel->idcursos)
+      ->where('idcursocategorias',$nivel->idcursocategorias)
+      ->first();
+      //->get();   
+    //}
+  /* return Response::json([
+      'grupo'=>$grupo,
+      'estudiantegrupos'=>$estudiantegrupos,
+      'periodoActual'=>$periodoActual,
+      'nivelAntes'=> $nivel,
+      'nivelActual'=>$nivelActual,
+      ]); */
+
+
+      DB::beginTransaction();
+      try {
+        $grupo->fill([
+          'estadoTraspaso'=>'ENVIADO',
+          ]);
+        if($grupo->save()){
+         /* return Response::json([
+            'cupos'=> $grupo->cupos,
+            'numGrupo'=> $grupo->numGrupo,
+            'idnivels'=>$nivelActual->id,
+            'idperiodos'=>$periodoActual->id,
+            'estado'=> "INICIADO",
+            'estadoTraspaso'=>'NO ENVIADO',
+            ]);*/
+            $nuevoGrupo = grupo::create([
+              'cupos'=> $grupo->cupos,
+              'numGrupo'=> $grupo->numGrupo,
+              'idnivels'=>$nivelActual->id,
+              'idperiodos'=>$periodoActual->id,
+              'estado'=> "INICIADO",
+              'estadoTraspaso'=>'NO ENVIADO',
+            ]);
+            
+            $ponderaciones=ponderacion::where('idgrupos',$grupo->id)->get();
+            $contador=1;
+            
+          //return Response::json( $ponderaciones);
+            foreach ($ponderaciones as $key => $ponderacion) {
+                  ponderacion::create([
+                  'correlativo'=> $contador,
+                  'nombreEvaluacion'=>$ponderacion->nombreEvaluacion,
+                  'ponderacion'=>$ponderacion->ponderacion,
+                  'idgrupos'=>$nuevoGrupo->id,         
+                  ]);
+                    $contador++;
+            }
+            
+            foreach ($estudiantegrupos as $estudiantegrupo) { 
+              //return Response::json($estudiantegrupo);
+                if($estudiantegrupo->notaFinal>=7 && $estudiantegrupo->estado!='PREINSCRITO'){//$estudiantegrupo->notaFinal>=7 &&
+                    $message= estudiantegrupo::create([
+                      //'numperiodo'=> $i,
+                      'pago'=> 0.0,
+                      'idgrupos'=>$nuevoGrupo->id,
+                      'idestudiantes'=>$estudiantegrupo->idestudiantes,
+                      'idcursocategorias'=>$estudiantegrupo->idcursocategorias,
+                      'estado'=> "PREINSCRITO",
+                      'notaFinal'=>0.00,
+                      ]);
+                }
+              //  return Response::json($message);
+          } 
+          //return Response::json($message);
+
+        }
+        DB::commit();
+        return Response::json("Gaurdo");
+      } catch (\Throwable $e) {
+        DB::rollback();
+        return Response::json([
+              'bandera'=>0,
+              'response'=>'eroor'+$e,
+              ]); 
+      
+      }////fin catch
+
   }
 }

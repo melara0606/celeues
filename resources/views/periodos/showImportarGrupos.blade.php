@@ -464,8 +464,8 @@ $("#filtrarOne").click(function (e) {
                 console.log(data['actual']); 
                 $('#tbodyOne').append(data['anterior']);
                 $('#tbodyTwo').append(data['actual']);
-                $('#titleacordeon').html('<strong style="font-size: 13px;color:white" >'+data['periodoActual']+'</strong>'); 
-                $('#titleacordeonTwo').html('<strong style="font-size: 13px;" >'+data['periodoAntes']+' (ACTUAL)</strong>'); 
+                $('#titleacordeon').html('<strong style="font-size: 13px;color:white" >'+data['periodoAntes']+'</strong>'); 
+                $('#titleacordeonTwo').html('<strong style="font-size: 13px;" >'+data['periodoActual']+' (ACTUAL)</strong>'); 
 
                 $(".display").DataTable();  
             
@@ -565,23 +565,60 @@ $(document).on('click','.traspasar',function(e){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $("#btnGuardarTraspasar").click(function (e) {
+    $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+  })
+    e.preventDefault();
     $('#botoncerrar').click();
-    
-  //$('#modalmsj').modal('toggle');
     var btn  = $("#txtnomboton").val();
     console.log(btn);
     //$('#tab'+btn).button('loading');
     $('#tab'+btn).attr("disabled", true);
     $('#tab'+btn).html("cargando..");
-    setTimeout(function () {
-    //    $('#tab'+btn).button('reset');
-    $('#tab'+btn).html("enviado");
-    $('#tab'+btn).removeClass("btn-primary");
-    $('#tab'+btn).addClass("btn-success");
+    var formData = {
+     // numTable:2,
+      idgrupofiltro:$("#txtnomboton").val(),
+    }     
+          var type = "POST"; //for creating new resource
+          var my_url = $('#path').val()+"/importar/importarGrupo";
+          console.log(formData);
+          
+          $.ajax({
+            type: type,
+            url: my_url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+              //success data
+            console.log(data);
+            setTimeout(function () {
+                //    $('#tab'+btn).button('reset');
+                $('#tab'+btn).html("enviado");
+                $('#tab'+btn).removeClass("btn-primary");
+                $('#tab'+btn).addClass("btn-success");
+                
+                }, 5000);
+            
+             },
+             error: function (data) {
+                  var errors=data.responseJSON;
+                  console.log(errors);
+                         $.niftyNoty({
+                        type: "danger",
+                        container : "floating",
+                        title : "Upps!",
+                        message : "A ocurrido un problema en la busqueda de grupos"+errors,
+                        closeBtn : false,
+                        timer : 3000
+                        });
+              
+                         console.log('Error de peticion:', data);
+              
+                  }
+            });   
     
-    }, 5000);
-    
-    //$('#tab'+btn).button('terminado');
      
 });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
