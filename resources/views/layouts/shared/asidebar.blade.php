@@ -92,9 +92,9 @@
 							</a>
 							<ul class="collapse">
 								<li><a href="{{ route('docente') }}">Docentes</a></li>
-								<li><a href="{{ route('docente') }}">Equipos</a></li>
-								<li><a href="{{ route('docente') }}">Materiales Didacticos</a></li>
-								<li><a href="{{ route('docente') }}">Prestamos</a></li>
+								<li><a href="{{ route('equipos.index') }}">Equipos</a></li>
+								<li><a href="{{ route('materiales.index') }}">Materiales Didacticos</a></li>
+								<li><a href="{{ route('prestamos.index') }}">Prestamos</a></li>
 							</ul>
 						</li>
 						<li>

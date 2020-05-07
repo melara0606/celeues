@@ -157,5 +157,30 @@ Route::get('/notas', 'userNotasEstudianteController@show')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
+// Ponderaciones
 Route::resource('evaluaciones', 'EvaluacionesController');
+
+// Equipo
+Route::resource("equipos", "EquipoController");
+
+//materiales
+Route::resource("materiales", "MaterialDidacticoController");
+Route::resource('prestamos', 'PrestamoController');
+
+Route::post('/prestamos-search', 'PrestamoController@searchTipoEquipo');
+
+
+// Rutas nuevas
+Route::post("/docente/deleteEquipo", "docenteController@deleteEquipo");
+Route::post("/docente/addEquipo", "docenteController@addEquipoDocente");
+Route::post("/docente/entregarEquipo", "docenteController@entregarEquipo");
+Route::post("/docente/addPrestamo", "docenteController@addEquipoPrestamo");
+Route::get("/docente/{id}", "docenteController@showData")->name("prestamo_docente");
+Route::get("/docente/{id}/viewsHistory", "docenteController@viewHistoryPrestamo")->name("history_prestamos");
+
+
+// para el prestamos de libro por grupo, para el docente
+Route::get('/docente/{id}/materiales', 'docenteController@materiales')->name('docente_materiales');
+Route::post('/docente/addMaterialDocente', 'docenteController@addMaterialDocente');
+Route::post('/sendMaterialDidactico', "docenteController@sendMaterialDidactico");
+Route::get("/docente/{id}/materialHistory", 'docenteController@viewHistoryMaterial')->name("docente_prestamos");

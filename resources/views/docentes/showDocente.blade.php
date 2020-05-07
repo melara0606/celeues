@@ -122,6 +122,7 @@
               <th>Email</th>
               <th>Teléfono</th>
               <th>Genero</th>
+              {{--<th>Prestamos</th>--}}
               <th>Estado</th>
 
               <th class="text-center">Acciones</th>
@@ -189,6 +190,23 @@
                 <button class="btn btn-lg btn-default btn-hover-warning">Hover Me!</button>
                 <div class="demo-icon"><i class="demo-pli-internet-explorer"></i></div>
                 <a href="#" <a href="#" class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></a>--}}-->
+                <div class="btn-group fade in">
+                    <div class="dropdown" >
+                      <button class="btn btn-default btn-xs btn-hover-primary dropdown-toggle"  data-toggle="dropdown" type="button" aria-expanded="false">
+                        Prestamos <i class="dropdown-caret"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-header">Opciones</li>
+                        <li>
+                          <a href="{{ route('prestamo_docente', [ $docente->id]), false }}">Equipo</a>
+                        </li>
+                        <li>
+                          <a href="{{ route('docente_materiales', [ $docente->id]), false }}">Material Didactico</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+             
               </td>
 
             </tr>
