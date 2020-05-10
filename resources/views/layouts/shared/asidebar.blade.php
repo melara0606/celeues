@@ -12,8 +12,8 @@
 								<span class="pull-right dropdown-toggle">
 									<i class="dropdown-caret"></i>
 								</span>
-								<p class="mnp-name">Aaron Chavez</p>
-								<span class="mnp-desc">aaron.cha@themeon.net</span>
+								<p class="mnp-name">Aaron Chavez </p>
+								<span class="mnp-desc">{{ Auth::user()->email }}</span>
 							</a>
 						</div>
 						<div id="profile-nav" class="collapse list-group bg-trans">
@@ -65,73 +65,105 @@
 						</ul>
 					</div>
 
-					<ul id="mainnav-menu" class="list-group">
-						<li class="list-header">Opciones</li>
-						
-						<li>
-							<a href="#">
-								<i class="demo-pli-boot-2"></i>
-								<span class="menu-title">Inscripciones</span>
-								<i class="arrow"></i>
-							</a>
-							<ul class="collapse">
-								<li><a href="{{ route('grupo') }}">Grupos</a></li>
-								<li><a href="{{ route('aula') }}">Aulas</a></li>
-								<li><a href="{{ route('estudiante') }}">Estudiante</a></li>
-								<li><a href="{{ route('responsable') }}">Responsables</a></li>
+					@if(Auth::user()->tipo=="ADMIN")
+						<ul id="mainnav-menu" class="list-group">
+							<li class="list-header">Opciones</li>
+							
+							<li>
+								<a href="#">
+									<i class="demo-pli-boot-2"></i>
+									<span class="menu-title">Inscripciones</span>
+									<i class="arrow"></i>
+								</a>
+								<ul class="collapse">
+									<li><a href="{{ route('grupo') }}">Grupos</a></li>
+									<li><a href="{{ route('aula') }}">Aulas</a></li>
+									<li><a href="{{ route('estudiante') }}">Estudiante</a></li>
+									<li><a href="{{ route('responsable') }}">Responsables</a></li>
 
-								<li><a href="{{ route('traspaso') }}">Traspasos</a></li>
-								<li><a href="{{ route('evaluaciones.index') }}">Ponderaciones</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">
-								<i class="demo-pli-boot-2"></i>
-								<span class="menu-title">Admin. Equipo</span>
-								<i class="arrow"></i>
-							</a>
-							<ul class="collapse">
-								<li><a href="{{ route('docente') }}">Docentes</a></li>
-								<li><a href="{{ route('equipos.index') }}">Equipos</a></li>
-								<li><a href="{{ route('materiales.index') }}">Materiales Didacticos</a></li>
-								<li><a href="{{ route('prestamos.index') }}">Prestamos</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">
-								<i class="demo-pli-boot-2"></i>
-								<span class="menu-title">Noticias</span>
-								<i class="arrow"></i>
-							</a>
-							<ul class="collapse">
-								<li><a href="{{ route('noticia') }}">Noticias</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">
-								<i class="demo-pli-gear icon-lg icon-fw"></i>
-								<span class="menu-title">Tareas Comunes</span>
-								<i class="arrow"></i>
-							</a>
-							<ul class="collapse">
-								<li><a href="{{ route('periodo') }}">Periodos</a></li>
-								<li><a href="{{ route('importar') }}">Importar Grupos</a></li>
-								<li><a href="{{ route('curso') }}">Cursos</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">
-								<i class="demo-pli-gear icon-lg icon-fw"></i>
-								<span class="menu-title">Configuracion</span>
-								<i class="arrow"></i>
-							</a>
-							<ul class="collapse">
-								<li><a href="{{ route('idioma') }}">Idiomas</a></li>
-								<li><a href="{{ route('categoria') }}">Categorias</a></li>
-								<li><a href="{{ route('modalidad') }}">Modalidad</a></li>
-							</ul>
-						</li>
-					</ul>
+									<li><a href="{{ route('traspaso') }}">Traspasos</a></li>
+									<li><a href="{{ route('evaluaciones.index') }}">Ponderaciones</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									<i class="demo-pli-boot-2"></i>
+									<span class="menu-title">Admin. Equipo</span>
+									<i class="arrow"></i>
+								</a>
+								<ul class="collapse">
+									<li><a href="{{ route('docente') }}">Docentes</a></li>
+									<li><a href="{{ route('equipos.index') }}">Equipos</a></li>
+									<li><a href="{{ route('materiales.index') }}">Materiales Didacticos</a></li>
+									<li><a href="{{ route('prestamos.index') }}">Prestamos</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									<i class="demo-pli-boot-2"></i>
+									<span class="menu-title">Noticias</span>
+									<i class="arrow"></i>
+								</a>
+								<ul class="collapse">
+									<li><a href="{{ route('noticia') }}">Noticias</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									<i class="demo-pli-gear icon-lg icon-fw"></i>
+									<span class="menu-title">Tareas Comunes</span>
+									<i class="arrow"></i>
+								</a>
+								<ul class="collapse">
+									<li><a href="{{ route('periodo') }}">Periodos</a></li>
+									<li><a href="{{ route('importar') }}">Importar Grupos</a></li>
+									<li><a href="{{ route('curso') }}">Cursos</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									<i class="demo-pli-gear icon-lg icon-fw"></i>
+									<span class="menu-title">Configuracion</span>
+									<i class="arrow"></i>
+								</a>
+								<ul class="collapse">
+									<li><a href="{{ route('idioma') }}">Idiomas</a></li>
+									<li><a href="{{ route('categoria') }}">Categorias</a></li>
+									<li><a href="{{ route('modalidad') }}">Modalidad</a></li>
+								</ul>
+							</li>
+						</ul>
+					@endif
+					
+					@if(Auth::user()->tipo=="DOCENTE")
+						<ul id="mainnav-menu" class="list-group">
+							<li class="list-header">Opciones</li>
+							
+							<li class="active-link">
+						                <a href="{{ route('grupo') }}" data-original-title="" title="">
+						                    <i class="demo-pli-inbox-full"></i>
+						                    <span class="menu-title">GRUPOS</span>
+						                </a>
+						    </li>
+							<li class="">
+						                <a href="{{ route('grupo') }}" data-original-title="" title="">
+						                    <i class="demo-pli-inbox-full"></i>
+						                    <span class="menu-title">PRESTAMOS</span>
+						                </a>
+						    </li>
+							<li>
+								<a href="#">
+									<i class="demo-pli-boot-2"></i>
+									<span class="menu-title">Configruaciones</span>
+									<i class="arrow"></i>
+								</a>
+								<ul class="collapse">
+									<li><a href="{{ route('grupo') }}">Grupos</a></li>
+								</ul>
+								
+							</li>
+						</ul>
+					@endif	
 				</div>
 			</div>
 		</div>

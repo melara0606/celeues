@@ -1,4 +1,4 @@
-	@extends('layouts.appplantilla')
+	@extends('layouts.shared.appplantilla')
 
 	  @section('links')
 	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
@@ -22,7 +22,29 @@
 
 
 	</style>
-		
+
+<div id="page-head">
+
+<!--Page Title-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+{{--<div id="page-title">
+	<h1 class="page-header text-overflow"></h1>
+
+</div>--}}
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--End page title-->
+
+
+<!--Breadcrumb-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<ol class="breadcrumb">
+	<li><a href=""><i class="demo-pli-home"></i></a></li>
+	<li class="active">Grupos</li>
+</ol>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--End breadcrumb-->
+
+</div>		
 	
 	<!--Page content-->
 	<!--===================================================-->
@@ -31,23 +53,22 @@
 			
 
 		
-	<!--<div class="row col-md-3">
-			<input type="text" hidden="true" name="path" id="path" value="http://localhost/celeues/public">
+	<div class="row col-md-3">
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">
-						<h4>	</h4>
-					</div>\
+						<h4>	Infomacion</h4>
+					</div>
 
 					
 					<div class="row col-sm-12 col-lg-12">
 						<label for="" class="control-label text-main text-bold "></label>
 						
 									<div class="list-group">
-					                    <h5> &nbsp; OALABRA	</h5>
+					                    <h5> &nbsp; 	</h5>
 					                    					                    <a class="list-group-item  list-group-item-primary " href="http://localhost/celeues/public/curso/1">GRUPOS</a>
 
-					                    					                    <a class="list-group-item " href="http://localhost/celeues/public/curso/2">PRESTAMOS<span style="font-size: 11px;" class="badge badge-primary text-xs text-muted">25</span></a>
+					                    					                    <a class="list-group-item " href="http://localhost/celeues/public/curso/2">PRESTAMOS</a>
 
 
 					                    					                </div>
@@ -70,11 +91,11 @@
 				</div>
 			</div>		
 			<hr>
-		</div>-->
-		<div class="row col-md-1"></div>
+		</div>
+		{{--<div class="row col-md-1"></div> --}}
 		<!--Row Main Right COL-MD -->
 		<!--===================================================-->
-		<div class="row col-md-10">
+		<div class="row col-md-9">
 			<!--Main Panel-->
 			<!--===================================================-->
 			<div class="panel" style="  background:#eeeeee{{----}};border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important; min-height: 500px;">
@@ -98,7 +119,7 @@
 						</div>
 					</div>
 					 <div id="cursoNombreDiv">
-					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">GRUPOS DE {{$cursoNombreDiv}} {{$selectYear}} {{$selectModulo}}</strong></p></h3></div>
+					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">GRUPOS</strong></p></h3></div>
 						
 
 
@@ -124,11 +145,11 @@
 											<tr>
 																			 <td>
 										 	<!-- readonly  -->
-										 	<button type="button" class="btn btn-mint active  filtrar" value="1">GRUPOS<span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted"></span></button> 
+										 	<button type="button" class="btn btn-mint active  mostrarActivos" value="1">GRUPOS ACTUALES<span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted"></span></button> 
 										 </td>
 																			 <td>
 										 	<!--  -->
-										 	<button type="button" class="btn btn-mint   filtrar" value="2">PRESTAMOS <span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted"></span></button> 
+										 	<button type="button" class="btn btn-mint   mostrarHistorial" value="2">HISTORIAL <span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted"></span></button> 
 										 </td>																			 
 																				</tr>
 										</tbody>
@@ -156,7 +177,7 @@
 					 ?>
 					 <div id="divCardsGrupos" class="" name="divCardsGrupos" {{--style="display: none;"--}}>
 					 	{{--<a href="" class="updateAula" data-name="email" data-type="text" data-pk="2" data-title="Enter email">email</a>--}}
-					@forelse($grupos as $grupo)
+					@forelse($gruposActuales as $grupo)
 					 
 					<div class="col-md-12  single-item">
 
@@ -171,7 +192,7 @@
 					                        <div class="media-body">
 					                            <div class="comment-header">
 					                            	<div class="" style="width: 100%;height: 25px;display: inline-block;">
-					                                <a href="" style="" class="media-heading  text-md box-inline  text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))) }} Nivel {{$grupo->numNivel}}  {{$seccion[$grupo->numGrupo] }}
+					                                <a href="" style="" class="media-heading  text-md box-inline  text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->nivels->ididiomas))) }} Nivel {{$grupo->nivels->numNivel}}  {{$seccion[$grupo->numGrupo] }}
 					                                </a>
 
 					                                 <a style="float: right; " class="media-heading box-inline text-md text-main  text-semibold  text-xs updateAula" data-name="name" data-type="text" data-pk="{{ $grupo->id }}" data-title="Enter name">
@@ -184,7 +205,7 @@
 					                                 </a>
 					                                 </div>
 					                                 <div class="" >
-					                                <p class="text-muted text-sm " style="display: inline-block;">{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | <i class="pli-professor icon-lg"></i>&nbsp </p>
+					                                <p class="text-muted text-sm " style="display: inline-block;">{{ucwords(strtolower(grupoController::verCategoria($grupo->nivels->idcategorias))) }} | <i class="pli-professor icon-lg"></i>&nbsp </p>
 
 					                                	@if($grupo->iddocentes==null)                                 
 							                                <p class="text-muted text-sm " id="docente{{$grupo->idgrupos}}" style="display: inline-block;">{{-- <i class="demo-pli-smartphone-3 icon-lg"></i>--}}<u>N/A</u></p>
@@ -192,15 +213,15 @@
 								                            <p class="text-muted text-sm text-semibold" id="docente{{$grupo->idgrupos}}" style="display: inline-block; color: green"> {{ucwords(strtolower(grupoController::verDocente($grupo->iddocentes))) }}</p>
 								                         @endif
 								                         </div>
-								                         @if($grupo->estadoGrupo=='INICIADO')
+								                         @if($grupo->estado=='INICIADO')
 								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-gray text-sm">Iniciado</span>&nbsp&nbsp 30 Inscritos</p> 
 								                          @endif
 
-								                         @if($grupo->estadoGrupo=='EN CURSO')
+								                         @if($grupo->estado=='EN CURSO')
 								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label badge-primary text-sm">En curso</span>&nbsp&nbsp 30 Inscritos</p> 
 								                          @endif
 
-								                         @if($grupo->estadoGrupo=='FINALIZADO')
+								                         @if($grupo->estado=='FINALIZADO')
 								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-danger text-sm">Finalizado</span>&nbsp&nbsp 30 Inscritos</p> 
 								                          @endif
 					                            </div>
@@ -211,12 +232,7 @@
 
 											<button onclick="location.href='{{url('/')}}/grupos/notas/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigNotas" data-cupos="{{$grupo->cupos}}" data-original-title="Asignar Notas" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-notepad icon-lg " ></i> </button>
 											<button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$grupo->idgrupos}}'" class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-student-male-female icon-lg " ></i> </button>
-											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
-											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
-											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip infoModal" data-original-title="Información" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-exclamation icon-lg " ></i> </button>
-			                           
-				                             
-											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip editarmodal" data-cupos="{{$grupo->cupos}}" data-original-title="Modificar Cupos" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
+											
 
 							
 						
@@ -264,54 +280,106 @@
 					<!--===================================================-->
 
 
-					<div class="col-md-12" style="display: none;">
-						 
-
-						<table class="table  table-sm ">
-							<tbody>
-								@forelse($grupos as $grupo)
-
+					<div class="col-md-12 panel" id="contentHistorial" style="display:none; {{--background:#eeeeee--}};border: 1px solid #ccc; box-shadow: 0px 0px #bbb !important; min-height: 350px;" >
+					<div><h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">HISTORIAL DE GRUPOS</strong></p></h3></div>
+					
+					<div class="panel-body ">		
+					{{-- Auth::user() --}}
+				
+					<div class=" table-responsive" > 
+						<table  class="table table-striped row-border display"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
+							<thead>
 								<tr>
-									<!--<td>
-										<img alt="Profile Picture" class="img-lg img-circle mar-ver" src="img/profile-photos/2.png">
-
-										 <p class="text-muted text-sm "><li class="demo-ti-user icon-lg"></li></p>
-										   <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | Teacher Lic. </p>
-									</td>-->
-									<td>
-										<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
-									</td>
-									<td>
-										
-					                            <div class="comment-header">
-					                                <a href="" class="media-heading box-inline text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))) }} Nivel {{$grupo->numNivel}}  {{$seccion[$grupo->numGrupo] }}</a>
-					                                <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | Teacher Lic. </p>
-					                                <p class="text-muted text-sm">30 estudiantes ----- {{$grupo->cupos}} disponibles </p>
-					                             
-					                            
-					                            </div>
-					                            
-												
-
-									</td>
-									<td>
-										 
-										  	<div class="text-right">
-										  		<a href="" class="media-heading box-inline text-main text-semibold media-right text-sm updateAula" data-name="name" data-type="text" data-pk="{{ $grupo->id }}" data-title="Enter name">{{ucwords(strtolower(grupoController::verAula($grupo->idaulas))) }}</a>
-										 <br><br>
-											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
-			                           
-					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigDocente" data-original-title="Asignar aula y maestro" data-container="body" value="{{$grupo->id}}"><i class="demo-pli-add icon-lg " ></i> </button>
-				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigAula" data-original-title="Modificar Grupo" data-container="body" value="{{$grupo->id}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
-				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
-			                             </div>
-									</td>
+									<th class="text-center">#</th>
 									
+									<th class="text-left">Nombre</th>
+									<th class="text-left">Categoria</th>
+									<th class="text-left">Periodo</th>
+									
+									<th class="text-center">Aula</th>
+									<th class="text-center">Estado</th>
+									
+									<th class="text-center">Acciones</th>
+
 								</tr>
-					@empty No hay datos
-					@endforelse
+							</thead><?php 
+								  $seccion = array('1' =>'A' ,
+                                '2' =>'B' ,
+                                '3' =>'C' ,
+                                '4' =>'D' ,
+                                '5' =>'E' ,
+                                '6' =>'F' ,
+                                
+                             );
+							?>
+							<tbody id="tbodyTwo" name="tbodyTwo">
+								<div style="display: none;">{{ $correlativo=1 }}</div>
+								@forelse($gruposFinalizados as $grupo)
+							{{--	@if($ididioma == $grupo->nivels->ididiomas) --}}
+								<tr id="{{ $grupo->id }}">
+								<td align="center">{{ $correlativo++ }}</td>
+								<td align="left">
+									<div class="">
+										<div class="text-main text-bold">
+										{{ $grupo->nivels->idiomas->nombre }} NIVEL {{ $grupo->nivels->numNivel}} {{ $seccion[$grupo->numGrupo] }}
+										</div>
+									</div>
+								</td>
+								<td align="left">
+									<div class="">
+										<div class="text-main text-bold">
+										{{ $grupo->nivels->categorias->nombre }}
+										</div>
+									</div>
+								</td>
+								
+								<td align="center">
+									<div class="">
+										<div class="text-main text-bold">
+										{{ $grupo->periodos->fehcaIni }}- {{ $grupo->periodos->fehcaFin}}
+										
+										</div>
+									</div>
+								</td>
+								<td align="center">
+									<div class="">
+										<div class="text-main text-bold">
+										@if($grupo->idaulas!=null)
+										{{ $grupo->aulas->nombre }}
+										@else 
+										N/A
+										@endif
+										</div>
+									</div>
+								</td>
+								<td align="center">
+									<div class="label label-table bg-dark">
+										<div class="text-xs text-bold">
+										{{ $grupo->estado }}
+										</div>
+									</div>
+								</td>
+								<td align="center">
+									<!--	{{--<button  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip vernotaestudiante" data-original-title="Ver Notas de Estudiante" data-container="body" value="{{$grupo->id}}"><i class="pli-notepad icon-lg "></i>{{--Info--}}</button>
+									-->
+										<button onclick="location.href='{{url('/')}}/grupos/estudiantes/{{$grupo->id}}'" class="btn btn-icon btn-default{{--btn-trans--}} btn-xs media-right btn-hover add-tooltip " data-original-title="Listado de Estudiantes" data-container="body" value="{{$grupo->id}}"><i class="pli-student-male-female icon-lg " ></i> </button>
+										<button onclick="location.href='{{url('/')}}/grupos/notas/{{$grupo->id}}'"  class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip " data-original-title="Ver Notas Grupo" data-container="body" value="{{$grupo->id}}"><i class="pli-notepad icon-lg "></i>{{--Info--}}</button>
+										
+
+								</td>
+								</tr>
+								{{--@endif--}}
+								@empty
+							<p>No hay registros de historial de grupos</p>
+
+							@endforelse 
 							</tbody>
 						</table>
+					</div>
+
+						
+						
+					</div>
 					
 					</div>
 
@@ -355,100 +423,7 @@
 				<!--Modal body-->
 				<div class="modal-body "  style="overflow-y: auto;  max-height: 500px;{{--background:#eee;--}}"	>
 					
-						<form  id="form" name="form" class="panel-body form-horizontal form-padding" action="" method="post">
-							 <input type="hidden" id="form_id" name="form_id" value="0">
-								<br>
-								<div id="nuevoFormulario">
-					          <div class="row form-group">
-					            <div class="col-md-1 col-sm-1"></div>
-					              <label class="col-md-2 col-sm-2 control-label text-main text-bold ">Curso:</label>
-					              <div class="col-md-6 col-sm-6">
-					                  <select class="form-control" id="cursoSelect" name="cursoSelect">
-					                  	<option value="" selected="selected" disabled>Seleccione un curso</option>
-                               			    @forelse($cursos as $curso)
-									          <option value="{{$curso->id}}">{{$curso->nombreIdioma}} {{$curso->nombreModalidad}} {{$curso->turno}}</option>
-											@empty
-									          @endforelse
-			            			</select>
-					              </div>
-
-					          </div>
-					          <br>
-					          <div  class="row form-group">
-					            <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Categoria:</label>
-					            <div class="col-md-6 col-sm-6">
-					            	<select class="form-control" id="categoriaSelect" name="categoriaSelect">
-					            		<option selected disabled label="Seleccione una categoria"></option>
-					            {{--   @forelse($categorias as $categoria)
-					               		<option value="{{$categoria->id}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}}</option>
-									@empty
-									@endforelse--}}
-									</select>
-					            </div>
-
-					          </div>
-					          <br>
-					          <div  class="row form-group">
-					             <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Nivel:</label>
-					            <div class="col-md-6 col-sm-6">
-					               <select class="form-control" id="nivelSelect" name="nivelSelect">
-					               	<option selected disabled label="Seleccione un nivel"></option>
-                               			  
-									          
-			            			</select>
-					            </div>
-					            {{--<div class="col-md-2 col-sm-2">
-
-					              <button style="margin-top: 5px" class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip nada" data-original-title="Modificar Grupo" data-container="body" value=""><i class="demo-psi-add icon-lg "></i> </button>
-					            </div>
-					            --}}
-
-					          </div>
-					          <br>
-					          <div class="row form-group">
-					            <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Secciones:</label>
-					            <div class="col-md-3 col-sm-3">
-					                 <select class="form-control" id="numGrupos" name="numGrupos">
-                               			   
-									          <option value="1">1  A </option>
-											  <option value="2">2  A B </option>
-											  <option value="3">3  A B C</option>
-											  <option value="4">4  A B C D</option>
-											  <option value="5">5  A B C D E</option>
-											  <option value="6">6  A B C D E F</option>
-											
-									          
-			            			</select>
-					            </div>
-
-					          </div>
-					          <br>
-					          <div  class="row form-group">
-					             <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Cupos:</label>
-					            <div class="col-md-3 col-sm-3">
-					               <input class="form-control input-number" type="number" value="20" id="cupos" name="cupos">
-					            </div>
-
-					          </div>
-					          <br>
-							</div><!-- fin nuevo Formulario-->
-					        <div id="modificarFormulario">
-					          <div  class="row form-group">
-					             <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Cupos:</label>
-					            <div class="col-md-6 col-sm-6">
-					               <input class="form-control input-number" type="number" value="" id="cuposModificar" name="cuposModificar">
-					            </div>
-
-					          </div>
-					          <br>  
-					        </div><!-- fin modificar Formulario-->
-					        
-					        </form>
+						
 				</div>
 
 				{{----}}<!--Modal footer-->
@@ -509,78 +484,14 @@
 	<!--===================================================-->
 	<div id="modalAsigDocenteAula" class="modal fade" tabindex="-1">
 		<div class="modal-dialog {{--modal-lg--}}">
-			<div class="modal-content">
+			<di 	v class="modal-content">
 				<div class="modal-header alert-mint">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
 					<h4 class="modal-title" style="color: white;" id="modalAsigDocenteAulaLabel">Horarios</h4>
 				</div>
-				<div class="modal-body">
+				<div  class="modal-body">
 					<div class="panel-body">
-						<div class="table-responsive">
-						{{--<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Asignar Docente</h6>
-					     --}}
-					     <input type="text" hidden="true" id="modalAsigDocenteAulaToggle" name="modalAsigDocenteAulaToggle" value="">
-
-					     <input type="text" hidden="true" id="modalAsigDocenteAulaIdGrupo" name="modalAsigDocenteAulaIdGrupo" value="">
-
-					     <div class="input-group mar-btm">
-					                        <input type="text" placeholder="Buscar" class="form-control" id="search" name="search">
-					                        <span class="input-group-btn">
-					                            <button class="btn btn-mint" type="button">Buscar</button>
-					                        </span>
-					                    </div> 
-						<table   class="table {{--table-bordered--}} table-sm " align="center">
-            					<tbody id="tablaAsigDocenteAula">
-            						@for($i=1;$i<30;$i++)
-            						<tr class='clickable-row'>
-            							<td align="center" >
-            								<!--<i class="demo-pli-smartphone-3 icon-lg" style="padding-top: 10px">
-            								-->	<i class="pli-professor icon-lg" style="padding-top: 5pX"></i>
-            									<i class="pli-board icon-lg"></i>
-            							</td>
-            						
-            								<td>
-            									<div class="comment-header">
-					                                <label class="media-heading box-inline text-main text-sm text-semibold ">Kelvin Adonay Flores Mejia</label> 
-					                                <p class="text-muted text-xs">Email@gmail.com </p>
-
-
-					                            </div>
-					                        </td>
-					                        <td align="center">
-<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigDocente" data-original-title="Asignar" data-container="body" value="" disabled="true">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>
-					                        </td>
- 
-            						</tr>
-            						@endfor
-
-            						<tr >
-            							<td align="center" >
-            									<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
-            									<i class="pli-conference icon-sm" style="padding-top: 5pX"></i>
-            									
-            							</td>
-        								<td>
-        									<div class="comment-header">
-				                                <label class="media-heading box-inline text-main text-sm text-semibold ">Aula 2-1</label> 
-				                                <p class="text-muted text-xs">Capacidad 20 personas </p>
-
-
-				                            </div>
-				                        </td>
-				                        <td align="center">
-<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAula" data-original-title="Asignar Aula" data-container="body" value="">Asignar aula<i class="demo-psi-arrow-right icon-md "></i> </button>
-				                        </td>
-
-            						</tr>
-            						
-
-            						
-            					</tbody>
-            			</table>
-					<!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
 						</div>
-					</div>
 				</div>
 				<!--Modal footer-->
 				<div class="modal-footer">
@@ -646,20 +557,6 @@
   $('#anhofiltro').val($('#year').val());
   $('#periodofiltro').val($('#hiddenPeriodo').val());
   $('#cursofiltro').val($('#hiddenCurso').val());
-   
-$('.updateAula').editable({
-
-           url: '/update-user',
-
-           type: 'text',
-
-           pk: 1,
-
-           name: 'name',
-
-           title: 'Enter name'
-
-    });
 
 /*$('#easyPaginate').easyPaginate({
     paginateElement: 'div',
@@ -669,8 +566,26 @@ $('.updateAula').editable({
 
 
 		 });
+  $(document).on('click','.mostrarActivos',function(){	
+	$("#contentHistorial").hide();	
+	$("#divCardsGrupos").show();
+	$(".mostrarHistorial").removeClass("active");
+	$(".mostrarActivos").addClass("active");
+	
+	
+  });
+  $(document).on('click','.mostrarHistorial',function(){	
+	$("#contentHistorial").show();	
+	$("#divCardsGrupos").hide();
+	
+	$(".mostrarActivos").removeClass("active");
+	$(".mostrarHistorial").addClass("active");
+  });
+
+
 	</script>
-	<script src="{{asset('js/grupo.js')}}"></script> 
+	{{--
+	<script src="{{asset('js/grupo.js')}}"></script> --}}
 	
 
 	@endsection

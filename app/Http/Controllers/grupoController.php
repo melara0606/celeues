@@ -125,8 +125,41 @@ class grupoController extends Controller
          ->get();*/
 
     }
-    
-    public function show(){
+
+    /** Funcion interna sin WS que muestra para usuarios de docente */
+     public function showGruposUserDocente(){
+      // return Response::json("sdds");
+      
+      $usuarioActual=\Auth::user();
+      $docente=docente::where('idusers',$usuarioActual->id)->first();
+     // return Response::json($docente);
+ 
+    $gruposFinalizados=grupo::where('iddocentes',$docente->id)
+      ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
+      ->where('grupos.estado','FINALIZADO')     
+      ->select('grupos.*')
+      ->orderBy('nivels.numNivel','ASC')
+      ->orderBy('grupos.numGrupo','ASC')
+      ->get();
+      $gruposActuales=grupo::where('iddocentes',$docente->id)
+      ->leftJoin('nivels', 'grupos.idnivels', '=', 'nivels.id')
+      ->where('grupos.estado','!=','FINALIZADO')     
+      ->select('grupos.*')
+      ->orderBy('nivels.numNivel','ASC')
+      ->orderBy('grupos.numGrupo','ASC')
+      ->get();
+      //$grupos=grupo::where()s
+      $idiomas=idioma::where('estado','ACTIVO')->get();
+
+      $infoJSON=[//Docente',[
+        'gruposActuales'=>$gruposActuales, 
+        'gruposFinalizados'=>$gruposFinalizados,           
+       ];
+           return view('grupos.showGruDocente',$infoJSON);
+
+    }
+    /** Funcion interna sin WS que muestra para usuarios de admin */
+    public function showGruposAdmin(){
  //$usuarioActual=\Auth::user();
  //return Response::json(decrypt  ($usuarioActual->password));
     	 $curso=DB::table('cursos')
@@ -207,11 +240,20 @@ class grupoController extends Controller
                  'evaluaciones'=>$evaluaciones        
                 ];
 
-    	   return view('grupos.showGrupos',$infoJSON);
-
-           //return view('grupos.showGruDocente',$infoJSON);
-
+         return view('grupos.showGrupos',$infoJSON);
+        
+      
     }//fin show
+
+    public function show(){
+        $usuarioActual=\Auth::user();
+        if($usuarioActual->tipo=='ADMIN'){
+            return ($this->showGruposAdmin());
+        }else if($usuarioActual->tipo=='DOCENTE'){
+            return ($this->showGruposUserDocente());
+        }
+       
+    }
 
        public function filtrar(Request $request){
             $idcurso=$request->input('cursofiltro');
