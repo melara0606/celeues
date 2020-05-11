@@ -89,7 +89,7 @@ class userRecordEstudianteController extends Controller
              ->where('nivels.ididiomas',$idiomas->first()->ididiomas)      
              ->where('estudiantegrupos.idestudiantes',$IDESTUDIANTE)/////////////////////////////////////////
             //->where('nivels.idcursos',$cursos->first()->idcursos)   
-             ->orderBy('nivels.numNivel','ASC')
+            ->orderBy('nivels.idcategorias','ASC')//->orderBy('nivels.numNivel','ASC') me daba error en herou por postgress
              ->get(); 
           }else{
               $categorias=estudiantegrupo:://DB::table('estudiantegrupos')
@@ -100,10 +100,10 @@ class userRecordEstudianteController extends Controller
              ->where('nivels.ididiomas',$idiomas->first()->ididiomas)      
              ->where('estudiantegrupos.idestudiantes',$IDESTUDIANTE)/////////////////////////////////////////
              ->where('nivels.idcursos',$cursos->first()->idcursos)   
-             ->orderBy('nivels.numNivel','ASC')
+             ->orderBy('nivels.idcategorias','ASC')//->orderBy('nivels.numNivel','ASC') me daba error en herou por postgress
              ->get(); 
             }
-        // return Response::json($categorias);
+         //return Response::json($categorias);
          $llenarInfo='';
          foreach ($categorias as $categoria) {
             $message=categoria::find($categoria->idcategorias);
