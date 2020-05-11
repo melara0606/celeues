@@ -81,8 +81,8 @@ class userRecordEstudianteController extends Controller
          
              // $collection=collect($arrayIdiomas);
           if (count($cursos)>1) {
-             $categorias=DB::table('estudiantegrupos')
-             ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+            $categorias=estudiantegrup:://DB::table('estudiantegrupos')
+             join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
              ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
              ->select('nivels.idcategorias')
              ->distinct()
@@ -92,8 +92,8 @@ class userRecordEstudianteController extends Controller
              ->orderBy('nivels.numNivel','ASC')
              ->get(); 
           }else{
-              $categorias=DB::table('estudiantegrupos')
-             ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+              $categorias=estudiantegrup:://DB::table('estudiantegrupos')
+             join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
              ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
              ->select('nivels.idcategorias')
              ->distinct()
@@ -103,7 +103,7 @@ class userRecordEstudianteController extends Controller
              ->orderBy('nivels.numNivel','ASC')
              ->get(); 
             }
-         //return Response::json($categorias);
+         return Response::json($categorias);
          $llenarInfo='';
          foreach ($categorias as $categoria) {
             $message=categoria::find($categoria->idcategorias);
