@@ -33,8 +33,8 @@ class userRecordEstudianteController extends Controller
    //return Response::json($userEstudiante);
 
 
-        $idiomas=DB::table('estudiantegrupos')//es esdudiante grupo tabla
-         ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+        $idiomas=estudiantegrupo:://DB::table('estudiantegrupos')//es esdudiante grupo tabla
+         join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
          ->select('nivels.ididiomas')
          ->distinct()
@@ -42,15 +42,15 @@ class userRecordEstudianteController extends Controller
          ->get();
 
            // return Response::json($idiomas);
-         $cursos=DB::table('estudiantegrupos')
-         ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+         $cursos=estudiantegrupo:://DB::table('estudiantegrupos')
+         join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
          ->select('nivels.idcursos')
          ->distinct()
          ->where('nivels.ididiomas',$idiomas->first()->ididiomas)
         ->where('estudiantegrupos.idestudiantes',$IDESTUDIANTE)///////////////////////////////////////////////////////////
          ->get();         
-       //return Response::json($cursos);
+     //  return Response::json($cursos);
          //$collection=''; 
          
          foreach ($idiomas as $idioma) {
