@@ -1,4 +1,4 @@
-	@extends('layouts.appplantilla')
+	@extends('layouts.shared.appplantilla')
 
 	  @section('links')
 	  <link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">

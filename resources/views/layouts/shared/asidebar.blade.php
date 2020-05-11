@@ -142,23 +142,52 @@
 							<li class="active-link">
 						                <a href="{{ route('grupo') }}" data-original-title="" title="">
 						                    <i class="demo-pli-inbox-full"></i>
-						                    <span class="menu-title">GRUPOS</span>
+						                    <span class="menu-title">Grupos</span>
 						                </a>
 						    </li>
 							<li class="">
 						                <a href="{{ route('grupo') }}" data-original-title="" title="">
 						                    <i class="demo-pli-inbox-full"></i>
-						                    <span class="menu-title">PRESTAMOS</span>
+						                    <span class="menu-title">Prestamos</span>
 						                </a>
 						    </li>
 							<li>
 								<a href="#">
-									<i class="demo-pli-boot-2"></i>
+									<i class="demo-pli-gear icon-lg icon-fw"></i>
 									<span class="menu-title">Configruaciones</span>
 									<i class="arrow"></i>
 								</a>
 								<ul class="collapse">
-									<li><a href="{{ route('grupo') }}">Grupos</a></li>
+									<li><a href="{{ route('grupo') }}">Otra Opcion</a></li>
+								</ul>
+								
+							</li>
+						</ul>
+					@endif	
+					@if(Auth::user()->tipo=="ESTUDIANTE")
+						<ul id="mainnav-menu" class="list-group">
+							<li class="list-header">Opciones</li>
+							
+							<li class="active-link">
+						                <a href="{{ route('record') }}" data-original-title="" title="">
+						                    <i class="demo-pli-inbox-full"></i>
+						                    <span class="menu-title">Record Academico</span>
+						                </a>
+						    </li>
+							<li class="">
+						                <a href="{{ route('notas') }}" data-original-title="" title="">
+						                    <i class="demo-pli-inbox-full"></i>
+						                    <span class="menu-title">Notas</span>
+						                </a>
+						    </li>
+							<li>
+								<a href="#">
+									<i class="demo-pli-gear icon-lg icon-fw"></i>
+									<span class="menu-title">Configruaciones</span>
+									<i class="arrow"></i>
+								</a>
+								<ul class="collapse">
+									<li><a href="{{ route('grupo') }}">Otra Opcion</a></li>
 								</ul>
 								
 							</li>

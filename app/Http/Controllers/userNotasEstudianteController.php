@@ -17,7 +17,7 @@ use App\docente;
 use App\nota;
 
 use App\estudiante;
-use App\estadiantegrupo;
+use App\estudiantegrupo;
 use App\user;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +33,8 @@ class userNotasEstudianteController extends Controller
 //return Response::json($usuarioActual);
 
 
-        $idiomas=DB::table('estudiantegrupos')//es esdudiante grupo tabla
-         ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+        $idiomas=estudiantegrupo:://DB::table('estudiantegrupos')//es esdudiante grupo tabla
+         join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
          ->select('nivels.ididiomas')
          ->distinct()
@@ -42,8 +42,8 @@ class userNotasEstudianteController extends Controller
          ->get();
 
            // return Response::json($idiomas);
-         $cursos=DB::table('estudiantegrupos')
-         ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+         $cursos=estudiantegrupo:://DB::table('estudiantegrupos')
+         join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
          ->select('nivels.idcursos')
          ->distinct()
@@ -89,8 +89,8 @@ class userNotasEstudianteController extends Controller
              ->where('nivels.ididiomas',$idiomas->first()->ididiomas)      
              ->where('estudiantegrupos.idestudiantes',$IDESTUDIANTE)/////////////////////////////////////////
             //->where('nivels.idcursos',$cursos->first()->idcursos)   
-             ->orderBy('nivels.numNivel','ASC')
-             ->get(); 
+            ->orderBy('nivels.idcategorias','ASC')//->orderBy('nivels.numNivel','ASC') me daba error en herou por postgress
+            ->get(); 
           }else{
               $categorias=DB::table('estudiantegrupos')
              ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
@@ -100,7 +100,7 @@ class userNotasEstudianteController extends Controller
              ->where('nivels.ididiomas',$idiomas->first()->ididiomas)      
              ->where('estudiantegrupos.idestudiantes',$IDESTUDIANTE)/////////////////////////////////////////
              ->where('nivels.idcursos',$cursos->first()->idcursos)   
-             ->orderBy('nivels.numNivel','ASC')
+             ->orderBy('nivels.idcategorias','ASC')//->orderBy('nivels.numNivel','ASC') me daba error en herou por postgress
              ->get(); 
             }
          //return Response::json($categorias);

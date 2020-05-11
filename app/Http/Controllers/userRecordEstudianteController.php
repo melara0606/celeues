@@ -412,8 +412,8 @@ class userRecordEstudianteController extends Controller
     	 $usuarioActual=\Auth::user();
          $userEstudiante=estudiante::where('idusers',$usuarioActual->id)->get()->first();
         $IDESTUDIANTE=$userEstudiante->id;
-        $idiomas=DB::table('estudiantegrupos')
-         ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+        $idiomas=estudiantegrupo:://DB::table('estudiantegrupos')
+         join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
          ->select('nivels.ididiomas')
          ->distinct()
@@ -421,8 +421,8 @@ class userRecordEstudianteController extends Controller
          ->get();
 
           //  return Response::json($message->first()->ididiomas);
-         $cursos=DB::table('estudiantegrupos')
-         ->join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
+         $cursos=estudiantegrupo:://DB::table('estudiantegrupos')
+         join('grupos', 'estudiantegrupos.idgrupos', '=', 'grupos.id')
          ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
          ->select('nivels.idcursos')
          ->distinct()
@@ -469,7 +469,7 @@ class userRecordEstudianteController extends Controller
          ->where('estudiantegrupos.idestudiantes',$IDESTUDIANTE)/////////////////////////////////////////
          ->where('nivels.idcursos',$IDCURSO)   
         
-         ->orderBy('nivels.numNivel','ASC')
+         ->orderBy('nivels.idcategorias','ASC')//->orderBy('nivels.numNivel','ASC') me daba error en herou por postgress
          ->get(); 
         
          //return Response::json($categorias);

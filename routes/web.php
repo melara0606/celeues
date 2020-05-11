@@ -139,11 +139,11 @@ Route::post('/grupos/obtenerGruposTraspaso', 'grupoController@obtenerGruposTrasp
 Route::post('/grupos/obtenerEstudiantes', 'grupoController@obtenerEstudiantes')->middleware('auth');
 Route::put('/grupos/transferirEstudiante', 'grupoController@transferirEstudiante')->middleware('auth');
 
-Route::get('/record', 'userRecordEstudianteController@show')->middleware('auth');
+Route::get('/record', 'userRecordEstudianteController@show')->name('record')->middleware('auth');
 Route::get('/record/{ididiomas?}', 'userRecordEstudianteController@showParametros')->middleware('auth');
 Route::put('/record/filtrar', 'userRecordEstudianteController@filtrar')->middleware('auth');
 
-Route::get('/notas', 'userNotasEstudianteController@show')->middleware('auth');
+Route::get('/notas', 'userNotasEstudianteController@show')->name('notas')->middleware('auth');
 
 
 
