@@ -64,7 +64,7 @@
       {{----}}<div class="pad-btm form-inline">
         <div class="row">
           <div class="col-sm-6 table-toolbar-left">
-            <button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo Docente</button>
+            <button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo </button>
             <button class="btn btn-default imprimir"><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
             {{--<div class="btn-group">
               <button class="btn btn-default"><i class="demo-pli-exclamation"></i>
@@ -137,15 +137,15 @@
               <td align="left">
                 <div class="text-sm text-bold">
                     {{ strtoupper($docente->nombre)}} {{ strtoupper($docente->apellido)}}
-                  </div> 
+                  </div>
               </td>
               <td >{{ $docente->email }}</td>
               <td >{{ $docente->telefono }}</td>
               <td >{{ $docente->genero }}</td>
-              
+
               @if($docente->estado=='ACTIVO')
               <td align="center">
-                <div class="label label-table bg-mint"><div class="text-xs text-bold"></div> 
+                <div class="label label-table bg-mint"><div class="text-xs text-bold"></div>
                <div class="text-xs text-bold">
                 {{ $docente->estado }}
               </div>
@@ -172,10 +172,10 @@
                 <button class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip editarmodal" data-original-title="Editar Registro" data-container="body" value="{{ $docente->id }}"><i class="demo-psi-pen-5 icon-sm " ></i> </button>
                 <button class="btn btn-icon btn-default btn-xs  btn-hover-info infoModal add-tooltip " data-original-title="Información" data-container="body" value="{{ $docente->id }}"><i class="demo-pli-exclamation icon-sm " ></i> </button>
                 @if($docente->estado=='ACTIVO')
-                <button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-danger darbaja" value="{{ $docente->id }}" data-original-title="Dar Baja"><div class="demo-icon"><i class="ion-chevron-down"></i><span></span></div> </button>
+                <button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-danger darbaja" data-original-title="Dar Baja" data-container="body" value="{{ $docente->id }}" ><div class="demo-icon"><i class="ion-chevron-down"></i><span></span></div> </button>
                 @endif
                 @if($docente->estado=='INACTIVO')
-                <button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-primary darAlta" value="{{ $docente->id }}" ata-original-title="Dar Alta"><div class="demo-icon"><i class="ion-chevron-up"></i><span></span></div> </button>
+                <button class="btn btn-icon btn-default btn-default btn-xs add-tooltip btn-hover-primary darAlta" data-original-title="Dar Alta" data-container="body" value="{{ $docente->id }}" ><div class="demo-icon"><i class="ion-chevron-up"></i><span></span></div> </button>
                 @endif
                 {{--<button type="button" class="btn btn-outline-info btn-xs infomodal" value="{{ $docente->id }}">Info</button>--}}
 
@@ -184,7 +184,7 @@
                   @else
                   <button class="btn btn-icon btn-defaul btn-xs media-right btn-hover add-tooltip crearUsuarioEstudiante" data-nombre="{{ $docente->nombre }} {{ $docente->apellido }}" data-email="{{ $docente->email }}" data-original-title="Crear usuario" data-container="body" value="{{ $docente->id }}"><i class="pli-id-card icon-lg "></i></button>
                   @endif
-                  <button onclick="location.href='{{url('/')}}/docente/grupos/{{$docente->id}}'" class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Record Academico" data-container="body" value="{{ $docente->id }}"><i class="pli-student-male-female icon-lg " ></i> </button>
+                  <button onclick="location.href='{{url('/')}}/docente/grupos/{{$docente->id}}'" class="btn btn-icon btn-default btn-default btn-xs  btn-hover-mint add-tooltip " data-original-title="Récord Académico" data-container="body" value="{{ $docente->id }}"><i class="pli-student-male-female icon-lg " ></i> </button>
               <!--	{{--<button class="btn btn-default btn-sm btn-circle"><i class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></i></button>
 
                 <button class="btn btn-lg btn-default btn-hover-warning">Hover Me!</button>
@@ -201,12 +201,12 @@
                           <a href="{{ route('prestamo_docente', [ $docente->id]), false }}">Equipo</a>
                         </li>
                         <li>
-                          <a href="{{ route('docente_materiales', [ $docente->id]), false }}">Material Didactico</a>
+                          <a href="{{ route('docente_materiales', [ $docente->id]), false }}">Material Didáctico</a>
                         </li>
                       </ul>
                     </div>
                   </div>
-             
+
               </td>
 
             </tr>
@@ -369,7 +369,7 @@
       <!------/////////////// SE ENTENDERA ESTUDIANTE COMO DOCENTE NO QUERIA CAMBIAR VARIABLE /////////////////////// -->
         <!--Modal body-->
         <div id="pruebatarget" class="modal-body" style="overflow-y: auto;  max-height: 700px;" >
-        
+
           <form>
             <input hidden="true" type="text" id="estudiante_id" name="estudiante_id">
 
@@ -389,7 +389,7 @@
                             <div id="" class="form-control-feedback"></div>
                   </div>
               </div>
-              
+
               <div  id="" class="col-md-12 form-group @if($errors->has('nombre')) has-danger @endif" >
                   <div class="col-md-1"></div>
                   <label for="example-text-input" class="col-md-2 control-label text-main text-bold ">Comprobar Contraseña:</label>
