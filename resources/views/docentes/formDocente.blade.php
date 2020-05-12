@@ -68,7 +68,7 @@
     </div>
 
     <div id="generodiv" class="form-group">
-        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Genero*</label>
+        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Género*</label>
         <div class="col-md-7  ">
             <select class="col-md-7 form-control" name="genero" id="genero">
               <option value="0">MASCULINO</option>
