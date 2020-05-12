@@ -44,8 +44,8 @@
 	  <!--End breadcrumb-->
 
 	</div>
-	
-	
+
+
 	<!--Page content-->
 	<!--===================================================-->
 	<div id="page-content" >
@@ -54,19 +54,19 @@
 		<!--===================================================-->
 		<div class="row col-md-3">
 			<input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
-			
+
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">
 						<h4>Filtrar	</h4>
-		
+
 					</div>
 
-					
-					
-        
+
+
+
 		<div class="row col-sm-12">
-		
+
 		<div style="display: none ;">
 			<input class="" placeholder="selectCurso"   type="text" id="hiddenCurso" name="year" value="{{$selectCurso}}" >
 			<input class="" placeholder="selectYear"  type="text" id="year" name="year" value="{{$selectYear}}" >
@@ -77,10 +77,10 @@
             --}}
 
 						<label for="" class="control-label text-main text-bold ">Cursos:
-							<button class="btn btn-icon btn-trans btn-xs  add-tooltip infoHorariosModal" data-original-title="Ver Informacion de Curso" data-container="body" value=""><i class="ion-eye icon-lg " ></i></button>
+							<button class="btn btn-icon btn-trans btn-xs  add-tooltip infoHorariosModal" data-original-title="Ver Información de Curso" data-container="body" value=""><i class="ion-eye icon-lg " ></i></button>
 						</label>
 						<select class="form-control" id="cursofiltro" name="cursofiltro">
-                 				
+
 	            			 @forelse($cursos as $curso)
 						          <option value="{{$curso->id}}">{{$curso->nombreIdioma}} {{$curso->nombreModalidad}} {{$curso->turno}}</option>
 								@empty
@@ -88,7 +88,7 @@
             			</select>
 					</div>
 					<div class="row">
-						
+
 					</div>
 					<br>
 
@@ -104,12 +104,12 @@
 				          </select>
 					</div>
 					<div class="row">
-						
+
 					</div>
-					<br>	
-					
+					<br>
+
 					<div class="row col-sm-12">
-						<label for="" class="control-label text-main text-bold ">Anho:</label>
+						<label for="" class="control-label text-main text-bold ">An&o:</label>
 						<select class="form-control" id="anhofiltro" name="anhofiltro" >
 						          @forelse($anhos as $anho)
 						          <option value="{{$anho->anho}}">{{$anho->anho}}</option>
@@ -119,10 +119,10 @@
 
 					</div>
 					<div class="row">
-						
+
 					</div>
 					<br>
-					
+
 					<div class="row col-sm-12">
 						<label for="" class="control-label text-main text-bold ">Periodos o Modulos:</label>
 						<select class="form-control" id="periodofiltro" name="periodofiltro" >
@@ -134,7 +134,7 @@
 
 					</div>
 					<div class="row">
-						
+
 					</div>
 					<br>
 					<div class="row col-sm-12" align="right">
@@ -143,18 +143,18 @@
 					</div>
 					<br>
 					<div class="row">
-						
+
 					</div>
 					<br>
-					
-					
+
+
 				</div><!--End Panel Body -->
-			</div><!--End Pannel -->		
+			</div><!--End Pannel -->
 			<hr>
 		</div>
 		<!--End Main Left Row COL-MD -->
 		<!--===================================================-->
-		
+
 
 		<!--Row Main Right COL-MD -->
 		<!--===================================================-->
@@ -183,7 +183,7 @@
 					</div>
 					 <div id="cursoNombreDiv">
 					<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">GRUPOS DE {{$cursoNombreDiv}} {{$selectYear}} {{$selectModulo}}</strong></p></h3></div>
-						
+
 
 
 				</div>
@@ -210,7 +210,7 @@
 										 <td>
 										 	<!--@if($selectCategoria==$categoria->idcategorias) readonly @else @endif -->
 										 	<button type="button" class="btn btn-mint @if($selectCategoria==$categoria->idcategorias)active @else @endif filtrar"
-										 	value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}} <span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted">{{grupoController::numeroCategorias($selectPeriodo,$categoria->idcategorias)}}</span></button> 
+										 	value="{{$categoria->idcategorias}}">{{$categoria->nombre}} {{$categoria->edadInicio}}-{{$categoria->edadFin}} <span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted">{{grupoController::numeroCategorias($selectPeriodo,$categoria->idcategorias)}}</span></button>
 										 </td>
 									@empty
 									@endforelse
@@ -224,7 +224,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 
 					<!--End 1rst Row Panel Body-->
 					<!--===================================================-->
@@ -244,7 +244,7 @@
 					<!--===================================================-->
 					<div class="col-md-12">
 						<div class="col-sm-12 col-md-12">
-							
+
 							 <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">
 
 							 	<div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
@@ -259,7 +259,7 @@
 					                            {{--<a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-exclamation"></i></a>
 					                            <a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-heart-2"></i></a>--}}
 
-												
+
 
 					                        </div>
 					                </div>
@@ -267,7 +267,7 @@
 			                            <!-------------------------------------->
 										<div class="text-right">
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
-			                           
+
 					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Asignar aula y maestro" data-container="body" value=""><i class="demo-pli-add icon-lg " ></i> </button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Modificar Grupo" data-container="body" value=""><i class="demo-psi-pen-5 icon-md " ></i> </button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
@@ -276,15 +276,15 @@
 
 							 		{{--<p align="left" style="color: black" class="text-m text-bold mar-no text-main"> Intensivo Tarde  <strong style="color: black; font-size: 13px;">kelvin</strong> kjnwjk</p>--}}
 							 	</div>
-							 	
+
 							 	{{--<div class="pad-all text-right " style="border-top-left-radius:15px; border-top-right-radius:15px">
 							 		jnkjn
 							 	</div>--}}
-							 	
+
 							 </div>
-							
+
 						</div>
-						
+
 					</div>
 					<!--End COL ROW CARTAS DE GRUPO-->
 					<!--===================================================-->
@@ -296,7 +296,7 @@
 					<!--===================================================-->
 					<div class="col-md-12">
 						<div class="col-sm-12 col-md-12">
-							
+
 							 <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px #bbbbbb !important; border-radius: 5px;">
 
 							 	<div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
@@ -311,7 +311,7 @@
 					                            {{--<a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-exclamation"></i></a>
 					                            <a class="btn btn-sm btn-default media-right"><i class="icon-lg demo-pli-heart-2"></i></a>--}}
 
-												
+
 
 					                        </div>
 					                </div>
@@ -319,7 +319,7 @@
 			                            <!-------------------------------------->
 										<div class="text-right">
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
-			                           
+
 					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Asignar aula y maestro" data-container="body" value=""><i class="demo-pli-add icon-lg " ></i> </button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Modificar Grupo" data-container="body" value=""><i class="demo-psi-pen-5 icon-md " ></i> </button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
@@ -328,15 +328,15 @@
 
 							 		{{--<p align="left" style="color: black" class="text-m text-bold mar-no text-main"> Intensivo Tarde  <strong style="color: black; font-size: 13px;">kelvin</strong> kjnwjk</p>--}}
 							 	</div>
-							 	
+
 							 	{{--<div class="pad-all text-right " style="border-top-left-radius:15px; border-top-right-radius:15px">
 							 		jnkjn
 							 	</div>--}}
-							 	
+
 							 </div>
-							
+
 						</div>
-						
+
 					</div>
 					<!--End COL ROW CARTAS DE GRUPO-->
 					<!--===================================================-->
@@ -359,7 +359,7 @@
 				            '4' =>'D' ,
 				            '5' =>'E' ,
 				            '6' =>'F' ,
-				            
+
 				         );
 
 					 ?>
@@ -368,7 +368,7 @@
 					@forelse($grupos as $grupo)
 					<div class="col-md-6 single-item">
 						<div class="col-sm-12 col-md-12">
-							
+
 							 <div class="panel pos-rel" style="border: 1px solid #ccc;box-shadow: 1px 1px 3px #bbbbbb !important; border-radius: 5px;">
 
 							 	<div class="pad-all text-left " style="border-top-left-radius:15px; border-top-right-radius:15px">
@@ -392,25 +392,25 @@
 					                                 <div class="" >
 					                                <p class="text-muted text-sm " style="display: inline-block;">{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | <i class="pli-professor icon-lg"></i>&nbsp </p>
 
-					                                	@if($grupo->iddocentes==null)                                 
+					                                	@if($grupo->iddocentes==null)
 							                                <p class="text-muted text-sm " id="docente{{$grupo->idgrupos}}" style="display: inline-block;">{{-- <i class="demo-pli-smartphone-3 icon-lg"></i>--}}<u>N/A</u></p>
 								                        @else
 								                            <p class="text-muted text-sm text-semibold" id="docente{{$grupo->idgrupos}}" style="display: inline-block; color: green"> {{ucwords(strtolower(grupoController::verDocente($grupo->iddocentes))) }}</p>
 								                         @endif
 								                         </div>
 								                         @if($grupo->estadoGrupo=='INICIADO')
-								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-gray text-sm">Iniciado</span>&nbsp&nbsp 30 Inscritos</p> 
+								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-gray text-sm">Iniciado</span>&nbsp&nbsp 30 Inscritos</p>
 								                          @endif
 
 								                         @if($grupo->estadoGrupo=='EN CURSO')
-								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label badge-primary text-sm">En curso</span>&nbsp&nbsp 30 Inscritos</p> 
+								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label badge-primary text-sm">En curso</span>&nbsp&nbsp 30 Inscritos</p>
 								                          @endif
 
 								                         @if($grupo->estadoGrupo=='FINALIZADO')
-								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-danger text-sm">Finalizado</span>&nbsp&nbsp 30 Inscritos</p> 
+								                          <p class=" media-left text-sm "><span id="estado{{$grupo->idgrupos}}" class="label bg-danger text-sm">Finalizado</span>&nbsp&nbsp 30 Inscritos</p>
 								                          @endif
 					                            </div>
-					                            
+
 					                             <!-------------------------------------->
 										<div class="text-right" style="padding-top: 15px">
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip deleteGrupo" data-original-title="Eliminar grupo" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-remove icon-md " ></i> </button>
@@ -420,19 +420,19 @@
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip infoModal" data-original-title="Información" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-pli-exclamation icon-lg " ></i> </button>
-			                           
-				                             
+
+
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover add-tooltip editarmodal" data-cupos="{{$grupo->cupos}}" data-original-title="Modificar Cupos" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
 
-							
-						
-											
-					                          
-				                             
+
+
+
+
+
 
 			                             </div>
 			                            <!-------------------------------------->
-												
+
 
 					                        </div>
 					                </div>
@@ -442,7 +442,7 @@
 
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip editEd" data-original-title="Modificar Grupo" data-container="body" value="{{$grupo->idgrupos}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
-			                           
+
 					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigDocente" data-original-title="Asignar Docente" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-professor icon-lg" ></i> </button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigAula" data-original-title="Asignar Aula" data-container="body" value="{{$grupo->idgrupos}}"><i class="pli-board icon-lg"></i></button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
@@ -451,15 +451,15 @@
 			                            ------------------------------------>
 							 		{{--<p align="left" style="color: black" class="text-m text-bold mar-no text-main"> Intensivo Tarde  <strong style="color: black; font-size: 13px;">kelvin</strong> kjnwjk</p>--}}
 							 	</div>
-							 	
+
 							 	{{--<div class="pad-all text-right " style="border-top-left-radius:15px; border-top-right-radius:15px">
 							 		jnkjn
 							 	</div>--}}
-							 	
+
 							 </div>
-							
+
 						</div>
-						
+
 					</div>
 					@empty
 					No hay datos
@@ -471,54 +471,54 @@
 
 
 <!--					<div class="col-md-12" style="display: none;">
-						 
+
 
 						<table class="table  table-sm ">
 							<tbody>
 								@forelse($grupos as $grupo)
 
 								<tr>
-									
+
 									<td>
 										<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
 									</td>
 									<td>
-										
+
 					                            <div class="comment-header">
 					                                <a href="" class="media-heading box-inline text-main text-semibold ">{{ucwords(strtolower(grupoController::verIdioma($grupo->ididiomas))) }} Nivel {{$grupo->numNivel}}  {{$seccion[$grupo->numGrupo] }}</a>
 					                                <p class="text-muted text-sm ">{{-- <i class="demo-pli-smartphone-3 icon-lg">--}}</i>{{ucwords(strtolower(grupoController::verCategoria($grupo->idcategorias))) }} | Teacher Lic. </p>
 					                                <p class="text-muted text-sm">30 estudiantes ----- {{$grupo->cupos}} disponibles </p>
-					                             
-					                            
+
+
 					                            </div>
-					                            
-												
+
+
 
 									</td>
 									<td>
-										 
+
 										  	<div class="text-right">
 										  		<a href="" class="media-heading box-inline text-main text-semibold media-right text-sm updateAula" data-name="name" data-type="text" data-pk="{{ $grupo->id }}" data-title="Enter name">{{ucwords(strtolower(grupoController::verAula($grupo->idaulas))) }}</a>
 										 <br><br>
 											<button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Información" data-container="body" value=""><i class="demo-pli-exclamation icon-lg " ></i> </button>
-			                           
+
 					                          <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigDocente" data-original-title="Asignar aula y maestro" data-container="body" value="{{$grupo->id}}"><i class="demo-pli-add icon-lg " ></i> </button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip asigAula" data-original-title="Modificar Grupo" data-container="body" value="{{$grupo->id}}"><i class="demo-psi-pen-5 icon-md " ></i> </button>
 				                             <button class="btn btn-icon btn-trans btn-xs media-right btn-hover infoModal add-tooltip actualPrecio" data-original-title="Eliminar grupo" data-container="body" value=""><i class="demo-pli-remove icon-md " ></i> </button>
 			                             </div>
 									</td>
-									
+
 								</tr>
 					@empty No hay datos
 					@endforelse
 							</tbody>
 						</table>
-					
+
 					</div>
 -->
 
 
-				
+
 				</div>
 				<!--End Panel Body-->
 				<!--===================================================-->
@@ -530,15 +530,15 @@
 		</div>
 		<!--End Main Right COL-MD-->
 		<!--===================================================-->
-		
 
-	
+
+
 	</div><!-- No se por que si lo pongo se me hace feo el disenho del footer===================================================-->
 	<!--End page content-->
 
 
 
-	
+
 
 
 	<!--Default Bootstrap Modal-->
@@ -555,7 +555,7 @@
 
 				<!--Modal body-->
 				<div class="modal-body "  style="overflow-y: auto;  max-height: 500px;{{--background:#eee;--}}"	>
-					
+
 						<form  id="form" name="form" class="panel-body form-horizontal form-padding" action="" method="post">
 							 <input type="hidden" id="form_id" name="form_id" value="0">
 								<br>
@@ -596,8 +596,8 @@
 					            <div class="col-md-6 col-sm-6">
 					               <select class="form-control" id="nivelSelect" name="nivelSelect">
 					               	<option selected disabled label="Seleccione un nivel"></option>
-                               			  
-									          
+
+
 			            			</select>
 					            </div>
 					            {{--<div class="col-md-2 col-sm-2">
@@ -618,8 +618,8 @@
 					               			<option value="{{ $evaluacion->id }}">{{ $evaluacion->titulo }}</option>
 					               		@empty
 					               		@endforelse
-                               			  
-									          
+
+
 			            			</select>
 					            </div>
 
@@ -627,16 +627,16 @@
 					          <br>
 					          <div class="row" id="divcollapseEvaluacion" style="display: none">
 					           <label  class="col-md-3 col-sm-12 control-label text-main text-bold ">Visualizar:</label>
-					            
+
 					           <div class=" col-md-6 col-sm-12">
 						          <div class="panel {{--panel-default--}}" >
 									    <div class="panel-heading bg-gray" style="height: 35px; border: 1px solid #ccc;">
 									      	<div style="display: inline-block;width: 100%;margin-top: 8px">
-										      	  
+
 											      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-sm text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="{{--color:white;--}}font-size: 13px; " >ponderaciones</strong></p></h4>
-									      		
+
 										      <h4 class="panel-title text-sm" align="right" style="float: right;" >
-										      	
+
 										        <a data-toggle="collapse" href="#collapse1" class="colapOne" ><i class="ion-plus"></i></a>
 										      </h4>
 									  		</div>
@@ -644,11 +644,11 @@
 									    <div id="collapse1" class="panel-collapse collapse" style="border-bottom: 1px solid #ccc;">
 									    	<table  class="table {{--table-bordered--}} table-striped table-sm ">
 									    		<tbody id="tableEvaluaciones" name="tableEvaluaciones">
-									    			
+
 									    		</tbody>
 									    	</table>
 									    </div>
-									</div>   
+									</div>
 								  </div>
 							  </div>
 					          <div class="row form-group">
@@ -656,7 +656,7 @@
 					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Seccion:</label>
 					            <div class="col-md-3 col-sm-3">
 					                 <select class="form-control" id="numGrupos" name="numGrupos">
-                               			   
+
 									          <!-- <option value="1">1  A </option>
 											  <option value="2">2  A B </option>
 											  <option value="3">3  A B C</option>
@@ -669,8 +669,8 @@
 											  <option value="4">D</option>
 											  <option value="5">E</option>
 											  <option value="6">F</option>
-											
-									          
+
+
 			            			</select>
 					            </div>
 
@@ -695,9 +695,9 @@
 					            </div>
 
 					          </div>
-					          <br>  
+					          <br>
 					        </div><!-- fin modificar Formulario-->
-					        
+
 					        </form>
 				</div>
 
@@ -727,16 +727,16 @@
 					<div class="panel-body">
 						<div class="table-responsive">
 						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">informacion de Grupo</h6>
-            			
+
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
             						<th>
-            							
+
             								<td>ds</td>
-            							
+
             						</th>
             						<tr>
-            						<td></td> 
+            						<td></td>
             						</tr>
             					</tbody>
             			</table>
@@ -778,12 +778,12 @@
 					                        <span class="input-group-btn">
 					                            <button class="btn btn-mint" type="button">Buscar</button>
 					                        </span>
-					                    </div> 
+					                    </div>
 						<table   class="table {{--table-bordered--}} table-sm " align="center">
             					<tbody id="tablaAsigDocenteAula">
-            						
 
-            						
+
+
             					</tbody>
             			</table>
 					<!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
@@ -821,8 +821,8 @@
 					 <input type="hidden" class="form-control" type="text"  id="estadoAB" name="estadoAB">
 					  <input type="hidden" class="form-control" type="text"  id="registro_id" name="registro_id">
       			</form>
-      			
-						
+
+
 					</div>
 				</div>
 				<!--Modal footer-->
@@ -843,10 +843,10 @@
 
 	@section('script')
 
-	
+
 	{{--<script src="{{asset('js/jquery.easyPaginate.js')}}"></script>
 
-	<script src="{{asset('js/jquery.snippet.min.js')}}"></script> 
+	<script src="{{asset('js/jquery.snippet.min.js')}}"></script>
 	--}}<script type="text/javascript">
 		$(document).ready(function(){
 			$.niftyNav('collapse');
@@ -881,7 +881,7 @@
 
 });
 </script>
-	<script src="{{asset('js/grupo.js')}}"></script> 
-	
+	<script src="{{asset('js/grupo.js')}}"></script>
+
 
 	@endsection
