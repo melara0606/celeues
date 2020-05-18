@@ -1,6 +1,6 @@
-@extends('layouts.appPlantilla')
-
+@extends('layouts.shared.appplantilla') 
 @section('content')
+<style>.vertical-middle{ vertical-align: middle !important; }</style>
 <!-- Encabezado de la pagina -->
 <div id="page-head">
   <div id="page-title">

@@ -1,4 +1,4 @@
-@extends('layouts.appPlantilla')
+@extends('layouts.shared.appplantilla')
 
 @section('content')
 <!-- Encabezado de la pagina -->
@@ -87,7 +87,9 @@
                         {{ @$item->grupo->nivel->modalidad->turno }}
                       </small>
                     </td>
-                    <td class="text-center">{{ $item->grupo->nivel->numNivel }}</td>
+                    <td class="text-center">
+                      {{ $item->grupo->nivel->numNivel || 0 }}
+                    </td>
                     <td class="text-center">{{ $item->grupo->nivel->modalidad->nombre }}</td>
                     <td class="text-center">{{ $item->material->categoria->nombre }}</td>
                     <td class="text-center">

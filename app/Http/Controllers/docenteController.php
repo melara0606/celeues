@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use App\user;
 use App\grupo;
+use App\Equipo;
 
 class docenteController extends Controller
 {
@@ -362,6 +363,7 @@ public function showGrupos($id){
       ->orderBy('estado', 'desc')
       ->orderBy('updated_at', 'desc')
       ->get();
+    // dd($prestamos);
     return view('docentes.history-materiales', compact("prestamos", "id", 'docente'));
   }
 

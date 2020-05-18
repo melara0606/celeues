@@ -1,4 +1,4 @@
-@extends('layouts.appPlantilla')
+@extends('layouts.shared.appplantilla')
 
 @section('content')
 <style type='text/css'>
@@ -274,5 +274,5 @@
 
 @section('script')
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="{{asset('js/ultimates/asignar.js')}}"></script>
+  <script src="{{asset('js/asignar.js')}}"></script>
 @endsection

@@ -18,4 +18,9 @@ class nivel extends Model
     {
         return $this->hasOne(categoria::class, 'id','idcategorias');
     }
+
+    public function modalidad()
+    {
+        return $this->belongsTo('App\modalidad', 'idmodalidads');
+    }
 }

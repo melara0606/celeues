@@ -68,6 +68,10 @@
         @include('layouts.shared.footer')
     </div>
 
+    <script>
+        window.URL_BASE = 'http://localhost:8000/';
+    </script>
+
      <!--JAVASCRIPT-->
     <!--=================================================-->
     <!--jQuery [ REQUIRED ]-->

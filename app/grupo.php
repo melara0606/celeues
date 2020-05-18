@@ -33,4 +33,8 @@ class grupo extends Model
         return $this->hasOne(docente::class, 'id','iddocentes');
         //return $this->hasMany(user::class,'id','idusers');
     }
+    public function nivel()
+    {
+        return $this->belongsTo('App\nivel', 'idnivels');
+    }
 }

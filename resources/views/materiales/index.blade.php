@@ -56,12 +56,11 @@
                       <td class="text-center">
                         $ {{ number_format($item->costo, 2) }}
                       </td>
-                      <td>$item->estado</td>
-                    {{-- <td class="text-center" style="width: 100px">
+                      <td>
                         @component('alert', ['type' => $item->estado])
                           <p></p>
                         @endcomponent
-                      </td> --}}
+                      </td>
                       <td class="text-center">
                         <a href="{{ route('materiales.edit', $item->id) }}"
                           class="btn btn-icon btn-default btn-default btn-xs btn-hover-mint">

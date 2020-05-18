@@ -12,6 +12,6 @@ class Equipo extends Model
   }
   public function tipoEquipo()
   {
-    return $this->hasOne("App\TipoEquipo", 'id');
+    return $this->belongsTo("App\TipoEquipo");
   }
 }

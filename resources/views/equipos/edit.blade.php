@@ -62,11 +62,13 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
+               
                 <label class="control-label">Tipo de equipo: </label>
                 <select name="tipo_equipo" id="tipo_equipo" class="form-control">
                   @foreach ($tipos as $tipo)
-                    <option value="{{ $tipo->id }}"
-                      {{ $tipo->id === $item->tipoEquipo->id ? 'selected' : '' }}>{{ $tipo->nombre_tipo }}</option>
+                    <option value="{{$item['id']}}"
+                      {{ $tipo['id'] === $item->tipoEquipo->id ? 'selected' : '' }}>{{ $tipo->nombre_tipo }}
+                    </option>
                   @endforeach
                 </select>
               </div>
@@ -92,14 +94,10 @@
 </div>
 @endsection
 @section('script')
-  
   <script type="text/javascript">
-       $(document).ready(function(){
-        $.niftyNav('expand');
-       
-       });
-    </script>
-  
+    $(document).ready(function(){
+    $.niftyNav('expand');
     
-  
-    @endsection
+    });
+    </script>
+@endsection

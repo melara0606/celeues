@@ -1,4 +1,4 @@
-@extends('layouts.appplantilla')
+@extends('layouts.shared.appplantilla')
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -168,7 +168,7 @@
 @endsection
 
 @section('script')
-  <script src='{{ asset('plugins/masked-input/jquery.maskedinput.min.js') }}'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js'></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{{ asset('js/angular.min.js') }}"></script>
   <script type="text/javascript">

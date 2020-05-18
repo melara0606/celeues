@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class docente extends Model
 {
-    //
-    protected $guarded=[];
+    public function equipo()
+    {
+        return $this->belongsToMany('App\Equipo');
+    }
+
+    public function prestamos()
+    {
+        return $this->belongsToMany('App\Prestamos');
+    }
 }

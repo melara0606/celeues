@@ -60,13 +60,12 @@
                       <td>{{ $equipo->modelo }}</td>
                       <td>{{ $equipo->nserie }}</td>
                       <td>{{ $equipo->fechaAd }}</td>
-                      <td>$ @convert($equipo->precio)</td>
-                      <td> $equipo->estado</td>
-                    {{--  <td>
+                      <td>$ {{ number_format($equipo->precio, 2) }}</td>
+                      <td>
                         @component('alert', ['type' => $equipo->estado])
                           <p></p>
                         @endcomponent
-                      </td> --}}
+                      </td>
                       <td align="center">
                         <div class="btn-group">
                           <a href="{{ route("equipos.edit", ["id" =>  $equipo-> id]) }}"

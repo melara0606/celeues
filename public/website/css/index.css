@@ -1,0 +1,10 @@
+@import "bootstrap.min.css";
+@import "flexslider.css";
+@import "styles.css";
+@import "queries.css";
+@import "animate.css";
+@import "main.css";
+
+html {
+ overflow-x: hidden;
+}
