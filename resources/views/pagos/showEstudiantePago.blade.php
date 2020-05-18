@@ -384,6 +384,9 @@
 					                        	@if($estudiantegrupo->estadoEstudiante=='OYENTE')
 						                        	<span id="estado1" class="label bg-info text-sm">{{$estudiantegrupo->estadoEstudiante}}</span>
 						                         @endif
+					                        	@if($estudiantegrupo->estadoEstudiante=='TRASLADADO')
+						                        	<span id="estado1" class="label bg-info text-sm">{{$estudiantegrupo->estadoEstudiante}}</span>
+						                         @endif
 					                        </td>
 					                        <td align="center">
 <!--<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip " data-original-title="Asignar" data-container="body" value="" ="true"><i class="pli-dollar-sign icon-md "></i> </button>

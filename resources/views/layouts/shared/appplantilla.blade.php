@@ -50,6 +50,8 @@
   <!-- Venia con codigo de melara  
   <link rel="stylesheet" href="{{ asset("css/index.css") }}"/>
 -->
+<link href="{{ asset('demo/premium/icon-sets/icons/line-icons/premium-line-icons.min.css') }}" rel="stylesheet">
+
     @yield('links')
 </head>
 <body>

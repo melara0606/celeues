@@ -71,7 +71,7 @@
 							
 							<li>
 								<a href="#">
-									<i class="demo-pli-boot-2"></i>
+									<i class="pli-file-clipboard-file-text"></i>
 									<span class="menu-title">Inscripciones</span>
 									<i class="arrow"></i>
 								</a>
@@ -87,7 +87,7 @@
 							</li>
 							<li>
 								<a href="#">
-									<i class="demo-pli-boot-2"></i>
+									<i class="pli-old-radio"></i>
 									<span class="menu-title">Admin. Equipo</span>
 									<i class="arrow"></i>
 								</a>
@@ -100,7 +100,7 @@
 							</li>
 							<li>
 								<a href="#">
-									<i class="demo-pli-boot-2"></i>
+									<i class="pli-file-horizontal-text"></i>
 									<span class="menu-title">Noticias</span>
 									<i class="arrow"></i>
 								</a>
@@ -110,7 +110,7 @@
 							</li>
 							<li>
 								<a href="#">
-									<i class="demo-pli-gear icon-lg icon-fw"></i>
+									<i class="pli-calendar-4 icon-lg icon-fw"></i>
 									<span class="menu-title">Tareas Comunes</span>
 									<i class="arrow"></i>
 								</a>

@@ -799,26 +799,40 @@ class grupoController extends Controller
     }
     public function updateDocente(Request $request,$idgrupos){
         $message=grupo::find($idgrupos);
-        //return Response::json($message);
-
-         $message->fill([
-           'iddocentes'=> $request->input('iddocentes'),
-            ]);
-        if($message->save()){
-          // bitacoraController::bitacora('Modificó datos de peticion');
-            $message=docente::find($request->input('iddocentes'));
-            return Response::json([
-            'bandera' =>1,
-            'response'=>'Teacher '.$message->nombre.' Asignado Exitosamente',
-            'nomDocente'=>''.$message->nombre.' '.$message->apellido, 
-            'toggle'=>1,                
-             ]);
+        //return Response::json($message->nivels->idcursos);
+        $existe=grupo::where('idperiodos',$message->periodos->id)
+        ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
+        ->where('iddocentes',$request->input('iddocentes'))
+        ->where('idcursos',$message->nivels->idcursos)
+        ->get();
+        
+       // return Response::json($existe);
+        //return Response::json(count($existe));
+        if(count($existe)==0){
+            $message->fill([
+            'iddocentes'=> $request->input('iddocentes'),
+                ]);
+            if($message->save()){
+            // bitacoraController::bitacora('Modificó datos de peticion');
+                $message=docente::find($request->input('iddocentes'));
+                return Response::json([
+                'bandera' =>1,
+                'response'=>'Teacher '.$message->nombre.' Asignado Exitosamente',
+                'nomDocente'=>''.$message->nombre.' '.$message->apellido, 
+                'toggle'=>1,                
+                ]);
+            }else{
+                return Response::json([
+                'bandera' =>0,
+                'response'=>'No pudo asignarse',                 
+                ]);
+                
+            }
         }else{
-             return Response::json([
-            'bandera' =>0,
-            'response'=>'No pudo asignarse',                 
-             ]);
-            
+            return Response::json([
+                'bandera' =>0,
+                'response'=>'Docente ya esta asignado a otro grupo en este curso',                 
+                ]);
         }
         //return Response::json($message);
     }
