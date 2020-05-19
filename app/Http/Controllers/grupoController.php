@@ -767,33 +767,44 @@ class grupoController extends Controller
     
     public function updateAula(Request $request,$idgrupos){
         $message=grupo::find($idgrupos);
-        //return Response::json($message);
-
-        if ($message->iddocentes==null) {
+        //return Response::json($message->aulas);
+        $existe=grupo::where('idperiodos',$message->periodos->id)
+        ->join('nivels', 'grupos.idnivels', '=', 'nivels.id')
+        ->where('idaulas',$request->input('idaulas'))
+        ->where('idcursos',$message->nivels->idcursos)
+        ->get();
+        if(count($existe)==0){
+            if ($message->iddocentes==null) {
+                $message->fill([
+            'idaulas'=> $request->input('idaulas'),
+                ]);
+            }else{
             $message->fill([
-           'idaulas'=> $request->input('idaulas'),
-            ]);
+            'idaulas'=> $request->input('idaulas'),
+            'estado'=> 'EN CURSO'
+                ]);
+            }
+            if($message->save()){
+            // bitacoraController::bitacora('Modificó datos de peticion');
+                $message=aula::find($request->input('idaulas'));
+                return Response::json([
+                'bandera' =>1,
+                'response'=>'Aula '.$message->nombre.' Asignada Exitosamente',
+                'nomAula'=>''.$message->nombre, 
+                'toggle'=>2,                
+                ]);
+            }else{
+                return Response::json([
+                'bandera' =>0,
+                'response'=>'No pudo asignarse',                 
+                ]);
+                
+            }
         }else{
-         $message->fill([
-           'idaulas'=> $request->input('idaulas'),
-           'estado'=> 'EN CURSO'
-            ]);
-         }
-        if($message->save()){
-          // bitacoraController::bitacora('Modificó datos de peticion');
-            $message=aula::find($request->input('idaulas'));
             return Response::json([
-            'bandera' =>1,
-            'response'=>'Aula '.$message->nombre.' Asignada Exitosamente',
-            'nomAula'=>''.$message->nombre, 
-            'toggle'=>2,                
-             ]);
-        }else{
-             return Response::json([
-            'bandera' =>0,
-            'response'=>'No pudo asignarse',                 
-             ]);
-            
+                'bandera' =>0,
+                'response'=>'Aula '.aula::find($request->input('idaulas'))->nombre .' ya esta asignada a otro grupo en este curso',                 
+                ]);
         }
         //return Response::json($message);
     }
