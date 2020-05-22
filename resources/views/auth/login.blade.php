@@ -119,7 +119,9 @@
 		        </div>
 		
 		        <div class="pad-all">
-		            <a href="#" class="btn-link mar-rgt">Forgot password ?</a>
+                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Forgot Your Password?
+                                </a>
 		            <a href="#" class="btn-link mar-lft">Create a new account</a>
 		
 		            <div class="media pad-top bord-top">

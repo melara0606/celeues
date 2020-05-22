@@ -19,6 +19,8 @@ class CreatePasswordResetsTable extends Migration
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
+        //ver video de email rest password
+        //https://www.youtube.com/watch?v=duMmNEJEZCw
     }
 
     /**

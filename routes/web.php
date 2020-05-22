@@ -145,7 +145,12 @@ Route::put('/record/filtrar', 'userRecordEstudianteController@filtrar')->middlew
 
 Route::get('/notas', 'userNotasEstudianteController@show')->name('notas')->middleware('auth');
 
-
+////////////////////////////RESET PASSWORD IS ADDED BY DEFAULT NO NEED TO SCRIP IT /////////////////////////////////////////
+//Route::get('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');//yas esta esta pero continuo aon tuto
+//Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+//Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+////////////////////////////////////////////////////////////////////////////////////
 
 //Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');
 
