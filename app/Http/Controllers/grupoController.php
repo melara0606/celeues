@@ -848,6 +848,33 @@ class grupoController extends Controller
         //return Response::json($message);
     }
 
+    /* Metodo que finaliza el Grupo
+    **
+    */
+    public function finalizarGrupo(Request $request){
+       /* return Response::json([
+            'bandera' =>1,
+            'response'=>'Pruebas',                 
+            ]);*/
+        $message=grupo::find($request->input('idgrupo'));
+        $message->fill([
+            'estado'=> 'FINALIZADO',
+              ]);
+        
+       if($message->save()){
+        return Response::json([
+            'bandera' =>1,
+            'response'=>'Se Finalizo el Grupo exitosamente',                 
+            ]);
+       }else{
+        return Response::json([
+            'bandera' =>0,
+            'response'=>'No se pudo finalizar el grupo',                 
+            ]);
+       }
+
+    }
+
     /* Metodo que visualisza pantalla de Traspaso de Grupo
     **
     */

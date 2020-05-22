@@ -123,6 +123,7 @@ Route::put('/grupos/updateDocente/{idgrupos?}', 'grupoController@updateDocente')
 Route::put('/grupos/periodos', 'grupoController@buscarPeriodos')->middleware('auth');
 Route::get('/grupos/buscar/{idgrupos?}', 'grupoController@buscarGrupos')->middleware('auth');
 Route::get('/grupos/evaluaciones/{idevaluacion?}', 'grupoController@buscarEvaluaciones')->middleware('auth');
+Route::post('/grupos/finalizar', 'grupoController@finalizarGrupo')->middleware('auth');
 
 Route::get('/grupos/estudiantes/{idgrupos?}', 'estudianteGrupoController@show')->middleware('auth');
 Route::get('/estudiantegrupo/{idgrupos?}', 'estudianteGrupoController@busquedaEstudiante')->middleware('auth');

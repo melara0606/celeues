@@ -99,17 +99,7 @@
                               </select>
                               
                         </div>
-                        <br>
-                        <br>
-                        <div class=" col-md-12">
-                            <label for="" class="control-label text-main text-bold col-md-3">Grupo:</label>
-
-                             <select class="form-control  col-md-6" id="grupofiltro1" name="grupofiltro1" >
-                                 
-                                 <option value="" selected="selected" disabled>Seleccione un grupo</option>
-                              </select>
-                              
-                        </div>
+                      
                         <div class=" col-md-12">
                             <br>
                             <div class="col-md-9"></div>
@@ -135,7 +125,7 @@
                 <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
                       <div style="display: inline-block;width: 100%;">
                             
-                          <h4 class="panel-title " style="display: inline-block"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >PERIODO ACTUAL</strong></p></h4>
+                          <h4 class="panel-title " style="display: inline-block"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >PERIODO ANTERIOR</strong></p></h4>
                           
                       
                       </div>
@@ -175,7 +165,7 @@
                 <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
                       <div style="display: inline-block;width: 100%;">
                             
-                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >PERIODO ANTERIOR</strong></p></h4>
+                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >PERIODO ACTUAL</strong></p></h4>
                           
                       <h4 class="panel-title" align="right" style="float: right;" >
                       <button id="btnrefresh" class="btn btn-trans btn-active-primary" ><i class="demo-psi-repeat-2"></i></button>
