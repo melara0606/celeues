@@ -39,7 +39,7 @@
                   <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right panel-default">
                       <ul class="head-list">
                           <li>
-                              <a href="#"><i class="demo-pli-male icon-lg icon-fw"></i> Profile</a>
+                              <a href="{{ route('profile') }}"><i class="demo-pli-male icon-lg icon-fw"></i> Profile</a>
                           </li>
                           <li>
                               <a href="{{ route('logout') }}"

@@ -158,6 +158,11 @@ Route::get('/notas', 'userNotasEstudianteController@show')->name('notas')->middl
 
 //Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaCreate')->middleware('auth');
 
+/////////////////////////ESTOS RECURSOS SOLO SERAN AUTH YA ESTAN VALIDADOS EN EL CONTROLADOR LOS USUARIOS//////////////////////////
+Route::get('/perfil', 'profileController@showProfile')->name('profile')->middleware('auth');
+Route::get('/seguridad/password', 'profileController@showCambiarPassword')->name('seguridadPassword')->middleware('auth');
+Route::put('/seguridad/updatePassword', 'profileController@updatePassword')->middleware('auth');
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 Route::get('/home', 'HomeController@index')->name('home');

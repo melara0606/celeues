@@ -198,7 +198,7 @@
 				<div class="col-md-10 col-sm-10">
 				</div>
 				<div class="col-md-2 col-sm-2">
-				<button id="btnFinalizar" align="right" class="btn btn-md btn-mint"><i class="demo-pli-finish"></i>Dar por Finalizado grupo</button>
+				<button id="btnFinalizar" align="right" class="btn btn-md btn-mint"><i class="demo-pli-finish"></i>Finalizar grupo</button>
 			
 				</div>
 						
@@ -274,9 +274,9 @@
 	<div id="modalMsj" class="modal fade" tabindex="-1">
 		<div class="modal-dialog {{--modal-lg--}}">
 			<div class="modal-content">
-				<div id="modalMsjDiv" class="modal-header alert-dark">
+				<div id="modalMsjDiv" class="modal-header alert-mint">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Dar Por finalizado Grupo</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Finalizar Grupo</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
@@ -297,7 +297,7 @@
 				<!--Modal footer-->
 				<div class="modal-footer">
 					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-					<button class="btn btn-dark" id="btnGuardarMsj">Continuar</button>
+					<button class="btn btn-mint" id="btnGuardarMsj">Continuar</button>
 				</div>
 			</div>
 		</div>

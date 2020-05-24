@@ -18,7 +18,9 @@ use App\idioma;
 use App\noticia;
 
 use App\interesado;
+use App\Mail\MailUserPassword;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -89,6 +91,8 @@ class estudianteController extends Controller
     ** Parametro: id.
   **/
   public function createUser(Request $request){
+  //  $var=array('user'=> $request->input('usuario'),'password'=>$request->input('contrasenha'));
+    //    return Response::json($var['user']);
 // lo encontre aca https://gilbitron.me/blog/laravel-custom-validation-attributes/
     $attributes = [
       'usuario' => 'Usuario',
@@ -142,9 +146,17 @@ class estudianteController extends Controller
  ]);
   if($student->save()){
           // bitacoraController::bitacora('Modificó datos de peticion');
-   return Response::json([
+      //return view('email.mail',['kelvin'=>'dsfdsf']);
+      $user=array('user'=> $request->input('usuario'),'password'=>$request->input('contrasenha'));
+      //return Response::json($var);
+ 
+    //  return  view(new Mailtrap())
+         Mail::to($request->input('usuario'))->send(new MailUserPassword($user));
+         //https://www.youtube.com/watch?v=cc6czaoxe4M
+   
+    return Response::json([
     'bandera' =>1,
-    'response'=>'Usuario Creado Exitosamente',                 
+    'response'=>'Usuario Creado y correo enviado Exitosamente',                 
   ]);
  }else{
   return Response::json([
@@ -315,9 +327,9 @@ return response()->json(['success'=>'Record is successfully added']);
   **/
       public function update(Request $request,$id){
         //dd($request->all());
-        /* return Response::json([
-        'bandera' =>$request->input(),                
-      ]);*/
+       /* return Response::json([
+        'bandera' =>$request->all(),                
+      ]); */
 
         $message = estudiante::find($id);
         if($request->input('edad') >= 18){

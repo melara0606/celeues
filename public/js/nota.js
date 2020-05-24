@@ -1,7 +1,15 @@
-$(document).ready(function(){		 	
+$(document).ready(function(){	
+	$('.enter').keydown(function (e) {	 
+		if(e.which  ==9){
+			$(this).blur();
+			e.preventDefault();
+            var y = jQuery.Event('keydown', {which: 13});
+			$(this).trigger(y);
+		}
+	});///fin enter keypress	
 		
-		$('.enter').keypress(function (e) {
-			  if(e.which ==13){
+		$('.enter').keydown(function (e) {
+			  if( e.which  ==13){
 
 			   	console.log($(this).attr('id'));
 			   	console.log($(this).val());	
