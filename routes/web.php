@@ -163,6 +163,8 @@ Route::get('/perfil', 'profileController@showProfile')->name('profile')->middlew
 Route::get('/seguridad/password', 'profileController@showCambiarPassword')->name('seguridadPassword')->middleware('auth');
 Route::put('/seguridad/updatePassword', 'profileController@updatePassword')->middleware('auth');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/perfil/cursadoEstudiante', 'profileController@gruposcursadosEstudiante')->name('perfilcursadoEstudiante')->middleware('auth');
+Route::get('/perfil/cursadoEstudiante/idioma/{ididioma?}', 'profileController@gruposcursadosEstudianteParametro')->name('perfilcursadoEstudianteParametro')->middleware('auth');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

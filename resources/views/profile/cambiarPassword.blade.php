@@ -49,6 +49,9 @@
                                 <div class="list-group">
                                  
                                     <a class="list-group-item  "  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACION PERSONAL</a>
+                                    @if(Auth::user()->tipo=="ESTUDIANTE")
+                                    <a class="list-group-item "  href="{{ url('/perfil/cursadoEstudiante' )}}"><li class="demo-pli-add"></li> GRUPOS CURSADOS</a>
+                                    @endif
                                     <a class="list-group-item  list-group-item-primary"  href="{{ url('/seguridad/password' )}}"><li class="demo-pli-add"></li> SEGURIDAD</a>
                                     
                                 </div>

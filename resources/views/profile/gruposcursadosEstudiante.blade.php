@@ -43,22 +43,13 @@
                 <div class="panel-heading ">
                     <h4>Opciones	</h4>
                 </div>
-                {{--<div class="row col-sm-12">
-                    <label for="" class="control-label text-main text-bold ">Idioma:</label>
-                    <select class="form-control" id="" name="">
-             
-                        <option value="1">INGLES</option>
-                        <option value="2">FRANCES</option>
-                        <option value="3">CHINO</option>
-                    </select>
-                </div>--}}
                 <div class="row col-sm-12 col-lg-12">
                     <label for="" class="control-label text-main text-bold "></label>
                    
                                 <div class="list-group">
                                  
-                                    <a class="list-group-item  list-group-item-primary"  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACION PERSONAL</a>
-                                    <a class="list-group-item "  href="{{ url('/perfil/cursadoEstudiante' )}}"><li class="demo-pli-add"></li> GRUPOS CURSADOS</a>
+                                    <a class="list-group-item  "  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACION PERSONAL</a>
+                                    <a class="list-group-item  list-group-item-primary"  href="{{ url('/perfil/cursadoEstudiante' )}}"><li class="demo-pli-add"></li> GRUPOS CURSADOS</a>
                                     <a class="list-group-item "  href="{{ url('/seguridad/password' )}}"><li class="demo-pli-add"></li> SEGURIDAD</a>
                                     
                                 </div>
@@ -68,7 +59,7 @@
                 </div>
                 <br>
                 <hr>
-                        
+                
     
                 
 
@@ -92,7 +83,7 @@
                 <div class="panel-control ">
                    
                 </div>
-                <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">INFORMACION PERSONAL</strong></p></h3>
+                <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">RECORD ACADEMICO</strong></p></h3>
                     
                 
             </div>
@@ -108,122 +99,196 @@
                             <div class="panel-heading bg-mint" style="border: 1px solid #ccc;">
                                 <div style="display: inline-block;width: 100%;">
                                     
-                                    <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION ESTUDIANTE</strong></p></h4>
+                                    <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >RECORD DE GRUPOS</strong></p></h4>
                                     
                                 <h4 class="panel-title" align="right" style="float: right;" >
                                     
-                                    <a data-toggle="collapse" href="#collapse1" class="colapOne" ><i class="ion-plus"></i></a>
+                                   {{-- <a data-toggle="collapse" href="#collapse1" class="colapOne" ><i class="ion-plus"></i></a> 
+                                 <a  class="habilitar add-tooltip" data-original-title="Habilitar Campos"><i class="ion-edit"></i></a> --}}
+                                 
+                                   
                                 </h4>
                                 </div>
                             </div>
-                            <div id="collapse1" class="panel-collapse " style="border-bottom: 1px solid #ccc;">
+                            <div id="collapse1" class="panel-collapse " style="border-bottom: 1px solid #eee;">
                             <div class="row pad-btm {{--form-inline--}}">
                             
-                                <div class="col-md-3  text-center">
+                                <div class="col-md-4  text-center">
+                                
                                     <div class="pad-ver">
-                                        @if($estudiante->genero=="MASCULINO")
-                                          <img src="{{asset('profile-photos/5.png')}}" class="img-lg img-circle" alt="Profile Picture" >
-                                        @else
-                                         <img src="{{asset('profile-photos/8.png')}}" class="img-lg img-circle" alt="Profile Picture" >
-                                        @endif
+                                            <br>
+                                          <img src="{{asset('profile-photos/calificacion.png')}}" class="img-lg img-circle" alt="Profile Picture" >
+                                       
                                     </div>
+                                    <div class="col-md-12 text-left">
+                                        <label for="" class="control-label text-main text-bold ">Idiomas</label>
+                                        @foreach($idiomas as $idioma)
+                                        <div class=" ">
+                                            <button style="margin-bottom:1px"
+                                             onclick="location.href='{{url('/')}}/perfil/cursadoEstudiante/idioma/{{$idioma->id}}';"  
+                                             class="form-control btn btn-mint btn-hover-mint" type="button" placeholder="" id="" 
+                                             name="" >
+                                            {{$idioma->nombre}}
+                                            </button>
+                                          
+                                  
+                                        </div>
+                                        @endforeach
+                                     </div> 
                                 </div>
                                 <!-- col 9 ////////////////////////////////////////////////// -->
                                
-                                <div class="col-md-9">
-                               
+                                <div class="col-md-8">  
+                                
                                 <br>
-                                    <form id="formEstudiante">
-                                    <div class=" col-md-12">
-                                        <label  class="control-label text-main text-bold col-md-2">NOMBRE:</label>
-                                        <div class=" col-md-10">
-                                            <input class="form-control" type="text" placeholder="Ingrese nombre de estudiante" id="nombre" name="nombre" value="{{$estudiante->nombre}} {{$estudiante->apellido}} " readonly>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div class=" col-md-12 ">
-                                        <label for="nombre" class="control-label text-main text-bold col-md-2">GENERO:</label>
-                                        <div class=" col-md-10">
-                                            <select class="form-control" id="genero" name="genero" value="{{$estudiante->genero}}" readonly>
-                                                <option value="MASCULINO">MASCULINO</option>
-                                                <option value="FEMENINO">FEMENINO</option>
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div class=" col-md-12">
-                                        <label for="" class="control-label text-main  text-bold col-md-2">FECHA:</label>
-                                        <div class=" col-md-10">
-                                            <input type="date" class="form-control" id="fechaNac" name="fechaNac" value="{{$estudiante->fechaNac}}" readonly>
-                                        </div>                                    
+                                <div class=" col-md-12">
+                                 <div style="display:none">
+                                 {{$i=2}}
+                                 <?php
+                                    $seccion = array('1' =>'A' ,
+                                            '2' =>'B' ,
+                                            '3' =>'C' ,
+                                            '4' =>'D' ,
+                                            '5' =>'E' ,
+                                            '6' =>'F' ,
+
+                                        );
+
+                                    ?>
+                                 </div>
+                                @forelse($estudiantegrupos as $estudiantegrupo)
+                                @if($estudiantegrupo->grupos->nivels->ididiomas == $ididioma)
+                                <div class="panel {{--panel-default --}} " style="margin:3px">
+                            <div class="panel-heading bg-gray" style="border: 1px solid #ccc;height:30px">
+                                <div style="display: inline-block;width: 100%;">
+                                    
+                                    <h4 class="panel-title " style="display: inline-block;margin-top:7px">
+                                    <p align="left" class="text-xs text-bold media-heading mar-no {{--text-main--}}" id="titleacordeon" name="titleacordeon"> 
+                                    <strong style="font-size: 11px; " class="text-muted" >
+                                    {{$estudiantegrupo->grupos->nivels->idiomas->nombre}} NIVEL {{$estudiantegrupo->grupos->nivels->numNivel}}
+                                     {{$seccion[$estudiantegrupo->grupos->numGrupo] }}</strong>
+                                    </p>
+                                    </h4>
+                                    
+                                <h4 class="panel-title" align="right" style="float: right;margin-top:-7px" >
+                                    
+                                   <a data-toggle="collapse" href="#collapse{{$i}}" class="colapOne">{{--<i class="ion-plus"></i>--}}
+                                   <strong style="font-size: 11px; "> Ver notas</strong>
+                                   </a> 
+                                {{--  <a  class="habilitar add-tooltip" data-original-title="Habilitar Campos"><i class="ion-edit"></i></a> 
+                                 
+                                   --}}
+                                </h4>
+                                </div>
+                            </div>
+                            <div id="collapse{{$i}}" class="panel-collapse collapse " style="border-bottom: 1px solid #eee;">
+                                    <table class="table {{--table-bordered--}}  table-sm ">
                                         
-                                    </div>
+                                        <tbody>
+                                        @if($estudiantegrupo->ponderacions === null)
+                                        <tr>
+                                                <td align="left"> 
+                                                    <strong style="font-size: 11px;padding-left:40px " class="text-main text-m">
+                                                    PONDERACION
+                                                    </strong>
+                                                </td>
+                                                <td>  
+                                                    <strong style="font-size: 12px;padding-left:40px " class="text-muted text-m">
+                                                    CALIFICACION
+                                                    </strong>
+                                                </td>
+                                            </tr> 
+                                            @endif
+                                         @forelse( $estudiantegrupo->ponderacions as $nota)
+                                            <tr>
+                                                <td> 
+                                                    <strong style="font-size: 11px;padding-left:40px " class="text-main text-m">
+                                                    ({{$nota->ponderacion}}%) {{strtoupper($nota->nombreEvaluacion)}}  
+                                                    </strong>
+                                                </td>
+                                                <td>
+                                                    <strong style="font-size: 12px;padding-left:40px " class="  text-muted text-m">
+                                                    @if($estudiantegrupo->notaFinal!=0 )
+                                                    {{ number_format($nota->pivot->nota,2)}}
+                                                    @else N/A
+                                                    @endif
+                                                    </strong>
+                                                </td>
+                                            </tr> 
+                                            @empty 
+                                            <br><p align="center">
+                                            <strong style="font-size: 12px; " class="text-muted text-m" >
+                                            No hay notas asignadas
+                                            </strong></p><br>
+                                            @endforelse
+                                            @if(!$estudiantegrupo->ponderacions && $estudiantegrupo->notaFinal!=0 )
+                                            <tr>
+                                                <td align="center"> 
+                                                    <strong style="font-size: 11px;padding-left:-20px " class="text-main text-m">
+                                                    TOTAL
+                                                    </strong>
+                                                </td>
+                                                <td>  
+                                                    <strong style="font-size: 12px;padding-left:40px " class="text-muted text-m">
+                                                    {{$estudiantegrupo->notaFinal}}
+                                                    </strong>
+                                                </td>
+                                            </tr> 
+                                            @endif
+                                        <tbody>
+                                    </table>
+                                      
+                                        
+                            </div>
+                            </div>
+                            <div style="display:none">{{{ $i++ }}}</div>
+                            @endif
+                            @empty 
+                                            <br><p align="center">
+                                            <strong style="font-size: 12px; " class="text-muted text-m" >
+                                            No hay notas asignadas
+                                            </strong></p><br>
+
+                            @endforelse
+                            </div>
+                                <br>
+                                
+                                 <!--   <form id="formulario"> 
+                                  
+                                   
                                     <br>
                                     <br>
                                     <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-2">DUI:</label>
+                                        <label for="" class="control-label text-main text-bold col-md-2">Contraseña:</label>
                                         <div class=" col-md-10">
-                                            <input class="form-control" type="text" placeholder="" id="dui" name="dui" value="{{$estudiante->dui}}" readonly>
+                                            <input class="form-control" type="password" placeholder="" id="contrasenha" name="contrasenha" readonly>
                                          </div>  
                                         
                                     </div>
                                     <br>
                                     <br>
                                     <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-2">EMAIL:</label>
+                                        <label for="" class="control-label text-main text-bold col-md-2">Verificacion Contraseña:</label>
                                         <div class=" col-md-10">
-                                            <input class="form-control" type="email" placeholder="" id="email" name="email" value="{{$estudiante->email}}" readonly>
+                                            <input class="form-control" type="password" placeholder="" id="repetirContrasenha" name="repetirContrasenha" readonly>
                                         </div>
                                         
                                     </div>
+                                
                                     <br>
                                     <br>
-                                    <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-2">TELEFONO:</label>
-                                        <div class=" col-md-10">
-                                            <input type="number" id="telefono" name="telefono" class="form-control" placeholder="####-####" value="{{$estudiante->telefono}}" readonly>
-                                        </div>
-                                        
-                                    </div>
                                     <br>
                                     <br>
-                                    <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-2">DIRECCION:</label>
-                                        <div class=" col-md-10">
-                                            <textarea class="form-control" type="text" id="direccion" name="direccion" rows="2" readonly>{{$estudiante->direccion}}</textarea>
+                                    <div class=" col-md-12"> 
+                                        <div class=" col-md-9"></div>
+                                        <div class=" col-md-3">
+                                            <button type="button" align="right" class="btn btn-mint" id="enviar" name="enviar" value="1">ENVIAR<span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted" readonly></span></button>
                                         </div>
                                     </div>
-                                    <br>
-                                    <br>
                                     
-                                    <!--<br>
-                                    <br>
-                                    <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-3">ESTADO:</label>
-
-                                        <label class="control-label  text-bold col-md-9"> </label> 
-                                        @if($estudiante->estado=='ACTIVO')
-                                        <div class="label label-table bg-mint col-md-9">
-                                            <div class="text-sm text-bold">
-                                            {{$estudiante->estado}}
-                                            </div>
-                                        </div>
-                                        @endif
-                                        @if($estudiante->estado=='INACTIVO')
-                                        <div class="label label-table bg-gray col-md-9">
-                                            <div class="text-sm text-bold">
-                                            {{$estudiante->estado}}
-                                            </div>
-                                        </div>
-                                        @endif
-                                        
-                                    </div>-->
                                     <br>
                                     <br>
-                                    </form>
+                                    </form>-->
                                 </div>
                                 
                                 <!-- col 9 ////////////////////////////////////////////////// -->
@@ -368,10 +433,14 @@
 @endsection
 
 @section('script')
-<!--<script src="{{asset('js/curso.js')}}"></script>
+<!--<script src="{{ asset('demo/plugins/fooTable/dist/footable.all.min.js') }}"></script>
+<script src="{{ asset('demo/js/demo/tables-footable.js') }}"></script>
+
+<script src="{{asset('js/curso.js')}}"></script>-->
 <script type="text/javascript">
-     
-</script>-->
+
+
+</script>
 
 
 
