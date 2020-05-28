@@ -18,7 +18,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <ol class="breadcrumb">
     <li><a href="#"><i class="demo-pli-home"></i></a></li>
-    <li><a href="#">Inscripcion</a></li>
+    <li><a href="#">Inscripción</a></li>
     <li class="active">Ponderaciones</li>
   </ol>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -36,7 +36,7 @@
           <div class="row">
             <div class="col-sm-6 table-toolbar-left">
               <a href="{{ route('evaluaciones.create') }}"
-                class="btn btn-purple"><i class="demo-pli-add"></i> Nueva evaluacion </a>
+                class="btn btn-purple"><i class="demo-pli-add"></i> Nuevo </a>
             </div>
             <div class="col-sm-6 table-toolbar-right"></div>
           </div>
@@ -46,8 +46,8 @@
                 <tr>
                   <th class="text-center">#</th>
                   <th class="text-center">Nombre</th>
-                  <th class="text-center">Fecha de creacion</th>
-                  <th class='text-center'>Fecha de actualizacion</th>
+                  <th class="text-center">Fecha de creación</th>
+                  <th class='text-center'>Fecha de actualización</th>
                   <th class="text-center">Acciones</th>
                 </tr>
               </thead>

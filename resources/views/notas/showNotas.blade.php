@@ -58,7 +58,7 @@
 		                               
 		                                 </div>
 		                                 <div class="media-body">
-				                              {{--  <p class=" text-muted text-md " >Categoria Adulto</p>
+				                              {{--  <p class=" text-muted text-md " >Categoría Adulto</p>
 
 		                                	                                 
 				                                <p class=" text-muted text-md " id="docente1" > Docente: Docente</p>
@@ -109,7 +109,7 @@
 						<div class="col-sm-12 table-toolbar-left">
 							<button id="btnnuevo" class="btn btn-purple" ><i class="demo-pli-add"></i> Agregar Estudiante</button>
 
-							<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
+							<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderación</button>
 
 							<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
 							
@@ -234,12 +234,12 @@
 			<div class="modal-content">
 				<div class="modal-header alert-info">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Informacion Estudiante</h4>
+					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Información Estudiante</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion Estudiante</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información Estudiante</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -281,7 +281,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted col-md-12" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
 					<p>Al dar por finalizado el grupo ya no podra modificarse</p> {{-- --}}
 					</div>
 					</h5>
