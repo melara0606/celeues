@@ -40,7 +40,9 @@
 	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 	  <ul class="breadcrumb">
 	    <li><a href=""><i class="demo-pli-home"></i></a></li>
+		@if(Auth::user()->tipo=="ADMIN")
 	    <li><a href="">Inscripcion</a></li>
+		@endif
 	    <li class=""><a href="{{url('/')}}/grupos">Grupos</a></li>
 	    <li class="active">Estudiantes</li>
 	  </ul>
@@ -233,7 +235,7 @@
 
 						
 					<div class="row">
-						
+					@if(Auth::user()->tipo=="ADMIN")
 						<div class="col-sm-12 table-toolbar-right">
 							<button id="btnnuevo" class="btn btn-purple" ><i class="demo-pli-add"></i> Agregar Estudiante</button>
 
@@ -242,6 +244,7 @@
 							<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
 							--}}
 						</div>
+						@endif
 						<div class="col-sm-6 table-toolbar-right">
 							
 						</div>
@@ -310,8 +313,10 @@
 									
 									<th width="15%">Usuario</th>
 									<th width="10%">Estado</th>
+									
+					@if(Auth::user()->tipo=="ADMIN")
 									<th width="30%" style="text-align: center;">Accion </th>
-
+					@endif
 				                        {{--<th>nota</th>
 				                        
 				                        <th>nota1</th>
@@ -388,6 +393,7 @@
 						                        	<span id="estado1" class="label bg-info text-sm">{{$estudiantegrupo->estadoEstudiante}}</span>
 						                         @endif
 					                        </td>
+											@if(Auth::user()->tipo=="ADMIN")
 					                        <td align="center">
 <!--<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip " data-original-title="Asignar" data-container="body" value="" ="true"><i class="pli-dollar-sign icon-md "></i> </button>
 
@@ -413,6 +419,7 @@
 					                        	@endif
 
 					                        </td>
+											@endif
 					                        
             						</tr>
  								@empty
@@ -447,6 +454,7 @@
 
 	
 
+	@if(Auth::user()->tipo=="ADMIN")
 
 	<!--Default Bootstrap Modal-->
 	<!--===================================================-->
@@ -639,7 +647,7 @@
 	</div>
 	<!--===================================================-->
 	<!--End Large Bootstrap Modal-->
-
+ @endif
 
 
 	@endsection

@@ -280,12 +280,38 @@
 					<!--===================================================-->
 
 
-					<div class="col-md-12 panel" id="contentHistorial" style="display:none; {{--background:#eeeeee--}};border: 1px solid #ccc; box-shadow: 0px 0px #bbb !important; min-height: 350px;" >
-					<div><h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">HISTORIAL DE GRUPOS</strong></p></h3></div>
+					<div id="contentHistorial" class="" name="divCardsGrupos" style="display: none;"{{----}}>
+                
+				<div class="col-sm-12 col-md-12 {{----}}panel pos-rel" style="padding-bottom: 0px;padding-top:15px; border: 1px solid #ccc;box-shadow: 1px 1px 2px 0px #bbbbbb !important; border-radius: 5px; min-height: 400px{{----}}">
 					
-					<div class="panel-body ">		
+						<div class="panel {{--panel-default --}} ">
+						<div class="panel-heading bg-dark" style="border: 1px solid #ccc;">
+							<div style="display: inline-block;width: 100%;">
+								
+								<h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >RECORD DE GRUPOS</strong></p></h4>
+								
+							<h4 class="panel-title" align="right" style="float: right;" >
+								
+							   {{-- <a data-toggle="collapse" href="#collapse1" class="colapOne" ><i class="ion-plus"></i></a> 
+							 <a  class="habilitar add-tooltip" data-original-title="Habilitar Campos"><i class="ion-edit"></i></a> --}}
+							 
+							   
+							</h4>
+							</div>
+						</div>
+						<div id="collapse1" class="panel-collapse " style="border-bottom: 1px solid #eee;">			
+					
+					<div class="col-md-3  text-center">
+						<div class="pad-ver">
+										<img src="{{asset('profile-photos/calificacion.png')}}" class="img-lg img-circle" alt="Profile Picture" >
+									
+									
+						</div>
+					</div>	
 					{{-- Auth::user() --}}
-				
+					
+					<div class="col-sm-12 col-md-8">
+					<br>				
 					<div class=" table-responsive" > 
 						<table  class="table table-striped row-border display"  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 							<thead>
@@ -375,9 +401,12 @@
 							@endforelse 
 							</tbody>
 						</table>
+						</div>
 					</div>
 
-						
+					</div>
+					</div>
+
 						
 					</div>
 					
