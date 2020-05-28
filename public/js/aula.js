@@ -108,7 +108,7 @@ $(document).on('click','.editarmodal',function(){
 $("#btnnuevo").click(function(){
 
   $('#btnGuardar').val("add");
-  $("#btnGuardar").html("Nuevo");
+  $("#btnGuardar").html("Guardar");
   $("#btnGuardar").removeClass("btn-mint");
   $("#modalIngresoHeader").removeClass("alert-mint");
   $("#modalIngresoLabel").html("Registro de Aula");
