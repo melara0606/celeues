@@ -22,7 +22,7 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<ol class="breadcrumb">
 			<li><a href=""><i class="demo-pli-home"></i></a></li>
-			<li><a href="">Configuracion</a></li>
+			<li><a href="">Configuración</a></li>
 			<li class="active">Cursos</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -267,7 +267,7 @@ $verifica++ --}}
 					                  
 					                    {{--<br>--}}
 					                    <p class="text-sm media-left">
-					                    	Modulos - {{$curso->modulos[0]}}{{$curso->modulos[1]}} periodos | Dias -
+					                    	Módulos - {{$curso->modulos[0]}}{{$curso->modulos[1]}} períodos | Días -
 					                    @forelse(cursoController::verDias($curso->id) as $algo)
 					                    	{{ $algo->contractado }}
 					                    @empty
@@ -354,7 +354,7 @@ $verifica++ --}}
 					                    <div class="text-right pad-to " >
 					                    
 					                        <div class="btn-group">
-					                        	<button class="btn btn-icon btn-groups btn-default btn-sm  btn-default add-tooltip editBoton" data-original-title="Editar Registro" data-container="body" value="{{ $curso->id }}"><i class="ion-plus icon-sm " ></i>&nbsp;&nbsp;Nueva Categoria </button>
+					                        	<button class="btn btn-icon btn-groups btn-default btn-sm  btn-default add-tooltip editBoton" data-original-title="Editar Registro" data-container="body" value="{{ $curso->id }}"><i class="ion-plus icon-sm " ></i>&nbsp;&nbsp;Nueva Categoría </button>
 
 					                        	<button class="btn btn-icon btn-groups btn-default btn-sm  btn-hover-primary add-tooltip infoHorariosModal" data-original-title="Informacion de Horarios" data-container="body" value="{{ $curso->id }}"><i class="demo-pli-exclamation icon-sm " ></i>&nbsp;&nbsp;Info Horarios </button>
 					                        	

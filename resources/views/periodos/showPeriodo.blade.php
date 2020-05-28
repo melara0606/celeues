@@ -23,7 +23,7 @@
     <ul class="breadcrumb">
       <li><a href=""><i class="demo-pli-home"></i></a></li>
       <li><a href="">Tareas Comunes</a></li>
-      <li class=""><a href="{{url('/')}}/periodo">Periodo</a></li>
+      <li class=""><a href="{{url('/')}}/periodo">Período</a></li>
     </ul>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End breadcrumb-->
@@ -65,10 +65,10 @@
         <hr>
 
         <div class="row col-sm-12">
-          <label for="example-text-input" class="col-md-3 control-label text-main text-bold ">Periodo:*</label>
+          <label for="example-text-input" class="col-md-3 control-label text-main text-bold ">Período:*</label>
           <select class="form-control" id="nperiodofiltro" name="nperiodofiltro" >
-              <option value="5">5 periodos</option>
-              <option value="10">10 periodos</option>
+              <option value="5">5 períodos</option>
+              <option value="10">10 períodos</option>
           </select>
       <div id="periodofeed" class="form-control-feedback"></div>
         </div>
@@ -91,7 +91,7 @@
         <br>
 
         {{--<div class="row col-md-12 btn-group-vertical mar-rgt" >
-                <button class="btn btn-default btn-mint">Anho</button>
+                <button class="btn btn-default btn-mint">Año</button>
 
                 <div class="btn-group">
                     <div class="dropdown">
@@ -143,7 +143,7 @@
           </div>
         </div>
         
-          <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">PERIODOS</strong></p></h3>
+          <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">PERÍODOS</strong></p></h3>
 
       </div>
 
@@ -207,7 +207,7 @@
               <tr>
                 <th class="text-center">#</th>
 
-                <th class="text-center">Periodo</th>
+                <th class="text-center">Período</th>
 
                 <th>Fecha Inicio</th>
                 <th>Fecha Fin</th>
@@ -317,7 +317,7 @@
       <!--Modal header-->
       <div class="modal-header alert-primary" id="modalIngresoHeader" >
         <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-        <h4 class="modal-title" style="color: white;" id="modalIngresoLabel"><label>Ingresar periodo</label></h4>
+        <h4 class="modal-title" style="color: white;" id="modalIngresoLabel"><label>Ingresar período</label></h4>
       </div>
 
       <!--Modal body-->
@@ -360,7 +360,7 @@
     <div class="modal-content">
       <div class="modal-header alert-info">
         <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-        <h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Datos de Periodo</h4>
+        <h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Datos de Período</h4>
       </div>
       <div class="modal-body">
         <div class="panel-body">
@@ -401,7 +401,7 @@
       <div class="modal-body">
         <div class="panel-body">
           <h4 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-        <p>¿Esta seguro de continuar con la accion?.</p></h4>
+        <p>¿Esta seguro de continuar con la acción?.</p></h4>
                 {{-- Este funciona para darle valor del id para dar baja o alta--}}
          <form>
          <input type="hidden" class="form-control" type="text"  id="estadoAB" name="estadoAB">

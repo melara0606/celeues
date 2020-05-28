@@ -391,12 +391,12 @@
 					                    <div class="text-center pad-to " >
 					                    
 					                        <div class="btn-group">
-					                        	<button class="btn btn-icon btn-groups btn-default btn-sm  btn-dark add-tooltip editBoton" data-original-title="Editar Registro" data-container="body" value=""><i class="ion-plus icon-sm " ></i>&nbsp;&nbsp;Nueva Categoria </button>
+					                        	<button class="btn btn-icon btn-groups btn-default btn-sm  btn-dark add-tooltip editBoton" data-original-title="Editar Registro" data-container="body" value=""><i class="ion-plus icon-sm " ></i>&nbsp;&nbsp;Nueva Categoría </button>
 
 					                        	<button class="btn btn-icon btn-groups btn-default btn-sm  btn-hover-info add-tooltip infoHorariosModal" data-original-title="Informacion de Horarios" data-container="body" value="{{ $curso->id }}"><i class="demo-pli-exclamation icon-sm " ></i>&nbsp;&nbsp;Info Horarios </button>
 					                        	
 													
-					                            {{--<a id="bt" href="#" class="btn btn-sm btn-default"><i class="demo-pli-consulting icon-lg icon-fw addCategoria"></i>Nueva Categoria</a>
+					                            {{--<a id="bt" href="#" class="btn btn-sm btn-default"><i class="demo-pli-consulting icon-lg icon-fw addCategoria"></i>Nueva Categoría</a>
 					                            <a href="#" class="btn btn-sm btn-default"><i class="demo-pli-mail icon-lg icon-fw"></i> Email</a>
 					                            <a href="javascript:void(0)" class="btn btn-sm btn-default"><i class="demo-pli-pen-5 icon-lg icon-fw aaf"></i> Edit</a>--}}
 					                        </div>
@@ -509,12 +509,12 @@
 			<div class="modal-content">
 				<div class="modal-header alert-danger">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoria</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoría</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
 					</div>
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
@@ -549,7 +549,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<div id="msjPC"><strong><p>Ingresar a la categoria una nueva cuota.</p></strong>
+					<div id="msjPC"><strong><p>Ingresar a la categoría una nueva cuota.</p></strong>
 					</div>
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
@@ -586,7 +586,7 @@
 			<div class="modal-content">
 				<div class="modal-header alert-mint">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel4">Nueva categoria</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel4">Nueva categoría</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
@@ -596,7 +596,7 @@
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
 				<form>
-					 <label for="example-email-input" class="control-label text-main text-bold ">Categoria:*</label>
+					 <label for="example-email-input" class="control-label text-main text-bold ">Categoría:*</label>
 			                <div class="form-group ">       
 			                    
 			                    <div class="col-md-10">
