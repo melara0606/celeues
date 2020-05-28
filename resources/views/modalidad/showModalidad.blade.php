@@ -20,7 +20,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <ul class="breadcrumb">
     <li><a href=""><i class="demo-pli-home"></i></a></li>
-    <li><a href="">Configuracion</a></li>
+    <li><a href="">Configuración</a></li>
     <li class="active">Modalidad</li>
   </ul>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

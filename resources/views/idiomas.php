@@ -95,8 +95,8 @@
 					            <table id="myTable" class="table table-striped">
 					                <thead>
 					                    <tr>
-					                        <th class="text-center">Titulo</th>
-					                        <th>Descripcion</th>
+					                        <th class="text-center">Título</th>
+					                        <th>Descripción</th>
 					                        <th>Modalidad</th>
 					                        <th>Estado</th>
 					                        <th>Acciones</th>
