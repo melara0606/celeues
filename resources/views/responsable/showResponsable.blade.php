@@ -21,7 +21,7 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="demo-pli-home"></i></a></li>
-			<li><a href="#">Inscripcion</a></li>
+			<li><a href="#">Inscripción</a></li>
 			<li class="active">Responsables de Estudiantes</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -118,7 +118,7 @@
 								<th class="text-center">#</th>
 								
 								<th class="text-center">Nombre</th>
-								<th>Dui</th>
+								<th>DUI</th>
 
 								<th class="text-center">Rango de edades</th>
 								<th class="text-center">Acciones</th>
@@ -230,7 +230,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -266,7 +266,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<h4 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<p>Esta seguro de continuar con la accion?.</p></h4>
+					<p>Esta seguro de continuar con la acción?.</p></h4>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
 					 <form>
 					 <input type="hidden" class="form-control" type="text"  id="estadoAB" name="estadoAB">

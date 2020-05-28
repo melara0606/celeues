@@ -20,7 +20,7 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<ol class="breadcrumb">
 			<li><a href=""><i class="demo-pli-home"></i></a></li>
-			<li><a href="">Cofiguracion</a></li>
+			<li><a href="">Cofiguración</a></li>
 			<li class="active">Idiomas</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -117,7 +117,7 @@
 								<th class="text-center">#</th>
 								
 								<th class="text-center">Idioma</th>
-								<th>Descripcion</th>
+								<th>Descripción</th>
 
 								<th class="text-center">Estado</th>
 								<th class="text-center">Acciones</th>
@@ -248,7 +248,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">

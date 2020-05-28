@@ -23,7 +23,7 @@
     <ol class="breadcrumb">
         <li><a href=""><i class="demo-pli-home"></i></a></li>
         <li><a href="">Perfil</a></li>
-        <li class="active">Informacion Personal</li>
+        <li class="active">Información Personal</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End breadcrumb-->
@@ -48,7 +48,7 @@
                    
                                 <div class="list-group">
                                  
-                                    <a class="list-group-item  "  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACION PERSONAL</a>
+                                    <a class="list-group-item  "  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACIÓN PERSONAL</a>
                                     @if(Auth::user()->tipo=="ESTUDIANTE")
                                     <a class="list-group-item "  href="{{ url('/perfil/cursadoEstudiante' )}}"><li class="demo-pli-add"></li> GRUPOS CURSADOS</a>
                                     @endif
@@ -142,7 +142,7 @@
                                     <br>
                                     <br>
                                     <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-2">Verificacion Contraseña:</label>
+                                        <label for="" class="control-label text-main text-bold col-md-2">Verificación Contraseña:</label>
                                         <div class=" col-md-10">
                                             <input class="form-control" type="password" placeholder="" id="repetirContrasenha" name="repetirContrasenha" readonly>
                                         </div>
@@ -280,7 +280,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-                <div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+                <div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
                 </div>
                 </h5>
                     {{-- Este funciona para darle valor del id para dar baja o alta--}}

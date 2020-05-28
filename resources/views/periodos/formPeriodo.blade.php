@@ -27,12 +27,12 @@
             </div>
             </div>
     <div  id="nperiododiv" class="form-group @if($errors->has('nperiodo')) has-danger @endif" >
-        <label for="example-text-input" class="col-md-3 control-label text-main text-bold ">Periodo:*</label>
+        <label for="example-text-input" class="col-md-3 control-label text-main text-bold ">Período:*</label>
 
         <div class="col-md-7">
           <select class="form-control" id="nperiodo" name="nperiodo" >
-              <option value="5">Normal 5 periodos</option>
-              <option value="10">Intensivo 10 periodos</option>
+              <option value="5">Normal 5 períodos</option>
+              <option value="10">Intensivo 10 períodos</option>
           </select>
       <div id="periodofeed" class="form-control-feedback"></div>
     </div>
@@ -66,7 +66,7 @@
     </div>
 
     <div id="telefonodiv" class="form-group row">
-        <label for="example-number-input" class="col-md-3 control-label text-main text-bold">Telefono</label>
+        <label for="example-number-input" class="col-md-3 control-label text-main text-bold">Teléfono</label>
         <div class="col-md-7 ">
             <input class="form-control" type="number"  id="telefono" name="telefono">
             <div id="telefonofeed" class="form-control-feedback"></div>

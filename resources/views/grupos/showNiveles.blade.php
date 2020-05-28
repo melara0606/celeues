@@ -21,7 +21,7 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<ol class="breadcrumb">
 			<li><a href=""><i class="demo-pli-home"></i></a></li>
-			<li><a href="">Configuracion</a></li>
+			<li><a href="">Configuración</a></li>
 			<li><a href="{{url('/')}}/curso">Cursos</a></li>
 
 			<li class="active">Niveles</li>
@@ -97,7 +97,7 @@
 								{{--<div class="btn-group btn-group-sm ">
 	                        <button class="btn btn-warning active">Adulto</button>
 	                        <button class="btn btn-warning">Adolecente</button>
-	                        <button class="btn btn-warning">Ninho</button>
+	                        <button class="btn btn-warning">Niño</button>
 	                   	</div>--}}
 							</div>
 						</div>
@@ -293,7 +293,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
 					</div>
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}

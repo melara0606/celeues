@@ -25,7 +25,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <ol class="breadcrumb">
     <li><a href="#"><i class="demo-pli-home"></i></a></li>
-    <li><a href="#">Forms</a></li>
+    <li><a href="#">Admin. Equipo </a></li>
     <li class="active">Docentes</li>
   </ol>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -121,7 +121,7 @@
               <th class="text-left">Nombre</th>
               <th>Email</th>
               <th>Teléfono</th>
-              <th>Genero</th>
+              <th>Género</th>
               {{--<th>Prestamos</th>--}}
               <th>Estado</th>
 

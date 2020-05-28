@@ -20,7 +20,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <ol class="breadcrumb">
     <li><a href="#"><i class="demo-pli-home"></i></a></li>
-    <li><a href="#">Forms</a></li>
+    <li><a href="#">Inscripción</a></li>
     <li class="active">Aulas</li>
   </ol>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -51,7 +51,7 @@
           </ul>
         </div>
       </div>
-      <h3 class="panel-title ">Aulas</h3>
+      <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">AULAS</strong></p></h3>
 
     </div>
 

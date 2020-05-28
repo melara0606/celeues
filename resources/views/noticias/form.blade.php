@@ -508,7 +508,7 @@
 					                </div>
 					--}}
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Modulo</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Módulo</label>
                                         <div class="col-md-4">
                                           <select class="form-control" id="numModulo" name="numModulo">
                                               <option>1</option>

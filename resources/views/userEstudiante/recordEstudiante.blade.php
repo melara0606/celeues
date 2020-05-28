@@ -166,7 +166,7 @@
 											<tr>
 																			 <td>
 										 	<!-- readonly  -->
-										 	<button type="button" class="btn btn-mint active  filtrar" value="1">RECORD<span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted"></span></button> 
+										 	<button type="button" class="btn btn-mint active  filtrar" value="1">RÉCORD<span style="font-size: 11px; color: white;background-color: gray" class="badge badge-primary text-xs text-muted"></span></button> 
 										 </td>
 																			 <td>
 										 	<!--  -->
@@ -205,10 +205,10 @@
 			<a style="float: center" class="media-heading box-inline text-md text-main  text-semibold  text-xs ">
 
 					<p align="center" class="text-m text-bold media-heading mar-no text-main"> 
-					 	<strong style="font-size: 14px;">CENTRO DE ENSENHANZAS DE LEGUA EXTRANJERA CELEUES</strong>
+					 	<strong style="font-size: 14px;">CENTRO DE ENSEÑANZAS DE LEGUA EXTRANJERA CELEUES</strong>
 					 </p>
 				 	<p align="center" class="text-m text-bold media-heading mar-no text-main"> 
-				 		<strong style="font-size: 14px;">RECORD ACADEMICO </strong>
+				 		<strong style="font-size: 14px;">RÉCORD ACADÉMICO </strong>
 				 	</p>
 				 	<p id="titulo" align="center" class="text-m text-bold media-heading mar-no text-main"> 
 				 		<strong style="font-size: 14px;">{{$nombreIdioma}}</strong>
@@ -254,7 +254,7 @@
 					                	<th>Apellidos</th>
 					                	<th>Nombre</th>
 
-					                	<th>Sexo</th>
+					                	<th>Género</th>
 					                	</tr>
 								                         	<tbody>
 								                         		<tr>
@@ -291,15 +291,15 @@
 					                	<th>Nivel</th>
 					                	<th>Docente</th>
 					                	<th>Curso</th>
-					                	<th>estado</th>
+					                	<th>Estado</th>
 
-					                	<th>anho</th>
-
-					                	<th>fecha Inicio</th>
+					                	<th>año</th>
 
 					                	<th>fecha Inicio</th>
 
-					                	<th>Promedio</th>
+					                	<th>fecha Inicio</th>
+
+					                	<th>Promedío</th>
 								                         	<tbody>
 								                         		@for($i=0;$i<2;$i++)
 								                         		<tr>
@@ -409,7 +409,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">informacion de Grupo</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">información de Grupo</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -446,12 +446,12 @@
 			<div class="modal-content">
 				<div class="modal-header alert-danger">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoria</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoría</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
 					</div>
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}

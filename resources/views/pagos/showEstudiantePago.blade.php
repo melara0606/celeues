@@ -40,9 +40,11 @@
 	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 	  <ul class="breadcrumb">
 	    <li><a href=""><i class="demo-pli-home"></i></a></li>
+
 		@if(Auth::user()->tipo=="ADMIN")
 	    <li><a href="">Inscripcion</a></li>
 		@endif
+
 	    <li class=""><a href="{{url('/')}}/grupos">Grupos</a></li>
 	    <li class="active">Estudiantes</li>
 	  </ul>
@@ -86,7 +88,7 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
-								<label  class="control-label text-main text-bold col-md-4 text-sm">CATEGORIA: </label>
+								<label  class="control-label text-main text-bold col-md-4 text-sm">CATEGORÍA: </label>
 								<label class="control-label  text-bold col-md-8 text-capitalize">{{strtoupper($grupo->nivels->categorias->nombre)}}</label>
 							</div>
 							<br>
@@ -239,7 +241,7 @@
 						<div class="col-sm-12 table-toolbar-right">
 							<button id="btnnuevo" class="btn btn-purple" ><i class="demo-pli-add"></i> Agregar Estudiante</button>
 
-						{{--	<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
+						{{--	<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderación</button>
 
 							<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
 							--}}
@@ -313,10 +315,12 @@
 									
 									<th width="15%">Usuario</th>
 									<th width="10%">Estado</th>
+
 									
 					@if(Auth::user()->tipo=="ADMIN")
 									<th width="30%" style="text-align: center;">Accion </th>
 					@endif
+
 				                        {{--<th>nota</th>
 				                        
 				                        <th>nota1</th>
@@ -493,12 +497,12 @@
 			<div class="modal-content">
 				<div class="modal-header alert-info">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Informacion Estudiante</h4>
+					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Información Estudiante</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion Estudiante</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información Estudiante</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -535,12 +539,12 @@
 			<div class="modal-content">
 				<div id="modalMsjDiv" class="modal-header alert-danger">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoria</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoría</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted col-md-12" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
 					</div>
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}

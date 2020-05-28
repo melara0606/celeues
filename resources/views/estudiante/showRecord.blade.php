@@ -26,9 +26,9 @@
 		<ol class="breadcrumb">
 			<li><a href=""><i class="demo-pli-home"></i></a></li>
 
-			<li><a href="{{url('/')}}/estudiante">Inscripcion</a></li>
+			<li><a href="{{url('/')}}/estudiante">Inscripción</a></li>
 			<li><a href="{{url('/')}}/estudiante">Estudiantes</a></li>
-			<li class="active">Record</li>
+			<li class="active">Récord</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--End breadcrumb-->
@@ -49,7 +49,7 @@
 
 			<div class="panel-heading {{--bg-mint--}}" style="{{--background-color: white;--}} box-shadow: 0px 1px #bbb !important">
 				
-				<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">RECORD DE ESTUDIANTE {{$estudiante->nombre}} {{$estudiante->apellido}}</strong></p></h3>
+				<h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">RÉCORD DE ESTUDIANTE {{$estudiante->nombre}} {{$estudiante->apellido}}</strong></p></h3>
 
 			</div>
 
@@ -65,7 +65,7 @@
 				    <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
 				      	<div style="display: inline-block;width: 100%;">
 					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION ESTUDIANTE</strong></p></h4>
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACIÓN ESTUDIANTE</strong></p></h4>
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
@@ -83,7 +83,7 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">GENERO:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">GÉNERO:</label>
 
 								 <label class="control-label  text-bold col-md-9">{{$estudiante->genero}} </label>
 						          
@@ -117,14 +117,14 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">TELEFONO:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">TELÉFONO:</label>
 
 								 <label class="control-label  text-bold col-md-9">{{$estudiante->telefono}} </label>
 						          
 							</div>							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">DIRECCION:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">DIRECCIÓN:</label>
 
 								 <label class="control-label  text-bold col-md-9">{{$estudiante->direccion}} </label>
 						          
@@ -164,7 +164,7 @@
 				    <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
 				      	<div style="display: inline-block;width: 100%;">
 					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION RESPONSABLE</strong></p></h4>
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACIÓN RESPONSABLE</strong></p></h4>
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
@@ -198,14 +198,14 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">TELEFONO:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">TELÉFONO:</label>
 
 								 <label class="control-label  text-bold col-md-9">{{$estudiante->responsables->telefono}} </label>
 						          
 							</div>							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">DIRECCION:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">DIRECCIÓN:</label>
 
 								 <label class="control-label  text-bold col-md-9">{{$estudiante->direccion}} </label>
 						          
@@ -250,7 +250,7 @@
 				    <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
 				      	<div style="display: inline-block;width: 100%;">
 					      	  
-						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >RECORD DE GRUPOS</strong></p></h4>
+						      <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >RÉCORD DE GRUPOS</strong></p></h4>
 				      		
 					      <h4 class="panel-title" align="right" style="float: right;" >
 					      	
@@ -451,7 +451,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 id="txtModalBodyMsj" class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<p>Esta seguro de continuar con la accion?.</p></h5>
+					<p>Esta seguro de continuar con la acción?.</p></h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
 					 <form id="formmodalMsj" name="formmodalMsj">
 					 <input type="hidden" class="form-control" type="text"  id="txtModalidestudiante" name="txtModalidestudiante">

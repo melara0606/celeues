@@ -36,7 +36,7 @@
       
        <!--Text Input-->
       <div class="form-group @if($errors->has('titulo')) has-error @endif">
-          <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Telefono*</label>
+          <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Teléfono*</label>
           <div class="col-md-5">
               <input type="number" id="telefonoR" name="telefonoR" class="form-control" placeholder="####-####"  >
               {{--<small class="help-block">This is a help text</small>
@@ -51,7 +51,7 @@
              </div>
     </div>
     <div id="direccionRdiv" class="form-group">
-        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Direccion*</label>
+        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Dirección*</label>
         <div class="col-md-7  ">
             <textarea class="form-control" type="text" id="direccionR" name="direccionR" value="mi casa" rows="2"></textarea>
             <div id="direccionRfeed" class="form-control-feedback"></div>                   

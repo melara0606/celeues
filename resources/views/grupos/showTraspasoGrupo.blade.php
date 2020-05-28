@@ -83,10 +83,10 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">Categorias:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">Categorías:</label>
 
 								 <select class="form-control  col-md-6" id="categoriafiltro1" name="categoriafiltro1" >
-								 	<option selected disabled label="Seleccione una categoria"></option>
+								 <option selected="selected" disabled >Seleccione una categoría</option>
 								 	
 						          </select>
 						          
@@ -168,10 +168,10 @@
 							<br>
 							<br>
 							<div class=" col-md-12">
-								<label for="" class="control-label text-main text-bold col-md-3">Categorias:</label>
+								<label for="" class="control-label text-main text-bold col-md-3">Categorías:</label>
 
 								 <select class="form-control  col-md-6" id="categoriafiltro2" name="categoriafiltro2" >
-								 	<option selected disabled label="Seleccione una categoria"></option>
+								 	<option selected="selected" disabled >Seleccione una categoría</option>
 								 	
 						          </select>
 						          
@@ -308,7 +308,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -344,7 +344,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 id="txtModalBodyMsj" class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<p>Esta seguro de continuar con la accion?.</p></h5>
+					<p>Esta seguro de continuar con la acción?.</p></h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
 					 <form id="formmodalMsj" name="formmodalMsj">
 					 <input type="hidden" class="form-control" type="text"  id="txtModalidestudiante" name="txtModalidestudiante">
