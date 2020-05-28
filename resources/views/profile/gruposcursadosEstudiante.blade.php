@@ -23,7 +23,7 @@
     <ol class="breadcrumb">
         <li><a href=""><i class="demo-pli-home"></i></a></li>
         <li><a href="">Perfil</a></li>
-        <li class="active">Informacion Personal</li>
+        <li class="active">Información Personal</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End breadcrumb-->
@@ -48,7 +48,7 @@
                    
                                 <div class="list-group">
                                  
-                                    <a class="list-group-item  "  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACION PERSONAL</a>
+                                    <a class="list-group-item  "  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACIÓN PERSONAL</a>
                                     <a class="list-group-item  list-group-item-primary"  href="{{ url('/perfil/cursadoEstudiante' )}}"><li class="demo-pli-add"></li> GRUPOS CURSADOS</a>
                                     <a class="list-group-item "  href="{{ url('/seguridad/password' )}}"><li class="demo-pli-add"></li> SEGURIDAD</a>
                                     
@@ -189,12 +189,12 @@
                                         <tr>
                                                 <td align="left"> 
                                                     <strong style="font-size: 11px;padding-left:40px " class="text-main text-m">
-                                                    PONDERACION
+                                                    PONDERACIÓN
                                                     </strong>
                                                 </td>
                                                 <td>  
                                                     <strong style="font-size: 12px;padding-left:40px " class="text-muted text-m">
-                                                    CALIFICACION
+                                                    CALIFICACIÓN
                                                     </strong>
                                                 </td>
                                             </tr> 
@@ -406,7 +406,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-                <div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+                <div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
                 </div>
                 </h5>
                     {{-- Este funciona para darle valor del id para dar baja o alta--}}

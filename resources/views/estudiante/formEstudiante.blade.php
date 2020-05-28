@@ -44,11 +44,11 @@
      
 
      <div class="form-group">
-      <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Genero</label>
+      <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Género*</label>
       <div class="col-md-5">
         <select class="form-control" id="genero" name="genero" >
-          <option value="MASCULINO">MASCULINO</option>
-          <option value="FEMENINO">FEMENINO</option>
+          <option value="MASCULINO">Masculino</option>
+          <option value="FEMENINO">Femenino</option>
           
         </select>
       </div>
@@ -64,7 +64,7 @@
 
    </div>
    <div style="display: none;" class="form-group">
-     <label class="col-md-3 control-label text-main text-bold"  for="demo-email-input">edad*</label>
+     <label class="col-md-3 control-label text-main text-bold"  for="demo-email-input">Edad*</label>
      <div class="col-md-5">
        <input type="text" class="form-control" id="edad" name="edad" />
        
@@ -91,7 +91,7 @@
       </div>
       <div class="col-md-1">
 
-        <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-hover-purple add-tooltip nuevoResp" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-add icon-sm " ></i> nuevo </button>
+        <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-hover-purple add-tooltip nuevoResp" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-add icon-sm " ></i> Nuevo </button>
       </div>
       
       
@@ -144,7 +144,7 @@
  
  <!--Text Input-->
  <div class="form-group @if($errors->has('titulo')) has-error @endif">
-  <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Telefono*</label>
+  <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Teléfono*</label>
   <div class="col-md-5">
     <input type="number" id="telefono" name="telefono" class="form-control" placeholder="####-####"  >
     {{--<small class="help-block">This is a help text</small>
@@ -163,7 +163,7 @@
 
 
 <div id="direcciondiv" class="form-group">
-  <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Direccion*</label>
+  <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Dirección*</label>
   <div class="col-md-7  ">
     <textarea class="form-control" type="text" id="direccion" name="direccion" value="mi casa" rows="2"></textarea>
     <div id="direccionfeed" class="form-control-feedback"></div>                   

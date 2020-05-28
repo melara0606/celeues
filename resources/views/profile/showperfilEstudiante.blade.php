@@ -23,7 +23,7 @@
     <ol class="breadcrumb">
         <li><a href=""><i class="demo-pli-home"></i></a></li>
         <li><a href="">Perfil</a></li>
-        <li class="active">Informacion Personal</li>
+        <li class="active">Información Personal</li>
     </ol>
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End breadcrumb-->
@@ -57,7 +57,7 @@
                    
                                 <div class="list-group">
                                  
-                                    <a class="list-group-item  list-group-item-primary"  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACION PERSONAL</a>
+                                    <a class="list-group-item  list-group-item-primary"  href="{{ url('/perfil' )}} "><li class="demo-pli-add"></li> INFORMACIÓN PERSONAL</a>
                                     <a class="list-group-item "  href="{{ url('/perfil/cursadoEstudiante' )}}"><li class="demo-pli-add"></li> GRUPOS CURSADOS</a>
                                     <a class="list-group-item "  href="{{ url('/seguridad/password' )}}"><li class="demo-pli-add"></li> SEGURIDAD</a>
                                     
@@ -92,7 +92,7 @@
                 <div class="panel-control ">
                    
                 </div>
-                <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">INFORMACION PERSONAL</strong></p></h3>
+                <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px;">INFORMACIÓN PERSONAL</strong></p></h3>
                     
                 
             </div>
@@ -108,7 +108,7 @@
                             <div class="panel-heading bg-mint" style="border: 1px solid #ccc;">
                                 <div style="display: inline-block;width: 100%;">
                                     
-                                    <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACION ESTUDIANTE</strong></p></h4>
+                                    <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >INFORMACIÓN ESTUDIANTE</strong></p></h4>
                                     
                                 <h4 class="panel-title" align="right" style="float: right;" >
                                     
@@ -143,7 +143,7 @@
                                     <br>
                                     <br>
                                     <div class=" col-md-12 ">
-                                        <label for="nombre" class="control-label text-main text-bold col-md-2">GENERO:</label>
+                                        <label for="nombre" class="control-label text-main text-bold col-md-2">GÉNERO:</label>
                                         <div class=" col-md-10">
                                             <select class="form-control" id="genero" name="genero" value="{{$estudiante->genero}}" readonly>
                                                 <option value="MASCULINO">MASCULINO</option>
@@ -182,7 +182,7 @@
                                     <br>
                                     <br>
                                     <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-2">TELEFONO:</label>
+                                        <label for="" class="control-label text-main text-bold col-md-2">TELÉFONO:</label>
                                         <div class=" col-md-10">
                                             <input type="number" id="telefono" name="telefono" class="form-control" placeholder="####-####" value="{{$estudiante->telefono}}" readonly>
                                         </div>
@@ -191,7 +191,7 @@
                                     <br>
                                     <br>
                                     <div class=" col-md-12">
-                                        <label for="" class="control-label text-main text-bold col-md-2">DIRECCION:</label>
+                                        <label for="" class="control-label text-main text-bold col-md-2">DIRECCIÓN:</label>
                                         <div class=" col-md-10">
                                             <textarea class="form-control" type="text" id="direccion" name="direccion" rows="2" readonly>{{$estudiante->direccion}}</textarea>
                                         </div>
@@ -341,7 +341,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-                <div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+                <div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
                 </div>
                 </h5>
                     {{-- Este funciona para darle valor del id para dar baja o alta--}}

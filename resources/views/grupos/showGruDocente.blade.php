@@ -57,7 +57,7 @@
 			<div class="panel" style=" border: 1px solid #ccc; box-shadow: 1px 1px #bbb !important;">
 				<div class="panel-body ">
 					<div class="panel-heading ">
-						<h4>	Infomacion</h4>
+						<h4>	Infomación</h4>
 					</div>
 
 					
@@ -293,7 +293,7 @@
 									<th class="text-center">#</th>
 									
 									<th class="text-left">Nombre</th>
-									<th class="text-left">Categoria</th>
+									<th class="text-left">Categoría</th>
 									<th class="text-left">Periodo</th>
 									
 									<th class="text-center">Aula</th>
@@ -451,7 +451,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">informacion de Grupo</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">información de Grupo</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -516,7 +516,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
 					</div>
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}
