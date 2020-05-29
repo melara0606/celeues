@@ -42,7 +42,7 @@
 	    <li><a href=""><i class="demo-pli-home"></i></a></li>
 
 		@if(Auth::user()->tipo=="ADMIN")
-	    <li><a href="">Inscripcion</a></li>
+	    <li><a href="">Inscripcíon</a></li>
 		@endif
 
 	    <li class=""><a href="{{url('/')}}/grupos">Grupos</a></li>
@@ -318,7 +318,7 @@
 
 									
 					@if(Auth::user()->tipo=="ADMIN")
-									<th width="30%" style="text-align: center;">Accion </th>
+									<th width="30%" style="text-align: center;">Accíon </th>
 					@endif
 
 				                        {{--<th>nota</th>
