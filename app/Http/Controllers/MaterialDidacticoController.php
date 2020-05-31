@@ -7,6 +7,7 @@ use App\idioma;
 use App\categoria;
 
 use App\Configuraciones;
+use App\PrestamoDetalle;
 use App\MaterialDidactico;
 use Illuminate\Http\Request;
 
@@ -204,5 +205,13 @@ class MaterialDidacticoController extends Controller
     public function destroy(MaterialDidactico $materialDidactico)
     {
         //
+    }
+
+    public  function search($id) {
+        return MaterialDidactico::find($id);
+    }
+
+    public function searchDui($dui) {
+        return PrestamoDetalle::where('dui', $dui)->get();
     }
 }

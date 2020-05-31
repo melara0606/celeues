@@ -144,4 +144,9 @@ class EquipoController extends Controller
     {
         //
     }
+
+    public function search($id)
+    {
+        return Equipo::find($id);
+    }
 }

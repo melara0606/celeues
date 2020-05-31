@@ -59,7 +59,7 @@
                       <td>{{ $equipo->marca }}</td>
                       <td>{{ $equipo->modelo }}</td>
                       <td>{{ $equipo->nserie }}</td>
-                      <td>{{ $equipo->fechaAd }}</td>
+                      <td>{{ date('d-m-Y', strtotime($equipo->fechaAd)) }}</td>
                       <td>$ {{ number_format($equipo->precio, 2) }}</td>
                       <td>
                         @component('alert', ['type' => $equipo->estado])
@@ -73,8 +73,7 @@
                             data-original-title="Editar Registro" data-container="body">
                             <i class="demo-psi-pen-5 icon-xs "></i> 
                           </a>
-                          <button class="btn btn-icon btn-default btn-xs  btn-hover-info add-tooltip "
-                            data-original-title="Información" data-container="body">
+                          <button class="btn btn-icon btn-default btn-xs  btn-hover-info add-tooltip infoModal" data-value="{{$equipo->id}}" data-container="body">
                             <i class="demo-pli-exclamation icon-xs "></i> Info
                           </button>
                         </div>
@@ -91,16 +90,69 @@
       </div>
     </div>
   </div>
+
+  <div id="modal-info" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header alert-info">
+          <button type="button" class="close" data-dismiss="modal">
+            <i class="pci-cross pci-circle"></i>
+          </button>
+          <h4 class="modal-title">Informacion del equipo</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel-body">
+            <div class="table-responsive">
+              <h4 class="card-subtitle text-center">Información</h4>
+              <table class="table table-striped table-sm">
+                <tbody id="tablainfo"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--Modal footer-->
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('script')
   <script type="text/javascript">
-  
     $(document).ready(function() {
       $.niftyNav('expand'); 
-      $("#myTable").DataTable({
+      $("#myTable").DataTable({});
 
-      })
+      $(document).on('click','.infoModal',function(){
+        var id = $(this).data('value');
+        
+        $("#tablainfo").empty();
+        $.ajax({
+          type: "GET",
+          url: 'equipos/'+ id +'/search',
+          dataType: 'json',
+          success: function (data) {
+            var row =
+            '<tr><td width="30%"> Codigo: </td><td width="70%">' + data.codigo + "</td>";
+            row += "<tr><td>Marca: </td><td>" + data.marca + "</td>";
+            row += "<tr><td> Modelo: </td><td>" + data.modelo + "</td>";
+            
+            row += "<tr><td>Serie: </td><td>" + data.nserie + "</td>";
+
+            row += "<tr><td>Precio: </td><td> $" + data.precio + "</td>";
+
+            row += "<tr><td>Descripcion: </td><td>" + data.description + "</td>";
+            
+            $("#tablainfo").append(row);
+          },
+          error: function (data) {
+            console.log('Error de boton Info:', data);
+          }
+        });
+        $('#modal-info').modal('show'); ///modal de informacion
+      });
     })
   </script>
 @endsection

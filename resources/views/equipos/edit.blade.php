@@ -66,7 +66,7 @@
                 <label class="control-label">Tipo de equipo: </label>
                 <select name="tipo_equipo" id="tipo_equipo" class="form-control">
                   @foreach ($tipos as $tipo)
-                    <option value="{{$item['id']}}"
+                    <option value="{{$tipo['id']}}"
                       {{ $tipo['id'] === $item->tipoEquipo->id ? 'selected' : '' }}>{{ $tipo->nombre_tipo }}
                     </option>
                   @endforeach

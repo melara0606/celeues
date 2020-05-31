@@ -7,6 +7,30 @@
     text-align: center;
     font-size: 2.3rem;
   }
+
+  figure {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 5rem;
+  }
+
+  figure > img {
+    width: 100%;
+  }
+
+  .loading {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: white;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    z-index: 100000;
+  }
 </style>
 <div ng-app="prestamos" ng-controller='Controller'>
   <div id="page-head">
@@ -19,9 +43,8 @@
 
   <div class="container-fluid">
     <div class="row" style="margin-top:95px">
-    
-  <input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}"><br>
-      <div class="col-lg-3">
+      <input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}"><br>
+      <div class="col-lg-5">
         <div class="panel">
           <div class="panel-heading">
             <div class="panel-title title-font">Tipo de equipos</div>
@@ -61,8 +84,7 @@
           </form>
         </div>
       </div>
-      
-      <div class="col-lg-5" style="padding-bottom:80px">
+      <div class="col-lg-7" style="padding-bottom:80px">
         <div class="panel">
           <div class="panel-heading">
             <h3 class="panel-title title-font">Nuevo prestamo</h3>
@@ -120,62 +142,28 @@
           </form>
         </div>
       </div>
-
-      <div class="col-lg-4" ng-show='prestamoEquipo.length > 0'>
-        <div class="panel">
-          <div class="panel-heading">
-            <div class="panel-title title-font">Personal</div>
-          </div>
-          <form class="form-horizontal bv-form" name="personal">
-            <div class="panel-body">
-              <fieldset>
-                <div class="input-group mar-btm">
-                  <input type="text" name="dui" id="dui" required ng-model='dui' style="font-size: 2rem"
-                    placeholder="Digite el dui del personal" class="form-control search">
-                  <span class="input-group-btn">
-                    <button ng-click='search();'
-                      class="btn btn-mint" type="button">Buscar</button>
-                  </span>
-                </div>
-              </fieldset>
-              <fieldset >
-                <legend>Informacion Complementaria</legend>
-                <div ng-class="{ 'has-success': personal.nombre.$valid }"
-                  class="form-group has-error">
-                  <label class="col-lg-3 control-label" for="nombres">Nombres: </label>
-                  <div class="col-lg-7">
-                    <input type="text" ng-model='nombres'
-                      name="nombres" id="nombres" class="form-control" placeholder="Nombres del personal" />
-                  </div>
-                </div>
-                <div ng-class="{ 'has-success': personal.apellidos.$valid }"
-                  class="form-group has-error">
-                  <label class="col-lg-3 control-label" for="apellidos">Apellidos: </label>
-                  <div class="col-lg-7">
-                    <input type="text" ng-model='apellidos' ng-model='apellidos' required
-                      name="apellidos" id="apellidos" class="form-control" placeholder="Apellidos del personal" />
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
   </div>
-  
+  <div class="loading" ng-show='isServerLoading'>
+    <figure>
+      <img src="{{asset('image-gif.gif')}}" alt="gif">
+    </figure>
+  </div>
 </div>
+
 @endsection
 
 @section('script')
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js'></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="{{ asset('js/angular.min.js') }}"></script>
+  {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+  <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+  <script src="{{ asset('js/angular.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/ngMask.js') }}"></script>
+  <script src="{{ asset('js/ui-bootstrap-tpls-2.5.0.js') }}" type="text/javascript"></script>
   <script type="text/javascript">
-    angular.module("prestamos", [], function($interpolateProvider) {
+    angular.module("prestamos", ['ui.bootstrap', 'ngMask'], function($interpolateProvider) {
       $interpolateProvider.startSymbol('[{');
       $interpolateProvider.endSymbol('}]');
-    }).controller("Controller", function($scope) {
+    }).controller("Controller", function($scope, $uibModal) {
       $scope.itemsEquipos = [];
       $scope.prestamoEquipo = [];
       $scope.isServerLoading = false;
@@ -189,6 +177,7 @@
           
           if ($rsult == true) {
             $scope.itemsEquipos = [];
+            $scope.isServerLoading = true;
             $.ajax({
               type: 'POST',
               data: { tipo: _i.id },
@@ -199,6 +188,7 @@
             }).done(function(items) {
               $scope.$apply(function(){
                 $scope.itemsEquipos = items;
+                $scope.isServerLoading = false;
               });
             });
           } else {
@@ -225,13 +215,6 @@
         $scope.prestamoEquipo.splice($index, 1);
       }
 
-      $scope.search = function() {
-        var _dui = $scope.dui;
-        if (_dui) {
-          
-        }
-      }
-
       function reset() {
         $scope.tipo   = null;
         $scope.equipo = null;
@@ -245,9 +228,84 @@
         }
         return true;
       }
-      
-      // para la mascara del dui
-      $('.search').mask('99999999-9')
+
+      $scope.send = function(valid) {
+        if(valid) {
+          var modalInstance = $uibModal.open({
+            templateUrl: 'prestamo/modal',
+            controller: function($scope, $uibModalInstance) {
+              $scope.inValid = false;
+              $scope.loading = false;
+              $scope.isServer = false;
+
+              $scope.ok = function() {
+                $uibModalInstance.close({ data: {
+                  nombres: $scope.n,
+                  apellidos: $scope.a,
+                  dui: $scope.dui,
+                  inValid: $scope.inValid,
+                }})
+              }
+    
+              $scope.cancel = function() {
+                $uibModalInstance.dismiss('cancel');
+              }
+
+              $scope.search = function() {
+                $scope.loading =  true;
+                var dui = $scope.dui;
+                $.ajax({
+                  type: 'GET',
+                  url:  window.URL_BASE + 'materiales/' +  dui + '/dui',
+                }).done(function(data) {
+                  var isValid = data.length == 0;
+                  $scope.$apply(function() {
+                    $scope.loading =  false;
+                    $scope.inValid = isValid;
+
+                    if(!isValid) {
+                      $scope.frm.nombres.$setValidity('required', true);
+                      $scope.frm.apellidos.$setValidity('required', true);
+                      $scope.n = data[0].nombres;
+                      $scope.a = data[0].apellidos;
+                      $scope.isServer = true;
+                    }
+                  });
+                });
+              }
+            },
+          });
+
+          modalInstance.result.then(function(data) {
+            $scope.isServerLoading = true;
+            var object = Object.assign(data, {
+              prestamoEquipo: $scope.prestamoEquipo
+            });
+            $.ajax({
+              type: 'POST',
+              data: object,
+              dataType: 'json',
+              url: window.URL_BASE + "/prestamos",
+              beforeSend: function (request) {
+               return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
+              }
+            }).done(function(result) {
+              $scope.$apply(function() {
+                $scope.isServerLoading = false;
+                $scope.itemsEquipos = [];
+                $scope.prestamoEquipo = [];
+              });
+              if(result.response) {
+                swal("Prestamo realizado con exito!", {
+                  icon: "success"
+                }).then(function() {
+                  window.location.href = window.URL_BASE + 'prestamos';
+                })
+              }
+            });
+          })
+        }
+      } 
     })
   </script>
 @endsection

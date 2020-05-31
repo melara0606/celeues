@@ -66,6 +66,9 @@
                           class="btn btn-icon btn-default btn-default btn-xs btn-hover-mint">
                           <i class="demo-psi-pen-5 icon-sm"></i>
                         </a>
+                        <button class="btn btn-icon btn-default btn-xs  btn-hover-info add-tooltip infoModal" data-value="{{$item->id}}" data-container="body">
+                          <i class="demo-pli-exclamation icon-xs "></i> Info
+                        </button>
                       </td>
                     </tr>
                   @endforeach
@@ -77,20 +80,59 @@
       </div>
     </div>
   </div>
+  <div id="modal-info" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header alert-info">
+          <button type="button" class="close" data-dismiss="modal">
+            <i class="pci-cross pci-circle"></i>
+          </button>
+          <h4 class="modal-title">Informacion del Material Didacticos</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel-body">
+            <div class="table-responsive">
+              <h4 class="card-subtitle text-center">Información</h4>
+              <table class="table table-striped table-sm">
+                <tbody id="tablainfo"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('script')
   
   <script type="text/javascript">
-       $(document).ready(function(){
-        $.niftyNav('expand');
-             $('#myTable2').DataTable({
-            //"dom": '<"top"lf>rt<"bottom"pi>'
-          });
+    $(document).ready(function(){
+      $.niftyNav('expand');
+      $('#myTable2').DataTable({});
+
+      $(document).on('click','.infoModal',function(){
+        var id = $(this).data('value');
         
-       });
-    </script>
-  
-    
-  
-    @endsection
+        $("#tablainfo").empty();
+        $.ajax({
+          type: "GET",
+          url: 'materiales/'+ id +'/search',
+          dataType: 'json',
+          success: function (data) {
+            var row = "<tr><td>Titulo</td><td>"+data.titulo+"</td></tr><tr><td>Codigo</td><td>"+data.codigo+"</td></tr><tr><td>Editorial</td><td>"+data.editorial+"</td></tr><tr><td>Edicion</td><td>"+data.edicion+"</td></tr><tr><td>Autor</td><td>"+data.autor+"</td></tr><tr><td>¿Es donado?</td><td>"+(data.is_donado ? 'Si' : 'No')+"</td></tr><tr><td>Precio</td><td>$ "+data.costo+"</td></tr>";
+            
+            $("#tablainfo").append(row);
+          },
+          error: function (data) {
+            console.log('Error de boton Info:', data);
+          }
+        });
+        $('#modal-info').modal('show'); ///modal de informacion
+      });
+    });
+  </script>
+@endsection

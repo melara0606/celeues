@@ -184,3 +184,11 @@ Route::get('/docente/{id}/materiales', 'docenteController@materiales')->name('do
 Route::post('/docente/addMaterialDocente', 'docenteController@addMaterialDocente');
 Route::post('/sendMaterialDidactico', "docenteController@sendMaterialDidactico");
 Route::get("/docente/{id}/materialHistory", 'docenteController@viewHistoryMaterial')->name("docente_prestamos");
+
+
+// busquedas
+Route::get('/equipos/{id}/search', 'EquipoController@search');
+Route::get('/materiales/{id}/search', 'MaterialDidacticoController@search');
+Route::get('/materiales/{dui}/dui', 'MaterialDidacticoController@searchDui');
+
+Route::get('/prestamos/prestamo/modal', 'PrestamoController@modal');

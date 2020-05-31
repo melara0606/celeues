@@ -23,61 +23,46 @@
               </div>
               <div class="col-sm-6 table-toolbar-right"></div>
             </div>
-            <div class=" table-responsive">
-              {{-- <table id="myTable" class="table table-striped row-border" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
+            <div class="table-responsive">
+              <table id="myTable2" class="table table-striped row-border" 
+                style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
                 <thead>
                   <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">Código</th>
-                    <th>Descripción</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>N° Serie</th>
-                    <th>Fecha Adquisición</th>
-                    <th>Precio</th>
+                    <th class="text-center">DUI</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th class="text-center">Fecha del pedido</th>
                     <th>Estado</th>
                     <th class="text-center">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @forelse($equipos as $key => $equipo)
+                  @foreach ($records as $key => $item)
                     <tr>
-                      <td align="center">{{ $key + 1 }}</td>
-                      <td align="Center">
-                        <div class="label label-table bg-dark">
-                          <div class="text-xs text-bold"></div>{{ $equipo->codigo }}
-                        </div>
+                      <td class="text-center">{{ $key + 1 }}</td>
+                      <td class="text-center">{{ $item->detalle->dui }}</td>
+                      <td>{{ $item->detalle->nombres }}</td>
+                      <td>{{ $item->detalle->apellidos }}</td>
+                      <td class="text-center">
+                        {{ 
+                          date('d-m-Y h:i:s', strtotime($item->created_at))
+                        }}
                       </td>
-                      <td>{{ $equipo->description }}</td>
-                      <td>{{ $equipo->marca }}</td>
-                      <td>{{ $equipo->modelo }}</td>
-                      <td>{{ $equipo->nserie }}</td>
-                      <td>{{ $equipo->fechaAd }}</td>
-                      <td>$ @convert($equipo->precio)</td>
                       <td>
-                        @component('alert', ['type' => $equipo->estado])
+                        @component('alert', ['type' => $item->estado, 'msg' => 'Entregado'])
                           <p></p>
                         @endcomponent
                       </td>
-                      <td align="center">
-                        <div class="btn-group">
-                          <a href="{{ route("equipos.edit", ["id" =>  $equipo-> id]) }}"
-                            class="btn btn-icon btn-default btn-default btn-sm  btn-hover-mint add-tooltip"
-                            data-original-title="Editar Registro" data-container="body">
-                            <i class="demo-psi-pen-5 icon-sm "></i> Editar
-                          </a>
-                          <button class="btn btn-icon btn-default btn-sm  btn-hover-info add-tooltip "
-                            data-original-title="Información" data-container="body">
-                            <i class="demo-pli-exclamation icon-sm "></i> Info
-                          </button>
-                        </div>
+                      <td class="text-center">
+                        <a href="{{ route('prestamos.show', $item->id) }}" class="btn btn-icon btn-default" data-value="{{$item->id}}" data-container="body">
+                          <i class="demo-pli-exclamation icon-xs "></i> Info
+                        </a>
                       </td>
                     </tr>
-                  @empty
-                    <p>No hay mensajes destacados</p>
-                  @endforelse
+                  @endforeach
                 </tbody>
-              </table> --}}
+              </table>
             </div>
           </div>
         </div>

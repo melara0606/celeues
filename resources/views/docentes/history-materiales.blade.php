@@ -19,19 +19,6 @@
     <div class="col-md-3">
       <div class="panel pos-rel">
         <div class="pad-all text-center">
-          <!-- <div class="widget-control">
-            <div class="btn-group dropdown">
-              <a href="#" class="dropdown-toggle btn btn-trans" data-toggle="dropdown" aria-expanded="false"><i
-                  class="demo-psi-dot-vertical icon-lg"></i></a>
-              <ul class="dropdown-menu dropdown-menu-right">
-                <li>
-                  <a href="{{ route("history_prestamos", ["id" => $docente->id ]) }}">
-                    <i class="icon-lg icon-fw demo-pli-calendar-4"></i> Ver prestamos
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div> -->
           <a href="#">
             <img alt="Profile Picture" class="img-lg img-circle mar-ver" src='{{ asset("img/profile-photos/2.png") }}'>
             <p class="text-lg text-semibold mar-no text-main">
