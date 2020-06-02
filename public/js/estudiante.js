@@ -118,6 +118,30 @@
 
 
 }
+
+function calcularEdad(){
+  
+  var actual = new Date();
+  var elegido=new Date($('#fechaNac').val());
+
+
+  today_date = new Date();
+  today_year = today_date.getFullYear();
+  today_month = today_date.getMonth()+1;
+  today_day = today_date.getDate();
+
+  edad = today_year - elegido.getFullYear();
+
+  if (today_month < (elegido.getMonth()+1)) {
+   edad--;
+ }
+ if (((elegido.getMonth()+1) == today_month) && today_day < elegido.getDate()) {
+   edad--;
+ }
+        
+ $('#edad').val(edad);
+}
+
 function calculate_age(birth_month, birth_day, birth_year) {
   today_date = new Date();
   today_year = today_date.getFullYear();
@@ -228,7 +252,7 @@ $(document).on('click','.editarmodal',function(){
 $("#btnnuevo").click(function(){
 
   $('#btnGuardar').val("add");
-  $("#btnGuardar").html("Nuevo");
+  $("#btnGuardar").html("Guardar");
   $("#btnGuardar").removeClass("btn-mint");
   $("#modalIngresoHeader").removeClass("alert-mint");
   $("#modalIngresoLabel").html("Registro de Estudiante");
@@ -247,7 +271,7 @@ $("#btnGuardar").click(function (e) {
   })
 
  e.preventDefault();
-
+ calcularEdad();
    /////Datos que se envian para recibir en el controlador 
    if($('#edad').val() >= 18){
      var formData = {

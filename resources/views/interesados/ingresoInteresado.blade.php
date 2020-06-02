@@ -194,13 +194,13 @@
                                 <div class="panel-body">
                                     <div class="row pad-btm form-inline">
                                             <div class=" col-md-12">
-                                                <label  class="control-label text-main text-bold col-md-5">TITULO:</label>
+                                                <label  class="control-label text-main text-bold col-md-5">TÍTULO:</label>
                                                 <label class="control-label  text-bold col-md-7">{{$noticia->titulo}} </label>
                                             </div>
                                             <br>
                                             <br>
                                             <div class=" col-md-12">
-                                                <label for="" class="control-label text-main text-bold col-md-5">DESCRIPCION:</label>
+                                                <label for="" class="control-label text-main text-bold col-md-5">DESCRIPCIÓN:</label>
 
                                                  <label class="control-label text-sm  text-bold col-md-7">{{$noticia->descripcion}} </label>
                                                   
@@ -208,7 +208,7 @@
                                             <br>
                                             <br>
                                             <div class=" col-md-12">
-                                                <label for="" class="control-label text-main text-bold col-md-5">MODULO:</label>
+                                                <label for="" class="control-label text-main text-bold col-md-5">MÓDULO:</label>
 
                                                  <label class="control-label  text-bold col-md-7">{{$noticia->numModulo}} </label>
                                                   
@@ -298,7 +298,7 @@
 
                                      <!--Text Input-->
                                     <div class="form-group @if($errors->has('titulo')) has-error @endif">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Telefono</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Teléfono</label>
                                         <div class="col-md-5">
                                             <input type="number" id="telefono" name="telefono" class="form-control" placeholder="####-####"  >
                                             {{--<small class="help-block">This is a help text</small>

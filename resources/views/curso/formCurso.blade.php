@@ -67,11 +67,11 @@
 
 
  {{-- <div class="form-group">
-        <label for="example-email-input" class="col-md-3  control-label text-main text-bold ">Dias:*</label>
+        <label for="example-email-input" class="col-md-3  control-label text-main text-bold ">Días:*</label>
         <div class="col-md-6">
           <select  class="form-control" id="dldlk" name="idioma_id" >
                  <option value="1" >1 vez por semanas</option>
-                 <option value="1" >varios deias</option>
+                 <option value="1" >varios días</option>
                  
             </select>
           
@@ -125,7 +125,7 @@
                                         </div>
                                         
                                        <div class="col-md-1">
-                                            <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-primary add-tooltip masCategoria" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-add icon-lg " ></i></button> 
+                                            <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-primary add-tooltip masCategoria" data-original-title="" data-container="body" ><i class="demo-pli-add icon-lg " ></i></button> 
 <div class="input-group bootstrap-timepicker timepicker">
         <input id="timepicker2" class="form-control input-small" type="text"><span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
     </div>
@@ -151,17 +151,17 @@
     <tbody>
         <tr>
             <td>
-                <label for="example-email-input" class=" control-label text-main text-bold ">Dias:*</label>
+                <label for="example-email-input" class=" control-label text-main text-bold ">Días:*</label>
                     
                 <div class="form-group ">       
                     <div class="col-md-3">
                          <select  class="form-control" id="dias" name="dias" >
                             <option value="1">Lunes</option>
                              <option value="2">Martes</option>
-                             <option value="3">Miercoles</option>
+                             <option value="3">Miércoles</option>
                              <option value="4">Jueves</option>
                              <option value="5">Viernes</option>
-                             <option value="6">Sabado</option>
+                             <option value="6">Sábado</option>
                              <option value="7">Domingo</option>
                              
                         </select>
@@ -183,7 +183,7 @@
 
                     </div>  
                      <div class="col-md-1">
-                                <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-primary add-tooltip masDias" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-add icon-lg " ></i> </button>
+                                <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-primary add-tooltip masDias" data-original-title="Agregar más días" data-container="body" ><i class="demo-pli-add icon-lg " ></i> </button>
 
                             </div>
                  </div>
@@ -207,10 +207,10 @@
     <tbody>
         <tr>
             <td>
-                <label for="example-email-input" class="control-label text-main text-bold ">Categorias y Niveles.</label>
+                <label for="example-email-input" class="control-label text-main text-bold ">Categorías y Niveles.</label>
                 <div class="form-group ">  
                 <div class="col-md-2">     
-                    <label for="example-email-input" class="control-label text-main text-bold ">Categoria:*</label>
+                    <label for="example-email-input" class="control-label text-main text-bold ">Categoría:*</label>
                 </div>
                     <div class="col-md-5">
                    <!--     <select  class="form-control" id="cat_id[]" name="cat_id[]" >
@@ -231,7 +231,7 @@
                             </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-primary add-tooltip masCategoria" data-original-title="Informacion de Responsable" data-container="body" ><i class="demo-pli-add icon-lg " ></i> </button>
+                                <button type="button" class="btn btn-icon btn-default btn-default btn-sm  btn-primary add-tooltip masCategoria" data-original-title="Agregar categoría y nivel" data-container="body" ><i class="demo-pli-add icon-lg " ></i> </button>
 
                             </div>
 

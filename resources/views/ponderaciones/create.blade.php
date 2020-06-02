@@ -6,7 +6,7 @@
         <a href="{{ route('home') }}"><i class="demo-pli-home"></i></a>
       </li>
       <li><a href="{{ route('evaluaciones.index') }}">Evaluaciones</a></li>
-      <li class="active">Nueva evaluacion</li>
+      <li class="active">Nueva evaluación</li>
     </ol>
   </div>
   <div id="page-content" ng-controller="EvaluacionController">
@@ -14,7 +14,7 @@
       <input type="text" hidden="true" name="path"  id="path" value="{{url('/')}}">
       <div class="panel col-sm-5 col-sm-offset-3">
         <div class="panel-heading">
-          <h3 class="panel-title">Evaluacion</h3>
+          <h3 class="panel-title">Evaluación</h3>
         </div>
         <div class="panel-body">
           <div class="pad-btm form-inline">
@@ -49,8 +49,8 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Nombre de la ponderacion</th>
-                  <th width='150'>Ponderacion</th>
+                  <th>Nombre de la ponderación</th>
+                  <th width='150'>Ponderación</th>
                   <th></th>
                 </tr>
               </thead>

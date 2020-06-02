@@ -65,10 +65,10 @@ $(document).on('click','.modificarHorarios',function(){
                
                 $("#first"+i+"").append('<option value="1">Lunes</option>');
                 $("#first"+i+"").append('<option value="2">martes</option>');
-                 $("#first"+i+"").append('<option value="3">Miercoles</option>');
+                 $("#first"+i+"").append('<option value="3">Miércoles</option>');
                  $("#first"+i+"").append('<option value="4">Jueves</option>');
                  $("#first"+i+"").append('<option value="5">Viernes</option>');
-                 $("#first"+i+"").append('<option value="6">Sabado</option>');
+                 $("#first"+i+"").append('<option value="6">Sábado</option>');
                  $("#first"+i+"").append('<option value="7">Domingo</option>');//+
                                      
                  $("#first"+i+"").val(""+data['message'][i].numDia + "");
@@ -109,10 +109,10 @@ $(document).on('click','.addHorariosDias',function(){
       $("#tablainfo").append(row);
                  $("#first"+i).append('<option value="1">Lunes</option>');
                  $("#first"+i).append('<option value="2">martes</option>');
-                 $("#first"+i).append('<option value="3">Miercoles</option>');
+                 $("#first"+i).append('<option value="3">Miércoles</option>');
                  $("#first"+i).append('<option value="4">Jueves</option>');
                  $("#first"+i).append('<option value="5">Viernes</option>');
-                 $("#first"+i).append('<option value="6">Sabado</option>');
+                 $("#first"+i).append('<option value="6">Sábado</option>');
                  $("#first"+i).append('<option value="7">Domingo</option>');//+
      
 });
@@ -245,7 +245,7 @@ $(document).on('click','.darAltaCurso',function(){
       //es ell id de idioma
     $('#registro_id').val(value);
      $('#estadoAB').val(1);
-  $('#msjAB').html("<p>Esta seguro de continuar con la accion </p>");
+  $('#msjAB').html("<p>Esta seguro de continuar con la acción </p>");
 
      $('#modalMsj').modal('show'); ///modal de informacion
 });
@@ -545,10 +545,10 @@ $(document).on('click','.masDias',function(){
                          '<select  class="form-control" id="dias'+(valor)+'" name="dias'+(valor)+'" >'+
                             '<option value="1">Lunes</option>'+
                              '<option value="2">Martes</option>'+
-                             '<option value="3">Miercoles</option>'+
+                             '<option value="3">Miércoles</option>'+
                              '<option value="4">Jueves</option>'+
                              '<option value="5">Viernes</option>'+
-                             '<option value="6">Sabado</option>'+
+                             '<option value="6">Sábado</option>'+
                              '<option value="7">Domingo</option>'+
                              
                         '</select>'+
@@ -621,7 +621,7 @@ $(document).on('click','.editarmodal',function(){
   $("#btnnuevo").click(function(){
       
     $('#btnGuardar').val("add");
-    $("#btnGuardar").html("Nuevo");
+    $("#btnGuardar").html("Guardar");
     $("#btnGuardar").removeClass("btn-mint");
     $("#modalIngresoHeader").removeClass("alert-mint");
     $("#modalIngresoLabel").html("Registro de Curso");

@@ -19,7 +19,7 @@
 
               <!--Textarea-->
               <div class="form-group">
-                  <label class="col-md-3 control-label text-main text-bold" for="demo-textarea-input">Descripcion</label>
+                  <label class="col-md-3 control-label text-main text-bold" for="demo-textarea-input">Descripción</label>
                   <div class="col-md-7">
                       <textarea id="descripcion" name="descripcion" rows="4" class="form-control" placeholder="Your content here.."></textarea>
                   </div>

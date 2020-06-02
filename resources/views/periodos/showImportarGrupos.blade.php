@@ -49,7 +49,7 @@
                     <button id="btndown" class="btn btn-default btn-active-primary" ><i class="ion-chevron-down"></i></button>
                                                 
                 </div>			                        
-            <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">IMPORTAR GRUPOS DE PERIODO ANTERIOR</strong></p></h3>
+            <h3 class="panel-title "><p align="left" class="text-m text-bold media-heading mar-no text-main"> <strong style="font-size: 14px; ">IMPORTAR GRUPOS DE PERÍODO ANTERIOR</strong></p></h3>
 
         </div>
 
@@ -91,7 +91,7 @@
                         <br>
                         <br>
                         <div class=" col-md-12">
-                            <label for="" class="control-label text-main text-bold col-md-3">Categorias:</label>
+                            <label for="" class="control-label text-main text-bold col-md-3">Categorías:</label>
 
                              <select class="form-control  col-md-6" id="categoriafiltro1" name="categoriafiltro1" >
                                  <option selected disabled label="Seleccione una categoria"></option>
@@ -99,17 +99,7 @@
                               </select>
                               
                         </div>
-                        <br>
-                        <br>
-                        <div class=" col-md-12">
-                            <label for="" class="control-label text-main text-bold col-md-3">Grupo:</label>
-
-                             <select class="form-control  col-md-6" id="grupofiltro1" name="grupofiltro1" >
-                                 
-                                 <option value="" selected="selected" disabled>Seleccione un grupo</option>
-                              </select>
-                              
-                        </div>
+                      
                         <div class=" col-md-12">
                             <br>
                             <div class="col-md-9"></div>
@@ -135,7 +125,7 @@
                 <div class="panel-heading bg-primary" style="border: 1px solid #ccc;">
                       <div style="display: inline-block;width: 100%;">
                             
-                          <h4 class="panel-title " style="display: inline-block"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >PERIODO ACTUAL</strong></p></h4>
+                          <h4 class="panel-title " style="display: inline-block"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeon" name="titleacordeon"> <strong style="color:white;font-size: 13px; " >PERIODO ANTERIOR</strong></p></h4>
                           
                       
                       </div>
@@ -150,7 +140,7 @@
                                 
                                 <th class="text-left">Nombre</th>
                                 
-                                <th class="text-center">Categoria</th>
+                                <th class="text-center">Categoría</th>
                                 
                                 <th class="text-left">Estado</th>
                                 <th class="text-center">Acciones</th>
@@ -175,7 +165,7 @@
                 <div class="panel-heading bg-gray-dark" style="border: 1px solid #ccc;">
                       <div style="display: inline-block;width: 100%;">
                             
-                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >PERIODO ANTERIOR</strong></p></h4>
+                          <h4 class="panel-title " style="display: inline-block;"><p align="left" class="text-m text-bold media-heading mar-no text-main" id="titleacordeonTwo" name="titleacordeonTwo"> <strong style="font-size: 13px; " >PERIODO ACTUAL</strong></p></h4>
                           
                       <h4 class="panel-title" align="right" style="float: right;" >
                       <button id="btnrefresh" class="btn btn-trans btn-active-primary" ><i class="demo-psi-repeat-2"></i></button>
@@ -201,7 +191,7 @@
                                 
                                 <th class="text-left">Nombre</th>
                                 
-                                <th class="text-center">Categoria</th>
+                                <th class="text-center">Categoría</th>
                                 
                                 <th class="text-left">Estado</th>
                                 <th class="text-center">Acciones</th>
@@ -297,7 +287,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <div class="table-responsive">
-                    {{--<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>--}}
+                    {{--<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información</h6>--}}
                     
                     <div class=" table-responsive">
                         <table  class="table table-striped row-border "  style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
@@ -344,7 +334,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <h5 id="txtModalBodyMsj" class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-                <p>Esta seguro de continuar con la accion?.</p></h5>
+                <p>Esta seguro de continuar con la acción?.</p></h5>
                     {{-- Este funciona para darle valor del id para dar baja o alta--}}
                  <form id="formmodalMsj" name="formmodalMsj">
                  <input type="" class="form-control" type="text"  id="txtnomboton" name="txtnomboton">
@@ -558,7 +548,7 @@ $(document).on('click','.traspasar',function(e){
  //$('#btnGuardarTraspasar').attr("disabled", false);
   var value =$(this);
   $("#modalMsj").modal('show');
-   $("#txtModalBodyMsj").html('<p>El estudiante '+$(this).data('nombre')+' pasara a grupo <br>Esta seguro de continuar con la accion?.</p>');
+   $("#txtModalBodyMsj").html('<p>El estudiante '+$(this).data('nombre')+' pasara a grupo <br>Esta seguro de continuar con la acción?.</p>');
    $("#txtnomboton").val($(this).val());
   
 });

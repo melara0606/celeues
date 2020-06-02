@@ -12,12 +12,17 @@ class aulaController extends Controller
     //
      public function show(){
 
-     	$aulas=aula::latest()->get();
+       $aulas=aula::latest()->get();
+       
         	  return view('aulas.showAula',[
             	 'aulas' => $aulas,
 
         	//'noticias'=> $noticias,
-            	]);
+              ]);
+              return view('emails.mailuserpassword',[
+                'user' => "kelvin",
+                'password' => "kelvin",
+               ]);
       }
      public function create(Request $request){//createBeneficiariosRequest $request){
 		//$message = aula::create($request->all());

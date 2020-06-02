@@ -123,6 +123,7 @@ Route::put('/grupos/updateDocente/{idgrupos?}', 'grupoController@updateDocente')
 Route::put('/grupos/periodos', 'grupoController@buscarPeriodos')->middleware('auth');
 Route::get('/grupos/buscar/{idgrupos?}', 'grupoController@buscarGrupos')->middleware('auth');
 Route::get('/grupos/evaluaciones/{idevaluacion?}', 'grupoController@buscarEvaluaciones')->middleware('auth');
+Route::post('/grupos/finalizar', 'grupoController@finalizarGrupo')->middleware('auth');
 
 Route::get('/grupos/estudiantes/{idgrupos?}', 'estudianteGrupoController@show')->middleware('auth');
 Route::get('/estudiantegrupo/{idgrupos?}', 'estudianteGrupoController@busquedaEstudiante')->middleware('auth');
@@ -145,13 +146,25 @@ Route::put('/record/filtrar', 'userRecordEstudianteController@filtrar')->middlew
 
 Route::get('/notas', 'userNotasEstudianteController@show')->name('notas')->middleware('auth');
 
-
+////////////////////////////RESET PASSWORD IS ADDED BY DEFAULT NO NEED TO SCRIP IT /////////////////////////////////////////
+//Route::get('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');//yas esta esta pero continuo aon tuto
+//Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+//Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+////////////////////////////////////////////////////////////////////////////////////
 
 //Route::get('/modalidad', 'modalidadController@show')->name('modalidadShow')->middleware('auth');
 
 
 //Route::post('/noticiaForm/create', 'noticiaController@create')->name('noticiaCreate')->middleware('auth');
 
+/////////////////////////ESTOS RECURSOS SOLO SERAN AUTH YA ESTAN VALIDADOS EN EL CONTROLADOR LOS USUARIOS//////////////////////////
+Route::get('/perfil', 'profileController@showProfile')->name('profile')->middleware('auth');
+Route::get('/seguridad/password', 'profileController@showCambiarPassword')->name('seguridadPassword')->middleware('auth');
+Route::put('/seguridad/updatePassword', 'profileController@updatePassword')->middleware('auth');
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/perfil/cursadoEstudiante', 'profileController@gruposcursadosEstudiante')->name('perfilcursadoEstudiante')->middleware('auth');
+Route::get('/perfil/cursadoEstudiante/idioma/{ididioma?}', 'profileController@gruposcursadosEstudianteParametro')->name('perfilcursadoEstudianteParametro')->middleware('auth');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

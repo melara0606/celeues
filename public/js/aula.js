@@ -101,9 +101,31 @@ $(document).on("click", ".editarmodal", function () {
  $("#modalIngreso").modal("show");
 });
 
+$(document).on("click", ".editarmodal", function () {
+ var form_id = $(this).val();
+ $("#form_id").val(form_id);
+
+ //Otra forma de realizar el get ajax el mismo de infomodal
+ //no poner pleca antes de la url
+ $.get("aula/buscar/" + form_id, function (data) {
+  //success data
+  console.log(data);
+  $("#nombre").val(data.nombre);
+  $("#capacidad").val(data.capacidad);
+ });
+
+ $("#btnGuardar").val("update"); ///valor update para cuando actulize
+ $("#btnGuardar").html("Modificar"); ///cambia el boton modificar
+ $("#btnGuardar").removeClass("btn-info");
+ $("#btnGuardar").addClass("btn-mint");
+ $("#modalIngresoHeader").addClass("alert-mint");
+ $("#modalIngresoLabel").html("Modificar Aula"); ///titulo del modal
+ $("#modalIngreso").modal("show");
+});
+
 $("#btnnuevo").click(function () {
  $("#btnGuardar").val("add");
- $("#btnGuardar").html("Nuevo");
+ $("#btnGuardar").html("Guardar");
  $("#btnGuardar").removeClass("btn-mint");
  $("#modalIngresoHeader").removeClass("alert-mint");
  $("#modalIngresoLabel").html("Registro de Aula");

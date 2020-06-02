@@ -1,7 +1,15 @@
-$(document).ready(function(){		 	
+$(document).ready(function(){	
+	$('.enter').keydown(function (e) {	 
+		if(e.which  ==9){
+			$(this).blur();
+			e.preventDefault();
+            var y = jQuery.Event('keydown', {which: 13});
+			$(this).trigger(y);
+		}
+	});///fin enter keypress	
 		
-		$('.enter').keypress(function (e) {
-			  if(e.which ==13){
+		$('.enter').keydown(function (e) {
+			  if( e.which  ==13){
 
 			   	console.log($(this).attr('id'));
 			   	console.log($(this).val());	
@@ -98,4 +106,69 @@ $(document).ready(function(){
 		});///fin enter keypress
 });
 
-     
+$("#btnFinalizar").click(function (e) {
+		$('#modalMsj').modal('show');
+});
+	
+$("#btnGuardarMsj").click(function (e) {
+var value = $('#hiddenGrupo').val();
+	//token siempre para ingresar y modificar
+$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+			}
+		})
+
+		e.preventDefault();
+   var formData = {
+		idgrupo:$('#hiddenGrupo').val(),
+	}
+	$.ajax({
+			type: "POST",
+			url: $('#path').val()+"/grupos/finalizar",
+			data: formData,
+			dataType: 'json',
+			success: function (data) {
+				if(data['bandera']==1){
+					console.log(data);
+					$.niftyNoty({
+					type: "success",
+					container : "floating",
+					title : "Bien Hecho!",
+					message : data['response'],
+					closeBtn : false,
+					timer : 3000
+					});
+
+					setTimeout(function(){
+						window.location.reload();////recarga la pagina actual
+
+
+					}, 4000);
+				} else if(data['bandera']==0){
+					///menasje de error
+				   $.niftyNoty({
+					 type: "danger",
+					 container : "floating",
+					 title : "Upps!",
+					 message :  data['response'],
+					 closeBtn : false,
+					 timer : 3000
+					 });
+				  }
+			},
+			error: function (data) {
+				console.log('Error al dar Baja:', data);
+				$.niftyNoty({
+				type: "danger",
+				container : "floating",
+				title : "Upps!",
+				message : "A ocurrido un problema",
+				closeBtn : false,
+				timer : 3000
+				});
+			}
+		});
+
+	$('#modalMsj').modal('hide');
+	});

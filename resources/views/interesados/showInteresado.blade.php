@@ -122,13 +122,13 @@
 								    	<br>
 								     	<div class="row pad-btm form-inline">
 											<div class=" col-md-12">
-												<label  class="control-label text-main text-bold col-md-3">TITULO:</label>
+												<label  class="control-label text-main text-bold col-md-3">TÍTULO:</label>
 												<label class="control-label  text-bold col-md-9">{{$noticia->titulo}} </label>
 											</div>
 											<br>
 											<br>
 											<div class=" col-md-12">
-												<label for="" class="control-label text-main text-bold col-md-3">DESCRIPCION:</label>
+												<label for="" class="control-label text-main text-bold col-md-3">DESCRIPCIÓN:</label>
 
 												 <label class="control-label  text-bold col-md-9">{{$noticia->descripcion}} </label>
 										          
@@ -136,7 +136,7 @@
 											<br>
 											<br>
 											<div class=" col-md-12">
-												<label for="" class="control-label text-main text-bold col-md-3">MODULO:</label>
+												<label for="" class="control-label text-main text-bold col-md-3">MÓDULO:</label>
 
 												 <label class="control-label  text-bold col-md-9">{{$noticia->numModulo}} </label>
 										          
@@ -221,7 +221,7 @@
 											<th class="text-center">#</th>
 					                        <th class="text-left">Nombre</th>
 					                        <th>Fecha Nac.</th>
-					                        <th>Telefono</th>
+					                        <th>Teléfono</th>
 					                        <th>Acciones</th>
 					                       
 					                    </tr>
@@ -290,12 +290,12 @@
 			<div class="modal-content">
 				<div class="modal-header alert-info">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" >Informacion de Interesado</h4>
+					<h4 class="modal-title" style="color: white;" >Información de Interesado</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información</h6>
             			<div class="col-md-12">
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">

@@ -30,7 +30,7 @@
     </div>
 
     <div id="descripciondiv" class="form-group">
-        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Descripcion:*</label>
+        <label for="example-number-input" class="col-md-3 control-label text-main text-bold ">Descripción:*</label>
         <div class="col-md-7  ">
             <textarea class="form-control" type="text" id="descripcion" name="descripcion" value="mi casa" rows="2"></textarea>
             <div id="descripcionfeed" class="form-control-feedback"></div>                   

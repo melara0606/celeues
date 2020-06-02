@@ -36,7 +36,7 @@
 	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 	  <ul class="breadcrumb">
 	    <li><a href=""><i class="demo-pli-home"></i></a></li>
-	    <li><a href="">Inscripcion</a></li>
+	    <li><a href="">Inscripción</a></li>
 	    <li class="active">Grupos</li>
 	  </ul>
 	  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -93,7 +93,7 @@
 
 					<hr>
 					<div class="row col-sm-12">
-						<label for="" class="control-label text-main text-bold ">Categorias:</label>
+						<label for="" class="control-label text-main text-bold ">Categorías:</label>
 
 						 <select class="form-control" id="categoriafiltro" name="categoriafiltro" >
 						 	@forelse($categorias as $categoria)
@@ -108,7 +108,7 @@
 					<br>
 
 					<div class="row col-sm-12">
-						<label for="" class="control-label text-main text-bold ">An&o:</label>
+						<label for="" class="control-label text-main text-bold ">Año:</label>
 						<select class="form-control" id="anhofiltro" name="anhofiltro" >
 						          @forelse($anhos as $anho)
 						          <option value="{{$anho->anho}}">{{$anho->anho}}</option>
@@ -123,7 +123,7 @@
 					<br>
 
 					<div class="row col-sm-12">
-						<label for="" class="control-label text-main text-bold ">Periodos o Modulos:</label>
+						<label for="" class="control-label text-main text-bold ">Períodos o Módulos:</label>
 						<select class="form-control" id="periodofiltro" name="periodofiltro" >
 						          @forelse($periodos as $periodo)
 						          <option value="{{$periodo->id}}">{{$periodo->numPeriodo}}</option>
@@ -218,7 +218,7 @@
 									</table>
 	                       {{-- <button class="btn btn-warning active">Adulto</button>
 	                        <button class="btn btn-warning">Adolecente</button>
-	                        <button class="btn btn-warning">Ninho</button>--}}
+	                        <button class="btn btn-warning">Niño</button>--}}
 	                   	</div>
 							</div>
 						</div>
@@ -576,7 +576,7 @@
 					          <br>
 					          <div  class="row form-group">
 					            <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Categoria:</label>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Categoría:</label>
 					            <div class="col-md-6 col-sm-6">
 					            	<select class="form-control" id="categoriaSelect" name="categoriaSelect">
 					            		<option selected disabled label="Seleccione una categoria"></option>
@@ -652,7 +652,7 @@
 							  </div>
 					          <div class="row form-group">
 					            <div class="col-md-1 col-sm-1"></div>
-					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Seccion:</label>
+					            <label  class="col-md-2 col-sm-2 control-label text-main text-bold ">Sección:</label>
 					            <div class="col-md-3 col-sm-3">
 					                 <select class="form-control" id="numGrupos" name="numGrupos">
 
@@ -725,7 +725,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">informacion de Grupo</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">información de Grupo</h6>
 
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -807,12 +807,12 @@
 			<div class="modal-content">
 				<div class="modal-header alert-danger">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoria</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoría</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
 					</div>
 					</h5>
             			{{-- Este funciona para darle valor del id para dar baja o alta--}}

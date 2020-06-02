@@ -57,17 +57,21 @@ class notaController extends Controller
             $grupo=grupo::find($idgrupos);
 
             //return Response::json($grupo->periodos);
-
+			
+			$readonly="";
             if($grupo->periodos->estado=="ACTIVO"){
                if($grupo->estado=="FINALIZADO" && $usuarioActual->tipo=="DOCENTE"){///AND USER TIPO DOCENTE
-                  $readonly="readonly";
-                }else{
-                  $readonly="";
-                }
+				  $readonly="readonly";
+                }else if($grupo->estado=="FINALIZADO" && $usuarioActual->tipo=="ADMIN"){///AND USER TIPO ADMIN
+					$readonly="";
+				}
             }else{
-              $readonly="readonly";
+				if($grupo->estado=="FINALIZADO" && $usuarioActual->tipo=="DOCENTE"){///AND USER TIPO DOCENTE
+					$readonly="readonly";
+				}else if($grupo->estado=="FINALIZADO" && $usuarioActual->tipo=="ADMIN"){///AND USER TIPO ADMIN
+					$readonly="readonly";
+				}
             }
-            
 	         
             foreach ($estudiantesNotas as $estudiantesNota) {
                 $x=$x+($estudiantesNota->nota*($estudiantesNota->ponderacion)/100);
@@ -81,7 +85,7 @@ class notaController extends Controller
                }
 	          	
 	          }///finforeach
-			 $tbody.='<td align="center"><div class="form-group has-success" id="divetf'.$estudiantegrupo->idestudiantegrupo.'" ><input type="number"  data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" style="width:70px;height:25px" max="10" min="1" class="form-control input-sm bord-btm enter" name="" id="etf'.$estudiantegrupo->idestudiantegrupo.'" value="'.$x.'" readonly="true"></div></td>';
+			 $tbody.='<td align="center"><div class="form-group has-success" id="divetf'.$estudiantegrupo->idestudiantegrupo.'" ><input type="number"  data-idestudiantegrupos="'.$estudiantegrupo->idestudiantegrupo.'" style="width:70px;height:25px" max="10" min="1" class="form-control input-sm bord-btm enter" name="" id="etf'.$estudiantegrupo->idestudiantegrupo.'" value="'.number_format($x,2).'" readonly="true"></div></td>';
 /*
 			$tbody.='<td align="center"><div width="80px" class="panel media pad-all bg-info">
 					                   
@@ -158,14 +162,14 @@ class notaController extends Controller
 
 					     $message2=estudiantegrupo::find($idestudiantegrupos);
 					     $message2->fill([
-						      'notaFinal'=> round($x,2),
+						      'notaFinal'=> number_format($x,2),//round($x,2),
 						      ]);
 				         if($message2->save()){
 
 				         	 DB::commit();
 				         	 return Response::json([
 				  			    'bandera'=>1,
-				  			    'notaFinal'=>$x,
+				  			    'notaFinal'=>number_format($x,2),
 				  			 ]);
 				         }
 				         DB::rollback();

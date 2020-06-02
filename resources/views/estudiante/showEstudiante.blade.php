@@ -27,7 +27,7 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="demo-pli-home"></i></a></li>
-			<li><a href="#">Inscripcion</a></li>
+			<li><a href="#">Inscripción</a></li>
 			<li class="active">Estudiantes</li>
 		</ol>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -126,7 +126,7 @@
 								<th class="text-left">Nombre</th>
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Edad</th>
-								<th class="text-center">Telefono</th>
+								<th class="text-center">Teléfono</th>
 
 								
 								<th class="text-center">Acciones</th>

@@ -66,7 +66,7 @@
 					
 					                <!--Text Input-->
 					                <div class="form-group @if($errors->has('titulo')) has-error @endif">
-					                    <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Titulo</label>
+					                    <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Título</label>
 					                    <div class="col-md-7">
 					                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Ingrese titulo"  >
 					                        {{--<small class="help-block">This is a help text</small>
@@ -76,7 +76,7 @@
 
                                     <!--Textarea-->
                                     <div class="form-group has-success">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-textarea-input">Descripcion</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-textarea-input">Descripción</label>
                                         <div class="col-md-7">
                                             <textarea id="descripcion" name="descripcion" rows="4" class="form-control" placeholder="Your content here.."></textarea>
                                         </div>
@@ -92,7 +92,7 @@
 					                </div>
 					--}}
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Modulo</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Módulo</label>
                                         <div class="col-md-4">
                                <select class="form-control" id="numModulo" name="numModulo" >
                                               <option>1</option>

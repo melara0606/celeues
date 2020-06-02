@@ -1,0 +1,669 @@
+commit ba21c6b96cb348c7588c438a04a460bff2cd2cce
+Merge: 73106d3 38efc03
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Jun 2 02:21:14 2020 +0000
+
+    Merge branch 'revert-73106d3f' into 'master'
+    
+    Revert "Merge" CAGADA
+    
+    See merge request tesis_celeues/celeues!1
+
+commit 38efc0331940254abb23b16126904c139054d20e
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Jun 2 02:00:40 2020 +0000
+
+    Revert "Merge"
+    
+    This reverts commit 73106d3fe5b831d56070e49c79f5f6e130e00ca0
+
+commit 73106d3fe5b831d56070e49c79f5f6e130e00ca0
+Merge: 8aa81a3 bfae18b
+Author: Edwin Melara Landaverde <melara0606@gmail.com>
+Date:   Mon Jun 1 18:58:24 2020 -0600
+
+    Merge
+
+commit 8aa81a3a87414f1fe3c965a7a13991850a6b1b07
+Author: Edwin Melara Landaverde <melara0606@gmail.com>
+Date:   Mon Jun 1 18:52:24 2020 -0600
+
+    Arreglo
+
+commit a3d575d02bca6c5e8a4e5f248e14cb4e96ca377d
+Author: Edwin Melara Landaverde <melara0606@gmail.com>
+Date:   Sun May 31 14:14:05 2020 -0600
+
+    Arreglos, prestamos a otras personas
+
+commit bfae18bf646721e0e48093cd06a4816afcc424c1
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu May 28 21:51:16 2020 -0600
+
+    notaFinal estudiantes dos decimas y cambio UI reset password y email de jona
+
+commit 579eacd0b61291c30b442253ecd45b9a837f83de
+Merge: 3d32047 1335c4c
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu May 28 11:02:06 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/tesis_celeues/celeues
+
+commit 3d3204764f401ec75eb860405bc1e04b7fc4a19d
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu May 28 10:59:12 2020 -0600
+
+    UI de grupo de docente y categorizar por adminciertas partes de blade Estudiante Pago
+
+commit 1335c4ccc9e6c161d9d180e995b9969043e5b2f7
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Thu May 28 10:12:49 2020 -0600
+
+    label noticia notas interesados
+
+commit c4cf3f86a3747c2ff57b9d648cc66a31b33eb802
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Thu May 28 10:11:55 2020 -0600
+
+    label de docente y estudiante
+
+commit 0f5ce5481ad02ebcb87ba2cb55121188611df48e
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Thu May 28 10:10:17 2020 -0600
+
+    label restantes
+    
+    label de categoria, responsable,nivel
+
+commit 5d550a4001aa6ef72a724fa3e9fcdea082500542
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Wed May 27 23:13:03 2020 -0600
+
+    label modificacion
+    
+    se modificaron las pantallas de periodo, grupo, traspaso de grupos, curso
+
+commit 829ee5f0a3e59fed612d18745598d21574c02f51
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Wed May 27 22:50:53 2020 -0600
+
+    label idioma y modalidad
+    
+    solamente se cambiaron los label
+
+commit 2a961112075ec36f8633da2ca63b06e76701cecc
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Wed May 27 19:59:14 2020 -0600
+
+    label aula
+
+commit 244c8ea441cb05c39d5bb8faadf2e39867cb104d
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 24 19:22:56 2020 -0600
+
+    creacion de pantalla de record de notas para usuario estudiante
+
+commit fc9b02ff4d522d6b4223813be05582c760add29f
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat May 23 20:59:31 2020 -0600
+
+    arreglo de notas tab creaction de mail al crear usuario y cambio de contrasenha desde docente y estudiante
+
+commit 03b02e1715facb8e46c1eb1df43bdd92ec376e00
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri May 22 09:56:42 2020 -0600
+
+    accion finalizar Grupo
+
+commit e2be65e697dde96fff3f78b378fd835eb46a4034
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu May 21 20:43:18 2020 -0600
+
+    prueba recuperacion de contrasenha
+
+commit ccf1bb0acc5ee280a16ac3d2858ca20802a38391
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Mon May 18 21:42:53 2020 -0600
+
+    configurar que no se repitan aulas en el mismo curso
+
+commit 635d65d51f196f40f9220e3b8920bdadb8ecf124
+Author: Edwin Melara Landaverde <melara0606@gmail.com>
+Date:   Mon May 18 03:05:04 2020 -0600
+
+    Arreglos
+
+commit 8560513be11a07291750620571cb608905cf5f82
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 17 18:57:20 2020 -0600
+
+    iconos y validacion para docentes que no se repitan en un curso
+
+commit dfe5ccced13e774ce4b835faa9710ad84954bc7d
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Mon May 11 19:33:51 2020 -0600
+
+    Update formDocente.blade.php
+
+commit fb33bdab5dceea21716fec8b070361613b642d31
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Mon May 11 19:19:03 2020 -0600
+
+    Update showDocente.blade.php
+
+commit 07447df975c21881007a619bbb0714f8c394461b
+Author: karmy89 <39349174+karmy89@users.noreply.github.com>
+Date:   Mon May 11 18:37:42 2020 -0600
+
+    Update showGrupos.blade.php
+
+commit 19247f41f2ce4dd3ed948a935e67eb0bb2f8b15b
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 10 20:01:43 2020 -0600
+
+    para nota y record de estudiante
+
+commit de9f530848cad406b0b088c8f7e7c1fdd945afe1
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 10 19:10:56 2020 -0600
+
+    consulta de record academico
+
+commit 063e9931011ae88e011750f334d5f3c80d2aa8e4
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 10 18:58:16 2020 -0600
+
+    cmobio en letra de estudiategrupo
+
+commit feea17e069323ba3e9b29b079287f08f3b4de6b1
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 10 18:56:58 2020 -0600
+
+    recordEstudiante controller
+
+commit a9713ab20efc008d3152f9972ce0e85184a396b3
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 10 18:47:33 2020 -0600
+
+    recordCambio esperando que funcione distinc on heroku
+
+commit be20a9925528a6deb345e78f470fef7b3366326d
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 10 17:55:50 2020 -0600
+
+    pantalla de usuario docente
+
+commit 0bac3473eac419f4057e48942fddcd195b16607a
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Wed May 6 20:45:45 2020 -0600
+
+    prestamo eqeuipo y material didactico
+
+commit aead01878daf7bffc3c7914ab2fd80d16441f3f8
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat May 2 22:38:31 2020 -0600
+
+    importacion de estudiantes accion
+
+commit 413abeccc315a8c3a0d12e7405d9a227de5eea0b
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri May 1 22:54:44 2020 -0600
+
+    periodos en importar periodos
+
+commit ac1d5d406ba4c98cf7ab797215a5cc9b27d371fb
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri May 1 21:39:30 2020 -0600
+
+    boton enviado
+
+commit a638ea6955445d337659b7c28fab8efc98e5757e
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri May 1 21:23:51 2020 -0600
+
+    creacion de importacion de grupos
+
+commit c67575840ac52f12f35268a113038ddfdc492dee
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Apr 21 22:36:32 2020 -0600
+
+    cambio interesados create
+
+commit 026e7e471663ab04ac94d3e45db4691af664510e
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Apr 21 22:30:16 2020 -0600
+
+    interesado archivo
+
+commit 9f079f051f3c57dae38d5779cf9e0b42430986bf
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Apr 21 22:24:11 2020 -0600
+
+    initeresado cambios
+
+commit 60b375c97cc50d83210d92151e3b80482bee6c98
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Mon Apr 20 20:20:38 2020 -0600
+
+    Interesado Ingreso a estudiante
+
+commit 047e497ff7116cb513b87ed3bd32162fa0de2d35
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun Apr 19 18:31:04 2020 -0600
+
+    noticia blade
+
+commit a64e59dd6c9c208dd88765fbc3aed6534af6f85e
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun Apr 19 18:02:27 2020 -0600
+
+    cambios domingo
+
+commit 90b1330c9ffdd7634414115e8cb3310c7d2b747f
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Apr 18 21:41:18 2020 -0600
+
+    cambio de noticia
+
+commit e1f3cd1d588bb417b4607f8f5d6a6fd9a5d5a368
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Apr 18 21:01:19 2020 -0600
+
+    noticias
+
+commit c5fdff79fb633c5a15a586265541f2fe1559fe00
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Apr 18 20:54:01 2020 -0600
+
+    Pantalla Interesados
+
+commit 7f5ee3689a827526d344df561a4ab4c0dea9e9a3
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Apr 18 17:56:13 2020 -0600
+
+    pantalla Interesados
+
+commit 308b399d114dacb320295ba4dec549bd8c0258e3
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Apr 16 15:56:42 2020 -0600
+
+    arreglo a docente
+
+commit 1b04d723a22e60b6a89bbd6b7433ba5fff91765f
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Apr 16 15:38:38 2020 -0600
+
+    cambios noticia e interesados
+
+commit ab48663d5682fbb4acfb1314de2623d0ea6d1432
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Apr 16 11:36:30 2020 -0600
+
+    cambios en traspaso
+
+commit b7d797e01e7519d4a4df2a8b8ccad13b7cfac599
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Wed Apr 15 23:41:08 2020 -0600
+
+    cambios estudiante
+
+commit a1531fdfc9919b1329916ee5c1e9994879acd0d3
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Wed Apr 15 18:15:45 2020 -0600
+
+    cambios generales a docente grupos notas y estudiante pago
+
+commit e6a852ad12914961443edad4f40b5857b65f069b
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun Apr 12 20:16:29 2020 -0600
+
+    cambios disenho y pantalla de grups de docentes
+
+commit 3c6fa06e09055e5cc224de7c84acfcd8c3f77ac5
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Apr 11 21:04:19 2020 -0600
+
+    evaluaciones
+
+commit 135c309d71b847034b3c65e75e4dbcbaeb22fc23
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Apr 11 17:31:44 2020 -0600
+
+    actualizacion de cambios en modelos y pantalla de showRecord
+
+commit 857dc1170dbac051b35557cb96424b20b9506419
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Apr 4 17:43:27 2020 -0600
+
+    cambios traspaso
+
+commit 14ef7e9a08b01462c5e13fafc977297665d4f01c
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Wed Apr 1 20:51:08 2020 -0600
+
+    cambios
+
+commit ed2633087babaa74f9c0b8a50ef882bc7917aac8
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Wed Apr 1 07:39:37 2020 -0600
+
+    cambios vista traspasos
+
+commit b351fb0cbe6ac101e37f8e3b642b9f57386af884
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Mar 31 23:35:45 2020 -0600
+
+    traspasos cambios
+
+commit bfe110f9db0a738dfec10bb68c71e8b4654d6d52
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun Mar 29 21:38:05 2020 -0600
+
+    cambios an trapaso
+
+commit d12d168d22a7f8e02a45818b84c095061fb9b314
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun Mar 29 17:54:00 2020 -0600
+
+    cambios y creacion de transpasos
+
+commit e0cbd343588961904cc6220f2f9f341aa8d14299
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Mar 28 23:47:11 2020 -0600
+
+    arreglos tablas
+
+commit b868c8e179135a43301333d4d9bf14c57dea6e98
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Mar 28 22:05:45 2020 -0600
+
+    cambios a pantallas
+
+commit a471a3fd588f514e00b8ab0be1ee65a4df27c065
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Mar 28 19:01:13 2020 -0600
+
+    cambio a datatable
+
+commit e0c1a8d2a84e0983018c75b268071db3efd1c2df
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Mar 28 17:04:51 2020 -0600
+
+    Update home.blade.php
+
+commit a19854108ca629e5f381b0961e8cf655d446ed83
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Mar 28 16:46:59 2020 -0600
+
+    paginas arrgladas
+
+commit 884acdb2b6263ca6dd1dbc3407bd00df5d017ed4
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Mar 28 16:15:15 2020 -0600
+
+    bcript contrasenha
+
+commit afa9f21d8cd0cf33bbb9c57e51ffc36d11f78012
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Mar 28 14:10:15 2020 -0600
+
+    arreglo de coun de los grupos
+
+commit b51efeb871986ad4316fba215d2820c0f444285c
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 21:35:19 2020 -0600
+
+    arrglo periodo
+
+commit 0b00606c15fbb4459d4db86f4343c8fd3c929f9d
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 21:17:36 2020 -0600
+
+    prueba final
+
+commit 5e37a856ce16743a22cc9ddb6ba8cf0e5047ab80
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 20:05:33 2020 -0600
+
+    prueba
+
+commit a3ff6ef8d47aeadc5bfdee75bbbdcd9a558f134f
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 20:03:48 2020 -0600
+
+    prueba
+
+commit 17ed018d04d75cb3e90f630e5842d23c74f4b025
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 20:01:22 2020 -0600
+
+    enum preuba
+
+commit 026bf73b605277861e9ba76fac4bf487cb6a1049
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 19:46:42 2020 -0600
+
+    prueba
+
+commit 4bfb9c851654202c771b26db36c61c4521fc5a12
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 19:38:30 2020 -0600
+
+    prueba
+
+commit 0c5d111f5ffcd2f2a0b8f418a44188a217f26945
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Mar 27 19:35:44 2020 -0600
+
+    prueba
+
+commit eef018f118014814b10a66c1df251aeccd73b9b5
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 26 22:23:53 2020 -0600
+
+    prueba
+
+commit 4e6a6ae22bf23b73e7338edefb71bf26a3ef7cad
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 26 21:51:06 2020 -0600
+
+    heroku ajax
+
+commit 86e1dcb43b2f071822c7357b2b0b32d8b124a761
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 26 21:28:13 2020 -0600
+
+    heroku cambos
+
+commit eecd462bb3f32e02d7f8735f379a6c95456854f1
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 26 21:19:03 2020 -0600
+
+    prueba para heroku
+
+commit 721986e405b0095ca0980a707ceb6b618ecd7a40
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 26 12:25:49 2020 -0600
+
+    usuario al registrar admin
+
+commit df33f282d8af5a051567fc2e2f18cb11d230bf81
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 26 10:54:04 2020 -0600
+
+    heroku file
+
+commit de5e9217329a048cd426aa059556547d1f593b3d
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 26 09:46:58 2020 -0600
+
+    cambios realizados
+
+commit 5aac351cf16961384fecc37c08b43cc3519cd562
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Wed Nov 6 21:57:40 2019 -0600
+
+    subir para segunda defensa
+
+commit c42af55c754afe3c4ef6837f452a2d5f1f06f5db
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Jun 11 16:31:40 2019 -0600
+
+    avanze
+
+commit 2f13ef5aa9d902d6665176512af3f681d76cf5fc
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 5 17:38:45 2019 -0600
+
+    grupos
+
+commit 0b299ecd9cfd0e901dd67bcbbfaa424f8a5c8817
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Apr 4 21:13:06 2019 -0600
+
+    avance
+
+commit db263525346763c0b936bb8ef1afd2a19e48ac87
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Apr 2 16:04:42 2019 -0600
+
+    acruaizacion
+
+commit 931bfbdfa3fcf5ddd7910c8887caeff0fc0f8d29
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu Mar 14 10:08:01 2019 -0600
+
+    curso y grupos
+
+commit b7364f421150effe4a67e3499cd78764edda905a
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Nov 16 10:35:20 2018 -0600
+
+    cursos
+
+commit 515801e9d86bc814cf041b97dcb4734d824d6ac1
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri Nov 9 10:27:18 2018 -0600
+
+    actualizar subida
+    
+    estudiante y responsable
+
+commit 264295e7e6145facbddffdc4b35a39f8d8825703
+Merge: e818a74 b528e57
+Author: Jonathan Cornejo <jh0nacornejo@gmail.com>
+Date:   Tue Aug 21 14:00:18 2018 -0600
+
+    Merge branch 'master' of https://gitlab.com/tesis_celeues/celeues
+
+commit b528e573819fa96d960e1464ceaca95e79871376
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Aug 21 13:44:00 2018 -0600
+
+    cabio
+
+commit e818a74afd3f528faf7cab993bfdeac283161862
+Author: Jonathan Cornejo <jh0nacornejo@gmail.com>
+Date:   Tue Aug 21 12:20:39 2018 -0600
+
+    mod docente
+    
+    modificacion de campos faltantes de docente
+
+commit 95e298f6cde7cfd865f2c611dec617eb0627c704
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Aug 21 11:52:14 2018 -0600
+
+    para subir
+
+commit ed9533129653004fd0c05a67794fe957f4845bd2
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Aug 7 11:48:41 2018 -0600
+
+    hb
+
+commit 416f0a9856aa9d8163d82ad847e452cba7575c26
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Aug 7 11:27:38 2018 -0600
+
+    lkmdm
+
+commit bd152a5ef281c13d814331c8c53416ef346dc34f
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Jul 31 09:53:04 2018 -0600
+
+    noticia
+
+commit d7d423392f78aa985612eb1243711457eb1fd535
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Mon Jul 30 15:00:38 2018 -0600
+
+    terminado idioma
+
+commit 5e9835fbc44cf3bff876503622055170eff79173
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Mon Jul 30 14:26:13 2018 -0600
+
+    idioma
+
+commit 93cec3d249b8a261ceb8f27eb380e26ac7b23b46
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sat Jul 28 20:14:20 2018 -0600
+
+    idioma
+
+commit 6235e3b8627677cfb8a9f0d379f4baa3ff879ff2
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Tue Jul 24 11:38:36 2018 -0600
+
+    bd e pantalla idioma
+
+commit c4c567ac0439737123bd37d78a7bb6ab73e4d9a4
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Mon May 28 13:55:08 2018 -0600
+
+    Interesados
+    
+    Interesados
+
+commit 8b53fe9d9c8b654524cd919bbd1f921689a8e83a
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Mon May 21 14:52:18 2018 -0600
+
+    interesados
+
+commit ef3726995a658e31323b6c620fdbc62509d07e3e
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Sun May 20 14:50:44 2018 -0600
+
+    pantalla noticias tabla y formulario
+
+commit b51b932b3bcc5edd56d335a3fc1c64ed923fcd1d
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri May 18 14:07:49 2018 -0600
+
+    ya sirve
+
+commit aec43e5295031ce68ac3fbbc1f55ea383b9b5728
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri May 18 13:55:33 2018 -0600
+
+    cambio
+
+commit 7c1bdede70e1380176f9e36b57839c496c0ef9f7
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Fri May 18 13:40:33 2018 -0600
+
+    subida
+
+commit 6433fdadf8a7115cb7b80170a57aaac6ab2bd87d
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Thu May 17 11:53:29 2018 -0600
+
+    login
+
+commit e1b81284aca023bebfb15d7b5e9bfcafec1328f4
+Author: kelvin <kelvin_0292@hotmail.com>
+Date:   Wed May 16 22:57:23 2018 -0600
+
+    subida de proyecto

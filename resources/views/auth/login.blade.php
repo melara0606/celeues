@@ -80,7 +80,7 @@
 		<!-- LOGIN FORM -->
 		<!--===================================================-->
 		<div class="cls-content">
-		    <div class="cls-content-sm panel">
+		    <div class="cls-content-sm panel" style="padding-bottom: 0px;padding-top:0px; border: 1px solid #ccc;box-shadow: 1px 1px 5px 0px #bbbbbb !important; border-radius: 5px; min-height: 400px">
 		        <div class="panel-body">
 		            <div class="mar-ver pad-btm">
 		                <h1 class="h3">Login</h1>
@@ -119,9 +119,11 @@
 		        </div>
 		
 		        <div class="pad-all">
-		            <a href="#" class="btn-link mar-rgt">Forgot password ?</a>
-		            <a href="#" class="btn-link mar-lft">Create a new account</a>
-		
+                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Olvido su Contraseña?
+                                </a>
+		           {{-- <a href="#" class="btn-link mar-lft">Create a new account</a>
+                    --}}
 		            <div class="media pad-top bord-top">
 		                <div class="pull-right">
 		                    <a href="#" class="pad-rgt"><i class="psi-facebook icon-lg text-primary"></i></a>

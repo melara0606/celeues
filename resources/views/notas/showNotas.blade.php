@@ -58,7 +58,7 @@
 		                               
 		                                 </div>
 		                                 <div class="media-body">
-				                              {{--  <p class=" text-muted text-md " >Categoria Adulto</p>
+				                              {{--  <p class=" text-muted text-md " >Categoría Adulto</p>
 
 		                                	                                 
 				                                <p class=" text-muted text-md " id="docente1" > Docente: Docente</p>
@@ -109,7 +109,7 @@
 						<div class="col-sm-12 table-toolbar-left">
 							<button id="btnnuevo" class="btn btn-purple" ><i class="demo-pli-add"></i> Agregar Estudiante</button>
 
-							<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderacion</button>
+							<button class="btn btn-default btn-mint addPonderacion" value="0" type="button" >Ponderación</button>
 
 							<button class="btn btn-default imprimir" ><i class="demo-pli-printer icon-sm add-tooltip" data-original-title="Imprimir" data-container="body"></i></button>
 							
@@ -182,8 +182,8 @@
 					
 					{{--<div class="col-md-1"></div>--}}	
 					<div class="col-md-12 col-sm-12" style="background-color: white">
-						<div class="table-responsive ">
-					<table id="myTable" class="table bord-top bord-btm table-striped table-xs row-border {{--dataTable--}} tablaMod no-footer">
+						<div class="table-responsive "  style="overflow: auto;height:450px" >
+					<table id="myTable"class="table bord-top bord-btm table-striped table-xs row-border {{--dataTable--}} tablaMod no-footer">
 							<thead id="thead">
 										
 								</thead>
@@ -195,8 +195,12 @@
             			</table>
             		</div>
 				</div>
-
-
+				<div class="col-md-10 col-sm-10">
+				</div>
+				<div class="col-md-2 col-sm-2">
+				<button id="btnFinalizar" align="right" class="btn btn-md btn-mint"><i class="demo-pli-finish"></i>Finalizar grupo</button>
+			
+				</div>
 						
 
 
@@ -222,38 +226,6 @@
 
 
 
-	
-
-
-	<!--Default Bootstrap Modal-->
-	<!--===================================================-->
-	<div class="modal fade" id="modalIngreso" 	name="modalIngreso" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true" >
-		<div class="modal-dialog {{--modal-lg--}}" >
-			<div class="modal-content" style="background: {{ asset('demo/img/bg-img/1.jpg') }}">
-
-				<!--Modal header-->
-				<div class="modal-header alert-primary" id="modalIngresoHeader" >
-					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalIngresoLabel"><label>Ingresar Estudiante</label></h4>
-				</div>
-
-				<!--Modal body-->
-				<div class="modal-body "  style="overflow-y: auto;  max-height: 500px;{{--background:#eee;--}}"	>
-				
-				</div>
-
-				{{----}}<!--Modal footer-->
-				<div class="modal-footer">
-					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-					<button class="btn btn-primary" id="btnGuardar">Save changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--===================================================-->
-	<!--End Default Bootstrap Modal-->
-
-
 
 	<!--INFO Bootstrap Modal-->
 	<!--===================================================-->
@@ -262,12 +234,12 @@
 			<div class="modal-content">
 				<div class="modal-header alert-info">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Informacion Estudiante</h4>
+					<h4 class="modal-title" style="color: white;" id="myLargeModalLabel">Información Estudiante</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion Estudiante</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información Estudiante</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">
@@ -302,17 +274,18 @@
 	<div id="modalMsj" class="modal fade" tabindex="-1">
 		<div class="modal-dialog {{--modal-lg--}}">
 			<div class="modal-content">
-				<div id="modalMsjDiv" class="modal-header alert-danger">
+				<div id="modalMsjDiv" class="modal-header alert-mint">
 					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Cambio Estado de Categoria</h4>
+					<h4 class="modal-title" style="color: white;" id="modalMsjLabel">Finalizar Grupo</h4>
 				</div>
 				<div class="modal-body">
 					<div class="panel-body">
 						<h5 class="card-subtitle mb-2 text-muted col-md-12" style="font-weight:bold;">
-					<div id="msjAB"><p>Esta seguro de continuar con la accion?.</p>
+					<div id="msjAB"><p>Esta seguro de continuar con la acción?.</p>
+					<p>Al dar por finalizado el grupo ya no podra modificarse</p> {{-- --}}
 					</div>
 					</h5>
-            			{{-- Este funciona para darle valor del id para dar baja o alta--}}
+					
 					 <form>
 					 <input type="hidden" class="form-control" type="text"  id="estadoAB" name="estadoAB">
 					  <input type="hidden" class="form-control" type="text"  id="registro_id" name="registro_id">
@@ -324,100 +297,13 @@
 				<!--Modal footer-->
 				<div class="modal-footer">
 					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-					<button class="btn btn-danger" id="btnGuardarMsj">Continuar</button>
+					<button class="btn btn-mint" id="btnGuardarMsj">Continuar</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!--===================================================-->
 	<!--End DarBaja y Alta Bootstrap Modal-->
-
-
-<!--modalAsigDocenteAula Bootstrap Modal-->
-	<!--===================================================-->
-	<div id="modalAsigEstudiante" class="modal fade" tabindex="-1">
-		<div class="modal-dialog {{--modal-lg--}}">
-			<div class="modal-content">
-				<div class="modal-header alert-primary">
-					<button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-					<h4 class="modal-title" style="color: white;" id="modalAsigEstudianteLabel">Inscribir Estudiante</h4>
-				</div>
-				<div class="modal-body">
-					<div class="panel-body">
-						<div class="table-responsive">
-						{{--<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Inscribir Estudiante</h6>
-					     --}}
-					    
-					     <div class="input-group mar-btm">
-					                        <input type="text" placeholder="Buscar" class="form-control" id="search" name="search">
-					                        <span class="input-group-btn">
-					                            <button class="btn btn-primary" type="button">Buscar</button>
-					                        </span>
-					                    </div> 
-						<table   class="table {{--table-bordered--}} table-sm " align="center">
-            					<tbody id="tablaAsigEstudiante">
-            						@for($i=1;$i<5;$i++)
-            						<tr class='clickable-row'>
-            							<td align="center" >
-            								<!--<i class="demo-pli-smartphone-3 icon-lg" style="padding-top: 10px">
-            								-->	<i class="pli-professor icon-lg" style="padding-top: 5pX"></i>
-            									<i class="pli-board icon-lg"></i>
-            							</td>
-            						
-            								<td>
-            									<div class="comment-header">
-					                                <label class="media-heading box-inline text-main text-sm text-semibold ">Kelvin Adonay Flores Mejia</label> 
-					                                <p class="text-muted text-xs">Email@gmail.com </p>
-
-
-					                            </div>
-					                        </td>
-					                        <td align="center">
-<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigDocente" data-original-title="Asignar" data-container="body" value="" disabled="true">Asignar<i class="demo-psi-arrow-right icon-md "></i> </button>
-					                        </td>
- 
-            						</tr>
-            						@endfor
-
-            						<tr >
-            							<td align="center" >
-            									<i class="pli-board icon-lg" style="padding-top: 5pX"></i>
-            									<i class="pli-conference icon-sm" style="padding-top: 5pX"></i>
-            									
-            							</td>
-        								<td>
-        									<div class="comment-header">
-				                                <label class="media-heading box-inline text-main text-sm text-semibold ">Aula 2-1</label> 
-				                                <p class="text-muted text-xs">Capacidad 20 personas </p>
-
-
-				                            </div>
-				                        </td>
-				                        <td align="center">
-<button class="btn btn-default btn-trans btn-sm  btn-hover infoModal add-tooltip btnAsigAula" data-original-title="Asignar Aula" data-container="body" value="">Asignar aula<i class="demo-psi-arrow-right icon-md "></i> </button>
-				                        </td>
-
-            						</tr>
-            						
-
-            						
-            					</tbody>
-            			</table>
-					<!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
-						</div>
-					</div>
-				</div>
-				<!--Modal footer-->
-				<div class="modal-footer">
-					<button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--===================================================-->
-	<!--End Large Bootstrap Modal-->
-
-
 
 	@endsection
 

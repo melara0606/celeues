@@ -65,7 +65,7 @@
 					       <div class="pad-btm form-inline">
 					            <div class="row">
 					                <div class="col-sm-6 table-toolbar-left">
-					                    <button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nueva Noticia</button>
+					                    <button id="btnnuevo" class="btn btn-purple"><i class="demo-pli-add"></i> Nueva </button>
 					                    <button class="btn btn-default"><i class="demo-pli-printer"></i></button>
 					                    <div class="btn-group">
 					                        <button class="btn btn-default"><i class="demo-pli-exclamation"></i></button>
@@ -100,8 +100,8 @@
 					            <table id="myTable" class="table table-striped" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; ">
 					                <thead>
 					                    <tr>
-					                        <th class="text-center">Titulo</th>
-					                        <th>Descripcion</th>
+					                        <th class="text-center">Título</th>
+					                        <th>Descripción</th>
 					                        <th>Modalidad</th>
 					                        <th>Estado</th>
 					                        <th class="text-center">Acciones</th>
@@ -192,7 +192,7 @@
 					               
 					                <!--Text Input-->
 					                <div class="form-group {{--@if($errors->has('titulo')) has-error @endif--}}">
-					                    <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Titulo</label>
+					                    <label class="col-md-3 control-label text-main text-bold" for="demo-text-input">Título</label>
 					                    <div class="col-md-7">
 					                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Ingrese titulo"  >
 					                        {{--<small class="help-block">This is a help text</small>
@@ -202,14 +202,14 @@
 
                                     <!--Textarea-->
                                     <div class="form-group ">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-textarea-input">Descripcion</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-textarea-input">Descripción</label>
                                         <div class="col-md-7">
                                             <textarea id="descripcion" name="descripcion" rows="4" class="form-control" placeholder="Your content here.."></textarea>
                                         </div>
                                     </div>
 				        
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Modulo</label>
+                                        <label class="col-md-3 control-label text-main text-bold" for="demo-email-input">Módulo</label>
                                         <div class="col-md-4">
                                <select class="form-control" id="numModulo" name="numModulo" >
                                               <option>1</option>
@@ -282,7 +282,7 @@
 				<div class="modal-body">
 					<div class="panel-body">
 						<div class="table-responsive">
-						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Informacion</h6>
+						<h6 class="card-subtitle mb-2 text-muted" style="font-weight:bold;">Información</h6>
             			
 						<table   class="table {{--table-bordered--}} table-striped table-sm " align="center">
             					<tbody id="tablainfo">

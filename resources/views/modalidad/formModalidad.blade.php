@@ -66,7 +66,7 @@
     </div>
 
     <div id="telefonodiv" class="form-group row">
-        <label for="example-number-input" class="col-md-3 control-label text-main text-bold">Telefono</label>
+        <label for="example-number-input" class="col-md-3 control-label text-main text-bold">Teléfono</label>
         <div class="col-md-7 ">
             <input class="form-control" type="number"  id="telefono" name="telefono">
             <div id="telefonofeed" class="form-control-feedback"></div>

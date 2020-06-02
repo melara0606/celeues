@@ -1,0 +1,108 @@
+ba21c6b Merge branch 'revert-73106d3f' into 'master'
+38efc03 Revert "Merge"
+73106d3 Merge
+8aa81a3 Arreglo
+a3d575d Arreglos, prestamos a otras personas
+bfae18b notaFinal estudiantes dos decimas y cambio UI reset password y email de jona
+579eacd Merge branch 'master' of https://gitlab.com/tesis_celeues/celeues
+3d32047 UI de grupo de docente y categorizar por adminciertas partes de blade Estudiante Pago
+1335c4c label noticia notas interesados
+c4cf3f8 label de docente y estudiante
+0f5ce54 label restantes
+5d550a4 label modificacion
+829ee5f label idioma y modalidad
+2a96111 label aula
+244c8ea creacion de pantalla de record de notas para usuario estudiante
+fc9b02f arreglo de notas tab creaction de mail al crear usuario y cambio de contrasenha desde docente y estudiante
+03b02e1 accion finalizar Grupo
+e2be65e prueba recuperacion de contrasenha
+ccf1bb0 configurar que no se repitan aulas en el mismo curso
+635d65d Arreglos
+8560513 iconos y validacion para docentes que no se repitan en un curso
+dfe5ccc Update formDocente.blade.php
+fb33bda Update showDocente.blade.php
+07447df Update showGrupos.blade.php
+19247f4 para nota y record de estudiante
+de9f530 consulta de record academico
+063e993 cmobio en letra de estudiategrupo
+feea17e recordEstudiante controller
+a9713ab recordCambio esperando que funcione distinc on heroku
+be20a99 pantalla de usuario docente
+0bac347 prestamo eqeuipo y material didactico
+aead018 importacion de estudiantes accion
+413abec periodos en importar periodos
+ac1d5d4 boton enviado
+a638ea6 creacion de importacion de grupos
+c675758 cambio interesados create
+026e7e4 interesado archivo
+9f079f0 initeresado cambios
+60b375c Interesado Ingreso a estudiante
+047e497 noticia blade
+a64e59d cambios domingo
+90b1330 cambio de noticia
+e1f3cd1 noticias
+c5fdff7 Pantalla Interesados
+7f5ee36 pantalla Interesados
+308b399 arreglo a docente
+1b04d72 cambios noticia e interesados
+ab48663 cambios en traspaso
+b7d797e cambios estudiante
+a1531fd cambios generales a docente grupos notas y estudiante pago
+e6a852a cambios disenho y pantalla de grups de docentes
+3c6fa06 evaluaciones
+135c309 actualizacion de cambios en modelos y pantalla de showRecord
+857dc11 cambios traspaso
+14ef7e9 cambios
+ed26330 cambios vista traspasos
+b351fb0 traspasos cambios
+bfe110f cambios an trapaso
+d12d168 cambios y creacion de transpasos
+e0cbd34 arreglos tablas
+b868c8e cambios a pantallas
+a471a3f cambio a datatable
+e0c1a8d Update home.blade.php
+a198541 paginas arrgladas
+884acdb bcript contrasenha
+afa9f21 arreglo de coun de los grupos
+b51efeb arrglo periodo
+0b00606 prueba final
+5e37a85 prueba
+a3ff6ef prueba
+17ed018 enum preuba
+026bf73 prueba
+4bfb9c8 prueba
+0c5d111 prueba
+eef018f prueba
+4e6a6ae heroku ajax
+86e1dcb heroku cambos
+eecd462 prueba para heroku
+721986e usuario al registrar admin
+df33f28 heroku file
+de5e921 cambios realizados
+5aac351 subir para segunda defensa
+c42af55 avanze
+2f13ef5 grupos
+0b299ec avance
+db26352 acruaizacion
+931bfbd curso y grupos
+b7364f4 cursos
+515801e actualizar subida
+264295e Merge branch 'master' of https://gitlab.com/tesis_celeues/celeues
+b528e57 cabio
+e818a74 mod docente
+95e298f para subir
+ed95331 hb
+416f0a9 lkmdm
+bd152a5 noticia
+d7d4233 terminado idioma
+5e9835f idioma
+93cec3d idioma
+6235e3b bd e pantalla idioma
+c4c567a Interesados
+8b53fe9 interesados
+ef37269 pantalla noticias tabla y formulario
+b51b932 ya sirve
+aec43e5 cambio
+7c1bded subida
+6433fda login
+e1b8128 subida de proyecto
